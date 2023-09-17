@@ -1,0 +1,42 @@
+.certifications-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  margin-bottom: 20px;
+}
+
+.certification-card {
+  flex: 0 0 auto;
+  max-width: 300px;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  margin: 10px; /* Add right margin */
+}
+
+.certification-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.certification-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.certification-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.certification-download {
+  display: block;
+  margin-top: 0.5rem;
+  color: #007bff;
+  text-decoration: none;
+}

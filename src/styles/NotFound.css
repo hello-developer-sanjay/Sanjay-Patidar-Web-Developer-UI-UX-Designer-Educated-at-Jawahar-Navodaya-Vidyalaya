@@ -1,0 +1,60 @@
+/* NotFound.css */
+
+/* Embrace the Void */
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 125vh;
+  text-align: center;
+  font-family: 'Cinzel Decorative', cursive; /* A touch of elegance */
+  background: radial-gradient(circle, #111, #000); /* A cosmic backdrop */
+  color: #fff; /* Eerie glow */
+}
+
+/* The Abyssal Title */
+.not-found h1 {
+  font-size: 4rem; /* Monumental size */
+  margin-bottom: 1rem;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8); /* A haunting aura */
+  letter-spacing: 8px; /* A mysterious gap */
+}
+
+/* The Cryptic Message */
+.not-found p {
+  font-size: 1.8rem; /* An enigmatic tone */
+  margin: 1.5rem 0;
+  font-style: italic; /* A whisper from the beyond */
+  opacity: 0.8; /* Fading into the unknown */
+}
+
+/* The Enigmatic Image */
+.not-found img {
+  max-width: 70%; /* An enigmatic glimpse */
+  height: auto;
+  margin: 2rem 0;
+  border-radius: 50%; /* A portal to other dimensions */
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.5), inset 0 0 20px rgba(0, 0, 0, 0.8); /* A mystical aura */
+  transform: rotate(15deg) scale(0.9); /* A surreal twist */
+  filter: grayscale(50%) sepia(50%) hue-rotate(45deg); /* A spectral transformation */
+}
+
+/* The Quest Button */
+.not-found a {
+  background-color: #ff9800; /* A cosmic anomaly */
+  color: #fff; /* Illuminating the path */
+  padding: 16px 32px;
+  border-radius: 30px; /* A celestial gate */
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  border: 2px solid #fff; /* A sacred boundary */
+  letter-spacing: 2px; /* A hint of cosmic alignment */
+}
+
+/* The Cosmic Dance on Hover */
+.not-found a:hover {
+  background-color: #ff6600; /* A burst of celestial energy */
+  transform: scale(1.1) rotate(10deg); /* A cosmic dance */
+}

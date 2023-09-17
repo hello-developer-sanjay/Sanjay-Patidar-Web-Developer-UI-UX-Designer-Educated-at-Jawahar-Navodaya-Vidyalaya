@@ -1,0 +1,35 @@
+/* src/styles/Sidebar.css */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    background-color: #20232a;
+    padding: 20px;
+    width: 250px;
+    height: 100%;
+    color: white;
+  }
+
+  
+  .sidebar-title {
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .sidebar-certifications {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar-certifications li {
+    margin-bottom: 5px;
+  }
+  
+  .custom-toast-container .Toastify__toast {
+    margin-top: 150px;
+    margin-bottom: 0.5rem;
+    background-color: #2890b5;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+  }
