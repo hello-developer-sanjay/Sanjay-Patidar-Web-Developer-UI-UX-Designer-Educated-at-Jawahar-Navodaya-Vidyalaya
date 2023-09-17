@@ -10,7 +10,7 @@ const Certifications = () => {
     async function fetchCertifications() {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/certifications"
+          "https://portfolio-back-dujw.onrender.com/api/certifications"
         );
         setCertifications(response.data);
       } catch (error) {
