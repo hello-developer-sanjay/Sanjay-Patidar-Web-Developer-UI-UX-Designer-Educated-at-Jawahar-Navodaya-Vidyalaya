@@ -146,7 +146,7 @@ const Blogs = () => {
 
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/blogs');
+      const response = await axios.get('https://portfolio-back-dujw.onrender.com/api/blogs');
       setBlogs(response.data);
     } catch (error) {
       console.error('Error fetching blogs:', error);
@@ -172,14 +172,14 @@ const Blogs = () => {
       }
 
       if (editingBlogId) {
-        await axios.put(`http://localhost:5000/api/blogs/${editingBlogId}`, formData, {
+        await axios.put(`https://portfolio-back-dujw.onrender.com/api/blogs/${editingBlogId}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         });
         setEditingBlogId(null);
       } else {
-        await axios.post('http://localhost:5000/api/blogs', formData, {
+        await axios.post('https://portfolio-back-dujw.onrender.com/api/blogs', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -282,7 +282,7 @@ const Blogs = () => {
           accept="image/*"
           onChange={(e) => handleUpdateContentFile(index, e.target.files)}
         />
-        {section.url && <img src={`http://localhost:5000${section.url}`} alt={`Image ${index}`} />}
+        {section.url && <img src={`https://portfolio-back-dujw.onrender.com${section.url}`} alt={`Image ${index}`} />}
       </div>
     )}
 
@@ -295,7 +295,7 @@ const Blogs = () => {
         />
         {section.url && (
           <video width="320" height="240" controls>
-            <source src={`http://localhost:5000${section.url}`} type="video/mp4" />
+            <source src={`https://portfolio-back-dujw.onrender.com${section.url}`} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         )}
@@ -345,14 +345,14 @@ const Blogs = () => {
   } else if (section.type === 'image' && section.url.startsWith('/uploads/')) {
     return (
       <div key={index}>
-        <img src={`http://localhost:5000${section.url}`} alt={`Image ${index}`} />
+        <img src={`https://portfolio-back-dujw.onrender.com${section.url}`} alt={`Image ${index}`} />
       </div>
     );
   } else if (section.type === 'video'  && section.url.startsWith('/uploads/')) {
     return (
       <div key={index}>
         <video width="320" height="240" controls>
-          <source src={`http://localhost:5000${section.url}`} type="video/mp4" />
+          <source src={`https://portfolio-back-dujw.onrender.com${section.url}`} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
