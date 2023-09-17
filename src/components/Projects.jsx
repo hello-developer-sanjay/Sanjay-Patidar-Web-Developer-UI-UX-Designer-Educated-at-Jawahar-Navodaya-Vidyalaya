@@ -123,9 +123,9 @@ const Projects = () => {
       try {
         let response;
         if (category === 'all') {
-          response = await axios.get('http://localhost:5000/api/projects/category/all');
+          response = await axios.get('https://portfolio-back-dujw.onrender.com/api/projects/category/all');
         } else {
-          response = await axios.get(`http://localhost:5000/api/projects/category/${category}`);
+          response = await axios.get(`https://portfolio-back-dujw.onrender.com/api/projects/category/${category}`);
         }
         setProjects(response.data);
       } catch (error) {
