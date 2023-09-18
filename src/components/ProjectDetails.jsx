@@ -4,7 +4,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import ReactPlayer from 'react-player';
 import ModalImage from 'react-modal-image';
-
+import ResearchPaper from './ResearchPaper'; 
 const ProjectDetailsContainer = styled.div`
   padding: 2rem;
   min-height: 100vh;
@@ -264,6 +264,9 @@ const ProjectDetails = () => {
               ))}
             </ProjectDetailsLinkContainer>
           )}
+          {/* Display the Research Paper */}
+                    <ResearchPaper />
+
         </>
       ) : (
         <p>Loading project details...</p>
