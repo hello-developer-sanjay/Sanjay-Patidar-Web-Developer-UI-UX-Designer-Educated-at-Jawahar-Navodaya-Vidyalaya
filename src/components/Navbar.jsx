@@ -13,12 +13,12 @@ const Nav = styled.nav`
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Increased box shadow */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px); /* Adds a frosted glass effect to the background */
 `;
 
 const Logo = styled.h1`
-  font-size: 1.5rem; /* Larger font size for the logo */
+  font-size: 1.5rem; /* Increased font size */
   font-weight: bold;
   margin: 0;
   text-transform: uppercase;
@@ -33,20 +33,13 @@ const NavList = styled.ul`
 
 const NavItem = styled.li`
   position: relative;
-
-  &:hover {
-    .SubNavList {
-      opacity: 1;
-      visibility: visible;
-    }
-  }
 `;
 
 const NavLinkStyled = styled(NavLink)`
   text-decoration: none;
   color: #fff;
   font-weight: bold;
-  font-size: 1.2rem; /* Slightly increased font size */
+  font-size: 1.2rem; /* Increased font size */
 
   &:hover {
     text-decoration: underline;
@@ -56,11 +49,11 @@ const NavLinkStyled = styled(NavLink)`
 const SubNavList = styled.ul`
   list-style: none;
   position: absolute;
-  top: calc(100% + 10px); /* Increased distance from the parent item */
+  top: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
   background: #1a1c23;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Increased box shadow */
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s, visibility 0.3s;
@@ -71,10 +64,9 @@ const SubNavList = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
-  gap: 1rem;
+  padding: 0.5rem 0;
+  gap: 0.5rem;
   border-radius: 8px;
-  /* Adjust the position to cover both Home and Projects links */
   top: calc(100% + 8px);
   left: 0;
   transform: translateX(0%);
@@ -90,15 +82,15 @@ const SubNavLinkStyled = styled(NavLink)`
   background: linear-gradient(to bottom, transparent 0%, transparent 50%, #fff 50%, #fff 100%);
   background-size: 100% 200%;
   background-position: 0 100%;
-  color: #333; /* Change this color to your desired text color */
+  color: #333;
 
   &:hover {
     background-position: 0 0;
-    color: #fff; /* Change this color to your desired text color on hover */
+    color: #fff;
   }
 
   &.web {
-    background-image: linear-gradient(to bottom, transparent 0%, transparent 50%, #ff6f00 50%, #ff6f00 100%); /* Updated color */
+    background-image: linear-gradient(to bottom, transparent 0%, transparent 50%, #ff5722 50%, #ff5722 100%);
   }
 
   &.projects {
