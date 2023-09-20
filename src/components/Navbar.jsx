@@ -18,17 +18,17 @@ const Nav = styled.nav`
 `;
 
 const Logo = styled.h1`
-  font-size: 1.5rem; /* Increased font size */
+  font-size: 1rem; /* Increased font size */
   font-weight: bold;
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 2px; /* Increased letter spacing */
+  letter-spacing: 1px; /* Increased letter spacing */
 `;
 
 const NavList = styled.ul`
   list-style: none;
   display: flex;
-  gap: 2rem; /* Increased gap between items */
+  gap: 1rem; /* Increased gap between items */
 `;
 
 const NavItem = styled.li`
