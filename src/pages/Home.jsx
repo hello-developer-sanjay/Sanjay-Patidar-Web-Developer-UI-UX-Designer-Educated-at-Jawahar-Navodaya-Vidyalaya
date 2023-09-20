@@ -73,28 +73,29 @@ const ActionsContainer = styled(motion.div)`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 1rem; /* Decreased the gap between buttons */
   margin-top: 3rem;
 `;
 
-const ActionLink = styled(Link)`
+// Updated styles for ActionLink and SecondaryActionLink
+const ActionButton = styled(Link)`
   background-color: #ff6f00;
   color: white;
-  padding: 1rem 2.5rem;
+  padding: 0.8rem 1.6rem; /* Smaller padding */
   border: none;
-  border-radius: 8px;
+  border-radius: 4px; /* Smaller border radius */
   display: flex;
   align-items: center;
   text-decoration: none;
   font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 1.2rem; /* Smaller font size */
   transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
 
   &:hover {
     background-color: #ffcc80;
-    transform: translateY(-5px);
+    transform: translateY(-3px);
   }
 `;
 
