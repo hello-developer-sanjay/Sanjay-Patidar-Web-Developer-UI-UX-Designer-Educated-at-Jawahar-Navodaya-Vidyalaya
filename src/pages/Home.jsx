@@ -10,20 +10,20 @@ import Typed from 'react-typed';
 const HomeContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #212121, #424242);
+  background: linear-gradient(to bottom, #4a90e2, #005fee);
   padding: 3rem;
   box-sizing: border-box;
-  overflow: hidden; /* Hide overflow to prevent scrolling */
+  overflow: hidden;
 `;
 
 const ProfileImage = styled(motion.img)`
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
 `;
 
 const Introduction = styled(motion.p)`
@@ -32,7 +32,7 @@ const Introduction = styled(motion.p)`
   max-width: 800px;
   text-align: center;
   margin-top: 1.5rem;
-  color: #aaa;
+  color: #fff;
 
   .highlight {
     color: #ff6f00;
@@ -73,36 +73,35 @@ const ActionsContainer = styled(motion.div)`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem; /* Decreased the gap between buttons */
+  gap: 1rem;
   margin-top: 3rem;
 `;
 
-// Updated styles for ActionLink and SecondaryActionLink
 const ActionLink = styled(Link)`
   background-color: #ff6f00;
   color: white;
-  padding: 0.8rem 1.6rem; /* Smaller padding */
+  padding: 1rem 2rem;
   border: none;
-  border-radius: 4px; /* Smaller border radius */
+  border-radius: 30px;
   display: flex;
   align-items: center;
   text-decoration: none;
   font-weight: bold;
-  font-size: 1.2rem; /* Smaller font size */
+  font-size: 1.4rem;
   transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
 
   &:hover {
     background-color: #ffcc80;
-    transform: translateY(-3px);
+    transform: translateY(-5px);
   }
 `;
 
 const ThemeToggle = styled.button`
   background: none;
   border: none;
-  color: #ccc;
+  color: #fff;
   font-size: 1.5rem;
   cursor: pointer;
   display: flex;
@@ -121,28 +120,36 @@ const FloatingActionButton = styled(ActionLink)`
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  padding: 1rem 1.5rem;
-  font-size: 1.6rem;
+  padding: 1.5rem;
+  font-size: 2rem;
   border-radius: 50%;
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
 
   &:hover {
     background-color: #ffcc80;
-    transform: translateY(-3px);
+    transform: translateY(-5px);
   }
 `;
 
 const SecondaryActionLink = styled(ActionLink)`
-  background-color: #333;
-  font-size: 1.2rem;
+  background-color: transparent;
+  font-size: 1.4rem;
+  border: 2px solid #ff6f00;
+  color: #ff6f00;
+
+  &:hover {
+    background-color: #ff6f00;
+    color: white;
+    border: 2px solid #ff6f00;
+  }
 `;
 
 const Subtitle = styled.p`
   font-size: 1.8rem;
-  color: #ccc;
+  color: #fff;
   margin-top: 2rem;
 `;
 
