@@ -72,10 +72,6 @@ const SubNavList = styled.ul`
   padding: 0.5rem 0;
   gap: 0.5rem;
   border-radius: 8px;
-  /* Adjust the position to cover both Home and Projects links */
-  top: calc(100% + 8px);
-  left: 0;
-  transform: translateX(0%);
 `;
 
 const SubNavItem = styled.li``;
@@ -85,19 +81,11 @@ const SubNavLinkStyled = styled(NavLink)`
   color: #fff;
   padding: 0.5rem 1rem;
   transition: background-color 0.3s;
-  border: 2px solid #fff;
-  border-radius: 4px;
-  font-weight: bold;
 
-  &:not(:last-child) {
-    margin-bottom: 0.5rem;
-  }
-
-  &:focus {
-    outline: none;
+  &:hover {
+    background-color: #333;
   }
 `;
-
 
 const Navbar = () => {
   return (
