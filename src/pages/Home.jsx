@@ -16,6 +16,7 @@ const HomeContainer = styled(motion.div)`
   background: linear-gradient(to bottom, #212121, #424242);
   padding: 3rem;
   box-sizing: border-box;
+  overflow: hidden; /* Hide overflow to prevent scrolling */
 `;
 
 const ProfileImage = styled(motion.img)`
@@ -25,49 +26,40 @@ const ProfileImage = styled(motion.img)`
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
 `;
 
-const Title = styled(motion.h1)`
-  font-size: 2.8rem;
-  margin-top: 2rem;
-  text-align: center;
-  color: #f2f2f2;
-`;
 const Introduction = styled(motion.p)`
   font-size: 1.5rem;
   line-height: 1.8;
   max-width: 800px;
   text-align: center;
   margin-top: 1.5rem;
-  color: #aaa; /* Base text color */
+  color: #aaa;
 
   .highlight {
-    color: #ff6f00; /* Highlight color */
-    font-weight: bold; /* Make the highlighted text bold */
-    font-size: 2rem; /* Larger font size for highlight */
-    font-family: 'Arial', sans-serif; /* Change font family */
+    color: #ff6f00;
+    font-weight: bold;
+    font-size: 2rem;
+    font-family: 'Arial', sans-serif;
   }
 
-  /* Add a subtle animation to the highlighted text */
   .highlight {
     animation: highlightAnimation 2s ease-in-out infinite;
   }
 
   @keyframes highlightAnimation {
     0% {
-      color: #ff6f00; /* Highlight color at the start */
-      transform: scale(1); /* Normal size */
+      color: #ff6f00;
+      transform: scale(1);
     }
     50% {
-      color: #ffcc80; /* Transition to a lighter highlight color */
-      transform: scale(1.05); /* Slightly larger size */
+      color: #ffcc80;
+      transform: scale(1.05);
     }
     100% {
-      color: #ff6f00; /* Return to the highlight color */
-      transform: scale(1); /* Back to normal size */
+      color: #ff6f00;
+      transform: scale(1);
     }
   }
 `;
-
-
 
 const TypedText = styled.span`
   display: block;
@@ -185,13 +177,7 @@ const Home = () => {
         transition={{ delay: 0.5, duration: 0.8 }}
         style={{ filter: darkMode ? 'grayscale(100%)' : 'none' }}
       />
-      <Title
-        initial={{ y: -20 }}
-        animate={{ y: 0 }}
-        transition={{ delay: 0.7, duration: 0.8, type: 'spring', stiffness: 120 }}
-      >
-        Welcome to My Portfolio
-      </Title>
+     
       <Introduction
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
