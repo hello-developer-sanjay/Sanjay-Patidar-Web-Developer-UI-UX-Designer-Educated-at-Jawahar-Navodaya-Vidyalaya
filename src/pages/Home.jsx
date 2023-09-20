@@ -78,7 +78,7 @@ const ActionsContainer = styled(motion.div)`
 `;
 
 // Updated styles for ActionLink and SecondaryActionLink
-const ActionButton = styled(Link)`
+const ActionLink = styled(Link)`
   background-color: #ff6f00;
   color: white;
   padding: 0.8rem 1.6rem; /* Smaller padding */
