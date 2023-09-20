@@ -1,33 +1,11 @@
 import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import {
-  FaArrowRight,
-  FaUserGraduate,
-  FaLaptopCode,
-  FaBriefcase,
-  FaFilePdf,
-} from 'react-icons/fa';
+import { FaArrowRight, FaUserGraduate, FaLaptopCode, FaBriefcase, FaFilePdf } from 'react-icons/fa';
 import { IoMdMoon, IoMdSunny } from 'react-icons/io';
 import profileImage from '../assets/profile.png';
 import Typed from 'react-typed';
-
-// Create custom keyframes for animations
-const highlightAnimation = keyframes`
-  0% {
-    color: #ff6f00;
-    transform: scale(1);
-  }
-  50% {
-    color: #ffcc80;
-    transform: scale(1.05);
-  }
-  100% {
-    color: #ff6f00;
-    transform: scale(1);
-  }
-`;
 
 const HomeContainer = styled(motion.div)`
   display: flex;
@@ -35,11 +13,20 @@ const HomeContainer = styled(motion.div)`
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #212121, #424242);
+  background: linear-gradient(to bottom, #192f3e, #0b132b);
   padding: 3rem;
   box-sizing: border-box;
   overflow: hidden;
-  font-family: 'Montserrat', sans-serif; /* Add a custom font */
+`;
+
+const BackgroundOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(25, 47, 62, 0.8), rgba(11, 19, 43, 0.8));
+  z-index: -1;
 `;
 
 const ProfileImage = styled(motion.img)`
@@ -50,28 +37,45 @@ const ProfileImage = styled(motion.img)`
 `;
 
 const Introduction = styled(motion.p)`
-  font-size: 1.5rem;
-  line-height: 1.8;
+  font-size: 1.8rem;
+  line-height: 2.2;
   max-width: 800px;
   text-align: center;
-  margin-top: 1.5rem;
-  color: #aaa;
-  font-family: 'Lato', sans-serif; /* Add a custom font */
+  margin-top: 2rem;
+  color: #ccc;
 
   .highlight {
     color: #ff6f00;
     font-weight: bold;
-    font-size: 2rem;
-    font-family: 'Arial', sans-serif;
-    animation: ${highlightAnimation} 2s ease-in-out infinite;
+    font-size: 2.2rem;
+  }
+
+  .highlight {
+    animation: highlightAnimation 2s ease-in-out infinite;
+  }
+
+  @keyframes highlightAnimation {
+    0% {
+      color: #ff6f00;
+      transform: scale(1);
+    }
+    50% {
+      color: #ffcc80;
+      transform: scale(1.05);
+    }
+    100% {
+      color: #ff6f00;
+      transform: scale(1);
+    }
   }
 `;
 
 const TypedText = styled.span`
   display: block;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   color: #ff6f00;
   font-weight: bold;
+  font-size: 1.2rem;
 `;
 
 const ActionsContainer = styled(motion.div)`
@@ -79,28 +83,28 @@ const ActionsContainer = styled(motion.div)`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 3rem;
+  gap: 1.5rem;
+  margin-top: 3.5rem;
 `;
 
 const ActionLink = styled(Link)`
   background-color: #ff6f00;
   color: white;
-  padding: 0.8rem 1.6rem;
+  padding: 1rem 2rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   text-decoration: none;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
 
   &:hover {
     background-color: #ffcc80;
-    transform: translateY(-3px);
+    transform: translateY(-5px);
   }
 `;
 
@@ -108,7 +112,7 @@ const ThemeToggle = styled.button`
   background: none;
   border: none;
   color: #ccc;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -126,29 +130,29 @@ const FloatingActionButton = styled(ActionLink)`
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  padding: 1rem 1.5rem;
-  font-size: 1.6rem;
+  padding: 1.5rem;
+  font-size: 1.8rem;
   border-radius: 50%;
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
 
   &:hover {
     background-color: #ffcc80;
-    transform: translateY(-3px);
+    transform: translateY(-5px);
   }
 `;
 
 const SecondaryActionLink = styled(ActionLink)`
   background-color: #333;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 `;
 
 const Subtitle = styled.p`
   font-size: 1.8rem;
   color: #ccc;
-  margin-top: 2rem;
+  margin-top: 3rem;
 `;
 
 const SubtitleLink = styled.a`
@@ -175,6 +179,7 @@ const Home = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.7, ease: 'easeInOut' }}
     >
+      <BackgroundOverlay />
       <ProfileImage
         src={profileImage}
         alt="Sanjay Patidar"
@@ -196,7 +201,7 @@ const Home = () => {
             backSpeed={40}
             loop
           />
-        </TypedText>{' '}
+        </TypedText>
         I create <span className="highlight">stunning web experiences</span>. Explore my projects, skills, and experiences, and let's build something amazing together!
       </Introduction>
       <ActionsContainer
