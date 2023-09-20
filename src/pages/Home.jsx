@@ -1,29 +1,52 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaUserGraduate, FaLaptopCode, FaBriefcase, FaFilePdf } from 'react-icons/fa';
+import {
+  FaArrowRight,
+  FaUserGraduate,
+  FaLaptopCode,
+  FaBriefcase,
+  FaFilePdf,
+} from 'react-icons/fa';
 import { IoMdMoon, IoMdSunny } from 'react-icons/io';
 import profileImage from '../assets/profile.png';
 import Typed from 'react-typed';
 
+// Create custom keyframes for animations
+const highlightAnimation = keyframes`
+  0% {
+    color: #ff6f00;
+    transform: scale(1);
+  }
+  50% {
+    color: #ffcc80;
+    transform: scale(1.05);
+  }
+  100% {
+    color: #ff6f00;
+    transform: scale(1);
+  }
+`;
+
 const HomeContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #4a90e2, #005fee);
+  background: linear-gradient(to bottom, #212121, #424242);
   padding: 3rem;
   box-sizing: border-box;
   overflow: hidden;
+  font-family: 'Montserrat', sans-serif; /* Add a custom font */
 `;
 
 const ProfileImage = styled(motion.img)`
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
 `;
 
 const Introduction = styled(motion.p)`
@@ -32,32 +55,15 @@ const Introduction = styled(motion.p)`
   max-width: 800px;
   text-align: center;
   margin-top: 1.5rem;
-  color: #fff;
+  color: #aaa;
+  font-family: 'Lato', sans-serif; /* Add a custom font */
 
   .highlight {
     color: #ff6f00;
     font-weight: bold;
     font-size: 2rem;
     font-family: 'Arial', sans-serif;
-  }
-
-  .highlight {
-    animation: highlightAnimation 2s ease-in-out infinite;
-  }
-
-  @keyframes highlightAnimation {
-    0% {
-      color: #ff6f00;
-      transform: scale(1);
-    }
-    50% {
-      color: #ffcc80;
-      transform: scale(1.05);
-    }
-    100% {
-      color: #ff6f00;
-      transform: scale(1);
-    }
+    animation: ${highlightAnimation} 2s ease-in-out infinite;
   }
 `;
 
@@ -80,28 +86,28 @@ const ActionsContainer = styled(motion.div)`
 const ActionLink = styled(Link)`
   background-color: #ff6f00;
   color: white;
-  padding: 1rem 2rem;
+  padding: 0.8rem 1.6rem;
   border: none;
-  border-radius: 30px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   text-decoration: none;
   font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
 
   &:hover {
     background-color: #ffcc80;
-    transform: translateY(-5px);
+    transform: translateY(-3px);
   }
 `;
 
 const ThemeToggle = styled.button`
   background: none;
   border: none;
-  color: #fff;
+  color: #ccc;
   font-size: 1.5rem;
   cursor: pointer;
   display: flex;
@@ -120,36 +126,28 @@ const FloatingActionButton = styled(ActionLink)`
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  padding: 1.5rem;
-  font-size: 2rem;
+  padding: 1rem 1.5rem;
+  font-size: 1.6rem;
   border-radius: 50%;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
 
   &:hover {
     background-color: #ffcc80;
-    transform: translateY(-5px);
+    transform: translateY(-3px);
   }
 `;
 
 const SecondaryActionLink = styled(ActionLink)`
-  background-color: transparent;
-  font-size: 1.4rem;
-  border: 2px solid #ff6f00;
-  color: #ff6f00;
-
-  &:hover {
-    background-color: #ff6f00;
-    color: white;
-    border: 2px solid #ff6f00;
-  }
+  background-color: #333;
+  font-size: 1.2rem;
 `;
 
 const Subtitle = styled.p`
   font-size: 1.8rem;
-  color: #fff;
+  color: #ccc;
   margin-top: 2rem;
 `;
 
@@ -185,7 +183,6 @@ const Home = () => {
         transition={{ delay: 0.5, duration: 0.8 }}
         style={{ filter: darkMode ? 'grayscale(100%)' : 'none' }}
       />
-     
       <Introduction
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -199,8 +196,8 @@ const Home = () => {
             backSpeed={40}
             loop
           />
-        </TypedText>
-         I create <span className="highlight">stunning web experiences</span>. Explore my projects, skills, and experiences, and let's build something amazing together!
+        </TypedText>{' '}
+        I create <span className="highlight">stunning web experiences</span>. Explore my projects, skills, and experiences, and let's build something amazing together!
       </Introduction>
       <ActionsContainer
         initial={{ opacity: 0 }}
