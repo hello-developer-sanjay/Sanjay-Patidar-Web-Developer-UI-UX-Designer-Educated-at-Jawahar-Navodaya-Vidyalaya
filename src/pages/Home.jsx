@@ -86,27 +86,28 @@ const ActionsContainer = styled(motion.div)`
   gap: 1.5rem;
   margin-top: 3.5rem;
 `;
-
 const ActionLink = styled(Link)`
-  background-color: #ff6f00;
-  color: white;
-  padding: 1rem 2rem;
+  background-color: #1e3a5f;
+  color: #fff;
+  padding: 0.8rem 1.6rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   text-decoration: none;
   font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
 
   &:hover {
-    background-color: #ffcc80;
-    transform: translateY(-5px);
+    background-color: #ff6f00;
+    color: #fff;
+    transform: translateY(-3px);
   }
 `;
+
 
 const ThemeToggle = styled.button`
   background: none;
