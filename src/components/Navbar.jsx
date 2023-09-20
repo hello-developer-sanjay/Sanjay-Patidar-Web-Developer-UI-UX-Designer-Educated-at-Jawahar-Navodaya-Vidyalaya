@@ -4,7 +4,7 @@ import { FaHome, FaFolder } from 'react-icons/fa';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
-  background-color: #333;
+  background-color: #1e3a5f; /* Updated background color */
   color: #fff;
   display: flex;
   justify-content: space-between;
@@ -13,22 +13,22 @@ const Nav = styled.nav`
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Increased box shadow */
   backdrop-filter: blur(10px); /* Adds a frosted glass effect to the background */
 `;
 
 const Logo = styled.h1`
-  font-size: 1rem;
+  font-size: 1.5rem; /* Larger font size for the logo */
   font-weight: bold;
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px; /* Increased letter spacing */
 `;
 
 const NavList = styled.ul`
   list-style: none;
   display: flex;
-  gap: 1rem;
+  gap: 2rem; /* Increased gap between items */
 `;
 
 const NavItem = styled.li`
@@ -46,6 +46,7 @@ const NavLinkStyled = styled(NavLink)`
   text-decoration: none;
   color: #fff;
   font-weight: bold;
+  font-size: 1.2rem; /* Slightly increased font size */
 
   &:hover {
     text-decoration: underline;
@@ -55,11 +56,11 @@ const NavLinkStyled = styled(NavLink)`
 const SubNavList = styled.ul`
   list-style: none;
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + 10px); /* Increased distance from the parent item */
   left: 50%;
   transform: translateX(-50%);
   background: #1a1c23;
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Increased box shadow */
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s, visibility 0.3s;
@@ -70,8 +71,8 @@ const SubNavList = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.5rem 0;
-  gap: 0.5rem;
+  padding: 1rem;
+  gap: 1rem;
   border-radius: 8px;
   /* Adjust the position to cover both Home and Projects links */
   top: calc(100% + 8px);
@@ -97,7 +98,7 @@ const SubNavLinkStyled = styled(NavLink)`
   }
 
   &.web {
-    background-image: linear-gradient(to bottom, transparent 0%, transparent 50%, #ff5722 50%, #ff5722 100%);
+    background-image: linear-gradient(to bottom, transparent 0%, transparent 50%, #ff6f00 50%, #ff6f00 100%); /* Updated color */
   }
 
   &.projects {
@@ -121,7 +122,7 @@ const Navbar = () => {
           </NavLinkStyled>
           <SubNavList className="SubNavList">
             <SubNavItem>
-              <SubNavLinkStyled to="/projects/web">Web Projects</SubNavLinkStyled>
+              <SubNavLinkStyled to="/projects/web" className="web">Web Projects</SubNavLinkStyled>
             </SubNavItem>
             <SubNavItem>
               <SubNavLinkStyled to="/projects/mobile">Mobile Projects</SubNavLinkStyled>
