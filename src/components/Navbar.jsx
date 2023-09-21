@@ -83,7 +83,6 @@ const SubNavItem = styled.li``;
 
 const SubNavLinkStyled = styled(NavLink)`
   text-decoration: none;
-  color: #fff;
   font-size: 0.9rem;
   padding: 0.5rem 1rem;
   transition: background-color 0.3s;
@@ -96,10 +95,10 @@ const SubNavLinkStyled = styled(NavLink)`
   &:after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -1px; /* Adjust the position to avoid affecting the layout */
     left: 0;
     width: 100%;
-    height: 0.1rem; /* Add a border-bottom effect */
+    height: 1px; /* Add a border-bottom effect */
     background-color: #fff;
     transform: scaleX(0);
     transform-origin: right;
