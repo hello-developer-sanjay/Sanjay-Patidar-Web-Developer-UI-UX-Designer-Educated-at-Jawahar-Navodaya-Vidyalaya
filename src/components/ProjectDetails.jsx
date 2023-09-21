@@ -49,7 +49,10 @@ const ProjectDetailsDescription = styled.p`
   color: #555;
   font-style: italic;
   position: relative;
-
+ span.highlight {
+    color: #0070f3; /* Highlighted text color */
+    font-weight: bold; /* Highlighted text bold */
+  }
   &:before {
     content: '❖ Project Description ❖'; /* Use a decorative label */
     display: block;
@@ -201,15 +204,26 @@ const ProjectDetails = () => {
       {project ? (
         <>
           <ProjectDetailsTitle>{project.title}</ProjectDetailsTitle>
-          {project.description && (
-            <ProjectDetailsDescription>
-              {project.description.map((desc, index) => (
-                <React.Fragment key={index}>
-                  {desc}
-                  <br />
-                </React.Fragment>
-              ))}
-            </ProjectDetailsDescription>
+         {project.description && (
+                  <ProjectDetailsDescription>
+                    {project.description.map((desc, index) => {
+                      // Use regular expressions to find text between ^ markers and apply styling
+                      const highlightedText = desc.split(/\^([^]+?)\^/).map((part, i) => {
+                        if (i % 2 === 1) {
+                          // Apply styles to text between markers
+                          return <span key={i} className="highlight">{part}</span>;
+                        }
+                        return part;
+                      });
+
+                      return (
+                        <React.Fragment key={index}>
+                          {highlightedText}
+                          <br />
+                        </React.Fragment>
+                      );
+                    })}
+                  </ProjectDetailsDescription>
           )}
           {project.additionalDetails && (
             <AdditionalDetailsContainer>
