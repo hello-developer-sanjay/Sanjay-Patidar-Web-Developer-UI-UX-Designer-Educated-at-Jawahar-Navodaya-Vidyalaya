@@ -136,18 +136,22 @@ const ProjectDescription = styled.div`
   line-height: 1.6;
   margin-top: 1rem;
   position: relative;
-`;
 
-const StyledSection = styled(ProjectDescription)`
-  /* CSS for styled sections */
-  font-weight: bold;
-  color: #ff6b6b; /* Change color for styled sections */
-`;
+  .styled-section {
+    /* Add styles for sections between '^' tags */
+    /* For example, you can change the background color and text color */
+    background-color: #ffc107; /* Yellow background for styled sections */
+    color: #333; /* Dark text color for styled sections */
+    padding: 0.5rem; /* Add some padding for styled sections */
+  }
 
-const NormalSection = styled(ProjectDescription)`
-  /* CSS for normal sections */
-  font-style: italic;
-  color: #333; /* Change color for normal sections */
+  .normal-section {
+    /* Add styles for sections outside '^' tags (normal sections) */
+    /* For example, you can change the background color and text color */
+    background-color: #f0f8ff; /* Light blue background for normal sections */
+    color: #0070f3; /* Blue text color for normal sections */
+    padding: 0.5rem; /* Add some padding for normal sections */
+  }
 `;
 
 // Function to parse and style the description
@@ -157,16 +161,16 @@ const parseDescription = (description) => {
     if (index % 2 === 1) {
       // Apply different styles to even sections (between '^' tags)
       return (
-        <StyledSection key={index} className="styled-section">
+        <ProjectDescription key={index} className="styled-section">
           {section}
-        </StyledSection>
+        </ProjectDescription>
       );
     } else {
       // Apply default styles to odd sections (outside '^' tags)
       return (
-        <NormalSection key={index} className="normal-section">
+        <ProjectDescription key={index} className="normal-section">
           {section}
-        </NormalSection>
+        </ProjectDescription>
       );
     }
   });
@@ -268,3 +272,5 @@ const Projects = () => {
 };
 
 export default Projects;
+
+ChatGPT
