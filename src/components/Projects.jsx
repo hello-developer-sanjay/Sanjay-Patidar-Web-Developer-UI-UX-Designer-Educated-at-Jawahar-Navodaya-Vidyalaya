@@ -55,7 +55,8 @@ const ProjectTitle = styled.span`
   }
 
   .arrow {
-    display: inline-block;
+    display: block;
+    text-align: center;
     animation: bounce 1s infinite;
   }
 
@@ -223,9 +224,9 @@ const Projects = () => {
             {projects.map((project) => (
               <ProjectItem key={project._id}>
                 <NavLink to={`/api/projects/details/${project._id}`}>
+                  <span className="arrow">👇</span>
                   <ProjectTitle>
                     {project.title}
-                    <span className="arrow">👇</span>
                   </ProjectTitle>
                 </NavLink>
                 {project.websiteLink && (
