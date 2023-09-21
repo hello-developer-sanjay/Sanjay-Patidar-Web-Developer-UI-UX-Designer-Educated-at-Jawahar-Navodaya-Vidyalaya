@@ -58,6 +58,19 @@ const ProjectTitle = styled.span`
     display: block; /* Display the arrow as a block element */
     text-align: center; /* Center-align the arrow horizontally */
     font-size: 1.5rem; /* Adjust the font size of the arrow */
+    animation: bounce 1s infinite; /* Add the bounce animation */
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
   }
 `;
 const ProjectsNavItem = styled.li`
