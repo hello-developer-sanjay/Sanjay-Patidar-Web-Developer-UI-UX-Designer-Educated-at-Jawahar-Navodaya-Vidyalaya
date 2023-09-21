@@ -53,6 +53,23 @@ const ProjectTitle = styled.span`
     color: #ff6b6b; /* Change color on hover */
     transform: translateY(-2px); /* Add a subtle upward hover effect */
   }
+
+  .arrow {
+    display: inline-block;
+    animation: bounce 1s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
 `;
 
 const ProjectsNavItem = styled.li`
@@ -205,8 +222,11 @@ const Projects = () => {
          <ProjectList>
             {projects.map((project) => (
               <ProjectItem key={project._id}>
-               <NavLink to={`/api/projects/details/${project._id}`}>
-                  <ProjectTitle>{project.title}</ProjectTitle>
+                <NavLink to={`/api/projects/details/${project._id}`}>
+                  <ProjectTitle>
+                    {project.title}
+                    <span className="arrow">👇</span>
+                  </ProjectTitle>
                 </NavLink>
                 {project.websiteLink && (
                   <ProjectWebsiteLink href={project.websiteLink} target="_blank" rel="noopener noreferrer">
