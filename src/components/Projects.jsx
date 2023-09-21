@@ -46,7 +46,7 @@ const ProjectTitle = styled.span`
   font-weight: bold;
   font-size: 1.2rem;
   color: #0070f3;
-  text-decoration: underline;
+
   transition: color 0.3s, transform 0.3s;
 
   &:hover {
