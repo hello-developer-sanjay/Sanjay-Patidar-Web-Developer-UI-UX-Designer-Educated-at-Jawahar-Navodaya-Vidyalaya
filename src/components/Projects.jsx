@@ -33,7 +33,7 @@ const ProjectWebsiteLink = styled.a`
 
   &:hover {
     transform: translateY(-2px);
-    text-decoration: underline;
+  
     background-color: #0070f3; /* Blue background on hover */
     color: #ffffff; /* White text on hover */
   }
