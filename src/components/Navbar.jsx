@@ -88,20 +88,17 @@ const SubNavLinkStyled = styled(NavLink)`
   padding: 0.5rem 1rem;
   transition: background-color 0.3s;
   display: flex;
-  align-items: center;
-  gap: 5px;
+  align-items: center; /* Center the text and icon vertically */
+  justify-content: center; /* Center the text and icon horizontally */
+
+  & svg {
+    margin-right: 0.5rem; /* Add spacing between the icon and text */
+  }
 
   &:hover {
     background-color: #333;
   }
 `;
-
-const ProjectType = styled.span`
-  background-color: #333;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-`;
-
 const Navbar = () => {
   return (
     <Nav>
@@ -119,17 +116,17 @@ const Navbar = () => {
           <SubNavList className="SubNavList">
             <SubNavItem>
               <SubNavLinkStyled to="/projects/web">
-                Web <ProjectType>Projects</ProjectType>
+                <FaFolder /> Web Projects
               </SubNavLinkStyled>
             </SubNavItem>
             <SubNavItem>
               <SubNavLinkStyled to="/projects/mobile">
-                Mobile <ProjectType>Projects</ProjectType>
+                <FaFolder /> Mobile Projects
               </SubNavLinkStyled>
             </SubNavItem>
             <SubNavItem>
               <SubNavLinkStyled to="/projects/other">
-                Other <ProjectType>Projects</ProjectType>
+                <FaFolder /> Other Projects
               </SubNavLinkStyled>
             </SubNavItem>
           </SubNavList>
