@@ -17,7 +17,7 @@ const ProjectDetailsContainer = styled.div`
 const ProjectDetailsTitle = styled.h2`
   font-size: 3rem;
   margin-bottom: 1rem;
-  text-align: center;
+  
   color: #ff6b6b;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   font-family: 'Pacifico', cursive;
