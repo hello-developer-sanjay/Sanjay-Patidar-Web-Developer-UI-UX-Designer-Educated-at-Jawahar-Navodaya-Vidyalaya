@@ -240,9 +240,6 @@ const Home = () => {
       <Subtitle>
         Want to know more? Check out my <SubtitleLink href="/blogs">Blogs</SubtitleLink> for tech insights and tutorials.
       </Subtitle>
-      <FloatingActionButton to="/contact">
-        
-      </FloatingActionButton>
     </HomeContainer>
   );
 };
