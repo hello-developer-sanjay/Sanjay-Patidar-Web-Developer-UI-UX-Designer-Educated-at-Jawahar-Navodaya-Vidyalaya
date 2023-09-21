@@ -28,14 +28,14 @@ const ProjectWebsiteLink = styled.a`
   font-size: 1rem;
   margin-top: 0.5rem;
   padding: 0.5rem 1rem;
-  background-color: #f0f8ff; /* Light blue background */
+  background-color: #f0f8ff;
   border-radius: 5px;
   transition: transform 0.2s, background-color 0.2s;
 
   &:hover {
     transform: translateY(-2px);
-    background-color: #0070f3; /* Blue background on hover */
-    color: #ffffff; /* White text on hover */
+    background-color: #0070f3;
+    color: #ffffff;
   }
 
   svg {
@@ -50,15 +50,15 @@ const ProjectTitle = styled.span`
   transition: color 0.3s, transform 0.3s;
 
   &:hover {
-    color: #ff6b6b; /* Change color on hover */
-    transform: translateY(-2px); /* Add a subtle upward hover effect */
+    color: #ff6b6b;
+    transform: translateY(-2px);
   }
 
   .arrow {
-    display: block; /* Display the arrow as a block element */
-    text-align: center; /* Center-align the arrow horizontally */
-    font-size: 1.5rem; /* Adjust the font size of the arrow */
-    animation: bounce 1s infinite; /* Add the bounce animation */
+    display: block;
+    text-align: center;
+    font-size: 1.5rem;
+    animation: bounce 1s infinite;
   }
 
   @keyframes bounce {
@@ -78,14 +78,14 @@ const ProjectsNavItem = styled.li`
   flex: 1;
   padding: 0.5rem;
   text-align: center;
-  background-color: #f0f8ff; /* Light blue background */
+  background-color: #f0f8ff;
   border-radius: 5px;
   transition: transform 0.2s, background-color 0.2s;
 
   &:hover {
     transform: translateY(-2px);
-    background-color: #0070f3; /* Blue background on hover */
-    color: #ffffff; /* White text on hover */
+    background-color: #0070f3;
+    color: #ffffff;
   }
 `;
 
@@ -97,14 +97,14 @@ const ProjectsNavLink = styled(NavLink)`
   transition: color 0.3s, transform 0.3s;
 
   &:hover {
-    color: #0070f3; /* Change color on hover */
-    transform: translateY(-2px); /* Add a subtle upward hover effect */
+    color: #0070f3;
+    transform: translateY(-2px);
   }
 
   &.active {
     color: #ff6b6b;
     &:before {
-      content: ''; /* Add a decorative line under the active link */
+      content: '';
       position: absolute;
       bottom: -5px;
       left: 0;
@@ -131,30 +131,34 @@ const ProjectItem = styled.li`
   margin-bottom: 1rem;
 `;
 
-const ProjectDescription = styled.div`
-  font-size: 1rem; /* Small font size */
+const StyledSection = styled.div`
+  font-size: 1rem;
   line-height: 1.6;
   margin-top: 1rem;
-  position: relative;
+  font-weight: bold;
+  color: #0070f3;
 `;
 
-// Function to parse and style the description
+const NormalSection = styled.div`
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: 1rem;
+`;
+
 const parseDescription = (description) => {
-  const sections = description.split('^'); // Split the description using '^'
+  const sections = description.split('^');
   return sections.map((section, index) => {
     if (index % 2 === 1) {
-      // Apply different styles to even sections (between '^' tags)
       return (
-        <ProjectDescription key={index} className="styled-section">
+        <StyledSection key={index}>
           {section}
-        </ProjectDescription>
+        </StyledSection>
       );
     } else {
-      // Apply default styles to odd sections (outside '^' tags)
       return (
-        <ProjectDescription key={index} className="normal-section">
+        <NormalSection key={index}>
           {section}
-        </ProjectDescription>
+        </NormalSection>
       );
     }
   });
