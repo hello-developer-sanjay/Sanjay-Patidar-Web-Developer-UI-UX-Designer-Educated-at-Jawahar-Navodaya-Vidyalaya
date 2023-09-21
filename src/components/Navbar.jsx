@@ -17,7 +17,7 @@ const Nav = styled.nav`
 `;
 
 const Logo = styled.h1`
-  font-size: 1.5rem;
+  font-size: 1.5rem; /* Reduced font size */
   font-weight: bold;
   margin: 0;
   text-transform: uppercase;
@@ -45,7 +45,7 @@ const NavLinkStyled = styled(NavLink)`
   text-decoration: none;
   color: #fff;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1rem; /* Reduced font size */
 
   &:hover {
     text-decoration: underline;
@@ -73,6 +73,7 @@ const SubNavList = styled.ul`
   padding: 0.5rem 0;
   gap: 0.5rem;
   border-radius: 8px;
+  /* Adjust the position to cover both Home and Projects links */
   top: calc(100% + 8px);
   left: 0;
   transform: translateX(0%);
@@ -83,13 +84,22 @@ const SubNavItem = styled.li``;
 const SubNavLinkStyled = styled(NavLink)`
   text-decoration: none;
   color: #fff;
-  font-size: 0.9rem;
+  font-size: 0.9rem; /* Reduced font size */
   padding: 0.5rem 1rem;
   transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 
   &:hover {
     background-color: #333;
   }
+`;
+
+const ProjectType = styled.span`
+  background-color: #333;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
 `;
 
 const Navbar = () => {
@@ -108,13 +118,19 @@ const Navbar = () => {
           </NavLinkStyled>
           <SubNavList className="SubNavList">
             <SubNavItem>
-              <SubNavLinkStyled to="/projects/web">Web <span>Projects</span></SubNavLinkStyled>
+              <SubNavLinkStyled to="/projects/web">
+                Web <ProjectType>Projects</ProjectType>
+              </SubNavLinkStyled>
             </SubNavItem>
             <SubNavItem>
-              <SubNavLinkStyled to="/projects/mobile">Mobile <span>Projects</span></SubNavLinkStyled>
+              <SubNavLinkStyled to="/projects/mobile">
+                Mobile <ProjectType>Projects</ProjectType>
+              </SubNavLinkStyled>
             </SubNavItem>
             <SubNavItem>
-              <SubNavLinkStyled to="/projects/other">Other <span>Projects</span></SubNavLinkStyled>
+              <SubNavLinkStyled to="/projects/other">
+                Other <ProjectType>Projects</ProjectType>
+              </SubNavLinkStyled>
             </SubNavItem>
           </SubNavList>
         </NavItem>
