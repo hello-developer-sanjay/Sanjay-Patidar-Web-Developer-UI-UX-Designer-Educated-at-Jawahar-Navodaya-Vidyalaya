@@ -22,16 +22,40 @@ const ProjectsNavList = styled.ul`
 const ProjectWebsiteLink = styled.a`
   text-decoration: none;
   color: #0070f3;
-  margin-left: 1rem;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   font-size: 1rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #f0f8ff; /* Light blue background */
+  border-radius: 5px;
+  transition: transform 0.2s, background-color 0.2s;
 
   &:hover {
+    transform: translateY(-2px);
     text-decoration: underline;
+    background-color: #0070f3; /* Blue background on hover */
+    color: #ffffff; /* White text on hover */
+  }
+
+  svg {
+    margin-right: 0.5rem;
   }
 `;
+
 const ProjectsNavItem = styled.li`
   flex: 1;
+  padding: 0.5rem;
+  text-align: center;
+  background-color: #f0f8ff; /* Light blue background */
+  border-radius: 5px;
+  transition: transform 0.2s, background-color 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+    background-color: #0070f3; /* Blue background on hover */
+    color: #ffffff; /* White text on hover */
+  }
 `;
 
 const ProjectsNavLink = styled(NavLink)`
