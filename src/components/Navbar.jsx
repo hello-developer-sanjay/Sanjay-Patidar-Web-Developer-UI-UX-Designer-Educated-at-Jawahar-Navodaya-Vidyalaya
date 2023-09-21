@@ -73,7 +73,6 @@ const SubNavList = styled.ul`
   padding: 0.5rem 0;
   gap: 0.5rem;
   border-radius: 8px;
-  /* Adjust the position to cover both Home and Projects links */
   top: calc(100% + 8px);
   left: 0;
   transform: translateX(0%);
@@ -87,9 +86,6 @@ const SubNavLinkStyled = styled(NavLink)`
   font-size: 0.9rem;
   padding: 0.5rem 1rem;
   transition: background-color 0.3s;
-  white-space: nowrap; /* Prevent wrapping to next line */
-  overflow: hidden;
-  text-overflow: ellipsis; /* Add ellipsis (...) for long texts */
 
   &:hover {
     background-color: #333;
@@ -112,13 +108,13 @@ const Navbar = () => {
           </NavLinkStyled>
           <SubNavList className="SubNavList">
             <SubNavItem>
-              <SubNavLinkStyled to="/projects/web">Web Projects</SubNavLinkStyled>
+              <SubNavLinkStyled to="/projects/web">Web <span>Projects</span></SubNavLinkStyled>
             </SubNavItem>
             <SubNavItem>
-              <SubNavLinkStyled to="/projects/mobile">Mobile Projects</SubNavLinkStyled>
+              <SubNavLinkStyled to="/projects/mobile">Mobile <span>Projects</span></SubNavLinkStyled>
             </SubNavItem>
             <SubNavItem>
-              <SubNavLinkStyled to="/projects/other">Other Projects</SubNavLinkStyled>
+              <SubNavLinkStyled to="/projects/other">Other <span>Projects</span></SubNavLinkStyled>
             </SubNavItem>
           </SubNavList>
         </NavItem>
