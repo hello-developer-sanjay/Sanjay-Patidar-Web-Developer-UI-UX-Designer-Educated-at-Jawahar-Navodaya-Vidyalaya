@@ -163,5 +163,5 @@ const blogsRouter = require('./blogs');
 app.use(blogsRouter);
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on :${port}`);
 });
