@@ -170,6 +170,11 @@ const Projects = () => {
             {projects.map((project) => (
               <ProjectItem key={project._id}>
                 <NavLink to={`/api/projects/details/${project._id}`}>{project.title}</NavLink>
+                {project.websiteLink && (
+                  <ProjectWebsiteLink href={project.websiteLink} target="_blank" rel="noopener noreferrer">
+                    Website
+                  </ProjectWebsiteLink>
+                )}
                 {project.description && (
                   <ProjectDescription>
                     {project.description.map((desc, index) => (
@@ -180,11 +185,7 @@ const Projects = () => {
                     ))}
                   </ProjectDescription>
                 )}
-                 {project.websiteLink && (
-                  <ProjectWebsiteLink href={project.websiteLink} target="_blank" rel="noopener noreferrer">
-                    Website
-                  </ProjectWebsiteLink>
-                )}
+                 
               </ProjectItem>
             ))}
           </ProjectList>
