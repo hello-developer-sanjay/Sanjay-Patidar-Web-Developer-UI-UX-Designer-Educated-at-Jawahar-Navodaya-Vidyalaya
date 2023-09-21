@@ -166,13 +166,40 @@ const Projects = () => {
       </ProjectsNavigation>
       <ProjectsContent>
         {projects.length > 0 ? (
-          <ProjectList>
+         <ProjectList>
             {projects.map((project) => (
               <ProjectItem key={project._id}>
                 <NavLink to={`/api/projects/details/${project._id}`}>{project.title}</NavLink>
                 {project.websiteLink && (
                   <ProjectWebsiteLink href={project.websiteLink} target="_blank" rel="noopener noreferrer">
-                    Website
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      width="18"
+                      height="18"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 19a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h5l2 2h2a2 2 0 012 2v8z"
+                      />
+                    </svg>
+                    Visit Website
                   </ProjectWebsiteLink>
                 )}
                 {project.description && (
@@ -185,7 +212,6 @@ const Projects = () => {
                     ))}
                   </ProjectDescription>
                 )}
-                 
               </ProjectItem>
             ))}
           </ProjectList>
