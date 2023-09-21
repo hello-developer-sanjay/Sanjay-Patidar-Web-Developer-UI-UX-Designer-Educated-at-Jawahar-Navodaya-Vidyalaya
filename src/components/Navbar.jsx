@@ -116,17 +116,17 @@ const Navbar = () => {
           <SubNavList className="SubNavList">
             <SubNavItem>
               <SubNavLinkStyled to="/projects/web">
-                <FaFolder /> Web Projects
+                 Web Projects
               </SubNavLinkStyled>
             </SubNavItem>
             <SubNavItem>
               <SubNavLinkStyled to="/projects/mobile">
-                <FaFolder /> Mobile Projects
+                 Mobile Projects
               </SubNavLinkStyled>
             </SubNavItem>
             <SubNavItem>
               <SubNavLinkStyled to="/projects/other">
-                <FaFolder /> Other Projects
+                 Other Projects
               </SubNavLinkStyled>
             </SubNavItem>
           </SubNavList>
