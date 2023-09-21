@@ -19,7 +19,6 @@ const ProjectsNavList = styled.ul`
   flex-wrap: wrap;
   gap: 1rem;
 `;
-
 const ProjectWebsiteLink = styled.a`
   text-decoration: none;
   color: #0070f3;
@@ -34,6 +33,7 @@ const ProjectWebsiteLink = styled.a`
 
   &:hover {
     transform: translateY(-2px);
+  
     background-color: #0070f3; /* Blue background on hover */
     color: #ffffff; /* White text on hover */
   }
@@ -41,8 +41,7 @@ const ProjectWebsiteLink = styled.a`
   svg {
     margin-right: 0.5rem;
   }
-};
-
+`;
 const ProjectTitle = styled.span`
   font-weight: bold;
   font-size: 1.2rem;
@@ -73,6 +72,7 @@ const ProjectTitle = styled.span`
     }
   }
 `;
+
 
 const ProjectsNavItem = styled.li`
   flex: 1;
@@ -115,6 +115,7 @@ const ProjectsNavLink = styled(NavLink)`
   }
 `;
 
+
 const ProjectsContent = styled.div`
   background-color: #C9DACD;
   padding: 1.5rem;
@@ -131,50 +132,59 @@ const ProjectItem = styled.li`
   margin-bottom: 1rem;
 `;
 
-const ProjectDescription = styled.div`
-  font-size: 1rem; /* Small font size */
+const ProjectDescription = styled.p`
+ font-size: 1rem; /* Small font size */
   line-height: 1.6;
   margin-top: 1rem;
   position: relative;
+  color: #333; /* Default text color */
 
-  .styled-section {
-    /* Add styles for sections between '^' tags */
-    /* For example, you can change the background color and text color */
-    background-color: #ffc107; /* Yellow background for styled sections */
-    color: #333; /* Dark text color for styled sections */
-    padding: 0.5rem; /* Add some padding for styled sections */
+  span.highlight {
+    color: #0070f3; /* Highlighted text color */
+    font-weight: bold; /* Highlighted text bold */
   }
 
-  .normal-section {
-    /* Add styles for sections outside '^' tags (normal sections) */
-    /* For example, you can change the background color and text color */
-    background-color: #f0f8ff; /* Light blue background for normal sections */
-    color: #0070f3; /* Blue text color for normal sections */
-    padding: 0.5rem; /* Add some padding for normal sections */
+
+  &:before {
+    content: '✨ Project Description ✨'; /* Use decorative stars as labels */
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #0070f3; /* Change the label color */
+    font-size: 1.2rem; /* Adjust label font size */
+    letter-spacing: 2px; /* Add letter spacing for emphasis */
+    text-align: center;
+    text-transform: uppercase; /* Uppercase text for emphasis */
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    margin-top: 0.5rem;
+    height: 2px;
+    background: linear-gradient(
+      to right,
+      #0070f3,
+      #ff6b6b,
+      #33d9b2,
+      #ffad5a
+    ); /* Use a gradient background */
+    background-size: 300% 100%; /* Control the gradient width */
+    animation: gradient-shift 5s linear infinite; /* Animation for gradient shift */
+  }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 100% 0%;
+    }
   }
 `;
 
-// Function to parse and style the description
-const parseDescription = (description) => {
-  const sections = description.split('^'); // Split the description using '^'
-  return sections.map((section, index) => {
-    if (index % 2 === 1) {
-      // Apply different styles to even sections (between '^' tags)
-      return (
-        <ProjectDescription key={index} className="styled-section">
-          {section}
-        </ProjectDescription>
-      );
-    } else {
-      // Apply default styles to odd sections (outside '^' tags)
-      return (
-        <ProjectDescription key={index} className="normal-section">
-          {section}
-        </ProjectDescription>
-      );
-    }
-  });
-};
+
+
 
 const Projects = () => {
   const { category } = useParams();
@@ -218,10 +228,12 @@ const Projects = () => {
       </ProjectsNavigation>
       <ProjectsContent>
         {projects.length > 0 ? (
-          <ProjectList>
+         <ProjectList>
             {projects.map((project) => (
               <ProjectItem key={project._id}>
-                <NavLink to={`/api/projects/details/${project._id}`} style={{ textDecoration: 'none' }}>
+                <NavLink to={`/api/projects/details/${project._id}`}
+                   style={{ textDecoration: 'none' }}
+                  >
                   <ProjectTitle>
                     <span className="arrow">👇</span>
                     {project.title}
@@ -259,7 +271,27 @@ const Projects = () => {
                     Visit Website
                   </ProjectWebsiteLink>
                 )}
-                {project.description && parseDescription(project.description)}
+               {project.description && (
+                  <ProjectDescription>
+                    {project.description.map((desc, index) => {
+                      // Use regular expressions to find text between ^ markers and apply styling
+                      const highlightedText = desc.split(/\^([^]+?)\^/).map((part, i) => {
+                        if (i % 2 === 1) {
+                          // Apply styles to text between markers
+                          return <span key={i} className="highlight">{part}</span>;
+                        }
+                        return part;
+                      });
+
+                      return (
+                        <React.Fragment key={index}>
+                          {highlightedText}
+                          <br />
+                        </React.Fragment>
+                      );
+                    })}
+                  </ProjectDescription>
+                )}
               </ProjectItem>
             ))}
           </ProjectList>
@@ -272,5 +304,3 @@ const Projects = () => {
 };
 
 export default Projects;
-
-ChatGPT
