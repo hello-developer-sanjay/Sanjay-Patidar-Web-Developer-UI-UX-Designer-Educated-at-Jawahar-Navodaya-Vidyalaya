@@ -42,6 +42,18 @@ const ProjectWebsiteLink = styled.a`
     margin-right: 0.5rem;
   }
 `;
+const ProjectTitle = styled.span`
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #0070f3;
+  text-decoration: underline;
+  transition: color 0.3s, transform 0.3s;
+
+  &:hover {
+    color: #ff6b6b; /* Change color on hover */
+    transform: translateY(-2px); /* Add a subtle upward hover effect */
+  }
+`;
 
 const ProjectsNavItem = styled.li`
   flex: 1;
@@ -193,7 +205,9 @@ const Projects = () => {
          <ProjectList>
             {projects.map((project) => (
               <ProjectItem key={project._id}>
-                <NavLink to={`/api/projects/details/${project._id}`}>{project.title}</NavLink>
+               <NavLink to={`/api/projects/details/${project._id}`}>
+                  <ProjectTitle>{project.title}</ProjectTitle>
+                </NavLink>
                 {project.websiteLink && (
                   <ProjectWebsiteLink href={project.websiteLink} target="_blank" rel="noopener noreferrer">
                     <svg
