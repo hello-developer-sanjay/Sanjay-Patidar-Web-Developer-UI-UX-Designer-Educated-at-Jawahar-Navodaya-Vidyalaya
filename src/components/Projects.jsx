@@ -131,48 +131,11 @@ const ProjectItem = styled.li`
   margin-bottom: 1rem;
 `;
 
-const ProjectDescription = styled.p`
+const ProjectDescription = styled.div`
   font-size: 1rem; /* Small font size */
   line-height: 1.6;
   margin-top: 1rem;
   position: relative;
-
-  &:before {
-    content: '✨ Project Description ✨'; /* Use decorative stars as labels */
-    display: block;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    color: #0070f3; /* Change the label color */
-    font-size: 1.2rem; /* Adjust label font size */
-    letter-spacing: 2px; /* Add letter spacing for emphasis */
-    text-align: center;
-    text-transform: uppercase; /* Uppercase text for emphasis */
-  }
-
-  &:after {
-    content: '';
-    display: block;
-    margin-top: 0.5rem;
-    height: 2px;
-    background: linear-gradient(
-      to right,
-      #0070f3,
-      #ff6b6b,
-      #33d9b2,
-      #ffad5a
-    ); /* Use a gradient background */
-    background-size: 300% 100%; /* Control the gradient width */
-    animation: gradient-shift 5s linear infinite; /* Animation for gradient shift */
-  }
-
-  @keyframes gradient-shift {
-    0% {
-      background-position: 0% 0%;
-    }
-    100% {
-      background-position: 100% 0%;
-    }
-  }
 `;
 
 // Function to parse and style the description
