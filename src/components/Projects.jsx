@@ -46,7 +46,6 @@ const ProjectTitle = styled.span`
   font-weight: bold;
   font-size: 1.2rem;
   color: #0070f3;
-  text-decoration: none; /* Remove underline from the arrow */
   transition: color 0.3s, transform 0.3s;
 
   &:hover {
@@ -225,7 +224,9 @@ const Projects = () => {
          <ProjectList>
             {projects.map((project) => (
               <ProjectItem key={project._id}>
-                <NavLink to={`/api/projects/details/${project._id}`}>
+                <NavLink to={`/api/projects/details/${project._id}`}
+                   style={{ textDecoration: 'none' }}
+                  >
                   <ProjectTitle>
                     <span className="arrow">👇</span>
                     {project.title}
