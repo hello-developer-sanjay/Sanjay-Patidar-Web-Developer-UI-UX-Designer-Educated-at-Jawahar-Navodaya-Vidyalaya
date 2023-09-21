@@ -19,7 +19,17 @@ const ProjectsNavList = styled.ul`
   flex-wrap: wrap;
   gap: 1rem;
 `;
+const ProjectWebsiteLink = styled.a`
+  text-decoration: none;
+  color: #0070f3;
+  margin-left: 1rem;
+  display: inline-block;
+  font-size: 1rem;
 
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 const ProjectsNavItem = styled.li`
   flex: 1;
 `;
@@ -169,6 +179,11 @@ const Projects = () => {
                       </React.Fragment>
                     ))}
                   </ProjectDescription>
+                )}
+                 {project.websiteLink && (
+                  <ProjectWebsiteLink href={project.websiteLink} target="_blank" rel="noopener noreferrer">
+                    Website
+                  </ProjectWebsiteLink>
                 )}
               </ProjectItem>
             ))}
