@@ -46,7 +46,7 @@ const ProjectTitle = styled.span`
   font-weight: bold;
   font-size: 1.2rem;
   color: #0070f3;
-
+  text-decoration: none; /* Remove underline from the arrow */
   transition: color 0.3s, transform 0.3s;
 
   &:hover {
@@ -59,7 +59,6 @@ const ProjectTitle = styled.span`
     text-align: center; /* Center-align the arrow horizontally */
     font-size: 1.5rem; /* Adjust the font size of the arrow */
     animation: bounce 1s infinite; /* Add the bounce animation */
-    text-decoration: none; /* Remove underline */
   }
 
   @keyframes bounce {
@@ -74,6 +73,7 @@ const ProjectTitle = styled.span`
     }
   }
 `;
+
 
 const ProjectsNavItem = styled.li`
   flex: 1;
