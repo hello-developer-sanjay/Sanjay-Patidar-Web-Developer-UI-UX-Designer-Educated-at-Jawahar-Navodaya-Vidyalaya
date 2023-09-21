@@ -55,24 +55,11 @@ const ProjectTitle = styled.span`
   }
 
   .arrow {
-    display: block;
-    text-align: center;
-    animation: bounce 1s infinite;
-  }
-
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-10px);
-    }
-    60% {
-      transform: translateY(-5px);
-    }
+    display: block; /* Display the arrow as a block element */
+    text-align: center; /* Center-align the arrow horizontally */
+    font-size: 1.5rem; /* Adjust the font size of the arrow */
   }
 `;
-
 const ProjectsNavItem = styled.li`
   flex: 1;
   padding: 0.5rem;
@@ -224,8 +211,8 @@ const Projects = () => {
             {projects.map((project) => (
               <ProjectItem key={project._id}>
                 <NavLink to={`/api/projects/details/${project._id}`}>
-                  <span className="arrow">👇</span>
                   <ProjectTitle>
+                    <span className="arrow">👇</span>
                     {project.title}
                   </ProjectTitle>
                 </NavLink>
