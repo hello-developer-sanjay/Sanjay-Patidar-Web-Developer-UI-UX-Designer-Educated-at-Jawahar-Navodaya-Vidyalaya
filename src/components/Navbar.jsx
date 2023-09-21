@@ -17,7 +17,7 @@ const Nav = styled.nav`
 `;
 
 const Logo = styled.h1`
-  font-size: 2rem;
+  font-size: 1.5rem; /* Reduced font size */
   font-weight: bold;
   margin: 0;
   text-transform: uppercase;
@@ -45,6 +45,7 @@ const NavLinkStyled = styled(NavLink)`
   text-decoration: none;
   color: #fff;
   font-weight: bold;
+  font-size: 1rem; /* Reduced font size */
 
   &:hover {
     text-decoration: underline;
@@ -83,8 +84,10 @@ const SubNavItem = styled.li``;
 const SubNavLinkStyled = styled(NavLink)`
   text-decoration: none;
   color: #fff;
+  font-size: 0.9rem; /* Reduced font size */
   padding: 0.5rem 1rem;
   transition: background-color 0.3s;
+
   &:hover {
     background-color: #333;
   }
