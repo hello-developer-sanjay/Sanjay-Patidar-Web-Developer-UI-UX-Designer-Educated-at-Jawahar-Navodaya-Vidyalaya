@@ -42,35 +42,35 @@ const ProjectDetailsTitle = styled.h2`
 
 
 const ProjectDetailsDescription = styled.p`
-  font-size: 1rem;
+  font-size: 1rem; /* Small font size */
   line-height: 1.6;
-  margin-bottom: 2rem;
-  text-align: center;
-  color: #555;
-  font-style: italic;
+  margin-top: 1rem;
   position: relative;
- span.highlight {
+  color: #333; /* Default text color */
+
+  span.highlight {
     color: #0070f3; /* Highlighted text color */
     font-weight: bold; /* Highlighted text bold */
   }
+
+
   &:before {
-    content: '❖ Project Description ❖'; /* Use a decorative label */
+    content: '✨ Project Description ✨'; /* Use decorative stars as labels */
     display: block;
     font-weight: bold;
     margin-bottom: 0.5rem;
     color: #0070f3; /* Change the label color */
     font-size: 1.2rem; /* Adjust label font size */
-    letter-spacing: 4px; /* Add letter spacing for a stylish look */
+    letter-spacing: 2px; /* Add letter spacing for emphasis */
+    text-align: center;
     text-transform: uppercase; /* Uppercase text for emphasis */
-    transform: scale(1.2); /* Slightly increase label size */
   }
 
   &:after {
     content: '';
     display: block;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     height: 2px;
-    font-weight: bold;
     background: linear-gradient(
       to right,
       #0070f3,
@@ -91,8 +91,6 @@ const ProjectDetailsDescription = styled.p`
     }
   }
 `;
-
-
 
 const ProjectDetailsImageGrid = styled.div`
   display: grid;
