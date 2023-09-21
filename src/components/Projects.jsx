@@ -19,6 +19,7 @@ const ProjectsNavList = styled.ul`
   flex-wrap: wrap;
   gap: 1rem;
 `;
+
 const ProjectWebsiteLink = styled.a`
   text-decoration: none;
   color: #0070f3;
@@ -33,7 +34,6 @@ const ProjectWebsiteLink = styled.a`
 
   &:hover {
     transform: translateY(-2px);
-  
     background-color: #0070f3; /* Blue background on hover */
     color: #ffffff; /* White text on hover */
   }
@@ -41,7 +41,8 @@ const ProjectWebsiteLink = styled.a`
   svg {
     margin-right: 0.5rem;
   }
-`;
+};
+
 const ProjectTitle = styled.span`
   font-weight: bold;
   font-size: 1.2rem;
@@ -72,7 +73,6 @@ const ProjectTitle = styled.span`
     }
   }
 `;
-
 
 const ProjectsNavItem = styled.li`
   flex: 1;
@@ -114,7 +114,6 @@ const ProjectsNavLink = styled(NavLink)`
     }
   }
 `;
-
 
 const ProjectsContent = styled.div`
   background-color: #C9DACD;
@@ -176,8 +175,27 @@ const ProjectDescription = styled.p`
   }
 `;
 
-
-
+// Function to parse and style the description
+const parseDescription = (description) => {
+  const sections = description.split('^'); // Split the description using '^'
+  return sections.map((section, index) => {
+    if (index % 2 === 1) {
+      // Apply different styles to even sections (between '^' tags)
+      return (
+        <ProjectDescription key={index} className="styled-section">
+          {section}
+        </ProjectDescription>
+      );
+    } else {
+      // Apply default styles to odd sections (outside '^' tags)
+      return (
+        <ProjectDescription key={index} className="normal-section">
+          {section}
+        </ProjectDescription>
+      );
+    }
+  });
+};
 
 const Projects = () => {
   const { category } = useParams();
@@ -221,14 +239,12 @@ const Projects = () => {
       </ProjectsNavigation>
       <ProjectsContent>
         {projects.length > 0 ? (
-         <ProjectList>
+          <ProjectList>
             {projects.map((project) => (
               <ProjectItem key={project._id}>
-                <NavLink to={`/api/projects/details/${project._id}`}
-                   style={{ textDecoration: 'none' }}
-                  >
+                <NavLink to={`/api/projects/details/${project._id}`} style={{ textDecoration: 'none' }}>
                   <ProjectTitle>
-                    <span className="arrow">Read More 👇</span>
+                    <span className="arrow">👇</span>
                     {project.title}
                   </ProjectTitle>
                 </NavLink>
@@ -264,16 +280,7 @@ const Projects = () => {
                     Visit Website
                   </ProjectWebsiteLink>
                 )}
-                {project.description && (
-                  <ProjectDescription>
-                    {project.description.map((desc, index) => (
-                      <React.Fragment key={index}>
-                        {desc}
-                        <br />
-                      </React.Fragment>
-                    ))}
-                  </ProjectDescription>
-                )}
+                {project.description && parseDescription(project.description)}
               </ProjectItem>
             ))}
           </ProjectList>
