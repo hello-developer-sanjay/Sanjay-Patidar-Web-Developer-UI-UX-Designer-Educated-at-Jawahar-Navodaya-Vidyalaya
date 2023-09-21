@@ -46,7 +46,6 @@ const NavLinkStyled = styled(NavLink)`
   color: #fff;
   font-weight: bold;
   font-size: 1rem;
-  white-space: nowrap; /* Prevents text from wrapping */
 
   &:hover {
     text-decoration: underline;
@@ -80,13 +79,7 @@ const SubNavList = styled.ul`
   transform: translateX(0%);
 `;
 
-const SubNavItem = styled.li`
-  white-space: nowrap; /* Prevents text from wrapping */
-
-  &:last-child {
-    margin-bottom: 0; /* Remove margin for the last item */
-  }
-`;
+const SubNavItem = styled.li``;
 
 const SubNavLinkStyled = styled(NavLink)`
   text-decoration: none;
@@ -94,29 +87,12 @@ const SubNavLinkStyled = styled(NavLink)`
   font-size: 0.9rem;
   padding: 0.5rem 1rem;
   transition: background-color 0.3s;
-  position: relative;
-  white-space: nowrap; /* Prevents text from wrapping */
+  white-space: nowrap; /* Prevent wrapping to next line */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add ellipsis (...) for long texts */
 
   &:hover {
     background-color: #333;
-  }
-
-  &:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%; /* Adjust the width as needed */
-    height: 0.1rem;
-    background-color: #fff;
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform 0.3s ease-in-out;
-  }
-
-  &:hover:after {
-    transform: scaleX(1);
   }
 `;
 
