@@ -27,7 +27,7 @@ app.use(cors({
 app.use(express.json());
 app.use(compression()); // Response compression middleware
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
+const port = process.env.PORT || 5000;
 // MongoDB connection pooling
 mongoose.connect(process.env.MONGODB_URI_MYDB, {
   useNewUrlParser: true,
