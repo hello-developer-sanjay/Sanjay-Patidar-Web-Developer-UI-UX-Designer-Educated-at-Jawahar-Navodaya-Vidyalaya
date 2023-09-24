@@ -2,19 +2,19 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const compression = require('compression');
 const path = require('path');
-const { ObjectId } = require('mongoose').Types; // Import ObjectId
-
+const { ObjectId } = require('mongoose').Types;
 require('dotenv').config();
 
 const app = express();
 const allowedOrigins = [
   'https://sanjay-developer-portfolio.vercel.app',
-
   'http://localhost:5173',
   // Add more domains if needed
 ];
 
+// Middleware
 app.use(cors({
   origin: (origin, callback) => {
     if (allowedOrigins.includes(origin) || !origin) {
@@ -24,23 +24,28 @@ app.use(cors({
     }
   },
 }));
-
 app.use(express.json());
+app.use(compression()); // Response compression middleware
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-const port = process.env.PORT || 5000;
-const mongoURIMyDB = process.env.MONGODB_URI_MYDB;
-
-mongoose
-  .connect(mongoURIMyDB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+// MongoDB connection pooling
+mongoose.connect(process.env.MONGODB_URI_MYDB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  poolSize: 10, // Adjust as needed
+})
   .then(() => {
     console.log('Connected to MongoDB (mydb)');
   })
   .catch(error => {
     console.error('Error connecting to MongoDB (mydb):', error);
   });
+
+// Custom Error Handling Middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Internal server error' });
+});
 
 const Feedback = mongoose.model('feedback', {
   name: String,
