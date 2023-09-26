@@ -33,9 +33,9 @@ To offer personalized learning experiences tailored to individual needs.. [Live 
 
 You can filter my projects by category:
 
-- [All Projects](https://sanjay-developer-portfolio.vercel.app/projects/all)
-- [Web Projects](https://sanjay-developer-portfolio.vercel.app/projects/web)
-- [Mobile Projects](https://sanjay-developer-portfolio.vercel.app/projects/mobile)
+- [All Projects](https://sanjay-patidar.vercel.app/projects/all)
+- [Web Projects](https://sanjay-patidar.vercel.app/projects/web)
+- [Mobile Projects](https://sanjay-patidar.vercel.app/projects/mobile)
 
 ## Experiences
 
@@ -47,11 +47,11 @@ I have a diverse range of experiences, from small websites to large-scale web ap
 
 ## Resume
 
-If you'd like to learn more about my skills and experience, you can download my resume [here](https://sanjay-developer-portfolio.vercel.app/resume).
+If you'd like to learn more about my skills and experience, you can download my resume [here](https://sanjay-patidar.vercel.app/resume).
 
 ## Contact
 
-Feel free to reach out if you have any questions about my projects or if you'd like to discuss a new project. You can contact me [here](https://sanjay-developer-portfolio.vercel.app).
+Feel free to reach out if you have any questions about my projects or if you'd like to discuss a new project. You can contact me [here](https://sanjay-patidar.vercel.app).
 
 ## Blogs
 
