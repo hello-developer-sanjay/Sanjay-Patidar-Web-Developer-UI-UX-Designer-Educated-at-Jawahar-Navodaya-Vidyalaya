@@ -22,7 +22,7 @@ I am a Web Developer and UI/UX Designer with expertise in creating captivating w
 
 This section lists my projects, which demonstrate my capabilities as a developer and designer. You can explore these projects to get a sense of my work:
 
-- [Project 1](https://eduxcel.vercel.app) - EduXcel is a comprehensive e-learning platform aimed at enhancing the learning experience for both students and instructors. Our primary goals are:
+- [Eduxcel](https://eduxcel.vercel.app) - EduXcel is a comprehensive e-learning platform aimed at enhancing the learning experience for both students and instructors. Our primary goals are:
 
 To provide a diverse range of high-quality courses and educational content.
 To create a seamless and secure environment for online education.
