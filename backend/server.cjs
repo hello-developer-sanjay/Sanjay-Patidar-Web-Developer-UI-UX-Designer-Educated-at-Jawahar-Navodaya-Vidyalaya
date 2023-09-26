@@ -9,7 +9,7 @@ require('dotenv').config();
 
 const app = express();
 const allowedOrigins = [
-  'https://sanjay-developer-portfolio.vercel.app',
+  'https://sanjay-patidar.vercel.app',
 
   'http://localhost:5173',
   // Add more domains if needed
