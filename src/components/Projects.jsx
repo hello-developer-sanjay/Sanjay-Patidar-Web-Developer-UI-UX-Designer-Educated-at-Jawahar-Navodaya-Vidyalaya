@@ -194,7 +194,7 @@ const Projects = () => {
     async function fetchProjects() {
       try {
         let response;
-        if (category === 'all') {
+        if (!category || category === 'all') { // Check if category is undefined or "all"
           response = await axios.get('https://portfolio-back-dujw.onrender.com/api/projects/category/all');
         } else {
           response = await axios.get(`https://portfolio-back-dujw.onrender.com/api/projects/category/${category}`);
@@ -207,7 +207,6 @@ const Projects = () => {
 
     fetchProjects();
   }, [category]);
-
   return (
     <ProjectsContainer>
       <ProjectsNavigation>
