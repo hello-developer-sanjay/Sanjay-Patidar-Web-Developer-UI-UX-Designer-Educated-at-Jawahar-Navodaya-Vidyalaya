@@ -39,11 +39,13 @@ const ResumeLink = styled.a`
 `;
 
 const Resume = () => {
+  const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/sanjay_patidar_resume.pdf';
+
   return (
     <ResumeContainer>
       <ResumeTitle>Unlock My Resume</ResumeTitle>
       <ResumeSubtitle>Click the link below to access my full resume.</ResumeSubtitle>
-      <ResumeLink href="https://sanjaybasket.s3.ap-south-1.amazonaws.com/dev+pro/android_page-0001.jpg" target="_blank" rel="noopener noreferrer">
+      <ResumeLink href={pdfResumeUrl} target="_blank" rel="noopener noreferrer">
         Get Resume
       </ResumeLink>
     </ResumeContainer>
