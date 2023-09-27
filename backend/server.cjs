@@ -161,7 +161,13 @@ app.post('/api/submit-query', async (req, res) => {
 
 const blogsRouter = require('./blogs');
 app.use(blogsRouter);
-
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+app.get('/', (req, res) => {
+  res.send('Welcome to My API');
+});
 app.listen(port, () => {
   console.log(`Server is running on :${port}`);
 });
