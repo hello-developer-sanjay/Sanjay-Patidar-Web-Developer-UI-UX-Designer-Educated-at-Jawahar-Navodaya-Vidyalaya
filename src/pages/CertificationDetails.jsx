@@ -5,7 +5,7 @@ import Confetti from "react-confetti";
 import ModalImage from "react-modal-image";
 import "../styles/CertificationDetails.css";
 import backgroundImage from "../assets/background.jpg"; // Import the background image
-import certificateIcon from "../assets/icon (2).png"; // Import the certificate icon
+import certificateIcon from "../assets/icon (2).png";
 
 const CertificationDetails = () => {
   const { title } = useParams();
@@ -55,14 +55,11 @@ const CertificationDetails = () => {
                 alt="Certificate Icon"
               />
             </div>
-            <p className="certification-details-description">
+            <div className="certification-details-description">
               {certification.description.map((field, index) => (
-                <span key={index}>
-                  {field}
-                  <br /> {/* Add a line break after each field */}
-                </span>
+                <p key={index}>{field}</p>
               ))}
-            </p>
+            </div>
           </div>
           <div className="certification-images-grid">
             {certification.imageUrls.map((imageUrl, index) => (
