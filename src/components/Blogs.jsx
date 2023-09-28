@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-
+const backendBaseUrl = "https://portfolio-back-dujw.onrender.com"; 
 const BlogsContainer = styled.div`
   padding: 2rem;
   display: flex;
@@ -335,7 +335,7 @@ const Blogs = () => {
         </SubmitButton>
       </BlogForm>
 
-     {blogs.map((blog) => (
+    {blogs.map((blog) => (
         <BlogCard key={blog._id}>
           <BlogTitle>{blog.title}</BlogTitle>
           <BlogContent>
@@ -345,14 +345,14 @@ const Blogs = () => {
               } else if (section.type === 'image') {
                 return (
                   <div key={index}>
-                    <img src={section.url} alt={`Image ${index}`} />
+                    <img src={`${backendBaseUrl}${section.url}`} alt={`Image ${index}`} />
                   </div>
                 );
               } else if (section.type === 'video') {
                 return (
                   <div key={index}>
                     <video width="320" height="240" controls>
-                      <source src={section.url} type="video/mp4" />
+                      <source src={`${backendBaseUrl}${section.url}`} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
                   </div>
@@ -360,7 +360,6 @@ const Blogs = () => {
               }
               return null;
             })}
-
 
 
 
