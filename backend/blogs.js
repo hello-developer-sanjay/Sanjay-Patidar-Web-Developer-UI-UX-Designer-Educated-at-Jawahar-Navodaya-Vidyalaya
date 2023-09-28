@@ -4,24 +4,16 @@ const router = express.Router();
 const Blog = require('./Blog');
 const path = require('path');
 const fileUpload = require('express-fileupload');
+const fs = require('fs');
 
 // Use express-fileupload middleware
 router.use(fileUpload());
-router.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-const uploadPath = path.join(__dirname, 'uploads'); 
+// Define the path to store uploaded files
+const uploadPath = path.join(__dirname, 'uploads');
 
-// GET all blogs
-router.get('/api/blogs', async (req, res) => {
-  console.log('Received GET request to /api/blogs');
-  try {
-    const blogs = await Blog.find();
-    res.json(blogs);
-  } catch (error) {
-    console.error('Error fetching blogs:', error);
-    res.status(500).json({ error: 'Error fetching blogs' });
-  }
-});
+// Serve uploaded files statically
+router.use('/uploads', express.static(uploadPath));
 
 // Helper function to handle content parsing
 const parseContent = (content) => {
@@ -32,11 +24,23 @@ const parseContent = (content) => {
   }
 };
 
+// Function to check if a URL is a blob URL
+const isBlobUrl = (url) => url.startsWith('blob:');
+
 // POST a new blog with file uploads (image and video)
 router.post('/api/blogs', async (req, res) => {
   try {
     const { title, content, link } = req.body;
-    const newBlog = new Blog({ title, content: parseContent(content), link });
+    const newBlog = new Blog({ title, content: [], link });
+
+    if (content && Array.isArray(content)) {
+      content.forEach((item) => {
+        // Check if the item URL is a blob URL, if so, skip it
+        if (!isBlobUrl(item.url)) {
+          newBlog.content.push(item);
+        }
+      });
+    }
 
     if (req.files && req.files.files) {
       const files = req.files.files;
@@ -72,6 +76,17 @@ router.put('/api/blogs/:id', async (req, res) => {
       return res.status(404).json({ error: 'Blog post not found' });
     }
 
+    existingBlog.content = []; // Clear existing content
+
+    if (content && Array.isArray(content)) {
+      content.forEach((item) => {
+        // Check if the item URL is a blob URL, if so, skip it
+        if (!isBlobUrl(item.url)) {
+          existingBlog.content.push(item);
+        }
+      });
+    }
+
     if (req.files && req.files.file) {
       const file = req.files.file;
       const fileName = `${Date.now()}_${file.name}`;
@@ -90,10 +105,6 @@ router.put('/api/blogs/:id', async (req, res) => {
       existingBlog.title = title;
     }
 
-    if (content) {
-      existingBlog.content = parseContent(content);
-    }
-
     if (link) {
       existingBlog.link = link;
     }
@@ -105,35 +116,36 @@ router.put('/api/blogs/:id', async (req, res) => {
     res.status(500).json({ error: 'Error updating blog' });
   }
 });
+
 // DELETE route to delete a blog post by ID
 router.delete('/api/blogs/:id', async (req, res) => {
-  try {
-    const blogId = req.params.id;
-    const deletedBlog = await Blog.findByIdAndRemove(blogId);
-
-    if (!deletedBlog) {
-      return res.status(404).json({ error: 'Blog not found' });
-    }
-
-    if (typeof deletedBlog.imageUrl === 'string') {
-      const imagePath = path.join(uploadPath, deletedBlog.imageUrl.substring('/uploads/'.length));
-      if (fs.existsSync(imagePath)) {
-        fs.unlinkSync(imagePath);
+    try {
+      const blogId = req.params.id;
+      const deletedBlog = await Blog.findByIdAndRemove(blogId);
+  
+      if (!deletedBlog) {
+        return res.status(404).json({ error: 'Blog not found' });
       }
-    }
-
-    if (typeof deletedBlog.videoUrl === 'string') {
-      const videoPath = path.join(uploadPath, deletedBlog.videoUrl.substring('/uploads/'.length));
-      if (fs.existsSync(videoPath)) {
-        fs.unlinkSync(videoPath);
+  
+      if (typeof deletedBlog.imageUrl === 'string') {
+        const imagePath = path.join(uploadPath, deletedBlog.imageUrl.substring('/uploads/'.length));
+        if (fs.existsSync(imagePath)) {
+          fs.unlinkSync(imagePath);
+        }
       }
+  
+      if (typeof deletedBlog.videoUrl === 'string') {
+        const videoPath = path.join(uploadPath, deletedBlog.videoUrl.substring('/uploads/'.length));
+        if (fs.existsSync(videoPath)) {
+          fs.unlinkSync(videoPath);
+        }
+      }
+  
+      res.status(200).json({ message: 'Blog deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting blog:', error);
+      res.status(500).json({ error: 'Error deleting blog' });
     }
-
-    res.status(200).json({ message: 'Blog deleted successfully' });
-  } catch (error) {
-    console.error('Error deleting blog:', error);
-    res.status(500).json({ error: 'Error deleting blog' });
-  }
-});
-
-module.exports = router;
+  });
+  
+  module.exports = router;
