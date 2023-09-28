@@ -46,9 +46,21 @@ const CertificationDetails = () => {
       {certification && (
         <>
           <h2 className="certification-details-title">{certification.title}</h2>
-          <p className="certification-details-description">
-            {certification.description}
-          </p>
+          <div className="creative-description-container">
+            <p className="certification-details-description">
+              {certification.description.map((field, index) => (
+                <span key={index}>
+                  {field}
+                  <br /> {/* Add a line break after each field */}
+                </span>
+              ))}
+            </p>
+            <div className="description-visual">
+              {/* Add any creative visual elements here */}
+              <div className="description-visual-circle"></div>
+              <div className="description-visual-line"></div>
+            </div>
+          </div>
           <div className="certification-images-grid">
             {certification.imageUrls.map((imageUrl, index) => (
               <ModalImage
@@ -69,7 +81,6 @@ const CertificationDetails = () => {
             Download
           </a>
           {showConfetti && <Confetti />}
-          
         </>
       )}
     </div>
