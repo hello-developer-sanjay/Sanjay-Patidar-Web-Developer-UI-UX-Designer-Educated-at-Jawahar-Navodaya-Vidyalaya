@@ -11,6 +11,17 @@ router.use(fileUpload());
 
 // Define the path to store uploaded files
 const uploadPath = path.join(__dirname, 'uploads');
+// GET all blogs
+router.get('/api/blogs', async (req, res) => {
+  console.log('Received GET request to /api/blogs');
+  try {
+    const blogs = await Blog.find();
+    res.json(blogs);
+  } catch (error) {
+    console.error('Error fetching blogs:', error);
+    res.status(500).json({ error: 'Error fetching blogs' });
+  }
+});
 
 // Serve uploaded files statically
 router.use('/uploads', express.static(uploadPath));
