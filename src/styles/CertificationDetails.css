@@ -91,16 +91,50 @@
 }
 /* Updated styles for your CertificationDetails.css */
 
+/* Updated styles for your CertificationDetails.css */
+
+.certification-details-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  overflow-x: hidden; /* Hide horizontal overflow */
+}
+
+.certification-details-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
 .creative-description-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 1s ease;
+  color: #fff;
+}
+
+.certificate-icon-container {
+  background-color: #ff5722;
+  border-radius: 50%;
+  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  padding: 20px;
-  background-color: rgba(0, 0, 0, 0.8); /* Darken the background */
-  border-radius: 10px;
-  animation: fadeIn 1s ease; /* Add a fadeIn animation */
-  color: #fff; /* Text color */
+  margin-bottom: 20px;
+  animation: pulse 1s infinite alternate;
+}
+
+.certificate-icon {
+  width: 100px;
+  height: 100px;
 }
 
 .certification-details-description {
@@ -111,31 +145,23 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
-  animation: slideIn 1s ease; /* Add a slideIn animation */
+  animation: slideIn 1s ease;
 }
 
-.description-visual {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
+.certification-details-download {
+  display: inline-block;
+  margin: 20px 0;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  cursor: pointer;
 }
 
-.description-visual-circle {
-  width: 100px;
-  height: 100px;
-  background-color: #ff5722;
-  border-radius: 50%;
-  margin-right: 20px;
-  box-shadow: 0px 0px 20px rgba(255, 87, 34, 0.7);
-  animation: pulse 1s infinite alternate; /* Add a pulsating animation */
-}
-
-.description-visual-line {
-  width: 2px;
-  height: 80px;
-  background-color: #ff5722;
-  animation: colorChange 2s infinite alternate; /* Add a color-changing animation */
+.certification-details-download:hover {
+  background-color: #0056b3;
 }
 
 @keyframes fadeIn {
@@ -161,18 +187,6 @@
     transform: scale(1);
   }
   100% {
-    transform: scale(1.2);
-  }
-}
-
-@keyframes colorChange {
-  0% {
-    background-color: #ff5722;
-  }
-  50% {
-    background-color: #ff9800;
-  }
-  100% {
-    background-color: #ff5722;
+    transform: scale(1.05);
   }
 }
