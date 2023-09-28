@@ -335,22 +335,20 @@ const Blogs = () => {
         </SubmitButton>
       </BlogForm>
 
-      {blogs.map((blog) => (
+     {blogs.map((blog) => (
         <BlogCard key={blog._id}>
           <BlogTitle>{blog.title}</BlogTitle>
           <BlogContent>
             {blog.content.map((section, index) => {
               if (section.type === 'text') {
                 return <p key={index}>{section.data}</p>;
-              } else if (section.type === 'image' && section.url) {
-                // Display images using the provided URL
+              } else if (section.type === 'image') {
                 return (
                   <div key={index}>
                     <img src={section.url} alt={`Image ${index}`} />
                   </div>
                 );
-              } else if (section.type === 'video' && section.url) {
-                // Display videos using the provided URL
+              } else if (section.type === 'video') {
                 return (
                   <div key={index}>
                     <video width="320" height="240" controls>
@@ -362,6 +360,7 @@ const Blogs = () => {
               }
               return null;
             })}
+
 
 
 
