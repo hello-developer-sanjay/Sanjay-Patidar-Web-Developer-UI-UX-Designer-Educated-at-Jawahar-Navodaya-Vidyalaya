@@ -89,13 +89,18 @@
   line-height: 1.5;
   margin-top: 20px;
 }
-/* Add these styles to your CertificationDetails.css */
+/* Updated styles for your CertificationDetails.css */
+
 .creative-description-container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8); /* Darken the background */
+  border-radius: 10px;
+  animation: fadeIn 1s ease; /* Add a fadeIn animation */
+  color: #fff; /* Text color */
 }
 
 .certification-details-description {
@@ -103,10 +108,10 @@
   line-height: 1.6;
   margin-top: 20px;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.8);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  animation: slideIn 1s ease; /* Add a slideIn animation */
 }
 
 .description-visual {
@@ -123,10 +128,51 @@
   border-radius: 50%;
   margin-right: 20px;
   box-shadow: 0px 0px 20px rgba(255, 87, 34, 0.7);
+  animation: pulse 1s infinite alternate; /* Add a pulsating animation */
 }
 
 .description-visual-line {
   width: 2px;
   height: 80px;
   background-color: #ff5722;
+  animation: colorChange 2s infinite alternate; /* Add a color-changing animation */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes colorChange {
+  0% {
+    background-color: #ff5722;
+  }
+  50% {
+    background-color: #ff9800;
+  }
+  100% {
+    background-color: #ff5722;
+  }
 }
