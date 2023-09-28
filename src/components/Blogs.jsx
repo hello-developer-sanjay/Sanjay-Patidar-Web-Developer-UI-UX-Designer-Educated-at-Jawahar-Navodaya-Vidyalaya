@@ -339,7 +339,7 @@ const Blogs = () => {
         <BlogCard key={blog._id}>
           <BlogTitle>{blog.title}</BlogTitle>
           <BlogContent>
-          {blog.content.map((section, index) => {
+{blog.content.map((section, index) => {
   if (section.type === 'text') {
     return <p key={index}>{section.data}</p>;
   } else if (section.type === 'image' && section.url.startsWith('/uploads/')) {
@@ -348,7 +348,7 @@ const Blogs = () => {
         <img src={`https://portfolio-back-dujw.onrender.com${section.url}`} alt={`Image ${index}`} />
       </div>
     );
-  } else if (section.type === 'video'  && section.url.startsWith('/uploads/')) {
+  } else if (section.type === 'video' && section.url.startsWith('/uploads/')) {
     return (
       <div key={index}>
         <video width="320" height="240" controls>
@@ -360,6 +360,7 @@ const Blogs = () => {
   }
   return null;
 })}
+
             {blog.link && (
               <p>
                
