@@ -105,7 +105,6 @@ router.put('/api/blogs/:id', async (req, res) => {
     res.status(500).json({ error: 'Error updating blog' });
   }
 });
-
 // DELETE route to delete a blog post by ID
 router.delete('/api/blogs/:id', async (req, res) => {
   try {
