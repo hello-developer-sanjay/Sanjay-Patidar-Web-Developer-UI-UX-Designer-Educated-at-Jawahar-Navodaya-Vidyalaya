@@ -339,27 +339,30 @@ const Blogs = () => {
         <BlogCard key={blog._id}>
           <BlogTitle>{blog.title}</BlogTitle>
           <BlogContent>
-{blog.content.map((section, index) => {
-  if (section.type === 'text') {
-    return <p key={index}>{section.data}</p>;
-  } else if (section.type === 'image' && section.url.startsWith('/uploads/')) {
-    return (
-      <div key={index}>
-        <img src={`https://portfolio-back-dujw.onrender.com${section.url}`} alt={`Image ${index}`} />
-      </div>
-    );
-  } else if (section.type === 'video' && section.url.startsWith('/uploads/')) {
-    return (
-      <div key={index}>
-        <video width="320" height="240" controls>
-          <source src={`https://portfolio-back-dujw.onrender.com${section.url}`} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-    );
-  }
-  return null;
-})}
+            {blog.content.map((section, index) => {
+              if (section.type === 'text') {
+                return <p key={index}>{section.data}</p>;
+              } else if (section.type === 'image' && section.url) {
+                // Remove the condition that checks for '/uploads/' in the URL
+                return (
+                  <div key={index}>
+                    <img src={section.url} alt={`Image ${index}`} />
+                  </div>
+                );
+              } else if (section.type === 'video' && section.url) {
+                // Remove the condition that checks for '/uploads/' in the URL
+                return (
+                  <div key={index}>
+                    <video width="320" height="240" controls>
+                      <source src={section.url} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                );
+              }
+              return null;
+            })}
+
 
             {blog.link && (
               <p>
