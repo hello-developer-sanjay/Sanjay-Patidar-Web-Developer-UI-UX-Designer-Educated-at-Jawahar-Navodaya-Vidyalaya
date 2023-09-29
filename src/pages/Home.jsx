@@ -6,7 +6,7 @@ import { FaArrowRight, FaUserGraduate, FaLaptopCode, FaBriefcase, FaFilePdf } fr
 import { IoMdMoon, IoMdSunny } from 'react-icons/io';
 import Typed from 'react-typed';
 
-import profileImage1 from '../assets/profile.pmg';
+import profileImage1 from '../assets/profile.png';
 import profileImage2 from '../assets/market.png';
 
 const HomeContainer = styled(motion.div)`
