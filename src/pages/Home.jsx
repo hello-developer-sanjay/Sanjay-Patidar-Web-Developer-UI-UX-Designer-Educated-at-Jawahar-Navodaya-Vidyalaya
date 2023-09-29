@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { motion, useAnimation } from 'framer-motion';
-import profileImage1 from '../assets/market.png';
-import profileImage2 from '../assets/profile.png';
+import { FaArrowRight, FaUserGraduate, FaLaptopCode, FaBriefcase, FaFilePdf } from 'react-icons/fa';
+import { IoMdMoon, IoMdSunny } from 'react-icons/io';
 import Typed from 'react-typed';
+
+import profileImage1 from '../assets/profile.pmg';
+import profileImage2 from '../assets/market.png';
 
 const HomeContainer = styled(motion.div)`
   display: flex;
@@ -42,7 +45,7 @@ const ProfileImage = styled.img`
   z-index: 1;
 `;
 
-const Introduction = styled(motion.div)`
+const Introduction = styled(motion.p)`
   margin-top: 2rem;
   text-align: center;
   color: #fff;
@@ -83,7 +86,7 @@ const Home = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex(prevIndex => (prevIndex + 1) % 2);
-      controls.start({ x: -currentImageIndex * 50 }); // Adjust the parallax effect as needed
+      controls.start({ x: -currentImageIndex * 50 });
     }, 5000);
 
     return () => clearInterval(interval);
@@ -126,7 +129,22 @@ const Home = () => {
         I create <span style={{ color: '#ff6f00', fontWeight: 'bold' }}>stunning web experiences</span>.
         Explore my projects, skills, and experiences, and let's build something amazing together!
       </Introduction>
-      <ActionLink to="/portfolio">Explore My Portfolio</ActionLink>
+      <ActionLink to="/skills">
+        <FaUserGraduate />
+        Explore My Skills
+      </ActionLink>
+      <ActionLink to="/projects">
+        <FaLaptopCode />
+        Discover My Projects
+      </ActionLink>
+      <ActionLink to="/experiences">
+        <FaBriefcase />
+        View My Experiences
+      </ActionLink>
+      <ActionLink to="/resume">
+        <FaFilePdf />
+        Download Resume
+      </ActionLink>
     </HomeContainer>
   );
 };
