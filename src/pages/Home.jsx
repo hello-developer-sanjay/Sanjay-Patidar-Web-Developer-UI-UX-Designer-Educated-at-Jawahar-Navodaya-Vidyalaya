@@ -4,21 +4,21 @@ import { Link } from 'react-router-dom';
 import { motion, useAnimation } from 'framer-motion';
 import { FaArrowRight, FaUserGraduate, FaLaptopCode, FaBriefcase, FaFilePdf } from 'react-icons/fa';
 import { IoMdMoon, IoMdSunny } from 'react-icons/io';
-import profileImage1 from '../assets/coding.png';
-import profileImage2 from '../assets/market.png'; // Add additional profile images
+import profileImage1 from '../assets/market.png';
+import profileImage2 from '../assets/coding.png'; // Add additional profile images
 import Typed from 'react-typed';
 
 const HomeContainer = styled(motion.div)`
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #192f3e, #0b132b);
+  background: linear-gradient(to bottom, #1e1e1e, #121212);
   padding: 3rem;
   box-sizing: border-box;
   overflow: hidden;
-  position: relative;
 `;
 
 const BackgroundOverlay = styled.div`
@@ -27,46 +27,49 @@ const BackgroundOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(25, 47, 62, 0.8), rgba(11, 19, 43, 0.8));
+  background: linear-gradient(to bottom, rgba(30, 30, 30, 0.8), rgba(18, 18, 18, 0.8));
   z-index: -1;
 `;
 
-const ProfileImage = styled(motion.div)`
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-  position: relative;
+const ParallaxContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   perspective: 1000px;
 `;
 
-const ProfileImageSlider = styled(motion.div)`
-  display: flex;
-  width: 200%;
-  height: 100%;
-  transform: translateX(${props => props.translateX}%);
-`;
-
-const ProfileImageSlide = styled.img`
+const ParallaxLayer = styled(motion.div)`
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s;
+  perspective-origin: center;
+  backface-visibility: hidden;
+`;
+
+const ProfileImage = styled(motion.img)`
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
+  transform: translateZ(50px);
 `;
 
 const Introduction = styled(motion.p)`
-  font-size: 1.8rem;
-  line-height: 2.2;
+  font-size: 2rem;
+  line-height: 2.5;
   max-width: 800px;
   text-align: center;
   margin-top: 2rem;
-  color: #ccc;
+  color: #fff;
 
   .highlight {
     color: #ff6f00;
     font-weight: bold;
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   }
 
   .highlight {
@@ -94,7 +97,7 @@ const TypedText = styled.span`
   margin-top: 1.5rem;
   color: #ff6f00;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 `;
 
 const ActionsContainer = styled(motion.div)`
@@ -186,6 +189,7 @@ const SubtitleLink = styled.a`
   }
 `;
 
+
 const Home = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -213,15 +217,30 @@ const Home = () => {
       transition={{ duration: 0.7, ease: 'easeInOut' }}
     >
       <BackgroundOverlay />
-      <ProfileImage>
-        <ProfileImageSlider
-          translateX={currentImageIndex * 100}
-          animate={controls}
+      <ParallaxContainer>
+        <ParallaxLayer
+          initial={{ y: '50%', scale: 1.2 }}
+          animate={{ y: '0%', scale: 1 }}
+          transition={{ type: 'spring', damping: 10, stiffness: 80 }}
         >
-          <ProfileImageSlide src={profileImage1} alt="Sanjay Patidar" />
-          <ProfileImageSlide src={profileImage2} alt="Sanjay Patidar" />
-        </ProfileImageSlider>
-      </ProfileImage>
+          <ProfileImage
+            src={profileImage1}
+            alt="Sanjay Patidar"
+            style={{ filter: darkMode ? 'grayscale(100%)' : 'none' }}
+          />
+        </ParallaxLayer>
+        <ParallaxLayer
+          initial={{ y: '50%', scale: 1.2 }}
+          animate={{ y: '0%', scale: 1 }}
+          transition={{ type: 'spring', damping: 10, stiffness: 80 }}
+        >
+          <ProfileImage
+            src={profileImage2}
+            alt="Sanjay Patidar"
+            style={{ filter: darkMode ? 'grayscale(100%)' : 'none' }}
+          />
+        </ParallaxLayer>
+      </ParallaxContainer>
       <Introduction
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
