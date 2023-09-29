@@ -1,55 +1,73 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { motion, useAnimation } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FaArrowRight, FaUserGraduate, FaLaptopCode, FaBriefcase, FaFilePdf } from 'react-icons/fa';
 import { IoMdMoon, IoMdSunny } from 'react-icons/io';
+import profileImage from '../assets/profile.png';
 import Typed from 'react-typed';
-
-import profileImage1 from '../assets/profile.png';
-import profileImage2 from '../assets/market.png';
 
 const HomeContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
   min-height: 100vh;
   background: linear-gradient(to bottom, #192f3e, #0b132b);
-  position: relative;
+  padding: 3rem;
+  box-sizing: border-box;
   overflow: hidden;
 `;
 
-const ParallaxBackground = styled.div`
+const BackgroundOverlay = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  background: linear-gradient(to bottom, rgba(25, 47, 62, 0.8), rgba(11, 19, 43, 0.8));
   z-index: -1;
-  overflow: hidden;
 `;
 
-const ParallaxLayer = styled(motion.div)`
-  position: absolute;
-  width: 150%;
-  height: 150%;
-  transform: translate(-50%, -50%);
-`;
-
-const ProfileImage = styled.img`
-  width: 200px;
-  height: 200px;
+const ProfileImage = styled(motion.img)`
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-  z-index: 1;
 `;
 
 const Introduction = styled(motion.p)`
-  margin-top: 2rem;
+  font-size: 1.8rem;
+  line-height: 2.2;
+  max-width: 800px;
   text-align: center;
-  color: #fff;
-  z-index: 1;
+  margin-top: 2rem;
+  color: #ccc;
+
+  .highlight {
+    color: #ff6f00;
+    font-weight: bold;
+    font-size: 2.2rem;
+  }
+
+  .highlight {
+    animation: highlightAnimation 2s ease-in-out infinite;
+  }
+
+  @keyframes highlightAnimation {
+    0% {
+      color: #ff6f00;
+      transform: scale(1);
+    }
+    50% {
+      color: #ffcc80;
+      transform: scale(1.05);
+    }
+    100% {
+      color: #ff6f00;
+      transform: scale(1);
+    }
+  }
 `;
 
 const TypedText = styled.span`
@@ -60,37 +78,100 @@ const TypedText = styled.span`
   font-size: 1.2rem;
 `;
 
+const ActionsContainer = styled(motion.div)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+`;
 const ActionLink = styled(Link)`
   background-color: #1e3a5f;
   color: #fff;
-  padding: 1rem 2rem;
-  border-radius: 25px;
-  margin-top: 2rem;
+  padding: 0.8rem 1.6rem;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
   font-weight: bold;
   font-size: 1.2rem;
-  text-decoration: none;
-  transition: background-color 0.3s, transform 0.3s;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
 
   &:hover {
     background-color: #ff6f00;
+    color: #fff;
+    transform: translateY(-3px);
+  }
+`;
+
+
+const ThemeToggle = styled.button`
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 1.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+const DarkModeIcon = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+const FloatingActionButton = styled(ActionLink)`
+  background-color: #ff6f00;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 1.5rem;
+  font-size: 1.8rem;
+  border-radius: 50%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: #ffcc80;
     transform: translateY(-5px);
   }
 `;
 
+const SecondaryActionLink = styled(ActionLink)`
+  background-color: #333;
+  font-size: 1.4rem;
+`;
+
+const Subtitle = styled.p`
+  font-size: 1.8rem;
+  color: #ccc;
+  margin-top: 3rem;
+`;
+
+const SubtitleLink = styled.a`
+  color: #ffcc80;
+  text-decoration: none;
+  transition: color 0.3s;
+
+  &:hover {
+    color: #ff6f00;
+  }
+`;
+
 const Home = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const controls = useAnimation();
+  const [darkMode, setDarkMode] = useState(false);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex(prevIndex => (prevIndex + 1) % 2);
-      controls.start({ x: -currentImageIndex * 50 });
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [currentImageIndex, controls]);
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
 
   return (
     <HomeContainer
@@ -99,24 +180,20 @@ const Home = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.7, ease: 'easeInOut' }}
     >
-      <ParallaxBackground>
-        <ParallaxLayer
-          initial={{ y: '-50%' }}
-          animate={{ y: '0%' }}
-          transition={{ duration: 1, ease: 'easeInOut' }}
-        >
-          <img src={profileImage1} alt="Background 1" style={{ width: '100%', height: '100%' }} />
-        </ParallaxLayer>
-        <ParallaxLayer
-          initial={{ y: '50%' }}
-          animate={{ y: '0%' }}
-          transition={{ duration: 1, ease: 'easeInOut' }}
-        >
-          <img src={profileImage2} alt="Background 2" style={{ width: '100%', height: '100%' }} />
-        </ParallaxLayer>
-      </ParallaxBackground>
-      <ProfileImage src={profileImage1} alt="Sanjay Patidar" />
-      <Introduction>
+      <BackgroundOverlay />
+      <ProfileImage
+        src={profileImage}
+        alt="Sanjay Patidar"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ delay: 0.5, duration: 0.8 }}
+        style={{ filter: darkMode ? 'grayscale(100%)' : 'none' }}
+      />
+      <Introduction
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.7 }}
+      >
         Hi there! I'm{' '}
         <TypedText>
           <Typed
@@ -126,25 +203,43 @@ const Home = () => {
             loop
           />
         </TypedText>
-        I create <span style={{ color: '#ff6f00', fontWeight: 'bold' }}>stunning web experiences</span>.
-        Explore my projects, skills, and experiences, and let's build something amazing together!
+        I create <span className="highlight">stunning web experiences</span>. Explore my projects, skills, and experiences, and let's build something amazing together!
       </Introduction>
-      <ActionLink to="/skills">
-        <FaUserGraduate />
-        Explore My Skills
-      </ActionLink>
-      <ActionLink to="/projects">
-        <FaLaptopCode />
-        Discover My Projects
-      </ActionLink>
-      <ActionLink to="/experiences">
-        <FaBriefcase />
-        View My Experiences
-      </ActionLink>
-      <ActionLink to="/resume">
-        <FaFilePdf />
-        Download Resume
-      </ActionLink>
+      <ActionsContainer
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.7, duration: 0.7 }}
+      >
+        <ActionLink to="/skills">
+          <FaUserGraduate />
+          Explore My Skills
+        </ActionLink>
+        <ActionLink to="/projects">
+          <FaLaptopCode />
+          Discover My Projects
+        </ActionLink>
+        <ActionLink to="/experiences">
+          <FaBriefcase />
+          View My Experiences
+        </ActionLink>
+        <ActionLink to="/resume">
+          <FaFilePdf />
+          Download Resume
+        </ActionLink>
+        <SecondaryActionLink to="/contact">
+          <FaArrowRight />
+          Contact Me
+        </SecondaryActionLink>
+        <ThemeToggle onClick={toggleDarkMode}>
+          <DarkModeIcon>
+            {darkMode ? <IoMdSunny /> : <IoMdMoon />}
+            {darkMode ? 'Light Mode' : 'Dark Mode'}
+          </DarkModeIcon>
+        </ThemeToggle>
+      </ActionsContainer>
+      <Subtitle>
+        Want to know more? Check out my <SubtitleLink href="/blogs">Blogs</SubtitleLink> for tech insights and tutorials.
+      </Subtitle>
     </HomeContainer>
   );
 };
