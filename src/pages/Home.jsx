@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { FaArrowRight, FaUserGraduate, FaLaptopCode, FaBriefcase, FaFilePdf } from 'react-icons/fa';
 import { IoMdMoon, IoMdSunny } from 'react-icons/io';
-import profileImage from '../assets/profile.png';
+import profileImage1 from '../assets/coding.png';
+import profileImage2 from '../assets/market.png'; // Add additional profile images
 import Typed from 'react-typed';
-import projectImage1 from '../assets/coding.png';
-import projectImage2 from '../assets/market.png';
-import projectImage3 from '../assets/react.svg';
 
 const HomeContainer = styled(motion.div)`
   display: flex;
@@ -33,47 +31,28 @@ const BackgroundOverlay = styled.div`
   z-index: -1;
 `;
 
-const ParallaxContainer = styled.div`
-  perspective: 1px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-`;
-
-const ParallaxLayer = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  transform: translateZ(-1px) scale(2);
-  background-size: cover;
-  background-repeat: no-repeat;
-  z-index: -1;
-`;
-
-const ParallaxImage1 = styled(ParallaxLayer)`
-  background-image: url(${projectImage1});
-`;
-
-const ParallaxImage2 = styled(ParallaxLayer)`
-  background-image: url(${projectImage2});
-`;
-
-const ParallaxImage3 = styled(ParallaxLayer)`
-  background-image: url(${projectImage3});
-`;
-
-const ProfileImage = styled(motion.img)`
+const ProfileImage = styled(motion.div)`
   width: 180px;
   height: 180px;
   border-radius: 50%;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-  z-index: 1;
+  overflow: hidden;
+  position: relative;
+  perspective: 1000px;
+`;
+
+const ProfileImageSlider = styled(motion.div)`
+  display: flex;
+  width: 200%;
+  height: 100%;
+  transform: translateX(${props => props.translateX}%);
+`;
+
+const ProfileImageSlide = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
 `;
 
 const Introduction = styled(motion.p)`
@@ -83,7 +62,6 @@ const Introduction = styled(motion.p)`
   text-align: center;
   margin-top: 2rem;
   color: #ccc;
-  z-index: 1;
 
   .highlight {
     color: #ff6f00;
@@ -150,6 +128,7 @@ const ActionLink = styled(Link)`
   }
 `;
 
+
 const ThemeToggle = styled.button`
   background: none;
   border: none;
@@ -209,84 +188,92 @@ const SubtitleLink = styled.a`
 
 const Home = () => {
   const [darkMode, setDarkMode] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const controls = useAnimation();
+
+  useEffect(() => {
+    // Automatically slide profile images with a parallax effect
+    const interval = setInterval(() => {
+      setCurrentImageIndex(prevIndex => (prevIndex + 1) % 2); // Change to the number of profile images you have
+      controls.start({ x: -currentImageIndex * 100 }); // Adjust 100 to the width of a single image
+    }, 5000); // Adjust the interval time (in milliseconds)
+
+    return () => clearInterval(interval);
+  }, [currentImageIndex, controls]);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
 
   return (
-    <ParallaxContainer>
-      <ParallaxImage1 />
-      <ParallaxImage2 />
-      <ParallaxImage3 />
-      <HomeContainer
+    <HomeContainer
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.7, ease: 'easeInOut' }}
+    >
+      <BackgroundOverlay />
+      <ProfileImage>
+        <ProfileImageSlider
+          translateX={currentImageIndex * 100}
+          animate={controls}
+        >
+          <ProfileImageSlide src={profileImage1} alt="Sanjay Patidar" />
+          <ProfileImageSlide src={profileImage2} alt="Sanjay Patidar" />
+        </ProfileImageSlider>
+      </ProfileImage>
+      <Introduction
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.7, ease: 'easeInOut' }}
+        transition={{ delay: 1.2, duration: 0.7 }}
       >
-        <BackgroundOverlay />
-        <ProfileImage
-          src={profileImage}
-          alt="Sanjay Patidar"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          style={{ filter: darkMode ? 'grayscale(100%)' : 'none' }}
-        />
-        <Introduction
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.7 }}
-        >
-          Hi there! I'm{' '}
-          <TypedText>
-            <Typed
-              strings={['Sanjay Patidar', 'a Web Developer', 'a UI/UX Designer']}
-              typeSpeed={60}
-              backSpeed={40}
-              loop
-            />
-          </TypedText>
-          I create <span className="highlight">stunning web experiences</span>. Explore my projects, skills, and experiences, and let's build something amazing together!
-        </Introduction>
-        <ActionsContainer
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.7, duration: 0.7 }}
-        >
-          <ActionLink to="/skills">
-            <FaUserGraduate />
-            Explore My Skills
-          </ActionLink>
-          <ActionLink to="/projects">
-            <FaLaptopCode />
-            Discover My Projects
-          </ActionLink>
-          <ActionLink to="/experiences">
-            <FaBriefcase />
-            View My Experiences
-          </ActionLink>
-          <ActionLink to="/resume">
-            <FaFilePdf />
-            Download Resume
-          </ActionLink>
-          <SecondaryActionLink to="/contact">
-            <FaArrowRight />
-            Contact Me
-          </SecondaryActionLink>
-          <ThemeToggle onClick={toggleDarkMode}>
-            <DarkModeIcon>
-              {darkMode ? <IoMdSunny /> : <IoMdMoon />}
-              {darkMode ? 'Light Mode' : 'Dark Mode'}
-            </DarkModeIcon>
-          </ThemeToggle>
-        </ActionsContainer>
-        <Subtitle>
-          Want to know more? Check out my <SubtitleLink href="/blogs">Blogs</SubtitleLink> for tech insights and tutorials.
-        </Subtitle>
-      </HomeContainer>
-    </ParallaxContainer>
+        Hi there! I'm{' '}
+        <TypedText>
+          <Typed
+            strings={['Sanjay Patidar', 'a Web Developer', 'a UI/UX Designer']}
+            typeSpeed={60}
+            backSpeed={40}
+            loop
+          />
+        </TypedText>
+        I create <span className="highlight">stunning web experiences</span>. Explore my projects, skills, and experiences, and let's build something amazing together!
+      </Introduction>
+      <ActionsContainer
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.7, duration: 0.7 }}
+      >
+        <ActionLink to="/skills">
+          <FaUserGraduate />
+          Explore My Skills
+        </ActionLink>
+        <ActionLink to="/projects">
+          <FaLaptopCode />
+          Discover My Projects
+        </ActionLink>
+        <ActionLink to="/experiences">
+          <FaBriefcase />
+          View My Experiences
+        </ActionLink>
+        <ActionLink to="/resume">
+          <FaFilePdf />
+          Download Resume
+        </ActionLink>
+        <SecondaryActionLink to="/contact">
+          <FaArrowRight />
+          Contact Me
+        </SecondaryActionLink>
+        <ThemeToggle onClick={toggleDarkMode}>
+          <DarkModeIcon>
+            {darkMode ? <IoMdSunny /> : <IoMdMoon />}
+            {darkMode ? 'Light Mode' : 'Dark Mode'}
+          </DarkModeIcon>
+        </ThemeToggle>
+      </ActionsContainer>
+      <Subtitle>
+        Want to know more? Check out my <SubtitleLink href="/blogs">Blogs</SubtitleLink> for tech insights and tutorials.
+      </Subtitle>
+    </HomeContainer>
   );
 };
 
