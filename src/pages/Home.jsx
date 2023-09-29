@@ -6,6 +6,9 @@ import { FaArrowRight, FaUserGraduate, FaLaptopCode, FaBriefcase, FaFilePdf } fr
 import { IoMdMoon, IoMdSunny } from 'react-icons/io';
 import profileImage from '../assets/profile.png';
 import Typed from 'react-typed';
+import projectImage1 from '../assets/coding.png';
+import projectImage2 from '../assets/market.png';
+import projectImage3 from '../assets/react.svg';
 
 const HomeContainer = styled(motion.div)`
   display: flex;
@@ -17,6 +20,7 @@ const HomeContainer = styled(motion.div)`
   padding: 3rem;
   box-sizing: border-box;
   overflow: hidden;
+  position: relative;
 `;
 
 const BackgroundOverlay = styled.div`
@@ -29,11 +33,47 @@ const BackgroundOverlay = styled.div`
   z-index: -1;
 `;
 
+const ParallaxContainer = styled.div`
+  perspective: 1px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`;
+
+const ParallaxLayer = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateZ(-1px) scale(2);
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -1;
+`;
+
+const ParallaxImage1 = styled(ParallaxLayer)`
+  background-image: url(${projectImage1});
+`;
+
+const ParallaxImage2 = styled(ParallaxLayer)`
+  background-image: url(${projectImage2});
+`;
+
+const ParallaxImage3 = styled(ParallaxLayer)`
+  background-image: url(${projectImage3});
+`;
+
 const ProfileImage = styled(motion.img)`
   width: 180px;
   height: 180px;
   border-radius: 50%;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1;
 `;
 
 const Introduction = styled(motion.p)`
@@ -43,6 +83,7 @@ const Introduction = styled(motion.p)`
   text-align: center;
   margin-top: 2rem;
   color: #ccc;
+  z-index: 1;
 
   .highlight {
     color: #ff6f00;
@@ -86,6 +127,7 @@ const ActionsContainer = styled(motion.div)`
   gap: 1.5rem;
   margin-top: 3.5rem;
 `;
+
 const ActionLink = styled(Link)`
   background-color: #1e3a5f;
   color: #fff;
@@ -107,7 +149,6 @@ const ActionLink = styled(Link)`
     transform: translateY(-3px);
   }
 `;
-
 
 const ThemeToggle = styled.button`
   background: none;
@@ -174,73 +215,78 @@ const Home = () => {
   };
 
   return (
-    <HomeContainer
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.7, ease: 'easeInOut' }}
-    >
-      <BackgroundOverlay />
-      <ProfileImage
-        src={profileImage}
-        alt="Sanjay Patidar"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 0.5, duration: 0.8 }}
-        style={{ filter: darkMode ? 'grayscale(100%)' : 'none' }}
-      />
-      <Introduction
+    <ParallaxContainer>
+      <ParallaxImage1 />
+      <ParallaxImage2 />
+      <ParallaxImage3 />
+      <HomeContainer
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.7 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.7, ease: 'easeInOut' }}
       >
-        Hi there! I'm{' '}
-        <TypedText>
-          <Typed
-            strings={['Sanjay Patidar', 'a Web Developer', 'a UI/UX Designer']}
-            typeSpeed={60}
-            backSpeed={40}
-            loop
-          />
-        </TypedText>
-        I create <span className="highlight">stunning web experiences</span>. Explore my projects, skills, and experiences, and let's build something amazing together!
-      </Introduction>
-      <ActionsContainer
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.7, duration: 0.7 }}
-      >
-        <ActionLink to="/skills">
-          <FaUserGraduate />
-          Explore My Skills
-        </ActionLink>
-        <ActionLink to="/projects">
-          <FaLaptopCode />
-          Discover My Projects
-        </ActionLink>
-        <ActionLink to="/experiences">
-          <FaBriefcase />
-          View My Experiences
-        </ActionLink>
-        <ActionLink to="/resume">
-          <FaFilePdf />
-          Download Resume
-        </ActionLink>
-        <SecondaryActionLink to="/contact">
-          <FaArrowRight />
-          Contact Me
-        </SecondaryActionLink>
-        <ThemeToggle onClick={toggleDarkMode}>
-          <DarkModeIcon>
-            {darkMode ? <IoMdSunny /> : <IoMdMoon />}
-            {darkMode ? 'Light Mode' : 'Dark Mode'}
-          </DarkModeIcon>
-        </ThemeToggle>
-      </ActionsContainer>
-      <Subtitle>
-        Want to know more? Check out my <SubtitleLink href="/blogs">Blogs</SubtitleLink> for tech insights and tutorials.
-      </Subtitle>
-    </HomeContainer>
+        <BackgroundOverlay />
+        <ProfileImage
+          src={profileImage}
+          alt="Sanjay Patidar"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          style={{ filter: darkMode ? 'grayscale(100%)' : 'none' }}
+        />
+        <Introduction
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.7 }}
+        >
+          Hi there! I'm{' '}
+          <TypedText>
+            <Typed
+              strings={['Sanjay Patidar', 'a Web Developer', 'a UI/UX Designer']}
+              typeSpeed={60}
+              backSpeed={40}
+              loop
+            />
+          </TypedText>
+          I create <span className="highlight">stunning web experiences</span>. Explore my projects, skills, and experiences, and let's build something amazing together!
+        </Introduction>
+        <ActionsContainer
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.7, duration: 0.7 }}
+        >
+          <ActionLink to="/skills">
+            <FaUserGraduate />
+            Explore My Skills
+          </ActionLink>
+          <ActionLink to="/projects">
+            <FaLaptopCode />
+            Discover My Projects
+          </ActionLink>
+          <ActionLink to="/experiences">
+            <FaBriefcase />
+            View My Experiences
+          </ActionLink>
+          <ActionLink to="/resume">
+            <FaFilePdf />
+            Download Resume
+          </ActionLink>
+          <SecondaryActionLink to="/contact">
+            <FaArrowRight />
+            Contact Me
+          </SecondaryActionLink>
+          <ThemeToggle onClick={toggleDarkMode}>
+            <DarkModeIcon>
+              {darkMode ? <IoMdSunny /> : <IoMdMoon />}
+              {darkMode ? 'Light Mode' : 'Dark Mode'}
+            </DarkModeIcon>
+          </ThemeToggle>
+        </ActionsContainer>
+        <Subtitle>
+          Want to know more? Check out my <SubtitleLink href="/blogs">Blogs</SubtitleLink> for tech insights and tutorials.
+        </Subtitle>
+      </HomeContainer>
+    </ParallaxContainer>
   );
 };
 
