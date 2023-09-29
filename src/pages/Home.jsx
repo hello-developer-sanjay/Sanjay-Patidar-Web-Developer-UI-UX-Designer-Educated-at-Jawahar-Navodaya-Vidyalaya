@@ -5,6 +5,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { FaArrowRight, FaUserGraduate, FaLaptopCode, FaBriefcase, FaFilePdf } from 'react-icons/fa';
 import { IoMdMoon, IoMdSunny } from 'react-icons/io';
 import Typed from 'react-typed';
+import profileImage from '../assets/profile.png';
 
 const HomeContainer = styled(motion.div)`
   display: flex;
