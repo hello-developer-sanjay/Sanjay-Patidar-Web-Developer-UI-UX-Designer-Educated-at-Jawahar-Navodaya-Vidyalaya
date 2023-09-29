@@ -23,9 +23,8 @@ router.get('/api/blogs', async (req, res) => {
   }
 });
 
-// Serve uploaded files statically
-// Serve uploaded files statically
-router.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+router.use('/uploads', express.static(uploadPath));
+
 
 
 // Helper function to handle content parsing
