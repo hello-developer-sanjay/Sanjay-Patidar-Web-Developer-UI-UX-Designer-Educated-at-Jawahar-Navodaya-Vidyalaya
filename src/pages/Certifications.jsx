@@ -40,8 +40,16 @@ const Certifications = () => {
             to={`/certifications/${encodeURIComponent(certification.title)}`}
             className="certification-link"
           >
-            View Details
+            Explore More
           </Link>
+          <a
+            href={certification.downloadLink}
+            className="certification-download"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Download Certificate
+          </a>
         </div>
       ))}
     </div>
