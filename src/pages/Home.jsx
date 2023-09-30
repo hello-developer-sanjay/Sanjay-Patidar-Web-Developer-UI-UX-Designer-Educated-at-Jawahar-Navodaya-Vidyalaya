@@ -252,6 +252,10 @@ const Home = () => {
           <FaLaptopCode />
           Discover My Projects
         </ActionLink>
+         <ActionLink to="/certifications">
+          <FaCertificate />
+          Explore Certifications
+        </ActionLink>
         <ActionLink to="/experiences">
           <FaBriefcase />
           View My Experiences
