@@ -1,14 +1,14 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { motion, useAnimation } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaArrowRight, FaUserGraduate, FaLaptopCode, FaBriefcase, FaFilePdf } from 'react-icons/fa';
 import { IoMdMoon, IoMdSunny } from 'react-icons/io';
-import profileImage1 from '../assets/market.png';
-import profileImage2 from '../assets/profile.png';
-import profileImage from '../assets/profile.png';
-
 import Typed from 'react-typed';
+import profileImage from '../assets/profile.png';
+import profileImage1 from '../assets/market.jpg';
+import profileImage2 from '../assets/profile.jpg';
+import profileImage3 from '../assets/background.jpg';
 
 const HomeContainer = styled(motion.div)`
   display: flex;
@@ -21,14 +21,6 @@ const HomeContainer = styled(motion.div)`
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
-`;
-
-const ParallaxImage = styled(motion.img)`
-  position: absolute;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
 `;
 
 const BackgroundOverlay = styled.div`
@@ -46,7 +38,26 @@ const ProfileImage = styled(motion.img)`
   height: 180px;
   border-radius: 50%;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  animation: flip 5s infinite;
+
+  @keyframes flip {
+    0%, 100% {
+      transform: rotateY(0deg);
+    }
+    25% {
+      transform: rotateY(90deg);
+    }
+    50% {
+      transform: rotateY(180deg);
+    }
+    75% {
+      transform: rotateY(270deg);
+    }
+  }
 `;
+
+const images = [profileImage1, profileImage2, profileImage3];
+let currentImageIndex = 0;
 
 const Introduction = styled(motion.p)`
   font-size: 1.8rem;
@@ -98,7 +109,6 @@ const ActionsContainer = styled(motion.div)`
   gap: 1.5rem;
   margin-top: 3.5rem;
 `;
-
 const ActionLink = styled(Link)`
   background-color: #1e3a5f;
   color: #fff;
@@ -185,28 +195,16 @@ const Home = () => {
     setDarkMode(!darkMode);
   };
 
-  const controls = useAnimation();
-  const profileImages = useRef([profileImage, profileImage1, profileImage2]);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
   useEffect(() => {
+    // Create a slideshow effect
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === profileImages.current.length - 1 ? 0 : prevIndex + 1
-      );
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      // Update the profile image
+      document.querySelector('.profile-image').src = images[currentImageIndex];
     }, 5000);
 
     return () => clearInterval(interval);
   }, []);
-
-  useEffect(() => {
-    controls.start({ scale: 1.2, opacity: 0 });
-    setTimeout(() => {
-      controls.start({ scale: 1, opacity: 1 });
-    }, 500);
-
-    return () => controls.stop();
-  }, [currentImageIndex, controls]);
 
   return (
     <HomeContainer
@@ -216,20 +214,15 @@ const Home = () => {
       transition={{ duration: 0.7, ease: 'easeInOut' }}
     >
       <BackgroundOverlay />
-      {profileImages.current.map((image, index) => (
-        <ParallaxImage
-          key={index}
-          src={image}
-          alt="Sanjay Patidar"
-          initial={{ scale: 0 }}
-          animate={controls}
-          transition={{ duration: 0.8 }}
-          style={{
-            filter: darkMode ? 'grayscale(100%)' : 'none',
-            top: `${-10 + index * 5}%`,
-          }}
-        />
-      ))}
+      <ProfileImage
+        src={images[currentImageIndex]}
+        alt="Sanjay Patidar"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ delay: 0.5, duration: 0.8 }}
+        style={{ filter: darkMode ? 'grayscale(100%)' : 'none' }}
+        className="profile-image"
+      />
       <Introduction
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
