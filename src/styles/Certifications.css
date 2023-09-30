@@ -24,20 +24,48 @@
   font-size: 1.4rem;
   margin-bottom: 0.5rem;
   text-align: center;
-  color: #ff6f00; /* Text color */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Text shadow for depth */
-  letter-spacing: 2px; /* Adjust letter spacing for a stylish look */
-  background: linear-gradient(to right, #ffcc80, #ff6f00); /* Gradient background */
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent; /* Hide text fill to show gradient */
-  transition: all 0.3s ease-in-out; /* Smooth transition */
-
-   &:hover {
-    transform: scale(1.1); /* Scale up the text on hover */
-    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5); /* Enhance text shadow on hover */
-  }
+  position: relative;
+  color: #007bff;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
 }
+
+.certification-title::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: #007bff;
+  transition: all 0.3s ease;
+}
+
+.certification-title:hover::before {
+  width: 100%;
+}
+
+.certification-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 2px;
+  background-color: #ff6f00;
+  transition: all 0.3s ease;
+  transform-origin: right;
+  transform: scaleX(0);
+}
+
+.certification-title:hover::after {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
 
 
 .certification-images {
