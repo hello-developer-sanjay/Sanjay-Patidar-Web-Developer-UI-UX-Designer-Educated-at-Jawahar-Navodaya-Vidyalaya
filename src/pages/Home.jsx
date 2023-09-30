@@ -8,7 +8,7 @@ import Typed from 'react-typed';
 import profileImage from '../assets/profile.png';
 import profileImage1 from '../assets/market.png';
 import profileImage2 from '../assets/profile.png';
-import profileImage3 from '../assets/background.png';
+import profileImage3 from '../assets/coding.png';
 
 const HomeContainer = styled(motion.div)`
   display: flex;
