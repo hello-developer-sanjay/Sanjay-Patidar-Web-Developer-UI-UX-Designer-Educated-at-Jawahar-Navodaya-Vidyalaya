@@ -24,7 +24,22 @@
   font-size: 1.4rem;
   margin-bottom: 0.5rem;
   text-align: center;
+  color: #ff6f00; /* Text color */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Text shadow for depth */
+  letter-spacing: 2px; /* Adjust letter spacing for a stylish look */
+  background: linear-gradient(to right, #ffcc80, #ff6f00); /* Gradient background */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent; /* Hide text fill to show gradient */
+  transition: all 0.3s ease-in-out; /* Smooth transition */
+
+  /* Hover effect */
+  &:hover {
+    transform: scale(1.1); /* Scale up the text on hover */
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5); /* Enhance text shadow on hover */
+  }
 }
+
 
 .certification-images {
   display: flex;
