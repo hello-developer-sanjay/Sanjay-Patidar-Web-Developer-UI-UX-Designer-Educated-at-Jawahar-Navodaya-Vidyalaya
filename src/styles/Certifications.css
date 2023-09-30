@@ -1,30 +1,37 @@
 .certifications-container {
-  display: flex;
-  overflow-x: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1rem;
   margin-bottom: 20px;
+  padding: 20px;
 }
 
 .certification-card {
-  flex: 0 0 auto;
-  max-width: 300px;
   background-color: #f7f7f7;
   border-radius: 10px;
   padding: 1rem;
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
-  margin: 10px; /* Add right margin */
 }
 
 .certification-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
 }
 
 .certification-title {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.certification-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 1rem;
 }
 
 .certification-image {
@@ -34,9 +41,19 @@
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
 }
 
+.certification-link,
 .certification-download {
   display: block;
-  margin-top: 0.5rem;
+  text-align: center;
+  margin-top: 1rem;
   color: #007bff;
   text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+
+.certification-link:hover,
+.certification-download:hover {
+  color: #0056b3;
 }
