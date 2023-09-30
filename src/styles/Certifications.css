@@ -33,7 +33,10 @@
   -webkit-text-fill-color: transparent; /* Hide text fill to show gradient */
   transition: all 0.3s ease-in-out; /* Smooth transition */
 
- 
+   &:hover {
+    transform: scale(1.1); /* Scale up the text on hover */
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5); /* Enhance text shadow on hover */
+  }
 }
 
 
