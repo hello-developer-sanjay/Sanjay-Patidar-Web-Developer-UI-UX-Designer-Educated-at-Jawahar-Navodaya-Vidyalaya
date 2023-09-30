@@ -43,17 +43,58 @@
 
 .certification-link,
 .certification-download {
-  display: block;
-  text-align: center;
+  display: inline-block;
+  padding: 0.8rem 2.2rem;
   margin-top: 1rem;
   color: #007bff;
   text-decoration: none;
   font-weight: bold;
   font-size: 1.1rem;
-  transition: color 0.2s;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.certification-link::before,
+.certification-download::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 0%;
+  bottom: 0;
+  left: 0;
+  background: #ff6f00;
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+
+.certification-link:hover::before,
+.certification-download:hover::before {
+  height: 100%;
 }
 
 .certification-link:hover,
 .certification-download:hover {
-  color: #0056b3;
+  color: #fff;
+}
+
+.certification-link::after,
+.certification-download::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: #007bff;
+  bottom: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: all 0.3s ease;
+}
+
+.certification-link:hover::after,
+.certification-download:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
