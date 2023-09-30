@@ -35,7 +35,7 @@ app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 // Implement rate limiting (100 requests per hour)
 const limiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
-  max: 100,
+  max: 500,
   message: 'Too many requests from this IP, please try again later.',
 });
 app.use('/api/', limiter);
