@@ -6,9 +6,9 @@ import { FaArrowRight, FaUserGraduate, FaLaptopCode, FaBriefcase, FaFilePdf } fr
 import { IoMdMoon, IoMdSunny } from 'react-icons/io';
 import Typed from 'react-typed';
 import profileImage from '../assets/profile.png';
-import profileImage1 from '../assets/market.jpg';
-import profileImage2 from '../assets/profile.jpg';
-import profileImage3 from '../assets/background.jpg';
+import profileImage1 from '../assets/market.png';
+import profileImage2 from '../assets/profile.png';
+import profileImage3 from '../assets/background.png';
 
 const HomeContainer = styled(motion.div)`
   display: flex;
