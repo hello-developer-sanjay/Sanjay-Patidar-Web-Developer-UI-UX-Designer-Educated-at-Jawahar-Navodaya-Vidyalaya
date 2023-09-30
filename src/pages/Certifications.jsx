@@ -42,14 +42,7 @@ const Certifications = () => {
           >
             Explore More
           </Link>
-          <a
-            href={certification.downloadLink}
-            className="certification-download"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Download Certificate
-          </a>
+         
         </div>
       ))}
     </div>
