@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaArrowRight, FaUserGraduate, FaLaptopCode, FaBriefcase, FaFilePdf } from 'react-icons/fa';
+import { FaArrowRight, FaUserGraduate, FaLaptopCode, FaBriefcase, FaFilePdf ,FaCertificate} from 'react-icons/fa';
 import { IoMdMoon, IoMdSunny } from 'react-icons/io';
 import Typed from 'react-typed';
 import profileImage from '../assets/profile.png';
