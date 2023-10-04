@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+
 import { NavLink } from 'react-router-dom';
 import { FaHome, FaFolder } from 'react-icons/fa';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
-  background-color: #333;
+  background: linear-gradient(to right, #3498db, #2c3e50); /* Gradient background */
   color: #fff;
   display: flex;
   justify-content: space-between;
@@ -13,16 +13,33 @@ const Nav = styled.nav`
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Slightly larger shadow for depth */
+  border-bottom: 2px solid #2980b9; /* Border at the bottom */
+
+  /* Add a transition for smoother hover effects */
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+  /* Add hover effect */
+  &:hover {
+    background: linear-gradient(to right, #2c3e50, #3498db); /* Gradient background on hover */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
+  }
 `;
 
+
 const Logo = styled.h1`
-  font-size: 1.5rem; /* Reduced font size */
+  font-size: 1.2rem;
   font-weight: bold;
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 2px;
+  background: linear-gradient(45deg, #ff6b6b, #ffb347); /* Gradient background */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; /* Hide the text color */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Text shadow for depth */
 `;
+
 
 const NavList = styled.ul`
   list-style: none;
@@ -32,7 +49,6 @@ const NavList = styled.ul`
 
 const NavItem = styled.li`
   position: relative;
-
   &:hover {
     .SubNavList {
       opacity: 1;
@@ -45,7 +61,7 @@ const NavLinkStyled = styled(NavLink)`
   text-decoration: none;
   color: #fff;
   font-weight: bold;
-  font-size: 1rem; /* Reduced font size */
+  font-size: 1rem;
 
   &:hover {
     text-decoration: underline;
@@ -73,10 +89,6 @@ const SubNavList = styled.ul`
   padding: 0.5rem 0;
   gap: 0.5rem;
   border-radius: 8px;
-  /* Adjust the position to cover both Home and Projects links */
-  top: calc(100% + 8px);
-  left: 0;
-  transform: translateX(0%);
 `;
 
 const SubNavItem = styled.li``;
@@ -84,55 +96,59 @@ const SubNavItem = styled.li``;
 const SubNavLinkStyled = styled(NavLink)`
   text-decoration: none;
   color: #fff;
-  font-size: 0.9rem; /* Reduced font size */
+  font-size: 0.9rem;
   padding: 0.5rem 1rem;
   transition: background-color 0.3s;
   display: flex;
-  align-items: center; /* Center the text and icon vertically */
-  justify-content: center; /* Center the text and icon horizontally */
+  align-items: center;
+  justify-content: center;
 
   & svg {
-    margin-right: 0.5rem; /* Add spacing between the icon and text */
+    margin-right: 0.5rem;
   }
 
   &:hover {
     background-color: #333;
   }
 `;
+
 const Navbar = () => {
   return (
-    <Nav>
-      <Logo>Pixel Portfolio</Logo>
-      <NavList>
-        <NavItem>
-          <NavLinkStyled to="/">
-            <FaHome /> Home
-          </NavLinkStyled>
-        </NavItem>
-        <NavItem>
-          <NavLinkStyled to="/projects">
-            <FaFolder /> Projects
-          </NavLinkStyled>
-          <SubNavList className="SubNavList">
-            <SubNavItem>
-              <SubNavLinkStyled to="/projects/web">
-                 Web Projects
-              </SubNavLinkStyled>
-            </SubNavItem>
-            <SubNavItem>
-              <SubNavLinkStyled to="/projects/mobile">
-                 Mobile Projects
-              </SubNavLinkStyled>
-            </SubNavItem>
-            <SubNavItem>
-              <SubNavLinkStyled to="/projects/other">
-                 Other Projects
-              </SubNavLinkStyled>
-            </SubNavItem>
-          </SubNavList>
-        </NavItem>
-      </NavList>
-    </Nav>
+    <>
+      <style>{'body { margin: 0; }'}</style>
+      <Nav>
+        <Logo>Pixel Portfolio</Logo>
+        <NavList>
+          <NavItem>
+            <NavLinkStyled to="/">
+              <FaHome /> Home
+            </NavLinkStyled>
+          </NavItem>
+          <NavItem>
+            <NavLinkStyled to="/projects">
+              <FaFolder /> Projects
+            </NavLinkStyled>
+            <SubNavList className="SubNavList">
+              <SubNavItem>
+                <SubNavLinkStyled to="/projects/web">
+                  Web Projects
+                </SubNavLinkStyled>
+              </SubNavItem>
+              <SubNavItem>
+                <SubNavLinkStyled to="/projects/mobile">
+                  Mobile Projects
+                </SubNavLinkStyled>
+              </SubNavItem>
+              <SubNavItem>
+                <SubNavLinkStyled to="/projects/other">
+                  Other Projects
+                </SubNavLinkStyled>
+              </SubNavItem>
+            </SubNavList>
+          </NavItem>
+        </NavList>
+      </Nav>
+    </>
   );
 };
 
