@@ -19,6 +19,8 @@ const SidebarContainer = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: center;
+   overflow-y: auto; 
+  max-height: 100vh; 
 
   /* Add creative animations and styles */
   &:hover {
