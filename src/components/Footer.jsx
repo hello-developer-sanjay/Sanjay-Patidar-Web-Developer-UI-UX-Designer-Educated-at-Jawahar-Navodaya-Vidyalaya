@@ -228,29 +228,6 @@ const QueryButton = styled(SubmitButton)`
 `;
 
 
-const FloatingFeedbackButton = styled.button`
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  background-color: #121212;
-  border: none;
-  border-radius: 50%;
-  color: #00ffcc;
-  font-size: 1.5rem;
-  width: 3.5rem;
-  height: 3.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease, color 0.3s ease;
-
-  &:hover {
-    transform: scale(1.1);
-    color: #ff6b6b;
-  }
-`;
 
 
 
@@ -258,21 +235,6 @@ const FloatingFeedbackButton = styled.button`
 
 
 const Footer = () => {
-  const [isIconsVisible, setIsIconsVisible] = useState(false);
-  const [isFormVisible, setIsFormVisible] = useState(false);
-  const controlsIcons = useAnimation();
-  const controlsForm = useAnimation();
-
-  const toggleIcons = async () => {
-    await controlsIcons.start({ opacity: isIconsVisible ? 0 : 1 });
-    setIsIconsVisible(!isIconsVisible);
-  };
-
-  const toggleForm = async () => {
-    await controlsForm.start({ opacity: isFormVisible ? 0 : 1 });
-    setIsFormVisible(!isFormVisible);
-  };
-
   const catchyMessages = [
     "Stay Curious. Connect with Us!",
     "Join the Journey. Let's Learn Together.",
@@ -284,67 +246,66 @@ const Footer = () => {
     catchyMessages[Math.floor(Math.random() * catchyMessages.length)];
 
   const socialButtons = [
-    { icon: <FaLinkedin />, color: "#0077B5", link: "#" },
-    { icon: <FaGithub />, color: "#181717", link: "https://github.com/sanjay-dev-patidar" },
+    { icon: <FaLinkedin />, color: "#0077B5", link: "https://www.linkedin.com/in/sanjay-patidar-25b580292/" },
+    { icon: <FaGithub />, color: "#181717", link: "https://github.com/hello-developer-sanjay" },
     { icon: <FaTwitter />, color: "#1DA1F2", link: "#" },
     { icon: <FaInstagram />, color: "#E1306C", link: "https://www.instagram.com/sanjay_patidar_mcmxcviii/" },
   ];
 
-const handleFormSubmit = async (e) => {
-  e.preventDefault();
-  const formData = new FormData(e.target);
-  const name = formData.get("name");
-  const email = formData.get("email");
-  const feedback = formData.get("message");
-  const query = formData.get("query");
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const feedback = formData.get("message");
+    const query = formData.get("query");
 
-  if (!name || !email) {
-    toast.error("Please provide your name and email.");
-    return;
-  }
-
-  if (!feedback && !query) {
-    toast.error("Please provide either feedback or a query.");
-    return;
-  }
-
-  try {
-    let endpoint = "submit-feedback";
-    let successMessage = "Feedback submitted successfully! Thank you for your feedback.";
-
-    if (query) {
-      endpoint = "submit-query";
-      successMessage = "Query sent! Await our swift reply, tailored just for you.";
+    if (!name || !email) {
+      toast.error("Please provide your name and email.");
+      return;
     }
 
-    const response = await fetch(`https://portfolio-back-dujw.onrender.com/api/${endpoint}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        feedback: feedback || query,
-        query,
-      }),
-    });
+    if (!feedback && !query) {
+      toast.error("Please provide either feedback or a query.");
+      return;
+    }
 
-    const responseData = await response.json();
+    try {
+      let endpoint = "submit-feedback";
+      let successMessage = "Feedback submitted successfully! Thank you for your feedback.";
 
-    if (response.ok) {
-      toast.success(successMessage);
-    } else {
-      console.error("Error submitting feedback/query");
+      if (query) {
+        endpoint = "submit-query";
+        successMessage = "Query sent! Await our swift reply, tailored just for you.";
+      }
+
+      const response = await fetch(`https://portfolio-back-dujw.onrender.com/api/${endpoint}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          feedback: feedback || query,
+          query,
+        }),
+      });
+
+      const responseData = await response.json();
+
+      if (response.ok) {
+        toast.success(successMessage);
+      } else {
+        console.error("Error submitting feedback/query");
+        toast.error("Error submitting feedback/query. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error submitting feedback/query:", error);
       toast.error("Error submitting feedback/query. Please try again later.");
     }
-  } catch (error) {
-    console.error("Error submitting feedback/query:", error);
-    toast.error("Error submitting feedback/query. Please try again later.");
-  }
-};
+  };
 
-  
   return (
     <FooterContainer>
       <BorderLineTop
@@ -362,62 +323,52 @@ const handleFormSubmit = async (e) => {
       </CatchyMessage>
       <FooterButton
         color="#4db6ac"
-        onClick={toggleIcons}
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
-        {isIconsVisible ? <FaTimes /> : <FaUsers />}
+        <FaUsers />
       </FooterButton>
       <AnimatePresence>
-        {isIconsVisible &&
-          <SocialIconsContainer>
-            {socialButtons.map((button, index) => (
-              <SocialIcon
-                key={index}
-                color={button.color}
-                initial={{ opacity: 0, y: -50 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -50 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                href={button.link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {button.icon}
-              </SocialIcon>
-            ))}
-          </SocialIconsContainer>
-        }
+        <SocialIconsContainer>
+          {socialButtons.map((button, index) => (
+            <SocialIcon
+              key={index}
+              color={button.color}
+              initial={{ opacity: 0, y: -50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              href={button.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {button.icon}
+            </SocialIcon>
+          ))}
+        </SocialIconsContainer>
       </AnimatePresence>
-      <FloatingFeedbackButton onClick={toggleForm}>
-        {isFormVisible ? <FaTimes /> : <FaComment />}
-      </FloatingFeedbackButton>
-      <AnimatePresence>
-        {isFormVisible &&
-          <ContactForm
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            onSubmit={handleFormSubmit}
-          >
-            <ContactInput type="text" name="name" placeholder="Your Name" />
-            <ContactInput type="email" name="email" placeholder="Your Email" />
-            <ContactTextArea
-              name="message"
-              rows="5"
-              placeholder="Write your feedback here..."
-            />
-            <QueryInput
-              name="query"
-              rows="5"
-              placeholder="Have a question? Write your query here..."
-            />
-            <QueryButton type="submit">Submit</QueryButton>
-          </ContactForm>
-        }
-      </AnimatePresence>
+      <ContactForm
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        onSubmit={handleFormSubmit}
+      >
+        <ContactInput type="text" name="name" placeholder="Your Name" />
+        <ContactInput type="email" name="email" placeholder="Your Email" />
+        <ContactTextArea
+          name="message"
+          rows="5"
+          placeholder="Write your feedback here..."
+        />
+        <QueryInput
+          name="query"
+          rows="5"
+          placeholder="Have a question? Write your query here..."
+        />
+        <QueryButton type="submit">Submit</QueryButton>
+      </ContactForm>
       <ToastContainer className="custom-toast-container" position="top-right" />
     </FooterContainer>
   );
