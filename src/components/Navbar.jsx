@@ -62,16 +62,38 @@ const NavLinkStyled = styled(NavLink)`
   color: #fff;
   font-weight: bold;
   font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    text-decoration: underline;
+    color: #ffcc29; /* Change text color on hover */
+    transform: scale(1.1); /* Scale up the text on hover */
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #ffcc29; /* Highlight color */
+    transform: scaleX(0); /* Initially hidden */
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover:before {
+    transform: scaleX(1); /* Reveal the highlight on hover */
+    transform-origin: left;
   }
 `;
 
 const SubNavList = styled.ul`
   list-style: none;
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + 14px);
   left: 50%;
   transform: translateX(-50%);
   background: #1a1c23;
