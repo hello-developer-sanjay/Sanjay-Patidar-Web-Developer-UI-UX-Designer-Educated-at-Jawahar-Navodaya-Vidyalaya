@@ -327,6 +327,7 @@ const Footer = () => {
         animate={{ scale: 1 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
+        aria-label="Navigate to user profiles"
       >
         <FaUsers />
       </FooterButton>
@@ -368,7 +369,9 @@ const Footer = () => {
           rows="5"
           placeholder="Have a question? Write your query here..."
         />
-        <QueryButton type="submit">Submit</QueryButton>
+       <QueryButton type="submit" aria-label="Submit feedback or query form">
+        Submit
+      </QueryButton>
       </ContactForm>
       <ToastContainer className="custom-toast-container" position="top-right" />
     </FooterContainer>
