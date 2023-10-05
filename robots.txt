@@ -1,4 +1,2 @@
 User-agent: *
-Disallow: /private/
-Disallow: /secret-page/
-Allow: /public/
+Disallow:
