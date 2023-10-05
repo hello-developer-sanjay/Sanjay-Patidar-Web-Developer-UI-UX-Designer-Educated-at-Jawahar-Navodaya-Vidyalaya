@@ -246,10 +246,10 @@ const Footer = () => {
     catchyMessages[Math.floor(Math.random() * catchyMessages.length)];
 
   const socialButtons = [
-    { icon: <FaLinkedin />, color: "#0077B5", link: "https://www.linkedin.com/in/sanjay-patidar-25b580292/" },
-    { icon: <FaGithub />, color: "#181717", link: "https://github.com/hello-developer-sanjay" },
-    { icon: <FaTwitter />, color: "#1DA1F2", link: "#" },
-    { icon: <FaInstagram />, color: "#E1306C", link: "https://www.instagram.com/sanjay_patidar_mcmxcviii/" },
+    { icon: <FaLinkedin />, label: "LinkedIn", link: "https://www.linkedin.com/in/sanjay-patidar-25b580292/" },
+    { icon: <FaGithub />, label: "GitHub", link: "https://github.com/hello-developer-sanjay" },
+    { icon: <FaTwitter />, label: "Twitter", link: "#" },
+    { icon: <FaInstagram />, label: "Instagram", link: "https://www.instagram.com/sanjay_patidar_mcmxcviii/" },
   ];
 
   const handleFormSubmit = async (e) => {
@@ -331,7 +331,7 @@ const Footer = () => {
         <FaUsers />
       </FooterButton>
       <AnimatePresence>
-        <SocialIconsContainer>
+       <SocialIconsContainer>
           {socialButtons.map((button, index) => (
             <SocialIcon
               key={index}
@@ -343,6 +343,7 @@ const Footer = () => {
               href={button.link}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={button.label} // Provide an accessible label for the link
             >
               {button.icon}
             </SocialIcon>
