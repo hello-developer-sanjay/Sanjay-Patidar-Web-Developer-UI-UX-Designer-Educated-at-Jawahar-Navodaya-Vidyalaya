@@ -4,7 +4,7 @@ import { FaHome, FaFolder } from 'react-icons/fa';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
- background: linear-gradient(to right, #3498db, #2c3e50); /* Gradient background */
+ background: linear-gradient(to right, #3498db, #2c3e50); 
   color: #fff;
   display: flex;
   justify-content: space-between;
