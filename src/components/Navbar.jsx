@@ -140,7 +140,7 @@ const Navbar = () => {
     <>
       <style>{'body { margin: 0; }'}</style>
       <Nav>
-        <Logo>Pixel Portfolio</Logo>
+        <Logo>DevMaster Showcase</Logo>
         <NavList>
           <NavItem>
             <NavLinkStyled to="/">
