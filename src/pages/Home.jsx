@@ -64,7 +64,7 @@ const Introduction = styled(motion.p)`
   line-height: 2.2;
   max-width: 800px;
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
   color: #ccc;
 
   .highlight {
@@ -95,7 +95,7 @@ const Introduction = styled(motion.p)`
 
 const TypedText = styled.span`
   display: block;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   color: #ff6f00;
   font-weight: bold;
   font-size: 1.2rem;
