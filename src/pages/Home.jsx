@@ -61,7 +61,7 @@ let currentImageIndex = 0;
 
 const Introduction = styled(motion.p)`
   font-size: 1.8rem;
-  line-height: 2.2;
+  line-height: 1.5;
   max-width: 800px;
   text-align: center;
   margin-top: 1rem;
@@ -71,7 +71,7 @@ const Introduction = styled(motion.p)`
   .highlight {
     color: #ff6f00;
     font-weight: bold;
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 
   .highlight {
