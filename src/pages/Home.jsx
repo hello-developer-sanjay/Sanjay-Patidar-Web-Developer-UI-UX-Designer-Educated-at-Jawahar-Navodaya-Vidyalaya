@@ -65,6 +65,7 @@ const Introduction = styled(motion.p)`
   max-width: 800px;
   text-align: center;
   margin-top: 1rem;
+    margin-bottom: 1rem;
   color: #ccc;
 
   .highlight {
@@ -106,8 +107,8 @@ const ActionsContainer = styled(motion.div)`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-top: 3rem;
+  gap: 1rem;
+  margin-top: 2rem;
 `;
 const ActionLink = styled(Link)`
   background-color: #1e3a5f;
