@@ -95,7 +95,7 @@ const Introduction = styled(motion.p)`
 
 const TypedText = styled.span`
   display: block;
-  margin-top: 1rem;
+
   color: #ff6f00;
   font-weight: bold;
   font-size: 1.2rem;
@@ -107,7 +107,7 @@ const ActionsContainer = styled(motion.div)`
   align-items: center;
   flex-wrap: wrap;
   gap: 1.5rem;
-  margin-top: 3.5rem;
+  margin-top: 3rem;
 `;
 const ActionLink = styled(Link)`
   background-color: #1e3a5f;
