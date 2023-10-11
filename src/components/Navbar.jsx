@@ -19,11 +19,7 @@ const Nav = styled.nav`
   /* Add a transition for smoother hover effects */
   transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
-  /* Add hover effect */
-  &:hover {
-    background: linear-gradient(to right, #2c3e50, #3498db); /* Gradient background on hover */
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
-  }
+  
 `;
 
 
