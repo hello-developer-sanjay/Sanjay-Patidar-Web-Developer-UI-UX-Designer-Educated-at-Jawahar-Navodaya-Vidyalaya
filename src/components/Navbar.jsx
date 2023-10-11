@@ -140,7 +140,9 @@ const Navbar = () => {
     <>
       <style>{'body { margin: 0; }'}</style>
       <Nav>
+       <Link to ="/">
         <Logo>DevMaster Showcase</Logo>
+       </Link>
         <NavList>
           <NavItem>
             <NavLinkStyled to="/">
