@@ -4,20 +4,25 @@ import { FaHome, FaFolder } from 'react-icons/fa';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
-  background: linear-gradient(to right, #3498db, #2c3e50); /* Gradient background */
+ background: linear-gradient(to right, #3498db, #2c3e50); /* Gradient background */
   color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 0.5rem;
+    flex-wrap: wrap;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Slightly larger shadow for depth */
-  border-bottom: 2px solid #2980b9; /* Border at the bottom */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
+  border-bottom: 2px solid #2980b9; 
 
-  /* Add a transition for smoother hover effects */
+
   transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+    background: linear-gradient(to right, #2c3e50, #3498db); /* Gradient background on hover */
+    
+  
 
   
 `;
