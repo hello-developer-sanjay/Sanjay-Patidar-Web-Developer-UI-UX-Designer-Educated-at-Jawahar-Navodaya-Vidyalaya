@@ -173,12 +173,16 @@ const SecondaryActionLink = styled(ActionLink)`
   background-color: #333;
   font-size: 1.4rem;
 `;
-
 const Subtitle = styled.p`
   font-size: 1.8rem;
   color: #ccc;
-  margin-top: 3rem;
+  margin-top: 2rem;
+  background-color: #333;
+  padding: 0.5rem 1rem;
+  border: 2px solid #ccc;
+  border-radius: 20px;
 `;
+
 
 const SubtitleLink = styled.a`
   color: #ffcc80;
