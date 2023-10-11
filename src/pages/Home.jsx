@@ -96,7 +96,8 @@ const Introduction = styled(motion.p)`
 
 const TypedText = styled.span`
   display: block;
-
+  margin-top: 1rem;
+   margin-bottom: 1rem;
   color: #ff6f00;
   font-weight: bold;
   font-size: 1.2rem;
