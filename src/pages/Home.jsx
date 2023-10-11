@@ -133,22 +133,9 @@ const ActionLink = styled(Link)`
   }
 `;
 
-const ThemeToggle = styled.button`
-  background: none;
-  border: none;
-  color: #ccc;
-  font-size: 1.6rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-`;
 
-const DarkModeIcon = styled(motion.div)`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-`;
+
+
 
 const FloatingActionButton = styled(ActionLink)`
   background-color: #ff6f00;
@@ -220,13 +207,12 @@ const Home = () => {
       transition={{ duration: 0.7, ease: 'easeInOut' }}
     >
       <BackgroundOverlay />
-      <ProfileImage
-        src={images[currentImageIndex]}
+     <ProfileImage
+        src={profileImage1}
         alt="Sanjay Patidar"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ delay: 0.5, duration: 0.8 }}
-        style={{ filter: darkMode ? 'grayscale(100%)' : 'none' }}
         className="profile-image"
       />
       <Introduction
@@ -274,12 +260,7 @@ const Home = () => {
           <FaArrowRight />
           Contact Me
         </SecondaryActionLink>
-        <ThemeToggle onClick={toggleDarkMode}>
-          <DarkModeIcon>
-            {darkMode ? <IoMdSunny /> : <IoMdMoon />}
-            {darkMode ? 'Light Mode' : 'Dark Mode'}
-          </DarkModeIcon>
-        </ThemeToggle>
+       
       </ActionsContainer>
       <Subtitle>
         Want to know more? Check out my <SubtitleLink href="/blogs">Blogs</SubtitleLink> for tech insights and tutorials.
