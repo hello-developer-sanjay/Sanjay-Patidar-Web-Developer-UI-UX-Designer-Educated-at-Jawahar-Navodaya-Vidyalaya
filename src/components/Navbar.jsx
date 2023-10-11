@@ -1,5 +1,5 @@
 
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { FaHome, FaFolder } from 'react-icons/fa';
 import styled from 'styled-components';
 
@@ -140,9 +140,9 @@ const Navbar = () => {
     <>
       <style>{'body { margin: 0; }'}</style>
       <Nav>
-       <Link to ="/">
+       <NavLinkStyled to ="/">
         <Logo>DevMaster Showcase</Logo>
-       </Link>
+      </NavLinkStyled>
         <NavList>
           <NavItem>
             <NavLinkStyled to="/">
