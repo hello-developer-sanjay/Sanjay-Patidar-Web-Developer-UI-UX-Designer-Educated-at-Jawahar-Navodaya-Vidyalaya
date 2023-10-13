@@ -16,7 +16,7 @@ const CertificationDetails = () => {
     async function fetchCertification() {
       try {
         const response = await axios.get(
-          `https://portfolio-back-dujw.onrender.com/api/certifications/${encodeURIComponent(
+          `https://port-back-gbq9.onrender.com/api/certifications/${encodeURIComponent(
             title
           )}`
         );
