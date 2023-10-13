@@ -5,7 +5,7 @@ module.exports = function (app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'https://portfolio-back-dujw.onrender.com',
+      target: 'https://port-back-gbq9.onrender.com',
       changeOrigin: true,
     })
   );
