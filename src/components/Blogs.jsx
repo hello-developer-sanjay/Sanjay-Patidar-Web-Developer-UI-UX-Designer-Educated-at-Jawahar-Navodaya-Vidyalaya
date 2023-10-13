@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-const backendBaseUrl = "https://portfolio-back-dujw.onrender.com"; 
+const backendBaseUrl = "https://port-back-gbq9.onrender.com"; 
 const BlogsContainer = styled.div`
   padding: 2rem;
   display: flex;
@@ -146,7 +146,7 @@ const Blogs = () => {
 
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get('https://portfolio-back-dujw.onrender.com/api/blogs');
+      const response = await axios.get('https://port-back-gbq9.onrender.com/api/blogs');
       setBlogs(response.data);
     } catch (error) {
       console.error('Error fetching blogs:', error);
@@ -172,14 +172,14 @@ const Blogs = () => {
       }
 
       if (editingBlogId) {
-        await axios.put(`https://portfolio-back-dujw.onrender.com/api/blogs/${editingBlogId}`, formData, {
+        await axios.put(`/api/blogs/${editingBlogId}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         });
         setEditingBlogId(null);
       } else {
-        await axios.post('https://portfolio-back-dujw.onrender.com/api/blogs', formData, {
+        await axios.post('https://port-back-gbq9.onrender.com/api/blogs', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -282,7 +282,7 @@ const Blogs = () => {
           accept="image/*"
           onChange={(e) => handleUpdateContentFile(index, e.target.files)}
         />
-        {section.url && <img src={`https://portfolio-back-dujw.onrender.com${section.url}`} alt={`Image ${index}`} />}
+        {section.url && <img src={`https://port-back-gbq9.onrender.com${section.url}`} alt={`Image ${index}`} />}
       </div>
     )}
 
@@ -295,7 +295,7 @@ const Blogs = () => {
         />
         {section.url && (
           <video width="320" height="240" controls>
-            <source src={`https://portfolio-back-dujw.onrender.com${section.url}`} type="video/mp4" />
+            <source src={`https://port-back-gbq9.onrender.com${section.url}`} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         )}
