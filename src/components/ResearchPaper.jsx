@@ -8,7 +8,7 @@ const ResearchPaperContainer = styled.div`
   border-radius: 10px;
   margin-top: 2rem;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);
-  max-width: 800px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 `;
@@ -94,36 +94,45 @@ const ResearchPaper = () => {
         </ResearchPaperText>
       </ResearchPaperSection>
 
-      <ResearchPaperSection>
-        <ResearchPaperTitle>3. Security Measures: Safeguarding the Platform</ResearchPaperTitle>
-        <ResearchPaperText>
-          <h4>3.1 Content Security Policy (CSP): A Historical Perspective</h4>
-          <p>
-            Evolution and Standardization of CSP<br />
-            Implementation Strategies: Directives and Nonces
-          </p>
-          <h4>3.2 Helmet Middleware: Fortifying the Application</h4>
-          <p>
-            Helmet’s Genesis in the Node.js Ecosystem<br />
-            Middleware Functions: X-DNS-Prefetch-Control and Expect-CT
-          </p>
-          <h4>3.3 User Input Validation and Output Sanitization: A Comparative Study</h4>
-          <p>
-            Formik: A Deep Dive into Form Validation<br />
-            DOMPurify: Securing User-Generated Content
-          </p>
-          <h4>3.4 CSRF Attack Prevention: Historical Attacks and Modern Defenses</h4>
-          <p>
-            CSRF Attacks: A Historical Analysis<br />
-            Implementing Express CSRF Middleware: Tokens and Double Submit Cookies
-          </p>
-          <h4>3.5 Continuous Updates: Navigating the Realm of Dependency Management</h4>
-          <p>
-            Dependency Management Evolution: npm to Yarn<br />
-            Automated Dependency Update Tools: Dependabot and Renovate
-          </p>
-        </ResearchPaperText>
-      </ResearchPaperSection>
+     <ResearchPaperSection>
+  <ResearchPaperTitle>3. Security Measures: Safeguarding the Platform</ResearchPaperTitle>
+  <ResearchPaperText>
+    <h4>3.1 Content Security Policy (CSP): A Historical Perspective</h4>
+    <p>
+      Content Security Policy (CSP) is a crucial security feature that restricts the sources from which a web page can load content. Its evolution traces back to the early 2000s when web applications began facing threats from cross-site scripting (XSS) attacks. The World Wide Web Consortium (W3C) initiated efforts to standardize security policies, leading to the conceptualization of CSP. Over the years, CSP has evolved through rigorous discussions, with major web browsers adopting and implementing CSP standards. This evolution reflects the dynamic nature of web security challenges and the collaborative efforts of the global web development community.
+      <br /><br />
+      CSP implementation involves a set of directives specifying allowed content sources, enabling developers to mitigate XSS attacks. Directives like <code>script-src</code>, <code>style-src</code>, and <code>img-src</code> define the valid sources for scripts, stylesheets, and images. Additionally, the use of nonces, unique cryptographic tokens generated per request, adds an extra layer of security. Nonces validate specific script blocks, ensuring that only approved scripts execute, thereby preventing unauthorized code execution and enhancing overall application security.
+    </p>
+
+    <h4>3.2 Helmet Middleware: Fortifying the Application</h4>
+    <p>
+      Helmet, a security middleware for Node.js applications, emerged as a response to the growing complexity of web security threats. Its genesis lies in the Node.js ecosystem, where developers recognized the need for standardized security practices. Helmet simplifies the implementation of critical security headers, including CSP, content type options, and various other protections against common web vulnerabilities. By encapsulating these security best practices in a middleware, Helmet enables developers to fortify their applications without delving into the intricacies of header configurations, thereby promoting the widespread adoption of robust security measures.
+      <br /><br />
+      Among Helmet’s many middleware functions, <code>X-DNS-Prefetch-Control</code> and <code>Expect-CT</code> are pivotal for enhancing security. <code>X-DNS-Prefetch-Control</code> prevents DNS prefetching, mitigating privacy risks and reducing the likelihood of information exposure. On the other hand, <code>Expect-CT</code> enforces Certificate Transparency (CT), ensuring that only certificates logged in public CT logs are considered valid. This function safeguards against malicious certificate misissuance, bolstering the trustworthiness of SSL/TLS connections and fostering a secure browsing experience for users.
+    </p>
+
+    <h4>3.3 User Input Validation and Output Sanitization: A Comparative Study</h4>
+    <p>
+      Form validation has been a cornerstone of web security for decades. Formik, a leading library in the React ecosystem, provides developers with powerful tools to streamline form validation. Its historical evolution mirrors the growth of complex web applications, where user inputs require stringent validation to prevent injection attacks and data corruption. Formik’s robust features, such as form state management, validation functions, and error handling, exemplify the continuous efforts to simplify and enhance user input validation, ensuring the integrity of data processed by web applications.
+      <br /><br />
+      The rise of user-generated content platforms and collaborative web applications necessitated advancements in output sanitization techniques. DOMPurify, a library dedicated to cleaning HTML and preventing XSS attacks, exemplifies the industry’s response to the challenges posed by dynamic content generation. Its historical context lies in the early battles against persistent XSS attacks, where developers sought efficient methods to sanitize user inputs and prevent malicious scripts from compromising the integrity of web pages. DOMPurify’s algorithms and heuristics have evolved over time, adapting to emerging threats and providing a robust defense against a wide array of XSS vulnerabilities.
+    </p>
+
+    <h4>3.4 CSRF Attack Prevention: Historical Attacks and Modern Defenses</h4>
+    <p>
+      Cross-Site Request Forgery (CSRF) attacks have plagued web applications since the early days of the internet. Historically, attackers exploited the trust between a user and a website, tricking the user into performing unintended actions without their knowledge. These attacks led to the development of anti-CSRF tokens, a fundamental defense mechanism. The evolution of CSRF attacks paralleled the growth of web applications, with attackers devising sophisticated techniques to bypass token-based defenses. This historical evolution underscores the significance of continuous research and innovation in CSRF prevention, ensuring that modern web applications remain resilient against evolving attack vectors.
+      <br /><br />
+      Express CSRF middleware represents a modern approach to CSRF attack prevention. By generating unique tokens for each user session, the middleware verifies the authenticity of incoming requests. Furthermore, the integration of Double Submit Cookies, where a secure, HttpOnly cookie matches the token sent in the request body, adds an extra layer of security. This implementation strategy reflects the iterative process of refining CSRF defenses, leveraging historical attack patterns and innovative solutions to fortify web applications against CSRF threats. The evolution from simple token-based mechanisms to sophisticated Double Submit Cookies epitomizes the ongoing battle against CSRF attacks, emphasizing the importance of adaptive security protocols.
+    </p>
+
+    <h4>3.5 Continuous Updates: Navigating the Realm of Dependency Management</h4>
+    <p>
+      Dependency management in web development has witnessed a transformative journey, characterized by the evolution of package managers. npm, the Node Package Manager, revolutionized JavaScript development by introducing a centralized repository for packages. Its success paved the way for enhanced tools like Yarn, which offered improved speed, deterministic dependency resolution, and offline capabilities. Yarn’s emergence marked a significant milestone, addressing the challenges posed by version inconsistencies and package download reliability. This historical evolution underscores the industry’s commitment to optimizing development workflows, ensuring seamless collaboration, and promoting code stability through efficient dependency management solutions.
+      <br /><br />
+      The advent of automated dependency update tools signifies a paradigm shift in software maintenance practices. Dependabot and Renovate, among others, epitomize the industry’s proactive stance towards security and stability. These tools automate the process of identifying outdated dependencies, analyzing changelogs, and generating pull requests with updated versions. By leveraging machine learning algorithms and natural language processing, these tools intelligently assess the impact of updates, prioritizing security patches and critical bug fixes. The integration of these tools into development pipelines reflects a holistic approach to software maintenance, mitigating the risks associated with outdated dependencies and ensuring that applications remain resilient against known vulnerabilities.
+    </p>
+  </ResearchPaperText>
+</ResearchPaperSection>
 
       <ResearchPaperSection>
         <ResearchPaperTitle>4. Educational Features: Crafting Immersive Learning Experiences</ResearchPaperTitle>
