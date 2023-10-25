@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "../styles/Certifications.css";
@@ -10,7 +10,7 @@ const Certifications = () => {
     async function fetchCertifications() {
       try {
         const response = await axios.get(
-          "https://port-back-gbq9.onrender.com/api/certifications"
+          "https://portfolio-backend-lp9q.onrender.com/api/certifications"
         );
         setCertifications(response.data);
       } catch (error) {
