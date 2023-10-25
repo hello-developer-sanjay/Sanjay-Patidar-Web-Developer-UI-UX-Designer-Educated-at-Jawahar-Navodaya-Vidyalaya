@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Confetti from "react-confetti";
@@ -16,7 +16,7 @@ const CertificationDetails = () => {
     async function fetchCertification() {
       try {
         const response = await axios.get(
-          `https://port-back-gbq9.onrender.com/api/certifications/${encodeURIComponent(
+          `https://portfolio-backend-lp9q.onrender.com/api/certifications/${encodeURIComponent(
             title
           )}`
         );
