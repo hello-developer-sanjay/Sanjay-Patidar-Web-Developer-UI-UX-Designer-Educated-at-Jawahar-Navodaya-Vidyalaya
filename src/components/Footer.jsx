@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { FaLinkedin, FaTwitter, FaInstagram, FaGithub,FaComment, FaUsers, FaTimes } from "react-icons/fa";
@@ -279,7 +279,7 @@ const Footer = () => {
         successMessage = "Query sent! Await our swift reply, tailored just for you.";
       }
 
-      const response = await fetch(`https://port-back-gbq9.onrender.com/api/${endpoint}`, {
+      const response = await fetch(`https://portfolio-backend-lp9q.onrender.com/api/${endpoint}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
