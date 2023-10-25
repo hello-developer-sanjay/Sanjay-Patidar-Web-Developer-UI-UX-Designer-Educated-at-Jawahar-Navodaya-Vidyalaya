@@ -56,7 +56,7 @@ const ProfileImage = styled(motion.img)`
   }
 `;
 
-const images = [profileImage1, profileImage2, profileImage3];
+const images = [profileImage1, profileImage2];
 let currentImageIndex = 0;
 
 const Introduction = styled(motion.p)`
