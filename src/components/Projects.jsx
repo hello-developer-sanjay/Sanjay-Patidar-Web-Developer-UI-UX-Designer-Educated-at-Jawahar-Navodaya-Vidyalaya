@@ -195,9 +195,9 @@ const Projects = () => {
       try {
         let response;
         if (!category || category === 'all') { // Check if category is undefined or "all"
-          response = await axios.get('https://port-back-gbq9.onrender.com/api/projects/category/all');
+          response = await axios.get('https://portfolio-backend-lp9q.onrender.com/api/projects/category/all');
         } else {
-          response = await axios.get(`https://port-back-gbq9.onrender.com/api/projects/category/${category}`);
+          response = await axios.get(`https://portfolio-backend-lp9q.onrender.com/api/projects/category/${category}`);
         }
         setProjects(response.data);
       } catch (error) {
