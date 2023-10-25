@@ -142,7 +142,7 @@ const Sidebar = () => {
     async function fetchCertifications() {
       try {
         const response = await axios.get(
-          "https://port-back-gbq9.onrender.com/api/certifications"
+          "https://portfolio-backend-lp9q.onrender.com/api/certifications"
         );
         setCertifications(response.data);
       } catch (error) {
