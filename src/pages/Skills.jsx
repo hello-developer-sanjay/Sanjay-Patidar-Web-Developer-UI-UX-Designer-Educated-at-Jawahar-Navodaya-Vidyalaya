@@ -1,5 +1,4 @@
-// src/pages/Skills.jsx
-import React from 'react';
+
 import styled from 'styled-components';
 import '../styles/Skills.css';
 import developerIcon from '../assets/developer.png';
@@ -11,14 +10,52 @@ import teamLeaderIcon from '../assets/team-leader.png';
 const SkillsContainer = styled.div`
   padding: 2rem;
   min-height: 100vh;
-  background-color: #D0EAE7;
-
+  background-color: #d0eae7;
 `;
-
 const SkillsHeading = styled.h2`
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  text-align: center;
+  color: #ff5e62;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  position: relative;
+
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, #ff5e62, #ff9966);
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    border-radius: 10px;
+  }
+
+  &:before {
+    content: '🚀';
+    font-size: 2rem;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-20px);
+    }
+    60% {
+      transform: translateY(-10px);
+    }
+  }
 `;
+
 
 const SkillsGrid = styled.div`
   display: grid;
@@ -27,36 +64,71 @@ const SkillsGrid = styled.div`
 `;
 
 const SkillCard = styled.div`
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+  position: relative;
+  padding: 2rem;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
-  background-color: white;
+      margin-top:20px;
+  background: linear-gradient(to right, #ff9966, #ff5e62);
+
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
   }
 `;
 
 const SkillIcon = styled.img`
-  width: 60px;
-  height: 60px;
-  margin-bottom: 0.5rem;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1rem;
+  
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: rotate(360deg);
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 `;
 
 const SkillName = styled.h3`
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-family: 'Pacifico', cursive; /* Example font family */
+  color: #ffcc00; /* Yellow color */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Text shadow effect */
+  transition: color 0.3s;
+
+  &:hover {
+    color: #ff9900; /* Darker yellow color on hover */
+  }
 `;
 
+
 const SkillDescription = styled.p`
-  text-align: center;
+  font-size: 1.2rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s, transform 0.3s;
+
+  ${SkillCard}:hover & {
+    opacity: 1;
+    transform: translateY(0);
+  }
 `;
 
 const Skills = () => {
@@ -67,7 +139,7 @@ const Skills = () => {
       description: 'Building the digital backbone of the internet.',
     },
     {
-      name: 'App Developer',
+      name: 'App Development',
       icon: appDevIcon,
       description: 'Creating smart solutions for smartphones.',
     },
