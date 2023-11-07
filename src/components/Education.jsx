@@ -114,8 +114,8 @@ const Education = () => {
       <Heading>Unlocking Knowledge Horizons</Heading>      <EducationSection>
         <EducationText>
           <h2>Secondary Education</h2>
-          <p>School: Jawahar Navodaya Vidhyalaya School</p>
-          <p>Year: 2009-2016</p>
+          <p>Jawahar Navodaya Vidhyalaya School</p>
+          <p>2009-2016</p>
           
         </EducationText>
         <EducationImage>
@@ -129,8 +129,8 @@ const Education = () => {
       <EducationSection>
         <EducationText>
           <h2>Bachelor of Technology in Computer Science Engineering</h2>
-          <p>University: Chandigarh University</p>
-         <p>Year: 2019-2024</p>
+          <p>Chandigarh University</p>
+         <p>2019-2024</p>
          
         </EducationText>
         <EducationImage>
