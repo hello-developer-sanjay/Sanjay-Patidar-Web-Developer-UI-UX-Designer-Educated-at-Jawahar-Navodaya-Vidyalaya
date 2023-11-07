@@ -1,32 +1,28 @@
 /* eslint-disable react/prop-types */
-
 import { motion, AnimatePresence } from "framer-motion";
 
 const PageTransition = ({ children }) => {
   const pageVariants = {
     initial: {
       opacity: 0,
-      x: "-100%",
-      scale: 0.8,
-      rotate: -45,
+      height: "0%",
+      skewY: -8,
     },
     animate: {
       opacity: 1,
-      x: 0,
-      scale: 1,
-      rotate: 0,
+      height: "100%",
+      skewY: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.8,
         ease: "easeInOut",
       },
     },
     exit: {
       opacity: 0,
-      x: "100%",
-      scale: 0.8,
-      rotate: 45,
+      height: "0%",
+      skewY: 8,
       transition: {
-        duration: 0.6,
+        duration: 0.8,
         ease: "easeInOut",
       },
     },
@@ -40,6 +36,9 @@ const PageTransition = ({ children }) => {
         animate="animate"
         exit="exit"
         variants={pageVariants}
+        style={{
+          overflow: "hidden",
+        }}
       >
         {children}
       </motion.div>
