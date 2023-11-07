@@ -115,8 +115,8 @@ const Education = () => {
         <EducationText>
           <h2>Secondary Education</h2>
           <p>School: Jawahar Navodaya Vidhyalaya School</p>
-          <p>Year: XXXX-XXXX</p>
-          <p>Details about your secondary education...</p>
+          <p>Year: 2009-2016</p>
+          
         </EducationText>
         <EducationImage>
           <img
@@ -130,8 +130,8 @@ const Education = () => {
         <EducationText>
           <h2>Bachelor of Technology in Computer Science Engineering</h2>
           <p>University: Chandigarh University</p>
-          <p>Year: XXXX-XXXX</p>
-          <p>Details about your bachelor's degree...</p>
+         <p>Year: 2019-2024</p>
+         
         </EducationText>
         <EducationImage>
           <img
