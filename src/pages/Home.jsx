@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -239,6 +239,10 @@ const Home = () => {
         <ActionLink to="/skills">
           <FaUserGraduate />
           Explore My Skills
+        </ActionLink>
+        <ActionLink to="/education">
+          <FaUserGraduate />
+          My Education
         </ActionLink>
         <ActionLink to="/projects">
           <FaLaptopCode />
