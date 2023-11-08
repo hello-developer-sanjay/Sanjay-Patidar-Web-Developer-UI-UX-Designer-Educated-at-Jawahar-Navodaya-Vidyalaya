@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
@@ -10,7 +12,7 @@ const EducationContainer = styled(motion.div)`
   background: linear-gradient(to bottom, #192f3e, #0b132b);
   padding: 3rem;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: hidden; 
   position: relative;
   animation: fadeIn 1s ease;
 
@@ -23,29 +25,17 @@ const EducationContainer = styled(motion.div)`
     }
   }
 `;
+
 const Heading = styled.h1`
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: bold;
   color: #ffd700;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin-bottom: 2rem;
   animation: fadeInUp 1s ease;
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 `;
 
-
-
-const EducationSection = styled.section`
+const EducationSection = styled(motion.section)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -88,7 +78,7 @@ const EducationText = styled.div`
 
 const EducationImage = styled.div`
   text-align: center;
-  margin-bottom: 1rem;
+  margin: 1rem;
 
   @media (min-width: 768px) {
     margin-left: 2rem;
@@ -111,32 +101,43 @@ const EducationImage = styled.div`
 const Education = () => {
   return (
     <EducationContainer>
-      <Heading>Unlocking Knowledge Horizons</Heading>      <EducationSection>
+      <Heading>Unlocking Knowledge Horizons</Heading>
+      <EducationSection
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+      >
         <EducationText>
           <h2>Secondary Education</h2>
-          <p>Jawahar Navodaya Vidhyalaya School</p>
+          <p>Jawahar Navodaya Vidyalaya School</p>
           <p>2009-2016</p>
-          
         </EducationText>
         <EducationImage>
-          <img
+          <motion.img
             src="https://sanjaybasket.s3.ap-south-1.amazonaws.com/pngwing.com.png"
             alt="Secondary Education"
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.3 }}
           />
         </EducationImage>
       </EducationSection>
 
-      <EducationSection>
+      <EducationSection
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+      >
         <EducationText>
           <h2>Bachelor of Technology in Computer Science Engineering</h2>
           <p>Chandigarh University</p>
-         <p>2019-2024</p>
-         
+          <p>2019-2024</p>
         </EducationText>
         <EducationImage>
-          <img
+          <motion.img
             src="https://sanjaybasket.s3.ap-south-1.amazonaws.com/campus.jpeg"
             alt="Bachelor's Degree"
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.3 }}
           />
         </EducationImage>
       </EducationSection>
