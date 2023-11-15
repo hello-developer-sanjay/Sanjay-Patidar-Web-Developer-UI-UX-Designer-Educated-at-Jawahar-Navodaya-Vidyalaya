@@ -77,7 +77,7 @@ const ProfileImage = styled(motion.img)`
   height: 180px;
   border-radius: 50%;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-  animation: flip 5s infinite;
+  animation: flip 5s infinite, glow 2s alternate infinite;
 
   @keyframes flip {
     0%, 100% {
@@ -93,7 +93,17 @@ const ProfileImage = styled(motion.img)`
       transform: rotateY(270deg);
     }
   }
+
+  @keyframes glow {
+    0% {
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+    }
+    100% {
+      box-shadow: 0px 0px 40px rgba(255, 165, 0, 0.8), 0px 0px 60px rgba(255, 165, 0, 0.6);
+    }
+  }
 `;
+
 
 const images = [profileImage1, profileImage2];
 let currentImageIndex = 0;
