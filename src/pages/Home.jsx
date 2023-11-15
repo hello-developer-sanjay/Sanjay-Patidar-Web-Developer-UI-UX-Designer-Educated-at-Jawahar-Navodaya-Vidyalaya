@@ -99,7 +99,7 @@ const images = [profileImage1, profileImage2];
 let currentImageIndex = 0;
 
 const Introduction = styled(motion.p)`
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   line-height: 1.5;
   max-width: 800px;
   text-align: center;
@@ -222,7 +222,7 @@ const SecondaryActionLink = styled(ActionLink)`
 `;
 
 const Subtitle = styled.p`
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   color: #ccc;
   margin-top: 2rem;
   background-color: #333;
