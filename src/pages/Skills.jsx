@@ -37,7 +37,7 @@ const SkillsHeading = styled.h2`
     content: '🚀';
     font-size: 2rem;
     position: absolute;
-    top: -20px;
+    top: -25px;
     left: 50%;
     transform: translateX(-50%);
     animation: bounce 2s infinite;
