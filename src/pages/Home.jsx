@@ -1,27 +1,66 @@
-import  { useState, useEffect } from 'react';
+/* eslint-disable react/no-unescaped-entities */
+import {  useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaArrowRight, FaUserGraduate, FaLaptopCode, FaBriefcase, FaFilePdf ,FaCertificate} from 'react-icons/fa';
-import { IoMdMoon, IoMdSunny } from 'react-icons/io';
+import { motion } from 'framer-motion';
+import {
+  FaArrowRight,
+  FaUserGraduate,
+  FaLaptopCode,
+  FaBriefcase,
+  FaFilePdf,
+  FaCertificate,
+} from 'react-icons/fa';
+
 import Typed from 'react-typed';
-import profileImage from '../assets/profile.png';
+
 import profileImage1 from '../assets/ssss.webp';
 import profileImage2 from '../assets/coding.png';
-
-
 const HomeContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #192f3e, #0b132b);
+  background: linear-gradient(to bottom, #0d1b2a, #330867); /* Cosmic blue to deep purple */
   padding: 3rem;
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
+  
+  /* Add a subtle box shadow for depth */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+
+  /* Add a border with a neon glow effect */
+  border: 2px solid #3f51b5; /* Royal blue */
+  border-radius: 10px;
+
+  /* Neon glow effect */
+  &:before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    z-index: -1;
+    border-radius: 12px;
+    background: linear-gradient(45deg, #ff4081, #3f51b5, #009688, #ff4081);
+    background-size: 400% 400%;
+    animation: neonGlow 8s linear infinite;
+  }
+
+  /* Animation for the neon glow effect */
+  @keyframes neonGlow {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 400% 400%;
+    }
+  }
 `;
+
 
 const BackgroundOverlay = styled.div`
   position: absolute;
@@ -65,43 +104,85 @@ const Introduction = styled(motion.p)`
   max-width: 800px;
   text-align: center;
   margin-top: 1rem;
-    margin-bottom: 1rem;
-  color: #ccc;
-
+  margin-bottom: 1rem;
+  
+  color: #ffffff; /* White on hover */
+  /* Stylish highlight class */
   .highlight {
-    color: #ff6f00;
+    color: #ff4081; /* Vivid pink */
     font-weight: bold;
     font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(255, 64, 129, 0.3); /* Pink shadow */
+    display: inline-block;
+    position: relative;
+    padding-bottom: 5px;
+    margin-bottom: -5px;
   }
 
+  /* Animation for the highlight class */
   .highlight {
-    animation: highlightAnimation 2s ease-in-out infinite;
+    animation: highlightAnimation 3s ease-in-out infinite;
   }
-
+  
+  /* Keyframes for the highlight animation */
   @keyframes highlightAnimation {
     0% {
-      color: #ff6f00;
+      color: #9c27b0; /* Rich purple */
       transform: scale(1);
     }
     50% {
-      color: #ffcc80;
-      transform: scale(1.05);
+      color: #ba68c8; /* Light lavender */
+      transform: scale(1.02);
     }
     100% {
-      color: #ff6f00;
+      color: #9c27b0; /* Rich purple */
       transform: scale(1);
     }
   }
+
+
+
+  /* Stylish border for emphasis */
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #ff4081; /* Vivid pink */
+    margin-top: 8px;
+  }
 `;
+
+
 
 const TypedText = styled.span`
   display: block;
   margin-top: 1rem;
-   margin-bottom: 1rem;
-  color: #ff6f00;
+  margin-bottom: 1rem;
   font-weight: bold;
   font-size: 1.2rem;
+  background: linear-gradient(45deg, #00bcd4, #2196f3); /* Gradient from turquoise to blue */
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+
+  /* Animation for a subtle glow effect */
+  animation: glowAnimation 2s ease-in-out infinite;
+
+  /* Keyframes for the glow animation */
+  @keyframes glowAnimation {
+    0% {
+      box-shadow: 0 0 5px rgba(0, 188, 212, 0.5), 0 0 10px rgba(0, 188, 212, 0.5); /* Turquoise glow */
+    }
+    50% {
+      box-shadow: 0 0 10px rgba(0, 188, 212, 0.8), 0 0 20px rgba(0, 188, 212, 0.8); /* Stronger glow */
+    }
+    100% {
+      box-shadow: 0 0 5px rgba(0, 188, 212, 0.5), 0 0 10px rgba(0, 188, 212, 0.5); /* Turquoise glow */
+    }
+  }
 `;
+
 
 const ActionsContainer = styled(motion.div)`
   display: flex;
@@ -111,48 +192,27 @@ const ActionsContainer = styled(motion.div)`
   gap: 1rem;
   margin-top: 2rem;
 `;
+
 const ActionLink = styled(Link)`
-  background-color: #1e3a5f;
-  color: #fff;
-  padding: 0.8rem 1.6rem;
-  border: none;
-  border-radius: 8px;
-  display: flex;
+  background: linear-gradient(45deg, #ff6f00, #ffcc80);
+  color: #1a1a1a;
+  padding: 1rem 2rem;
+  border: 2px solid #ff6f00;
+  border-radius: 12px;
+  display: inline-flex;
   align-items: center;
   text-decoration: none;
   font-weight: bold;
-  font-size: 1.2rem;
-  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  font-size: 1rem;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s, color 0.3s;
   cursor: pointer;
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
 
   &:hover {
-    background-color: #ff6f00;
+    background: linear-gradient(45deg, #ffcc80, #ff6f00);
     color: #fff;
-    transform: translateY(-3px);
-  }
-`;
-
-
-
-
-
-const FloatingActionButton = styled(ActionLink)`
-  background-color: #ff6f00;
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  padding: 1.5rem;
-  font-size: 1.8rem;
-  border-radius: 50%;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  &:hover {
-    background-color: #ffcc80;
     transform: translateY(-5px);
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.5);
   }
 `;
 
@@ -160,6 +220,7 @@ const SecondaryActionLink = styled(ActionLink)`
   background-color: #333;
   font-size: 1.4rem;
 `;
+
 const Subtitle = styled.p`
   font-size: 1.8rem;
   color: #ccc;
@@ -169,7 +230,6 @@ const Subtitle = styled.p`
   border: 2px solid #ccc;
   border-radius: 20px;
 `;
-
 
 const SubtitleLink = styled.a`
   color: #ffcc80;
@@ -182,11 +242,8 @@ const SubtitleLink = styled.a`
 `;
 
 const Home = () => {
-  const [darkMode, setDarkMode] = useState(false);
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+
 
   useEffect(() => {
     // Create a slideshow effect
@@ -207,7 +264,7 @@ const Home = () => {
       transition={{ duration: 0.7, ease: 'easeInOut' }}
     >
       <BackgroundOverlay />
-     <ProfileImage
+      <ProfileImage
         src={profileImage1}
         alt="Sanjay Patidar"
         initial={{ scale: 0 }}
@@ -248,7 +305,7 @@ const Home = () => {
           <FaLaptopCode />
           Discover My Projects
         </ActionLink>
-         <ActionLink to="/certifications">
+        <ActionLink to="/certifications">
           <FaCertificate />
           Explore Certifications
         </ActionLink>
@@ -264,7 +321,6 @@ const Home = () => {
           <FaArrowRight />
           Contact Me
         </SecondaryActionLink>
-       
       </ActionsContainer>
       <Subtitle>
         Want to know more? Check out my <SubtitleLink href="/blogs">Blogs</SubtitleLink> for tech insights and tutorials.
