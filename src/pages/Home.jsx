@@ -137,18 +137,19 @@ const Introduction = styled(motion.p)`
   /* Keyframes for the highlight animation */
   @keyframes highlightAnimation {
     0% {
-      color: #9c27b0; /* Rich purple */
+      color: #009688; /* Teal */
       transform: scale(1);
     }
     50% {
-      color: #ba68c8; /* Light lavender */
+      color: #00bcd4; /* Turquoise */
       transform: scale(1.02);
     }
     100% {
-      color: #9c27b0; /* Rich purple */
+      color: #009688; /* Teal */
       transform: scale(1);
     }
   }
+  
 
 
 
@@ -206,9 +207,9 @@ const ActionsContainer = styled(motion.div)`
 const ActionLink = styled(Link)`
   background: linear-gradient(45deg, #ff6f00, #ffcc80);
   color: #1a1a1a;
-  padding: 1rem 2rem;
+  padding: 0.8rem 1rem;
   border: 2px solid #ff6f00;
-  border-radius: 12px;
+  border-radius: 30px;
   display: inline-flex;
   align-items: center;
   text-decoration: none;
@@ -221,14 +222,14 @@ const ActionLink = styled(Link)`
   &:hover {
     background: linear-gradient(45deg, #ffcc80, #ff6f00);
     color: #fff;
-    transform: translateY(-5px);
+    transform: translateY(-7px);
     box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.5);
   }
 `;
 
 const SecondaryActionLink = styled(ActionLink)`
   background-color: #333;
-  font-size: 1.4rem;
+  font-size: 1rem;
 `;
 
 const Subtitle = styled.p`
