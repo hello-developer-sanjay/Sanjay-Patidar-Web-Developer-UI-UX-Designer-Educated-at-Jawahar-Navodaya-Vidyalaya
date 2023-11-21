@@ -45,6 +45,7 @@
   background-color: #ff9800; /* A cosmic anomaly */
   color: #fff; /* Illuminating the path */
   padding: 16px 32px;
+  margin-bottom: 2rem;
   border-radius: 30px; /* A celestial gate */
   text-decoration: none;
   font-weight: bold;
@@ -56,5 +57,5 @@
 /* The Cosmic Dance on Hover */
 .not-found a:hover {
   background-color: #ff6600; /* A burst of celestial energy */
-  transform: scale(1.1) rotate(10deg); /* A cosmic dance */
+  transform: scale(1.1) rotate(5deg); /* A cosmic dance */
 }
