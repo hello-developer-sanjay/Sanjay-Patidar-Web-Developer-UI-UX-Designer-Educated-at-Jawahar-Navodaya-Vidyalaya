@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -182,7 +182,7 @@ const ProjectDetails = () => {
   useEffect(() => {
     async function fetchProjectDetails() {
       try {
-        const response = await axios.get(`https://portfolio-backend-lp9q.onrender.com/api/projects/details/${id}`);
+        const response = await axios.get(`https://portfolio-back-aruc.onrender.com/api/projects/details/${id}`);
         setProject(response.data);
       } catch (error) {
         console.error('Error fetching project details:', error);
