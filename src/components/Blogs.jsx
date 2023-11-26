@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-const backendBaseUrl = "https://portfolio-backend-lp9q.onrender.com"; 
+const backendBaseUrl = "https://portfolio-back-aruc.onrender.com"; 
 const BlogsContainer = styled.div`
   padding: 2rem;
   display: flex;
@@ -146,7 +146,7 @@ const Blogs = () => {
 
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get('https://portfolio-backend-lp9q.onrender.com/api/blogs');
+      const response = await axios.get('https://portfolio-back-aruc.onrender.com/api/blogs');
       setBlogs(response.data);
     } catch (error) {
       console.error('Error fetching blogs:', error);
@@ -179,7 +179,7 @@ const Blogs = () => {
         });
         setEditingBlogId(null);
       } else {
-        await axios.post('https://portfolio-backend-lp9q.onrender.com/api/blogs', formData, {
+        await axios.post('https://portfolio-back-aruc.onrender.com/api/blogs', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -282,7 +282,7 @@ const Blogs = () => {
           accept="image/*"
           onChange={(e) => handleUpdateContentFile(index, e.target.files)}
         />
-        {section.url && <img src={`https://portfolio-backend-lp9q.onrender.com${section.url}`} alt={`Image ${index}`} />}
+        {section.url && <img src={`https://portfolio-back-aruc.onrender.com${section.url}`} alt={`Image ${index}`} />}
       </div>
     )}
 
@@ -295,7 +295,7 @@ const Blogs = () => {
         />
         {section.url && (
           <video width="320" height="240" controls>
-            <source src={`https://portfolio-backend-lp9q.onrender.com${section.url}`} type="video/mp4" />
+            <source src={`https://portfolio-back-aruc.onrender.com${section.url}`} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         )}
