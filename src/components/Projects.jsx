@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -195,9 +195,9 @@ const Projects = () => {
       try {
         let response;
         if (!category || category === 'all') { // Check if category is undefined or "all"
-          response = await axios.get('https://portfolio-backend-lp9q.onrender.com/api/projects/category/all');
+          response = await axios.get('https://portfolio-back-aruc.onrender.com/api/projects/category/all');
         } else {
-          response = await axios.get(`https://portfolio-backend-lp9q.onrender.com/api/projects/category/${category}`);
+          response = await axios.get(`https://portfolio-back-aruc.onrender.com/api/projects/category/${category}`);
         }
         setProjects(response.data);
       } catch (error) {
