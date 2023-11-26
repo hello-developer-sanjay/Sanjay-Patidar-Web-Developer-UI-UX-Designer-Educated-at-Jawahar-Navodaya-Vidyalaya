@@ -259,10 +259,10 @@ const Footer = () => {
     catchyMessages[Math.floor(Math.random() * catchyMessages.length)];
 
   const socialButtons = [
-    { icon: <FaLinkedin />, label: "LinkedIn", link: "https://www.linkedin.com/in/sanjay-patidar-25b580292/" },
+    { icon: <FaLinkedin />, label: "LinkedIn", link: "https://www.linkedin.com/in/sanjay-patidar-25b580292" },
     { icon: <FaGithub />, label: "GitHub", link: "https://github.com/hello-developer-sanjay" },
     { icon: <FaTwitter />, label: "Twitter", link: "#" },
-    { icon: <FaInstagram />, label: "Instagram", link: "https://www.instagram.com/sanjay_patidar_mcmxcviii/" },
+    { icon: <FaInstagram />, label: "Instagram", link: "https://www.instagram.com/sanjay_patidar_mcmxcviii" },
   ];
 
   const handleFormSubmit = async (e) => {
@@ -292,7 +292,7 @@ const Footer = () => {
         successMessage = "Query sent! Await our swift reply, tailored just for you.";
       }
 
-      const response = await fetch(`https://portfolio-backend-lp9q.onrender.com/api/${endpoint}`, {
+      const response = await fetch(`https://portfolio-back-aruc.onrender.com/api/${endpoint}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
