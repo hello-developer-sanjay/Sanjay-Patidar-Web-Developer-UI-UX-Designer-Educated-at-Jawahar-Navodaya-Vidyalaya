@@ -130,7 +130,7 @@ const ProjectDetailsLink = styled.a`
   margin-right: 1rem;
   font-size: 1.2rem;
   position: relative;
-
+margin-top:1rem;
   &:hover {
     text-decoration: none;
     &:before {
