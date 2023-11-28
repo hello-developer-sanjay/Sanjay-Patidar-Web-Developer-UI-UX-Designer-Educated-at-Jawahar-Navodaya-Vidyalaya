@@ -312,7 +312,7 @@ const ProjectDetails = () => {
                         d="M19 19a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h5l2 2h2a2 2 0 012 2v8z"
                       />
                     </svg>
-                    Visit Website
+                    Visit EduXcel Website
                   </ProjectWebsiteLink>
                 )}
             </ProjectDetailsLinkContainer>
