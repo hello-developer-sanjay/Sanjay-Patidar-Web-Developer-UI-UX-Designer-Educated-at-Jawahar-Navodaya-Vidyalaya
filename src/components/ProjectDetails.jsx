@@ -274,13 +274,17 @@ const ProjectDetails = () => {
           )}
 
           {project.links && (
-            <ProjectDetailsLinkContainer>
+           <ProjectDetailsLinkContainer>
               <h3>Links:</h3>
-              {project.links.map((link, index) => (
-                <ProjectDetailsLink key={index} href={link.url} target="_blank">
-                  {link.label}
-                </ProjectDetailsLink>
-              ))}
+              <ProjectDetailsLinkList>
+                {project.links.map((link, index) => (
+                  <ProjectDetailsLinkItem key={index}>
+                    <ProjectDetailsLink href={link.url} target="_blank">
+                      {link.label}
+                    </ProjectDetailsLink>
+                  </ProjectDetailsLinkItem>
+                ))}
+              </ProjectDetailsLinkList>
             </ProjectDetailsLinkContainer>
           )}
           {/* Display the Research Paper */}
