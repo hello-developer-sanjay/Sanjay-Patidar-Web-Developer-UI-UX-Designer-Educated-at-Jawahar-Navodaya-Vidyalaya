@@ -160,19 +160,18 @@ const ProjectDetailsLink = styled.a`
   text-decoration: none;
   font-size: 1.2rem;
   position: relative;
-  overflow: hidden;
   transition: color 0.3s ease;
 
   &:hover {
-    color: #004080;
+    color: #ff8c00; /* Change hover color to a creative shade */
   }
 
   &:before {
     content: '';
     display: block;
     width: 100%;
-    height: 2px;
-    background: linear-gradient(45deg, #0070f3, #004080);
+    height: 3px; /* Thicker underline */
+    background: linear-gradient(45deg, #0070f3, #ff8c00); /* Gradient underline */
     position: absolute;
     bottom: 0;
     left: 0;
@@ -185,24 +184,8 @@ const ProjectDetailsLink = styled.a`
     transform-origin: bottom left;
     transform: scaleX(1);
   }
-
-  &:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 10px;
-    height: 10px;
-    background-color: #004080;
-    border-radius: 50%;
-    transform: translateX(-50%);
-    transition: background-color 0.3s ease;
-  }
-
-  &:hover:after {
-    background-color: #0070f3;
-  }
 `;
+
 
 const AdditionalDetailsContainer = styled.div`
   width: 100%;
