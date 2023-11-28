@@ -122,11 +122,10 @@ const ProjectDetailsVideoContainer = styled.div`
 const ProjectDetailsLinkContainer = styled.div`
   margin-top: 2rem;
   text-align: center;
+  background: linear-gradient(45deg, #fce38a, #f38181); /* Gradient background */
   padding: 2rem;
-  background: linear-gradient(45deg, #4CAF50, #2196F3); /* Gradient background */
   border-radius: 15px;
-  box-shadow: 0px 8px 16px rgba(33, 150, 243, 0.2);
-  color: white;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
 
@@ -137,32 +136,9 @@ const ProjectDetailsLinkContainer = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, #2196F3, #FF5722); /* Another gradient overlay */
-    opacity: 0.8;
+    background: linear-gradient(45deg, #f38181, #fce38a); /* Reverse gradient */
+    clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 100%);
     z-index: -1;
-  }
-
-  h3 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    font-family: 'Pacifico', cursive;
-    background-clip: text; /* Clip text to background */
-    -webkit-background-clip: text; /* For Safari */
-    color: transparent; /* Hide the original text color */
-    animation: rainbow 3s linear infinite; /* Rainbow animation */
-  }
-
-  @keyframes rainbow {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
   }
 `;
 
