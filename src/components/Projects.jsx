@@ -55,7 +55,7 @@ const ProjectTitle = styled.span`
 
   .arrow {
     display: block; /* Display the arrow as a block element */
-    text-align: center; /* Center-align the arrow horizontally */
+    text-align: left;
     font-size: 1.5rem; /* Adjust the font size of the arrow */
     animation: bounce 1s infinite; /* Add the bounce animation */
   }
