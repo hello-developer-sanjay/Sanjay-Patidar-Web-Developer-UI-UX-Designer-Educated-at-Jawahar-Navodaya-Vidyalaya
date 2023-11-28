@@ -250,27 +250,6 @@ const ProjectDetails = () => {
       {project ? (
         <>
           <ProjectDetailsTitle>{project.title}</ProjectDetailsTitle>
-         {project.description && (
-                  <ProjectDetailsDescription>
-                    {project.description.map((desc, index) => {
-                      // Use regular expressions to find text between ^ markers and apply styling
-                      const highlightedText = desc.split(/\^([^]+?)\^/).map((part, i) => {
-                        if (i % 2 === 1) {
-                          // Apply styles to text between markers
-                          return <span key={i} className="highlight">{part}</span>;
-                        }
-                        return part;
-                      });
-
-                      return (
-                        <React.Fragment key={index}>
-                          {highlightedText}
-                          <br />
-                        </React.Fragment>
-                      );
-                    })}
-                  </ProjectDetailsDescription>
-          )}
           {project.links && (
            <ProjectDetailsLinkContainer>
               <h3>Links:</h3>
@@ -317,6 +296,28 @@ const ProjectDetails = () => {
                 )}
             </ProjectDetailsLinkContainer>
           )}
+         {project.description && (
+                  <ProjectDetailsDescription>
+                    {project.description.map((desc, index) => {
+                      // Use regular expressions to find text between ^ markers and apply styling
+                      const highlightedText = desc.split(/\^([^]+?)\^/).map((part, i) => {
+                        if (i % 2 === 1) {
+                          // Apply styles to text between markers
+                          return <span key={i} className="highlight">{part}</span>;
+                        }
+                        return part;
+                      });
+
+                      return (
+                        <React.Fragment key={index}>
+                          {highlightedText}
+                          <br />
+                        </React.Fragment>
+                      );
+                    })}
+                  </ProjectDetailsDescription>
+          )}
+          
         
           {project.additionalDetails && (
             <AdditionalDetailsContainer>
