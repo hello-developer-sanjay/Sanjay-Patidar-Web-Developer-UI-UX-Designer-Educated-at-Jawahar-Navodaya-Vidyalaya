@@ -283,9 +283,7 @@ const ProjectDetails = () => {
                   </ProjectDetailsLinkItem>
                 ))}
               </ProjectDetailsLinkList>
-            </ProjectDetailsLinkContainer>
-          )}
-          {project.websiteLink && (
+               {project.websiteLink && (
                   <ProjectWebsiteLink href={project.websiteLink} target="_blank" rel="noopener noreferrer">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -317,6 +315,9 @@ const ProjectDetails = () => {
                     Visit Website
                   </ProjectWebsiteLink>
                 )}
+            </ProjectDetailsLinkContainer>
+          )}
+        
           {project.additionalDetails && (
             <AdditionalDetailsContainer>
               <h3>Additional Details:</h3>
