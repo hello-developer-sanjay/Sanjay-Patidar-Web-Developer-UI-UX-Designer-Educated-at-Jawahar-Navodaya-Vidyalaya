@@ -122,11 +122,41 @@ const ProjectDetailsVideoContainer = styled.div`
 const ProjectDetailsLinkContainer = styled.div`
   margin-top: 2rem;
   text-align: center;
-  background-color: #f4f4f4;
+  background: linear-gradient(135deg, #f4f4f4 0%, #e0e0e0 100%);
   padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #e0e0e0 0%, transparent 50%, #e0e0e0 100%);
+    transform: skewY(-30deg);
+    transform-origin: top left;
+    z-index: -1;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #e0e0e0 0%, transparent 50%, #e0e0e0 100%);
+    transform: skewY(30deg);
+    transform-origin: top right;
+    z-index: -1;
+  }
 `;
+
 const ProjectDetailsLinkList = styled.ul`
   list-style: none;
   padding: 0;
