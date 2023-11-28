@@ -120,10 +120,13 @@ const ProjectDetailsVideoContainer = styled.div`
 `;
 
 const ProjectDetailsLinkContainer = styled.div`
-  margin-top: 1 rem;
+  margin-top: 2rem;
   text-align: center;
+  background-color: #f4f4f4;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 `;
-
 const ProjectDetailsLinkList = styled.ul`
   list-style: none;
   padding: 0;
