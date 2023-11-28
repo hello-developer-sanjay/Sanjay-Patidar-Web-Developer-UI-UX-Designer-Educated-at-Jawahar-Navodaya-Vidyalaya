@@ -124,13 +124,23 @@ const ProjectDetailsLinkContainer = styled.div`
   text-align: center;
 `;
 
+const ProjectDetailsLinkList = styled.ul`
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+`;
+
+const ProjectDetailsLinkItem = styled.li`
+  display: inline-block;
+`;
+
 const ProjectDetailsLink = styled.a`
   color: #0070f3;
   text-decoration: none;
   font-size: 1.2rem;
   position: relative;
-  margin-top: 1rem;
-  display: inline-block;
   transition: color 0.3s ease;
 
   &:hover {
