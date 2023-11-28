@@ -160,29 +160,28 @@ const ProjectDetailsLink = styled.a`
   text-decoration: none;
   font-size: 1.2rem;
   position: relative;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    color: #ff8c00; /* Change hover color to a creative shade */
+    color: #004080;
+    &:before {
+      transform-origin: bottom center;
+      transform: scaleX(1);
+    }
   }
 
   &:before {
     content: '';
     display: block;
     width: 100%;
-    height: 3px; /* Thicker underline */
-    background: linear-gradient(45deg, #0070f3, #ff8c00); /* Gradient underline */
+    height: 2px;
+    background: linear-gradient(90deg, #0070f3, #004080);
     position: absolute;
     bottom: 0;
     left: 0;
     transform-origin: bottom right;
     transform: scaleX(0);
     transition: transform 0.3s ease;
-  }
-
-  &:hover:before {
-    transform-origin: bottom left;
-    transform: scaleX(1);
   }
 `;
 
