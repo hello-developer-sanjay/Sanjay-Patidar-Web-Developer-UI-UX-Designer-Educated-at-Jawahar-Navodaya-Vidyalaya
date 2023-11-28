@@ -77,7 +77,7 @@ const ProjectDetailsDescription = styled.p`
       #ff6b6b,
       #33d9b2,
       #ffad5a
-    ); /* Use a gradient background */
+    ); 
     background-size: 300% 100%; /* Control the gradient width */
     animation: gradient-shift 5s linear infinite; /* Animation for gradient shift */
   }
