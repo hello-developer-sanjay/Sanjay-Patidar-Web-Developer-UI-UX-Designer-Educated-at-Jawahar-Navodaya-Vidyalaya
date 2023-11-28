@@ -127,19 +127,22 @@ const ProjectDetailsLinkContainer = styled.div`
 const ProjectDetailsLink = styled.a`
   color: #0070f3;
   text-decoration: none;
-  margin-right: 1rem;
   font-size: 1.2rem;
   position: relative;
-margin-top:1rem;
+  margin-top: 1rem;
+  transition: color 0.3s ease-in-out;
+
   &:hover {
+    color: #004080; /* Darker shade on hover */
     text-decoration: none;
+
     &:before {
-      content: ''; /* Add a decorative arrow */
+      content: '';
       position: absolute;
-      width: 10px;
-      height: 10px;
-      background-color: #0070f3; /* Arrow color */
-      clip-path: polygon(100% 50%, 0 0, 0 100%); /* Create a triangular shape */
+      width: 12px;
+      height: 12px;
+      background-color: #004080; /* Hover effect color */
+      clip-path: polygon(100% 50%, 0 0, 0 100%);
       transform: translateX(-50%);
       top: 50%;
       left: 50%;
@@ -147,18 +150,15 @@ margin-top:1rem;
   }
 
   &:before {
-    content: ''; /* Add a decorative bullet point */
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    background-color: #0070f3; /* Bullet point color */
-    border-radius: 50%; /* Create a circular shape */
-    margin-right: 6px; /* Space between the bullet point and link text */
+    content: '\2022'; /* Unicode character for bullet point */
+    color: #0070f3;
+    font-size: 1.5rem;
+    line-height: 1; /* Align with the text */
+    margin-right: 8px;
     position: relative;
-    top: 2px; /* Adjust vertical alignment */
+    top: 2px;
   }
 `;
-
 
 const AdditionalDetailsContainer = styled.div`
   width: 100%;
