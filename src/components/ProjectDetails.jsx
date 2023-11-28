@@ -123,17 +123,49 @@ const ProjectDetailsLinkContainer = styled.div`
   margin-top: 2rem;
   text-align: center;
   padding: 2rem;
-  background: linear-gradient(45deg, #2980b9, #6dd5fa, #ffffff);
+  background: linear-gradient(45deg, #4CAF50, #2196F3); /* Gradient background */
   border-radius: 15px;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-  color: #fff;
-  font-family: 'Poppins', sans-serif; /* Use a creative font */
-  transition: transform 0.3s ease;
+  box-shadow: 0px 8px 16px rgba(33, 150, 243, 0.2);
+  color: white;
+  position: relative;
+  overflow: hidden;
 
-  &:hover {
-    transform: scale(1.05);
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #2196F3, #FF5722); /* Another gradient overlay */
+    opacity: 0.8;
+    z-index: -1;
+  }
+
+  h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: 'Pacifico', cursive;
+    background-clip: text; /* Clip text to background */
+    -webkit-background-clip: text; /* For Safari */
+    color: transparent; /* Hide the original text color */
+    animation: rainbow 3s linear infinite; /* Rainbow animation */
+  }
+
+  @keyframes rainbow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 `;
+
 
 const ProjectDetailsLinkList = styled.ul`
   list-style: none;
