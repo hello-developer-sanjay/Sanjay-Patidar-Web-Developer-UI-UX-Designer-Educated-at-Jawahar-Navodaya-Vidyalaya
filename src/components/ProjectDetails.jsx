@@ -13,7 +13,29 @@ const ProjectDetailsContainer = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+const ProjectWebsiteLink = styled.a`
+  text-decoration: none;
+  color: #0070f3;
+  display: inline-flex;
+  align-items: center;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #f0f8ff; /* Light blue background */
+  border-radius: 5px;
+  transition: transform 0.2s, background-color 0.2s;
 
+  &:hover {
+    transform: translateY(-2px);
+  
+    background-color: #0070f3; /* Blue background on hover */
+    color: #ffffff; /* White text on hover */
+  }
+
+  svg {
+    margin-right: 0.5rem;
+  }
+`;
 const ProjectDetailsTitle = styled.h2`
   font-size: 3rem;
   margin-bottom: 1rem;
@@ -263,6 +285,38 @@ const ProjectDetails = () => {
               </ProjectDetailsLinkList>
             </ProjectDetailsLinkContainer>
           )}
+          {project.websiteLink && (
+                  <ProjectWebsiteLink href={project.websiteLink} target="_blank" rel="noopener noreferrer">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      width="18"
+                      height="18"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 19a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h5l2 2h2a2 2 0 012 2v8z"
+                      />
+                    </svg>
+                    Visit Website
+                  </ProjectWebsiteLink>
+                )}
           {project.additionalDetails && (
             <AdditionalDetailsContainer>
               <h3>Additional Details:</h3>
