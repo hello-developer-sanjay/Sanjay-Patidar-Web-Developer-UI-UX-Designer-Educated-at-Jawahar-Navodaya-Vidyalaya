@@ -120,7 +120,7 @@ const ProjectDetailsVideoContainer = styled.div`
 `;
 
 const ProjectDetailsLinkContainer = styled.div`
-  margin-top: 1rem;
+  margin-top: 1 rem;
   text-align: center;
 `;
 
