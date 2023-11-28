@@ -130,33 +130,30 @@ const ProjectDetailsLink = styled.a`
   font-size: 1.2rem;
   position: relative;
   margin-top: 1rem;
-  transition: color 0.3s ease-in-out;
+  display: inline-block;
+  transition: color 0.3s ease;
 
   &:hover {
-    color: #004080; /* Darker shade on hover */
-    text-decoration: none;
-
-    &:before {
-      content: '';
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      background-color: #004080; /* Hover effect color */
-      clip-path: polygon(100% 50%, 0 0, 0 100%);
-      transform: translateX(-50%);
-      top: 50%;
-      left: 50%;
-    }
+    color: #004080;
   }
 
   &:before {
-    content: '\2022'; /* Unicode character for bullet point */
-    color: #0070f3;
-    font-size: 1.5rem;
-    line-height: 1; /* Align with the text */
-    margin-right: 8px;
-    position: relative;
-    top: 2px;
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #0070f3;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform-origin: bottom right;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  &:hover:before {
+    transform-origin: bottom left;
+    transform: scaleX(1);
   }
 `;
 
