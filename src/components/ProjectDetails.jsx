@@ -230,6 +230,20 @@ const ProjectDetails = () => {
                     })}
                   </ProjectDetailsDescription>
           )}
+          {project.links && (
+           <ProjectDetailsLinkContainer>
+              <h3>Links:</h3>
+              <ProjectDetailsLinkList>
+                {project.links.map((link, index) => (
+                  <ProjectDetailsLinkItem key={index}>
+                    <ProjectDetailsLink href={link.url} target="_blank">
+                      {link.label}
+                    </ProjectDetailsLink>
+                  </ProjectDetailsLinkItem>
+                ))}
+              </ProjectDetailsLinkList>
+            </ProjectDetailsLinkContainer>
+          )}
           {project.additionalDetails && (
             <AdditionalDetailsContainer>
               <h3>Additional Details:</h3>
@@ -273,20 +287,7 @@ const ProjectDetails = () => {
             </div>
           )}
 
-          {project.links && (
-           <ProjectDetailsLinkContainer>
-              <h3>Links:</h3>
-              <ProjectDetailsLinkList>
-                {project.links.map((link, index) => (
-                  <ProjectDetailsLinkItem key={index}>
-                    <ProjectDetailsLink href={link.url} target="_blank">
-                      {link.label}
-                    </ProjectDetailsLink>
-                  </ProjectDetailsLinkItem>
-                ))}
-              </ProjectDetailsLinkList>
-            </ProjectDetailsLinkContainer>
-          )}
+          
           {/* Display the Research Paper */}
                     <ResearchPaper />
 
