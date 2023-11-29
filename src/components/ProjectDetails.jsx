@@ -144,6 +144,7 @@ const ProjectDetailsVideoContainer = styled.div`
 const ProjectDetailsLinkContainer = styled.div`
   margin-top: 2rem;
   text-align: center;
+  width:100%;
   background: linear-gradient(45deg, #fce38a, #f38181); /* Gradient background */
   padding: 2rem;
   border-radius: 15px;
@@ -170,7 +171,7 @@ const ProjectDetailsLinkList = styled.ul`
   padding: 0;
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 3rem;
 `;
 
 const ProjectDetailsLinkItem = styled.li`
