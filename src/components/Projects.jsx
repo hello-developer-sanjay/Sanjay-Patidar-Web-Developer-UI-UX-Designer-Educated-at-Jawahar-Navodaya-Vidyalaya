@@ -97,7 +97,7 @@ const ProjectsNavLink = styled(NavLink)`
   transition: color 0.3s, transform 0.3s;
 
   &:hover {
-    color: #0070f3; /* Change color on hover */
+
     transform: translateY(-2px); /* Add a subtle upward hover effect */
   }
 
