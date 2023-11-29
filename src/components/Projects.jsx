@@ -87,7 +87,46 @@ const ProjectsNavItem = styled.li`
     background-color: #0070f3; /* Blue background on hover */
     color: #ffffff; /* White text on hover */
   }
+  
 `;
+
+const ProjectsNavLinkContainer = styled(NavLink)`
+  text-decoration: none;
+  color: #333;
+  display: block;
+  height: 100%; /* Make the link take up the full height of the container */
+  position: relative;
+
+  &:hover {
+    color: #ff6b6b;
+    &:before {
+      content: ''; /* Add a decorative line under the link on hover */
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #ff6b6b;
+    }
+  }
+
+  &.active {
+    color: #ffffff;
+    background: linear-gradient(to right, #0070f3, #ff6b6b, #33d9b2, #ffad5a); /* Gradient background for the active link */
+    background-size: 300% 100%; /* Control the gradient width */
+    animation: gradient-shift 5s linear infinite; /* Animation for gradient shift */
+  }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 100% 0%;
+    }
+  }
+`;
+
 
 const ProjectsNavLink = styled(NavLink)`
   text-decoration: none;
@@ -209,19 +248,27 @@ const Projects = () => {
   }, [category]);
   return (
     <ProjectsContainer>
-      <ProjectsNavigation>
+     <ProjectsNavigation>
         <ProjectsNavList>
           <ProjectsNavItem>
-            <ProjectsNavLink to="/projects/all">All Projects</ProjectsNavLink>
+            <ProjectsNavLinkContainer to="/projects/all">
+              All Projects
+            </ProjectsNavLinkContainer>
           </ProjectsNavItem>
           <ProjectsNavItem>
-            <ProjectsNavLink to="/projects/web">Web Projects</ProjectsNavLink>
+            <ProjectsNavLinkContainer to="/projects/web">
+              Web Projects
+            </ProjectsNavLinkContainer>
           </ProjectsNavItem>
           <ProjectsNavItem>
-            <ProjectsNavLink to="/projects/mobile">Mobile Projects</ProjectsNavLink>
+            <ProjectsNavLinkContainer to="/projects/mobile">
+              Mobile Projects
+            </ProjectsNavLinkContainer>
           </ProjectsNavItem>
           <ProjectsNavItem>
-            <ProjectsNavLink to="/projects/other">Other Projects</ProjectsNavLink>
+            <ProjectsNavLinkContainer to="/projects/other">
+              Other Projects
+            </ProjectsNavLinkContainer>
           </ProjectsNavItem>
         </ProjectsNavList>
       </ProjectsNavigation>
