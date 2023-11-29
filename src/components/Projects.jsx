@@ -234,7 +234,7 @@ const Projects = () => {
                    style={{ textDecoration: 'none' }}
                   >
                   <ProjectTitle>
-                    <span className="arrow">👇</span>
+                    <span className="arrow">Project Insights 👇</span>
                     {project.title}
                   </ProjectTitle>
                 </NavLink>
