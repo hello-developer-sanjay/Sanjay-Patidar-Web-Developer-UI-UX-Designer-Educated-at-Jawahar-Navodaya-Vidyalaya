@@ -15,25 +15,40 @@ const ProjectDetailsContainer = styled.div`
 `;
 const ProjectWebsiteLink = styled.a`
   text-decoration: none;
-  color: #0070f3;
+  color: #ffffff; /* White text */
   display: inline-flex;
   align-items: center;
   font-size: 1rem;
-  margin-top: 0.5rem;
-  padding: 0.5rem 1rem;
-  background-color: #f0f8ff; /* Light blue background */
-  border-radius: 5px;
-  transition: transform 0.2s, background-color 0.2s;
+  margin-top: 1rem;
+  padding: 1rem 1.5rem; 
+  border-radius: 50px; 
+  background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 100%); 
+  background-size: 200% 200%;
+  animation: pulse 2s infinite; 
+  transition: transform 0.3s, color 0.3s;
 
-  &:hover {
-    transform: translateY(-2px);
-  
-    background-color: #0070f3; /* Blue background on hover */
-    color: #ffffff; /* White text on hover */
-  }
+ 
 
   svg {
-    margin-right: 0.5rem;
+    margin-right: 1rem;
+    fill: #ffffff; /* White color for the icon */
+    transition: fill 0.3s;
+  }
+
+  &:hover svg {
+    fill: #fd1d1d; /* Red color for the icon on hover */
+  }
+
+  @keyframes pulse {
+    0% {
+      background-position: 0 0;
+    }
+    50% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
   }
 `;
 const ProjectDetailsTitle = styled.h2`
@@ -145,7 +160,7 @@ const ProjectDetailsLinkContainer = styled.div`
   margin-top: 2rem;
   text-align: center;
   width:100%;
-  background: linear-gradient(45deg, #fce38a, #f38181); /* Gradient background */
+ 
   padding: 2rem;
   border-radius: 15px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
