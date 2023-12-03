@@ -12,7 +12,7 @@ const SidebarContainer = styled.nav`
   transition: transform 0.3s ease-in-out;
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
   position: fixed;
-  top: 90px;
+  top: 85px;
   left: 0;
   z-index: 1000;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Shadow effect */
