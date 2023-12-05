@@ -29,7 +29,7 @@ const ProjectWebsiteLink = styled.a`
   padding: 1rem 1.5rem; 
   border-radius: 50px; 
   background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 100%); 
-  background-size: 200% 200%;
+  background-size: 100% 100%;
   animation: pulse 2s infinite; 
   transition: transform 0.3s, color 0.3s;
 
@@ -48,12 +48,15 @@ const ProjectWebsiteLink = styled.a`
   @keyframes pulse {
     0% {
       background-position: 0 0;
+      visibility: visible;
     }
     50% {
       background-position: 100% 0;
+      visibility: visible;
     }
     100% {
       background-position: 0 0;
+      visibility: visible;
     }
   }
 `;
