@@ -29,11 +29,8 @@ const ProjectWebsiteLink = styled.a`
   padding: 1rem 1.5rem; 
   border-radius: 50px; 
   background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 100%); 
-  background-size: 100% 100%;
-  animation: pulse 2s infinite; 
-  transition: transform 0.3s, color 0.3s;
-
- 
+  background-size: 200% 200%;
+  transition: transform 0.3s, background 0.5s, box-shadow 0.3s;
 
   svg {
     margin-right: 1rem;
@@ -41,25 +38,17 @@ const ProjectWebsiteLink = styled.a`
     transition: fill 0.3s;
   }
 
-  &:hover svg {
-    fill: #fd1d1d; /* Red color for the icon on hover */
+  &:hover {
+    background-position: 100% 0;
+    transform: scale(1.05); /* Adjust the scaling factor for a subtle zoom effect */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add a subtle shadow on hover */
   }
 
-  @keyframes pulse {
-    0% {
-      background-position: 0 0;
-      visibility: visible;
-    }
-    50% {
-      background-position: 100% 0;
-      visibility: visible;
-    }
-    100% {
-      background-position: 0 0;
-      visibility: visible;
-    }
+  &:hover svg {
+    fill: #ffffff; /* White color for the icon on hover */
   }
 `;
+
 const ProjectTitle = styled.span`
   font-weight: bold;
   font-size: 1.2rem;
