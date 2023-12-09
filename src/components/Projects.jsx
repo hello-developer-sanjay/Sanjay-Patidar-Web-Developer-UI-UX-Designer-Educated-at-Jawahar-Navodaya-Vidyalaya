@@ -21,31 +21,33 @@ const ProjectsNavList = styled.ul`
 `;
 const ProjectWebsiteLink = styled.a`
   text-decoration: none;
-  color: #ffffff; /* White text */
+  color: #ffffff;
   display: inline-flex;
   align-items: center;
   font-size: 1rem;
   margin-top: 1rem;
-  padding: 1rem 1.5rem; 
-  border-radius: 50px; 
-  background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 100%); 
-  background-size: 200% 200%;
+  padding: 1rem 1rem;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 100%);
+  background-size: 100% 100%;
   transition: transform 0.3s, background 0.5s, box-shadow 0.3s;
 
   svg {
     margin-right: 1rem;
-    fill: #ffffff; /* White color for the icon */
+    fill: #ffffff;
     transition: fill 0.3s;
   }
 
   &:hover {
     background-position: 100% 0;
-    transform: scale(1.05); /* Adjust the scaling factor for a subtle zoom effect */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add a subtle shadow on hover */
+   
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    filter: hue-rotate(45deg); /* Add a vibrant color shift on hover */
   }
 
   &:hover svg {
-    fill: #ffffff; /* White color for the icon on hover */
+    fill: #ffffff;
+    transform: rotate(45deg); /* Rotate the icon on hover */
   }
 `;
 
