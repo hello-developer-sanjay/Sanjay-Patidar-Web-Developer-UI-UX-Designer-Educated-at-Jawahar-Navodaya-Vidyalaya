@@ -26,7 +26,7 @@ const BorderLineTop = styled(motion.div)`
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 80%;
+  min-width: 100%;
   height: 4px;
   background: linear-gradient(to right, #ffbb00, #e85d04);
   background-size: 200% 100%;
