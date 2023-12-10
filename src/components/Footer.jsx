@@ -60,6 +60,10 @@ const SocialIconsContainer = styled(motion.div)`
   align-items: center;
   gap: 1rem;
   margin-top: 1rem;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 100%);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
 const SocialIcon = styled(motion.a)`
@@ -69,12 +73,13 @@ const SocialIcon = styled(motion.a)`
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50%;
-  background: ${props => props.color};
+  background: ${props => props.color || '#3498db'};
   cursor: pointer;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
   &:hover {
     transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
   }
   
   @media (max-width: 768px) {
@@ -82,7 +87,6 @@ const SocialIcon = styled(motion.a)`
     height: 2.5rem;
   }
 `;
-
 const FooterButton = styled(motion.button)`
   padding: 0.5rem 1rem;
   background-color: #ff4d4d;
