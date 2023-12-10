@@ -195,6 +195,7 @@ const TypedText = styled.span`
 `;
 
 
+
 const ActionsContainer = styled(motion.div)`
   display: flex;
   justify-content: center;
@@ -217,6 +218,7 @@ const ActionLink = styled(Link)`
   font-size: 1rem;
   transition: background 0.3s, transform 0.3s, box-shadow 0.3s, color 0.3s;
   cursor: pointer;
+  position:relative;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
 
   &:hover {
@@ -226,7 +228,11 @@ const ActionLink = styled(Link)`
     box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.5);
   }
 `;
-
+const NavLinkItem = styled(motion.div)`
+  /* Styles for each NavLink item */
+  opacity: 0;
+  transform: translateY(20px); /* Initial position, move it down */
+`;
 const SecondaryActionLink = styled(ActionLink)`
   background-color: #333;
   font-size: 1rem;
@@ -299,39 +305,33 @@ const Home = () => {
         </TypedText>
         I create <span className="highlight">stunning web experiences</span>. Explore my projects, skills, and experiences, and let's build something amazing together!
       </Introduction>
-      <ActionsContainer
+            <ActionsContainer
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.7, duration: 0.7 }}
       >
-        <ActionLink to="/skills">
-          <FaUserGraduate />
-          Explore My Skills
-        </ActionLink>
-        <ActionLink to="/education">
-          <FaUserGraduate />
-          My Education
-        </ActionLink>
-        <ActionLink to="/projects">
-          <FaLaptopCode />
-          Discover My Projects
-        </ActionLink>
-        <ActionLink to="/certifications">
-          <FaCertificate />
-          Explore Certifications
-        </ActionLink>
-        <ActionLink to="/experiences">
-          <FaBriefcase />
-          View My Experiences
-        </ActionLink>
-        <ActionLink to="/resume">
-          <FaFilePdf />
-          Download Resume
-        </ActionLink>
-        <SecondaryActionLink to="/contact">
-          <FaArrowRight />
-          Contact Me
-        </SecondaryActionLink>
+        {/* Map through the NavLink items and apply motion animation */}
+        {[
+          { to: "/skills", text: "Explore My Skills", icon: <FaUserGraduate /> },
+          { to: "/education", text: "My Education", icon: <FaUserGraduate /> },
+          { to: "/projects", text: "Discover My Projects", icon: <FaLaptopCode /> },
+          { to: "/certifications", text: "Explore Certifications", icon: <FaCertificate /> },
+          { to: "/experiences", text: "View My Experiences", icon: <FaBriefcase /> },
+          { to: "/resume", text: "Download Resume", icon: <FaFilePdf /> },
+          { to: "/contact", text: "Contact Me", icon: <FaArrowRight /> },
+        ].map((link, index) => (
+          <NavLinkItem
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 * index, duration: 0.5 }}
+          >
+            <ActionLink to={link.to}>
+              {link.icon}
+              {link.text}
+            </ActionLink>
+          </NavLinkItem>
+        ))}
       </ActionsContainer>
       <Subtitle>
         Want to know more? Check out my <SubtitleLink href="/blogs">Blogs</SubtitleLink> for tech insights and tutorials.
