@@ -13,6 +13,8 @@ import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Sidebar from "./components/Sidebar";
+import ProtectedPage from './components/ProtectedPage';
+
 import ProjectDetails from './components/ProjectDetails';
 import Education from "./components/Education";
 const ScrollToTop = () => {
@@ -43,6 +45,8 @@ const AppRouter = () => {
         <Route path="/resume" element={<PageTransition><Resume /></PageTransition>} />
         <Route path="/blogs" element={<PageTransition><Blogs /></PageTransition>} />
         <Route path="/education" element={<PageTransition><Education /></PageTransition>} />
+                <Route path="/protected" element={<ProtectedPage />} />
+
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
       <Footer />
