@@ -9,7 +9,7 @@ const ProtectedPage = () => {
 
   const handlePasswordSubmit = async () => {
     try {
-      const response = await axios.post('/api/authenticate', { password });
+      const response = await axios.post('https://portfolio-back-aruc.onrender.com/api/authenticate', { password });
       if (response.data.authenticated) {
         setAuthenticated(true);
 
