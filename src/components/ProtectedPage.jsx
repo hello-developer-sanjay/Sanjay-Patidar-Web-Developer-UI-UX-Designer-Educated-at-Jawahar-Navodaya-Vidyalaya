@@ -155,10 +155,9 @@ const ProtectedPage = () => {
     const [password, setPassword] = useState('');
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [authenticated, setAuthenticated] = useState(false);
+    const [userProfiles, setUserProfiles] = useState([]);
     const [feedbacks, setFeedbacks] = useState([]);
     const [queries, setQueries] = useState([]);
-  
-
   const handlePasswordSubmit = async () => {
     try {
       const response = await axios.post('https://portfolio-back-aruc.onrender.com/api/authenticate', { password });
@@ -172,7 +171,15 @@ const ProtectedPage = () => {
         // Fetch queries after successful authentication
         const queriesResponse = await axios.get('https://portfolio-back-aruc.onrender.com/api/queries');
         setQueries(queriesResponse.data);
-      } else {
+// Fetch user profiles after successful authentication
+const userProfilesResponse = await axios.get('https://portfolio-back-aruc.onrender.com/api/userprofiles');
+          
+// Ensure that the data received is an array before setting the state
+if (Array.isArray(userProfilesResponse.data)) {
+  setUserProfiles(userProfilesResponse.data);
+} else {
+  console.error('Invalid data structure received for user profiles');
+}      } else {
         console.log('Authentication failed');
       }
     } catch (error) {
@@ -203,8 +210,23 @@ const ProtectedPage = () => {
       </>
     ) : (
 
-        <>
-          <h1>Feedbacks</h1>
+        <>{/* Display user details along with feedbacks and queries */}
+        
+        
+        <h1>Dashboard</h1>
+        <p >User Details : </p>
+        <ul>
+            {userProfiles.map((profile) => (
+              <li key={profile._id.$oid}>
+                <strong>Email: {profile.email}</strong>
+                <p>Username: {profile.username}</p>
+                <p>Last Sign In: {profile.lastSignInAt}</p>
+                {/* Add more profile details as needed */}
+              </li>
+            ))}
+          </ul>
+
+  <h1>Feedbacks</h1>
           <ul>
             {feedbacks.map((feedback) => (
               <li key={feedback._id}>
