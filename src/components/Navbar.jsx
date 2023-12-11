@@ -141,7 +141,7 @@ const Navbar = () => {
       <style>{'body { margin: 0; }'}</style>
       <Nav>
        <NavLinkStyled to ="/">
-        <Logo>Hey Sanju</Logo>
+        <Logo>Sanju</Logo>
       </NavLinkStyled>
         <NavList>
           <NavItem>
