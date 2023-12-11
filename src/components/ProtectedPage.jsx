@@ -1,11 +1,73 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const StyledWrapper = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  input {
+    padding: 12px;
+    font-size: 16px;
+    margin-right: 10px;
+    width: 60%;
+    max-width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .password-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+    input {
+      flex: 1;
+    }
+
+    .toggle-button {
+      padding: 12px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-size: 16px;
+      color: #555;
+    }
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+
+  li {
+    border: 1px solid #ddd;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+`;
 
 const ProtectedPage = () => {
-  const [password, setPassword] = useState('');
-  const [authenticated, setAuthenticated] = useState(false);
-  const [feedbacks, setFeedbacks] = useState([]);
-  const [queries, setQueries] = useState([]);
+    const [password, setPassword] = useState('');
+    const [passwordVisible, setPasswordVisible] = useState(false);
+    const [authenticated, setAuthenticated] = useState(false);
+    const [feedbacks, setFeedbacks] = useState([]);
+    const [queries, setQueries] = useState([]);
+  
 
   const handlePasswordSubmit = async () => {
     try {
@@ -27,27 +89,35 @@ const ProtectedPage = () => {
       console.error('Error during authentication:', error);
     }
   };
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
 
   return (
-    <div>
+    <StyledWrapper>
       {!authenticated ? (
-        <div>
-          <h1>Enter Password to Access Feedbacks and Queries</h1>
-          <input
-            type="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button onClick={handlePasswordSubmit}>Submit</button>
-        </div>
+        <>
+          <h1>Unlock the Secrets!</h1>
+          <div className="password-container">
+            <input
+              type={passwordVisible ? 'text' : 'password'}
+              placeholder="Enter the secret password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button className="toggle-button" onClick={togglePasswordVisibility}>
+              {passwordVisible ? '🙈' : '👁️'}
+            </button>
+          </div>
+          <button onClick={handlePasswordSubmit}>Open Sesame</button>
+        </>
       ) : (
-        <div>
+        <>
           <h1>Feedbacks</h1>
           <ul>
             {feedbacks.map((feedback) => (
               <li key={feedback._id}>
-                {feedback.name}: {feedback.feedback}
+                <strong>{feedback.name}:</strong> {feedback.feedback}
               </li>
             ))}
           </ul>
@@ -55,13 +125,13 @@ const ProtectedPage = () => {
           <ul>
             {queries.map((query) => (
               <li key={query._id}>
-                {query.name}: {query.query}
+                <strong>{query.name}:</strong> {query.query}
               </li>
             ))}
           </ul>
-        </div>
+        </>
       )}
-    </div>
+    </StyledWrapper>
   );
 };
 
