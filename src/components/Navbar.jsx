@@ -1,6 +1,6 @@
 
 import { NavLink } from 'react-router-dom';
-import { FaHome, FaFolder } from 'react-icons/fa';
+import { FaHome, FaFolder,FaUserShield } from 'react-icons/fa';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
@@ -149,6 +149,9 @@ const Navbar = () => {
               <FaHome /> Home
             </NavLinkStyled>
           </NavItem>
+
+         
+
           <NavItem>
             <NavLinkStyled to="/projects">
               <FaFolder /> Projects
@@ -171,6 +174,12 @@ const Navbar = () => {
               </SubNavItem>
             </SubNavList>
           </NavItem>
+          <NavItem>
+            <NavLinkStyled to="/protected">
+            <FaUserShield /> Admin
+            </NavLinkStyled>
+          </NavItem>
+
         </NavList>
       </Nav>
     </>
