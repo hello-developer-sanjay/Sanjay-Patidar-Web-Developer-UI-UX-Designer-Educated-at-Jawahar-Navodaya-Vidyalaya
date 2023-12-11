@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import  { keyframes } from 'styled-components';
 
 const StyledWrapper = styled.div`
-  max-width: 600px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
   text-align: center;
@@ -13,14 +13,42 @@ const StyledWrapper = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
   h1 {
-    font-size: 28px;
+    font-size: 2rem;
     margin-bottom: 20px;
     color: #333;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    text-align: center;
+    padding-bottom: 10px;
   }
+  
+  h1::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(to right, #3498db, #1abc9c);
+  }
+  
+ 
+  
+  h1 span {
+    display: block;
+    font-size: 0.8em;
+    color: #777;
+    margin-top: 5px;
+  }
+  
 
   input {
     padding: 12px;
-    font-size: 16px;
+    font-size: 14px;
     margin-right: 5px;
     width: 60%;
     max-width: 300px;
@@ -31,6 +59,7 @@ const StyledWrapper = styled.div`
   .password-container {
     display: flex;
     align-items: center;
+    justify-content:center;       
     margin-bottom: 20px;
 
     input {
@@ -179,7 +208,7 @@ const ProtectedPage = () => {
           <ul>
             {feedbacks.map((feedback) => (
               <li key={feedback._id}>
-                <strong>{feedback.name}:</strong> {feedback.feedback}
+                <strong>UserName: {feedback.name} || Email id : {feedback.email} :</strong> {feedback.feedback}
               </li>
             ))}
           </ul>
@@ -187,7 +216,7 @@ const ProtectedPage = () => {
           <ul>
             {queries.map((query) => (
               <li key={query._id}>
-                <strong>{query.name}:</strong> {query.query}
+                <strong>UserName: {query.name} || Email id : {query.email} :</strong> {query.query}
               </li>
             ))}
           </ul>
