@@ -45,7 +45,7 @@ const AppRouter = () => {
         <Route path="/resume" element={<PageTransition><Resume /></PageTransition>} />
         <Route path="/blogs" element={<PageTransition><Blogs /></PageTransition>} />
         <Route path="/education" element={<PageTransition><Education /></PageTransition>} />
-                <Route path="/protected" element={<ProtectedPage />} />
+        <Route path="/protected" element={<PageTransition><ProtectedPage /></PageTransition>} />
 
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
