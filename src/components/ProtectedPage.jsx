@@ -249,7 +249,8 @@ const ProtectedPage = () => {
                 {passwordVisible ? '🙈' : '👁️'}
               </UnlockButton>
             </div>
-            <StyledButton onClick={handlePasswordSubmit}>Open Sesame </StyledButton>
+            <StyledButton onClick={handlePasswordSubmit}>Access Dashboard
+</StyledButton>
           </>
         ) : (
           <>
