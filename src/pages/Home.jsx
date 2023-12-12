@@ -115,56 +115,58 @@ const Introduction = styled(motion.p)`
   text-align: center;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  
   color: #ffffff; /* White on hover */
-  /* Stylish highlight class */
+
+  
   .highlight {
-    color: #ff4081; /* Vivid pink */
-    font-weight: bold;
-    font-size: 2rem;
-    text-shadow: 2px 2px 4px rgba(255, 64, 129, 0.3); /* Pink shadow */
-    display: inline-block;
     position: relative;
+    display: inline-block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: transparent;
+    background: linear-gradient(45deg, #ff4081, #00bcd4); /* Gradient highlight */
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Shadow for depth */
     padding-bottom: 5px;
     margin-bottom: -5px;
-  }
 
-  /* Animation for the highlight class */
-  .highlight {
+    /* Animation for the highlight class */
     animation: highlightAnimation 3s ease-in-out infinite;
   }
-  
-  /* Keyframes for the highlight animation */
+
+
   @keyframes highlightAnimation {
-    0% {
-      color: #009688; /* Teal */
-      transform: scale(1);
+    0%, 100% {
+      background-position: 0% 50%;
     }
     50% {
-      color: #00bcd4; /* Turquoise */
-      transform: scale(1.02);
-    }
-    100% {
-      color: #009688; /* Teal */
-      transform: scale(1);
+      background-position: 100% 50%;
     }
   }
+
   
-
-
-
-  /* Stylish border for emphasis */
   &:after {
     content: '';
     display: block;
     width: 100%;
     height: 2px;
-    background-color: #ff4081; /* Vivid pink */
+    background: linear-gradient(45deg, #ff4081, #00bcd4); /* Gradient border */
     margin-top: 8px;
+    position: relative;
+    animation: shimmerAnimation 3s ease-in-out infinite;
+  }
+
+  
+  @keyframes shimmerAnimation {
+    0% {
+      background-position: -200% 50%;
+    }
+    100% {
+      background-position: 200% 50%;
+    }
   }
 `;
-
-
 
 const TypedText = styled.span`
   display: block;
