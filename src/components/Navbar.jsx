@@ -128,7 +128,7 @@ const NavLinkStyled = styled(NavLink)`
   transition: color 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    color: #ffcc29; /* Change text color on hover */
+    color: #FFA233; /* Change text color on hover */
      /* Scale up the text on hover */
   }
 
