@@ -2,6 +2,9 @@ import { useState , useEffect} from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import  { keyframes } from 'styled-components';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+
 
 const StyledWrapper = styled.div`
   max-width: 1200px;
@@ -253,18 +256,35 @@ const ProtectedPage = () => {
             {/* Display user details along with feedbacks and queries */}
             <h1>Dashboard</h1>
             <p>User Details :</p>
-            <ul>
-              {userProfiles.map((profile) => (
-                <li key={profile._id.$oid}>
-                  <strong>Email: {profile.email}</strong>
-                  <p>Username: {profile.username}</p>
-                  <p>Last Sign In: {profile.lastSignInAt}</p>
-                  {/* Add more profile details as needed */}
-                </li>
-              ))}
-            </ul>
-  
-          <h1>Feedbacks</h1>
+          <ul>
+            {userProfiles.map((profile) => (
+              <li key={profile._id.$oid}>
+                <strong>Email: {profile.email}</strong>
+                <p>Username: {profile.username}</p>
+                <p>Last Sign In: {profile.lastSignInAt}</p>
+                {/* Display map with location coordinates */}
+                <MapContainer
+                  center={[profile.location.coordinates[1], profile.location.coordinates[0]]}
+                  zoom={13}
+                  style={{ height: '200px', width: '100%' }}
+                >
+                  <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  />
+                  <Marker
+                    position={[profile.location.coordinates[1], profile.location.coordinates[0]]}
+                  >
+                    <Popup>
+                      User Location<br />
+                      Latitude: {profile.location.coordinates[1]}<br />
+                      Longitude: {profile.location.coordinates[0]}
+                    </Popup>
+                  </Marker>
+                </MapContainer>
+              </li>
+            ))}
+          </ul>
+            <h1>Feedbacks</h1>
           <ul>
             {feedbacks.map((feedback) => (
               <li key={feedback._id}>
