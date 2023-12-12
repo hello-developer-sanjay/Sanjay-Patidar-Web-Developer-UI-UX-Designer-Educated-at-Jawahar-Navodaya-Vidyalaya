@@ -264,32 +264,38 @@ const ProtectedPage = () => {
               ))}
             </ul>
   
-            <h1>Feedbacks</h1>
-            <ul>
-              {feedbacks.map((feedback) => (
-                <li key={feedback._id}>
-                  <strong>UserName: {feedback.name} || Email id : {feedback.email} :</strong> {feedback.feedback}
-                </li>
-              ))}
-            </ul>
-  
-            <h1>Queries</h1>
-            <ul>
-              {queries.map((query) => (
-                <li key={query._id} className={query.resolved ? 'resolved' : ''}>
-                  <strong>UserName: {query.name} || Email id : {query.email} :</strong> {query.query}
-                  {!query.resolved && (
-                    <ResolvedSpan onClick={() => markAsResolved(query._id)}>
-                      &#10003; Resolve
-                    </ResolvedSpan>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
-      </StyledWrapper>
-    );
-  };
-  
-  export default ProtectedPage;
+          <h1>Feedbacks</h1>
+          <ul>
+            {feedbacks.map((feedback) => (
+              <li key={feedback._id}>
+                <strong>UserName: {feedback.name} || Email id :{' '}
+                  <a href={`mailto:${feedback.email}`}>{feedback.email}</a>
+                </strong>{' '}
+                {feedback.feedback}
+              </li>
+            ))}
+          </ul>
+
+          <h1>Queries</h1>
+          <ul>
+            {queries.map((query) => (
+              <li key={query._id} className={query.resolved ? 'resolved' : ''}>
+                <strong>UserName: {query.name} || Email id :{' '}
+                  <a href={`mailto:${query.email}`}>{query.email}</a>
+                </strong>{' '}
+                {query.query}
+                {!query.resolved && (
+                  <ResolvedSpan onClick={() => markAsResolved(query._id)}>
+                    &#10003; Resolve
+                  </ResolvedSpan>
+                )}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+    </StyledWrapper>
+  );
+};
+
+export default ProtectedPage;
