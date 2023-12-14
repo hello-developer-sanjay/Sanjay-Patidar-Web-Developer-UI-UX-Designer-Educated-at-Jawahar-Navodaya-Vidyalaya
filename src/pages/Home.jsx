@@ -183,7 +183,7 @@ const TypedText = styled.span`
   color: transparent;
 
   /* Animation for a subtle glow effect */
-  animation: glowAnimation 2s ease-in-out infinite;
+  animation: glowAnimation 2s ease-in-out infinite, shakeAnimation 3s ease-in-out infinite;
 
   /* Keyframes for the glow animation */
   @keyframes glowAnimation {
@@ -197,9 +197,22 @@ const TypedText = styled.span`
       box-shadow: 0 0 5px rgba(0, 188, 212, 0.5), 0 0 10px rgba(0, 188, 212, 0.5); /* Turquoise glow */
     }
   }
-   @media (max-width: 768px) {
-   font-size: 1.2rem;
-      
+
+  /* Keyframes for a subtle shake animation */
+  @keyframes shakeAnimation {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+      transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+      transform: translateX(5px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
   }
 `;
 
