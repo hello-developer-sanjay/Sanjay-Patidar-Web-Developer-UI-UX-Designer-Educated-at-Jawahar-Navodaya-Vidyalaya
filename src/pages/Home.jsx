@@ -203,6 +203,7 @@ const ActionsContainer = styled(motion.div)`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
   gap: 1rem;
   margin-top: 2rem;
 `;
