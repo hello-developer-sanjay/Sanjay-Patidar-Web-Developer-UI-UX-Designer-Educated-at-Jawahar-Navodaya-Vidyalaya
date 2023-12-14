@@ -224,8 +224,8 @@ const ActionLink = styled(Link)`
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
 
   &:hover {
-    background: linear-gradient(45deg, #ffcc80, #ff6f00);
-    color: #fff;
+background: linear-gradient(to bottom right, #8a2be2, #4a90e2); 
+color: #fff;
     transform: translateY(-7px);
     box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.5);
   }
