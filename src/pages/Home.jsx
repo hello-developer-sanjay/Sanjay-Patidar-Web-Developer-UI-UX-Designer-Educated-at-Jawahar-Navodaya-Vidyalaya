@@ -166,6 +166,9 @@ const Introduction = styled(motion.p)`
       background-position: 200% 50%;
     }
   }
+   @media (max-width: 768px) {
+  margin-top:2rem;
+  }
 `;
 
 const TypedText = styled.span`
