@@ -176,7 +176,7 @@ const TypedText = styled.span`
   margin-top: 1rem;
   margin-bottom: 1rem;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 3rem;
   background: linear-gradient(45deg, #00bcd4, #2196f3); /* Gradient from turquoise to blue */
   background-clip: text;
   -webkit-background-clip: text;
@@ -196,6 +196,10 @@ const TypedText = styled.span`
     100% {
       box-shadow: 0 0 5px rgba(0, 188, 212, 0.5), 0 0 10px rgba(0, 188, 212, 0.5); /* Turquoise glow */
     }
+  }
+   @media (max-width: 768px) {
+   font-size: 1.2rem;
+      
   }
 `;
 
