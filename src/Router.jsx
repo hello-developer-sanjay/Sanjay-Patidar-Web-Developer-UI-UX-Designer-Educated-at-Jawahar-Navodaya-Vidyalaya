@@ -14,7 +14,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Sidebar from "./components/Sidebar";
 import ProtectedPage from './components/ProtectedPage';
-
+import Contact from './components/Contact';
 import ProjectDetails from './components/ProjectDetails';
 import Education from "./components/Education";
 const ScrollToTop = () => {
@@ -46,6 +46,7 @@ const AppRouter = () => {
         <Route path="/blogs" element={<PageTransition><Blogs /></PageTransition>} />
         <Route path="/education" element={<PageTransition><Education /></PageTransition>} />
         <Route path="/protected" element={<PageTransition><ProtectedPage /></PageTransition>} />
+<Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
 
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
