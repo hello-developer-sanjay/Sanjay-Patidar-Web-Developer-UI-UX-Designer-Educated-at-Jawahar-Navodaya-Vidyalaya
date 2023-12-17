@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import  { useState } from 'react';
 import axios from 'axios';
 import '../styles/Contact.css'; // Import your CSS file for styling
 
@@ -29,16 +29,16 @@ const Contact = () => {
       setAdminInfo(response.data.adminInfo);
       setSubmitMessage(response.data.message);
     } catch (error) {
-      setSubmitMessage('Error submitting the contact form');
+      setSubmitMessage('Error submitting contact form');
     }
   };
 
   return (
     <div className="contact-container">
-      <h2>Connect with Us</h2>
+      <h2>Fill and Submit Form to Get Admin Details</h2>
       <form onSubmit={handleSubmit} className="contact-form">
         <div className="form-group">
-          <label htmlFor="fullName">Your Full Name:</label>
+          <label htmlFor="fullName">Enter Your Full Name:</label>
           <input
             type="text"
             id="fullName"
@@ -49,7 +49,7 @@ const Contact = () => {
         </div>
         <div className="form-group checkbox-group">
           <label className="checkbox-label">
-            <span>Interested in Collaboration?</span>
+            <span>Want to collaborate?</span>
             <input
               type="checkbox"
               checked={wantToCollaborate}
@@ -59,7 +59,7 @@ const Contact = () => {
           </label>
         </div>
         <div className="form-group">
-          <label htmlFor="contactNumber">Contact Number:</label>
+          <label htmlFor="contactNumber">Your Contact Number:</label>
           <input
             type="tel"
             id="contactNumber"
@@ -78,8 +78,8 @@ const Contact = () => {
       {submitMessage && <p className="submit-message">{submitMessage}</p>}
       {adminInfo && (
         <div className="admin-info">
-          <h3>Contact Admin:</h3>
-          <p>Name: {adminInfo.admin}</p>
+          <h3>Admin Information:</h3>
+          <p>Admin: {adminInfo.admin}</p>
           <p>Contact Number: {adminInfo.contactNumber}</p>
           <p>Address: {adminInfo.address}</p>
         </div>
