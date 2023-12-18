@@ -7,34 +7,15 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 h2 {
-  font-size: 2rem;
-  color: #4c057e;
+  font-size: 2.5em; /* Increase font size for emphasis */
+  color: #4c057e; /* Unique and vibrant purple color */
   text-align: center;
-  margin-bottom: 30px;
-  letter-spacing: 2px;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-
-  background: linear-gradient(90deg, #4c057e, #ff6b6b); /* Gradient background for a vibrant effect */
-  -webkit-background-clip: text; /* Clip text to the background gradient */
-  color: transparent; /* Make the text transparent to reveal the gradient */
-  display: inline-block; /* Ensure the gradient is applied only to the text, not the entire container */
-
-  animation: neonGlow 1.5s ease-in-out infinite alternate; /* Add a neon glow animation */
+  margin-bottom: 30px; /* A bit more spacing for visual appeal */
+  letter-spacing: 2px; /* Add a slight letter-spacing for elegance */
+  font-weight: bold; /* Emphasize the boldness of the text */
+  text-transform: uppercase; /* Uppercase for a modern look */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle text shadow for depth */
 }
-
-@keyframes neonGlow {
-  from {
-    text-shadow: none;
-  }
-  to {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
-                 0 0 20px rgba(255, 255, 255, 0.8),
-                 0 0 30px rgba(255, 255, 255, 0.8);
-  }
-}
-
 
 .contact-form {
   display: flex;
