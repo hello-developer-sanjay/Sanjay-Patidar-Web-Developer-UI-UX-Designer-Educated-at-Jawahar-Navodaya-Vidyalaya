@@ -148,7 +148,7 @@ const Education = () => {
         </EducationImage>
       </EducationSection>
 
-      {/* AdSense Ad Unit */}
+    
       <ins
         className="adsbygoogle"
         style={{ display: 'block', marginTop: '2rem' }}
