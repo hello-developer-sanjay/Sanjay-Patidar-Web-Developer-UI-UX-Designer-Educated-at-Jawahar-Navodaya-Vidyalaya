@@ -114,7 +114,7 @@ const Education = () => {
         transition={{ duration: 1 }}
       >
         <EducationText>
-          <h1>Secondary Education</h2>
+          <h3>Secondary Education</h2>
           <p>Jawahar Navodaya Vidyalaya School</p>
           <p>2009-2016</p>
         </EducationText>
@@ -134,7 +134,7 @@ const Education = () => {
         transition={{ duration: 1 }}
       >
         <EducationText>
-          <h1>Bachelor of Technology in Computer Science Engineering</h2>
+          <h3>Bachelor of Technology in Computer Science Engineering</h2>
           <p>Chandigarh University</p>
           <p>2019-2024</p>
         </EducationText>
