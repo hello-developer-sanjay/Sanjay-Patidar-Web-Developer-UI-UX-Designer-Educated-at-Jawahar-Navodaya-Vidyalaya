@@ -1,8 +1,10 @@
-import  { useState, useEffect } from "react";
+/* eslint-disable react/no-unescaped-entities */
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaBars, FaTimes, FaHome, FaFolder } from "react-icons/fa";
+import { FaBars, FaTimes, FaHome } from "react-icons/fa";
 import axios from "axios";
 import styled from "styled-components";
+
 const SidebarContainer = styled.nav`
   background-color: #20232a;
   padding: 20px;
@@ -19,10 +21,9 @@ const SidebarContainer = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: center;
-   overflow-y: auto; 
-  max-height: 100vh; 
+  overflow-y: auto;
+  max-height: 100vh;
 
-  /* Add creative animations and styles */
   &:hover {
     transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-95%)")};
     transition: transform 0.3s ease-in-out;
@@ -55,7 +56,6 @@ const SidebarContainer = styled.nav`
   }
 `;
 
-
 const SidebarLink = styled(Link)`
   text-decoration: none;
   color: white;
@@ -68,29 +68,28 @@ const SidebarLink = styled(Link)`
   border-radius: 4px;
 
   &:hover {
-    background-color: #8AB008 ;
+    background-color: #8AB008;
     opacity: 0.9;
   }
 `;
 
 const SidebarTitle = styled.div`
-  font-family: 'Lobster', cursive; /* Creative font */
+  font-family: 'Lobster', cursive;
   font-weight: bold;
   font-size: 1.0rem;
   margin-top: 20px;
   margin-bottom: 10px;
-  color: #ffcc29; /* Vibrant color */
+  color: #ffcc29;
   text-transform: uppercase;
   letter-spacing: 2px;
   position: relative;
 
-  /* Add a creative underline effect */
   &:after {
     content: '';
     position: absolute;
     width: 100%;
     height: 4px;
-    background-color: #ffcc29; /* Underline color */
+    background-color: #ffcc29;
     bottom: -8px;
     left: 0;
     transform: scaleX(0);
@@ -99,11 +98,10 @@ const SidebarTitle = styled.div`
   }
 
   &:hover:after {
-    transform: scaleX(1); /* Reveal the underline on hover */
+    transform: scaleX(1);
     transform-origin: left;
   }
 `;
-
 
 const SidebarCertifications = styled.ul`
   list-style: none;
@@ -116,21 +114,20 @@ const SidebarCertificationItem = styled.li`
 
 const SidebarToggle = styled.div`
   position: fixed;
-  top: 0.2rem;
-  right: 1rem;
-  font-size: 0.8rem;
+  left: 1rem; /* Adjusted from right to left */
+  font-size: 1rem;
   cursor: pointer;
-  color: #ffcc29; /* Yellow color */
-  background: #20232a; /* Background color */
+  color: #ffcc29;
+  background: #20232a;
   padding: 8px;
   z-index: 1001;
-  border-radius: 50%; /* Circular shape */
+  border-radius: 50%;
   transition: all 0.3s ease-in-out;
 
   &:hover {
-    background: #ffcc29; /* Yellow color on hover */
-    color: #20232a; /* Background color on hover */
-    transform: scale(1.1); /* Slightly larger size on hover */
+    background: #ffcc29;
+    color: #20232a;
+    transform: scale(1.1);
   }
 `;
 
@@ -166,7 +163,7 @@ const Sidebar = () => {
         <SidebarLink to="/">
           <FaHome /> Home
         </SidebarLink>
-        
+
         <SidebarTitle>Certifications</SidebarTitle>
         <SidebarCertifications>
           {certifications.map((certification) => (
