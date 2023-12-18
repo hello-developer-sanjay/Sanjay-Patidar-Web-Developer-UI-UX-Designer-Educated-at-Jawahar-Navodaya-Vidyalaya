@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const EducationContainer = styled(motion.div)`
   display: flex;
@@ -101,7 +102,12 @@ const EducationImage = styled.div`
 const Education = () => {
   return (
     <EducationContainer>
+      <Helmet>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      </Helmet>
+
       <Heading>Unlocking Knowledge Horizons</Heading>
+
       <EducationSection
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -141,6 +147,16 @@ const Education = () => {
           />
         </EducationImage>
       </EducationSection>
+
+      {/* AdSense Ad Unit */}
+      <ins
+        className="adsbygoogle"
+        style={{ display: 'block', marginTop: '2rem' }}
+        data-ad-client="ca-pub-4434555762031338"
+        data-ad-slot="6547883433"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
     </EducationContainer>
   );
 };
