@@ -115,7 +115,7 @@ const Introduction = styled(motion.p)`
   line-height: 1.5;
   max-width: 800px;
   text-align: center;
-  margin-top: 1rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
   color: #ffffff; /* White on hover */
 
