@@ -16,6 +16,8 @@ import Typed from 'react-typed';
 
 import profileImage1 from '../assets/ssss.webp';
 import profileImage2 from '../assets/coding.png';
+import CreaTeaImage from '../assets/tea.gif';
+
 const HomeContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
@@ -170,7 +172,10 @@ const Introduction = styled(motion.p)`
   margin-top:2rem;
   }
 `;
-
+const StyledCreaTeaImage = styled.img`
+  width: 40px; /* Adjust the width as needed */
+  height: 40px; /* Adjust the height as needed */
+`;
 const TypedText = styled.span`
   display: block;
   margin-top: 1rem;
@@ -363,6 +368,15 @@ const Home = () => {
       <Subtitle>
         Want to know more? Check out my <SubtitleLink href="/blogs">Blogs</SubtitleLink> for tech insights and tutorials.
       </Subtitle>
+            <div className="flex justify-center items-center  mt-2">
+        <h2 className="text-2xl font-semibold text-green-600 mr-4 ">Made With</h2>
+        <h2 className="text-4xl font-semibold text-blue-600 flex items-center creativity">
+          <span className="text-white-600">Crea</span>
+          <StyledCreaTeaImage src={CreaTeaImage} alt="CreaTea" className="mx-2" />
+          <span className="text-green-600">vity</span>
+        </h2>
+      </div>
+
     </HomeContainer>
   );
 };
