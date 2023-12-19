@@ -115,7 +115,7 @@ const SidebarCertificationItem = styled.li`
 `;
 
 const SidebarToggle = styled.div`
-  position: fixed;
+  position: sticky;
   top:0rem;
   right: 1rem;
   font-size: 1rem;
