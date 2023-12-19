@@ -2,6 +2,8 @@
 import { NavLink } from 'react-router-dom';
 import { FaHome, FaFolder,FaUserShield } from 'react-icons/fa';
 import styled from 'styled-components';
+import Sidebar from '../components/Sidebar';
+
 const Nav = styled.nav`
   background: linear-gradient(to right, #3498db, #2c3e50);
   color: #fff;
@@ -268,6 +270,7 @@ const Navbar = () => {
     <>
       <style>{'body { margin: 0; }'}</style>
       <Nav>
+         <Sidebar />
         <NavLinkStyled to="/">
           <Logo className="logo-small">Sanju</Logo>
           <Logo className="logo-large">Sanjay Patidar : A Web Developer</Logo>
