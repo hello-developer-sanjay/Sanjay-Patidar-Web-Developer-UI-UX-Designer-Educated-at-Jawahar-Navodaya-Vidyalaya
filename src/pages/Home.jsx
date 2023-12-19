@@ -186,7 +186,7 @@ const FlexContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 4rem;
+  margin-top: 2rem;
 `;
 
 const H1Container = styled.div`
