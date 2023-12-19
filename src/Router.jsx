@@ -12,7 +12,6 @@ import Blogs from './components/Blogs';
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Sidebar from "./components/Sidebar";
 import ProtectedPage from './components/ProtectedPage';
 import Contact from './components/Contact';
 import ProjectDetails from './components/ProjectDetails';
@@ -31,7 +30,6 @@ const AppRouter = () => {
   return (
     <Router>
       <Navbar />
-      <Sidebar />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
