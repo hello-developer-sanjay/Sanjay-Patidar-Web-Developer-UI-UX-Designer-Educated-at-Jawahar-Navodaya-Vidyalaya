@@ -171,10 +171,34 @@ const Introduction = styled(motion.p)`
    @media (max-width: 768px) {
   margin-top:2rem;
   }
+`;const H1 = styled.h1`
+  font-size: 2xl;
+  font-weight: bold;
+  color: #2ecc71; /* Green color */
+  margin-right: 1rem;
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+`;
+
+const H1Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 const StyledCreaTeaImage = styled.img`
   width: 40px; /* Adjust the width as needed */
   height: 40px; /* Adjust the height as needed */
+`;
+
+
+const StyledSpan = styled.span`
+  color: #ffffff; /* Adjust the color as needed */
+  /* Add any additional styles here */
 `;
 const TypedText = styled.span`
   display: block;
@@ -368,15 +392,17 @@ const Home = () => {
       <Subtitle>
         Want to know more? Check out my <SubtitleLink href="/blogs">Blogs</SubtitleLink> for tech insights and tutorials.
       </Subtitle>
-            <div className="flex justify-center items-center  mt-2">
-        <h2 className="text-2xl font-semibold text-green-600 mr-4 ">Made With</h2>
-        <h2 className="text-4xl font-semibold text-blue-600 flex items-center creativity">
-          <span className="text-white-600">Crea</span>
-          <StyledCreaTeaImage src={CreaTeaImage} alt="CreaTea" className="mx-2" />
-          <span className="text-green-600">vity</span>
-        </h2>
-      </div>
-
+   <FlexContainer>
+        <H1Container>
+          <H1>Designed With
+</H1>
+          <h1 className="text-4xl font-semibold text-blue-600 flex items-center creativity">
+            <StyledSpan className="text-white-600">Crea</StyledSpan>
+            <StyledCreaTeaImage src={CreaTeaImage} alt="CreaTea" className="mx-2" />
+            <StyledSpan className="text-green-600">vity</StyledSpan>
+          </h1>
+        </H1Container>
+      </FlexContainer>
     </HomeContainer>
   );
 };
