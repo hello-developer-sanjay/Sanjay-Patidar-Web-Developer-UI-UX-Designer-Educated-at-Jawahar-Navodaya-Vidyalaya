@@ -171,11 +171,15 @@ const Introduction = styled(motion.p)`
    @media (max-width: 768px) {
   margin-top:2rem;
   }
-`;const H1 = styled.h1`
-  font-size: 2xl;
-  font-weight: bold;
-  color: #2ecc71; /* Green color */
+`;
+const H1 = styled.h1`
+  font-size: 3xl;
+  font-weight: 900;
+  color: #2ecc71;
   margin-right: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 2px; /* Increase letter spacing for a stylish look */
+  transform: skew(-5deg); /* Apply a slight skew for a dynamic effect */
 `;
 
 const FlexContainer = styled.div`
@@ -190,17 +194,24 @@ const H1Container = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 const StyledCreaTeaImage = styled.img`
-  width: 40px; /* Adjust the width as needed */
-  height: 40px; /* Adjust the height as needed */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px rgba(46, 204, 113, 0.5);
 `;
 
 
 const StyledSpan = styled.span`
-  color: #ffffff; /* Adjust the color as needed */
+  color: #ffffff;
+  font-size: 1.5rem; /* Increase font size for emphasis */
+  font-weight: bold;
+  letter-spacing: 3px; /* Add more letter spacing */
+  text-transform: uppercase;
+  text-decoration: underline; /* Add an underline for a decorative touch */
   /* Add any additional styles here */
-`;
-const TypedText = styled.span`
+`;const TypedText = styled.span`
   display: block;
   margin-top: 1rem;
   margin-bottom: 1rem;
