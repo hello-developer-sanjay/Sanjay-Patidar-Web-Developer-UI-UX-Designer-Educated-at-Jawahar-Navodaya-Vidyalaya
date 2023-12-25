@@ -286,6 +286,8 @@ const ActionsContainer = styled(motion.div)`
 `;
 
 const ActionLink = styled(Link)`
+  position: relative;
+  overflow: hidden;
   background: linear-gradient(45deg, #ff6f00, #ffcc80);
   color: #1a1a1a;
   padding: 0.8rem 1rem;
@@ -298,14 +300,50 @@ const ActionLink = styled(Link)`
   font-size: 1rem;
   transition: background 0.3s, transform 0.3s, box-shadow 0.3s, color 0.3s;
   cursor: pointer;
-  position:relative;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
 
   &:hover {
-background: linear-gradient(to bottom right, #8a2be2, #4a90e2); 
-color: #fff;
+    background: linear-gradient(to bottom right, #8a2be2, #4a90e2);
+    color: #fff;
     transform: translateY(-7px);
     box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.5);
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(45deg, #ff6f00, #ffcc80);
+    border-radius: 30px;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s;
+  }
+
+  &:hover:before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  &:after {
+    content: 'Explore'; /* Display better text here */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  &:hover:after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
   }
 `;
 const NavLinkItem = styled(motion.div)`
