@@ -5,25 +5,68 @@ import styled from 'styled-components';
 import Sidebar from '../components/Sidebar';
 
 const Nav = styled.nav`
-  background: linear-gradient(to right, #3498db, #2c3e50);
+  background: linear-gradient(to right, #121212, #1e1e1e);
   color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem;
-
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  border-bottom: 2px solid #2980b9;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  border-bottom: 2px solid #333;
 
   transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+  /* Creative architectural design with mesh of lines */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: repeating-linear-gradient(to right, #444, #444 2px, #333 2px, #333 4px);
+    z-index: -1;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: repeating-linear-gradient(to right, #444, #444 2px, #333 2px, #333 4px);
+    z-index: -1;
+  }
+
+  /* Additional creative lining for the background */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: repeating-linear-gradient(to right, #555, #555 2px, #444 2px, #444 4px);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: repeating-linear-gradient(to right, #555, #555 2px, #444 2px, #444 4px);
+  }
 
   @media (max-width: 768px) {
     .logo-small {
       display: block;
-      font-size:1.4rem;
+      font-size: 1.4rem;
     }
 
     .logo-large {
@@ -34,7 +77,6 @@ const Nav = styled.nav`
   @media (min-width: 769px) {
     .logo-small {
       display: none;
-
     }
 
     .logo-large {
@@ -42,7 +84,6 @@ const Nav = styled.nav`
     }
   }
 `;
-
 
 
 const Logo = styled.h1`
