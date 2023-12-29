@@ -86,7 +86,7 @@ const Nav = styled.nav`
 `;
 
 
-const Logo = styled.h1`
+const Logo = styled.span`
  font-size: 2rem;
   color: #51D5FF;
   font-family: 'Playfair Display', serif;
