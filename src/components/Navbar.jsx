@@ -87,44 +87,49 @@ const Nav = styled.nav`
 
 
 const Logo = styled.h1`
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  position: relative;
-  display: inline-block;
+ font-size: 25px;
+  color: #51D5FF;
+  font-family: 'Playfair Display', serif;
 
-  &:before,
-  &:after {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  transition: color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    color: #FF9585;
+    transform: translateY(-3px);
+  }
+
+  &::before,
+  &::after {
     content: '';
     position: absolute;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, #ff6b6b, #ffb347);
-    clip-path: polygon(0 0, 100% 0, 50% 50%, 0% 100%);
+    height: 4px;
+    background: linear-gradient(45deg, #3498db, #2ecc71);
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
     z-index: -1;
     transition: transform 0.3s ease-in-out;
   }
 
-  &:before {
+  &::before {
     top: 0;
     left: 0;
     transform-origin: top left;
   }
 
-  &:after {
+  &::after {
     bottom: 0;
     right: 0;
     transform-origin: bottom right;
   }
 
-  &:hover:before {
-    transform: rotate(180deg);
-  }
-
-  &:hover:after {
-    transform: rotate(-180deg);
+  &:hover::before,
+  &:hover::after {
+    transform: scaleX(0);
   }
 
   & span {
@@ -134,15 +139,14 @@ const Logo = styled.h1`
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     transition: background 0.3s ease-in-out;
   }
 
   &:hover span {
-    background: linear-gradient(45deg, #ffcc29, #f5f500);
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
   }
 `;
-
 
 
 const NavList = styled.ul`
