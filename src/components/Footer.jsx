@@ -6,7 +6,6 @@ import { toast, ToastContainer } from "react-toastify";
 import "../styles/Sidebar.css";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const FooterContainer = styled(motion.footer)`
   position: relative;
   color: white;
@@ -21,7 +20,7 @@ const FooterContainer = styled(motion.footer)`
 
   /* Create a complex and artistic background pattern */
   background: 
-    radial-gradient(ellipse at center, rgba(173, 216, 230, 0.3) 0%, rgba(173, 216, 230, 0) 30%, rgba(173, 216, 230, 0.6) 50%, rgba(173, 216, 230, 0) 70%, rgba(173, 216, 230, 0.3) 100%),
+    radial-gradient(ellipse at center, rgba(33, 33, 77, 0.3) 0%, rgba(33, 33, 77, 0) 30%, rgba(33, 33, 77, 0.6) 50%, rgba(33, 33, 77, 0) 70%, rgba(33, 33, 77, 0.3) 100%),
     linear-gradient(90deg, #3498db, #2c3e50);
 
   /* Optional: Add animation or transition properties for a dynamic effect */
