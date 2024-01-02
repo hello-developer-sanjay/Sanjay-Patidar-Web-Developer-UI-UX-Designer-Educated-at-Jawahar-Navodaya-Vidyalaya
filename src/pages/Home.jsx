@@ -1,8 +1,11 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/no-unescaped-entities */
 import {  useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion,useAnimation  } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+  
 import {
   FaArrowRight,
   FaUserGraduate,
@@ -120,6 +123,8 @@ const ProfileImage = styled(motion.img)`
     }
   }
 `;
+
+
 const images = [profileImage1, profileImage2];
 let currentImageIndex = 0;
 
@@ -346,15 +351,8 @@ const ActionLink = styled(Link)`
     transform: translate(-50%, -50%) scale(1.2);
   }
 `;
-const NavLinkItem = styled(motion.div)`
-  /* Styles for each NavLink item */
-  opacity: 0;
-  transform: translateY(20px); /* Initial position, move it down */
-`;
-const SecondaryActionLink = styled(ActionLink)`
-  background-color: #333;
-  font-size: 1rem;
-`;
+
+
 
 const Subtitle = styled.p`
   font-size: 1.4rem;
@@ -369,16 +367,56 @@ const Subtitle = styled.p`
 const SubtitleLink = styled.a`
   color: #ffcc80;
   text-decoration: none;
+  position: relative;
   transition: color 0.3s;
 
   &:hover {
     color: #ff6f00;
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(45deg, #ff6f00, #ffcc80);
+      bottom: 0;
+      left: 0;
+      transform: scaleX(0);
+      transform-origin: bottom center;
+      transition: transform 0.3s;
+    }
   }
 `;
 
+  
+
+
 const Home = () => {
 
+  const controlsArray = Array.from({ length: 7 }, () => useAnimation());
 
+  const animateInView = async (index) => {
+    await controlsArray[index].start({
+      y: 0,
+      opacity: 1,
+      rotate: [0, (index % 2 === 0 ? 360 : -360)],
+      transition: {
+        duration: 1.5,
+        type: 'spring',
+        stiffness: 100,
+      },
+    });
+  };
+
+  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.3 });
+
+  useEffect(() => {
+    if (inView) {
+      controlsArray.forEach(async (_, index) => {
+        await animateInView(index);
+      });
+    }
+  }, [controlsArray, inView]);
 
   useEffect(() => {
     // Create a slideshow effect
@@ -423,34 +461,32 @@ const Home = () => {
         </TypedText>
         I create <span className="highlight">stunning web experiences</span>. Explore my projects, skills, and experiences, and let's build something amazing together!
       </Introduction>
-            <ActionsContainer
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.7, duration: 0.7 }}
-      >
-        {/* Map through the NavLink items and apply motion animation */}
-        {[
-          { to: "/skills", text: "Explore My Skills", icon: <FaUserGraduate /> },
-          { to: "/education", text: "My Education", icon: <FaUserGraduate /> },
-          { to: "/projects", text: "Discover My Projects", icon: <FaLaptopCode /> },
-          { to: "/certifications", text: "Explore Certifications", icon: <FaCertificate /> },
-          { to: "/experiences", text: "View My Experiences", icon: <FaBriefcase /> },
-          { to: "/resume", text: "Download Resume", icon: <FaFilePdf /> },
-          { to: "/contact", text: "Contact Me", icon: <FaArrowRight /> },
-        ].map((link, index) => (
-          <NavLinkItem
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 * index, duration: 0.5 }}
-          >
-            <ActionLink to={link.to}>
-              {link.icon}
-              {link.text}
-            </ActionLink>
-          </NavLinkItem>
-        ))}
-      </ActionsContainer>
+      <ActionsContainer>
+      {[
+        { to: "/skills", text: "Explore My Skills", icon: <FaUserGraduate /> },
+        { to: "/education", text: "My Education", icon: <FaUserGraduate /> },
+        { to: "/projects", text: "Discover My Projects", icon: <FaLaptopCode /> },
+        { to: "/certifications", text: "Explore Certifications", icon: <FaCertificate /> },
+        { to: "/experiences", text: "View My Experiences", icon: <FaBriefcase /> },
+        { to: "/resume", text: "Download Resume", icon: <FaFilePdf /> },
+        { to: "/contact", text: "Contact Me", icon: <FaArrowRight /> },
+      ].map((link, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 20 }}
+          animate={controlsArray[index]}
+          transition={{ delay: 0.1 * index, duration: 0.5 }}
+          ref={ref}
+          onClick={() => animateInView(index)}
+        >
+          <ActionLink to={link.to}>
+            {link.icon}
+            {link.text}
+          </ActionLink>
+        </motion.div>
+      ))}
+    </ActionsContainer>
+ 
       <Subtitle>
         Want to know more? Check out my <SubtitleLink href="/blogs">Blogs</SubtitleLink> for tech insights and tutorials.
       </Subtitle>
