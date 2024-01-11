@@ -127,7 +127,7 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  animation: pulse 1s infinite alternate;
+  animation: pulse 2s alternate;
 }
 
 .certificate-icon {
