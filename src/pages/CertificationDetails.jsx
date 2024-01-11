@@ -38,7 +38,7 @@ const CertificationDetails = () => {
     <div
       className="certification-details-container"
       style={{
-        backgroundImage: `url(${backgroundImage})`, // Use the imported background image
+        backgroundColor:"black",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
