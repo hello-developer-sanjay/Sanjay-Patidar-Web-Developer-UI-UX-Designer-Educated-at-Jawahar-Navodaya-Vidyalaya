@@ -12,10 +12,11 @@ const SkillsContainer = styled.div`
   min-height: 100vh;
   background-color: #d0eae7;
 `;
-const SkillsHeading = styled.h2`
+const SkillsHeading = styled.h1`
   font-size: 2.5rem;
   margin-bottom: 1rem;
   text-align: center;
+  justify-content: center;
   color: #ff5e62;
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -59,7 +60,7 @@ const SkillsHeading = styled.h2`
 
 const SkillsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
 `;
 
@@ -106,17 +107,16 @@ const SkillIcon = styled.img`
 `;
 
 const SkillName = styled.h3`
-  font-size: 2rem;
+  font-size: 2.2rem;
   margin-bottom: 1rem;
-  font-family: 'Pacifico', cursive; /* Example font family */
-  color: #ffcc00; /* Yellow color */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Text shadow effect */
-  transition: color 0.3s;
-
-  &:hover {
-    color: #ff9900; /* Darker yellow color on hover */
-  }
+  font-family: 'Caveat', cursive; /* A unique handwritten-style font */
+  color: #3d5a80; /* Ocean Blue color */
+  text-shadow: 2px 2px 4px rgba(61, 90, 128, 0.5); /* Subtle text shadow effect */
+  letter-spacing: 2px; /* Increased letter spacing for a distinct look */
+  line-height: 1.2; /* Improved line spacing for better readability */
+  font-weight: 600; /* Slightly bold for emphasis */
 `;
+
 
 
 const SkillDescription = styled.p`
@@ -134,33 +134,49 @@ const SkillDescription = styled.p`
 const Skills = () => {
   const skillsData = [
     {
-      name: 'Web Development',
+      name: 'Tech Architect',
       icon: developerIcon,
-      description: 'Building the digital backbone of the internet.',
+      description: 'Crafting the structural masterpiece of the digital landscape with expertise in Structured HTML and Algorithms.',
     },
     {
-      name: 'App Development',
+      name: 'Innovative Developer',
       icon: appDevIcon,
-      description: 'Creating smart solutions for smartphones.',
+      description: 'Pioneering smart and efficient solutions for smartphones, blending Analytical Mindset, DSA, and JavaScript mastery.',
     },
     {
-      name: 'UI/UX Design',
+      name: 'Design Alchemist',
       icon: codingIcon,
-      description: 'Shaping digital interfaces for user delight.',
+      description: 'Transforming concepts into reality, shaping intuitive digital interfaces for user delight using CSS and Tailwind.',
     },
     {
-      name: 'Goal Oriented',
+      name: 'Strategic Navigator',
       icon: goalIcon,
-      description: 'Navigating tech terrain with clear objectives.',
+      description: 'Navigating the tech terrain with precision and strategic insight, fueled by clear objectives and effective use of Node and Express.',
     },
     {
-      name: 'Team Leader',
+      name: 'Collaborative Leader',
       icon: teamLeaderIcon,
-      description: 'Steering the tech ship to success.',
+      description: 'Leading and inspiring tech teams to success, harmonizing collective efforts, and steering towards excellence in Git Version Control.',
     },
-    // Add more skills
+    {
+      name: 'Intuitive UX Maestro',
+      icon: codingIcon,
+      description: 'Crafting user-centric experiences with React JS, blending innovation with effective communication for seamless interaction.',
+    },
+    {
+      name: 'Backend Sorcerer',
+      icon:codingIcon ,
+      description: 'Integrating backend magic with Node JS, transforming ideas into functional realities, and ensuring a smooth user experience.',
+    },
+    {
+      name: 'API Maestro',
+      icon: codingIcon,
+      description: 'Collaborating seamlessly in the API realm with Express JS, ensuring data flow like a well-choreographed symphony.',
+    },
   ];
-
+  
+  // Add more skills if needed
+  
   return (
     <SkillsContainer>
       <SkillsHeading>Skills</SkillsHeading>
