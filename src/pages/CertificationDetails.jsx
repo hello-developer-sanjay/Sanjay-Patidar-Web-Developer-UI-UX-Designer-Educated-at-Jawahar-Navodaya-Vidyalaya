@@ -46,7 +46,7 @@ const CertificationDetails = () => {
     >
       {certification && (
         <>
-          <h2 className="certification-details-title">{certification.title}</h2>
+          <h1 className="certification-details-title">{certification.title}</h1>
           <div className="creative-description-container">
             <div className="certificate-icon-container">
               <img
