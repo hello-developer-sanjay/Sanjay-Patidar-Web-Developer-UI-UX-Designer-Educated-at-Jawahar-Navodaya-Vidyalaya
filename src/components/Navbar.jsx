@@ -1,4 +1,4 @@
-
+  
 import { NavLink, Link } from 'react-router-dom';
 import { FaHome, FaFolder,FaUserShield } from 'react-icons/fa';
 import styled from 'styled-components';
@@ -316,10 +316,10 @@ const Navbar = () => {
       <style>{'body { margin: 0; }'}</style>
       <Nav>
          <Sidebar />
-        <Link to="/">
+        <NavLinkStyled to="/">
           <Logo className="logo-small">Sanju</Logo>
           <Logo className="logo-large">Sanjay Patidar : A Web Developer</Logo>
-        </Link>
+        </NavLinkStyled>
         <NavList>
           <NavItem>
             <NavLinkStyled to="/">
