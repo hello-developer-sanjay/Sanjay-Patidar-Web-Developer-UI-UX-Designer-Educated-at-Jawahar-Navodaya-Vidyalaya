@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { FaLinkedin, FaTwitter, FaInstagram, FaGithub,FaComment, FaUsers, FaTimes } from "react-icons/fa";
@@ -349,6 +349,36 @@ const Footer = () => {
     "Exploring the Future. Get Involved!",
     "Unlock Knowledge. Engage and Share.",
   ];
+const footerRef = useRef(null);
+useEffect(() => {
+  const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.5, // Adjust the threshold as needed
+  };
+
+  const callback = (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Footer is in view, show toast message
+        toast.info("The admin will receive either feedback or a query, so make sure to submit separately.");
+        observer.unobserve(entry.target);
+      }
+    });
+  };
+
+  const observer = new IntersectionObserver(callback, options);
+
+  if (footerRef.current) {
+    observer.observe(footerRef.current);
+  }
+
+  return () => {
+    if (footerRef.current) {
+      observer.unobserve(footerRef.current);
+    }
+  };
+}, []);
 
   const getRandomCatchyMessage = () =>
     catchyMessages[Math.floor(Math.random() * catchyMessages.length)];
@@ -415,7 +445,7 @@ const Footer = () => {
   };
 
   return (
-    <FooterContainer>
+    <FooterContainer ref={footerRef}>
       <BorderLineTop
         initial={{ width: 0 }}
         animate={{ width: "80%" }}
