@@ -361,7 +361,7 @@ useEffect(() => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         // Footer is in view, show toast message
-        toast.info("The admin will receive either feedback or a query, so make sure to submit separately.");
+toast.info("Hey there! If you have feedback or a question for the admin, feel free to submit them separately. We appreciate your input!");
         observer.unobserve(entry.target);
       }
     });
