@@ -125,8 +125,7 @@ const StyledButton = styled.button`
   font-size: 16px;
   font-weight: bold;
   color: #fff;
-  background: linear-gradient(45deg, #ff7e5f, #feb47b);
-  background-size: 200% 200%;
+  background: linear-gradient(135deg, #2f2f2f, #464646);
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -139,16 +138,26 @@ const StyledButton = styled.button`
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, #ff7e5f, #feb47b);
-    background-size: 200% 200%;
+    background: linear-gradient(135deg, #2f2f2f, #464646);
     opacity: 0.5;
     z-index: -1;
     animation: ${gradientAnimation} 4s ease infinite;
   }
 
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+    z-index: 0;
+  }
+
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(255, 126, 95, 0.3);
+    box-shadow: 0 10px 20px rgba(47, 47, 47, 0.3);
   }
 `;
 
