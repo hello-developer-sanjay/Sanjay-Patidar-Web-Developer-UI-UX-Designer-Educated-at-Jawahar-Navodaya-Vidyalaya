@@ -5,11 +5,14 @@ import  { keyframes } from 'styled-components';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const StyledWrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  min-height: 50vh;
   text-align: center;
   background-color: #f5f5f5;
   border-radius: 10px;
@@ -179,6 +182,18 @@ const ProtectedPage = () => {
     const [userProfiles, setUserProfiles] = useState([]);
     const [feedbacks, setFeedbacks] = useState([]);
     const [queries, setQueries] = useState([]);
+    useEffect(() => {
+      // Display a warning toast message
+      toast.warning("Warning: This page is protected. Unauthorized access is not allowed.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }, []); // Run only once on component mount
+  
   
     useEffect(() => {
       const fetchData = async () => {
@@ -250,7 +265,14 @@ const ProtectedPage = () => {
               </UnlockButton>
             </div>
             <StyledButton onClick={handlePasswordSubmit}>Access Dashboard
-</StyledButton>
+ </StyledButton>
+<div>
+            <img
+              src="https://sanjaybasket.s3.ap-south-1.amazonaws.com/admin.gif"
+              alt="Admin Only GIF"
+              style={{ maxWidth: '100%', marginTop: '20px' }}
+            />
+          </div>
           </>
         ) : (
           <>
