@@ -194,7 +194,7 @@ const ProtectedPage = () => {
               draggable: true,
               progress: undefined, 
               style: {
-                background: "#333", 
+background: "#EB4B13", 
                 color: "#fff",
                 boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.4)", 
                 borderRadius: "10px", 
