@@ -186,8 +186,8 @@ const ProtectedPage = () => {
       // Display a warning toast message
     toast.warning("Unauthorized access! This page is restricted to admin only. If you believe this is a mistake, please contact support.", 
    {
-       position: "top-right", 
-              autoClose: 7000, 
+       position: "top-left", 
+              autoClose: 10000, 
               hideProgressBar: false,
               closeOnClick: true, 
               pauseOnHover: true,
