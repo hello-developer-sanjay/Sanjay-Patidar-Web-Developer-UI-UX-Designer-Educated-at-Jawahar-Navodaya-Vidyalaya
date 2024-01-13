@@ -66,7 +66,9 @@ const Nav = styled.nav`
   @media (max-width: 768px) {
     .logo-small {
       display: block;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
+            font-weight: normal;
+
     }
 
     .logo-large {
