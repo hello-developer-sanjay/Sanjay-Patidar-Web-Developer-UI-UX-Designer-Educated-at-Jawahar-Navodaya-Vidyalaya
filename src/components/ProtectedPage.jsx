@@ -186,12 +186,19 @@ const ProtectedPage = () => {
       // Display a warning toast message
     toast.warning("Unauthorized access! This page is restricted to admin only. If you believe this is a mistake, please contact support.", 
    {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
+       position: "top-right", 
+              autoClose: 7000, 
+              hideProgressBar: false,
+              closeOnClick: true, 
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined, 
+              style: {
+                background: "#333", 
+                color: "#fff",
+                boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.4)", 
+                borderRadius: "10px", 
+              },
       });
     }, []); // Run only once on component mount
   
