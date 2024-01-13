@@ -184,7 +184,8 @@ const ProtectedPage = () => {
     const [queries, setQueries] = useState([]);
     useEffect(() => {
       // Display a warning toast message
-      toast.warning("Warning: This page is protected. Unauthorized access is not allowed.", {
+    toast.warning("Unauthorized access! This page is restricted to admin only. If you believe this is a mistake, please contact support.");
+  , {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
