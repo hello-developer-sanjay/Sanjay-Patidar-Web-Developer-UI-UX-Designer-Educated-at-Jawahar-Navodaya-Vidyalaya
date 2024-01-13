@@ -117,7 +117,6 @@ const gradientAnimation = keyframes`
     background-position: 0% 50%;
   }
 `;
-
 const StyledButton = styled.button`
   position: relative;
   overflow: hidden;
@@ -161,6 +160,7 @@ const StyledButton = styled.button`
   }
 `;
 
+
 const UnlockButton = styled.button`
   margin-left: 10px;
   padding: 12px;
@@ -191,25 +191,44 @@ const ProtectedPage = () => {
     const [userProfiles, setUserProfiles] = useState([]);
     const [feedbacks, setFeedbacks] = useState([]);
     const [queries, setQueries] = useState([]);
+    const [userDetails, setUserDetails] = useState([]); // New state to store user details
+
+    useEffect(() => {
+      // Fetch user details after successful authentication
+      const fetchUserDetails = async () => {
+        try {
+          const userDetailsResponse = await axios.get('https://portfolio-back-aruc.onrender.com/api/userdetails');
+          setUserDetails(userDetailsResponse.data);
+        } catch (error) {
+          console.error('Error fetching user details:', error);
+        }
+      };
+  
+      if (authenticated) {
+        fetchUserDetails();
+      }
+    }, [authenticated]);
+  
     useEffect(() => {
       // Display a warning toast message
       toast.warning("Caution: This page is restricted to admin only, involving the management of sensitive information. Unauthorized access is strictly forbidden.", {
-   
-       position: "top-left", 
-              autoClose: 10000, 
-              hideProgressBar: false,
-              closeOnClick: true, 
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined, 
-              style: {
-background: "#EB4B13", 
-                color: "#fff",
-                boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.4)", 
-                borderRadius: "10px", 
-              },
+
+
+              position: "top-left", 
+        autoClose: 10000, 
+        hideProgressBar: false, 
+        closeOnClick: true, 
+        pauseOnHover: true, 
+        draggable: true, 
+        progress: undefined, 
+        style: {
+          background: "#EB4B13", 
+          color: "#fff",
+          boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.4)", 
+          borderRadius: "10px", 
+        },
       });
-    }, []); // Run only once on component mount
+    }, []); 
   
   
     useEffect(() => {
@@ -283,19 +302,34 @@ background: "#EB4B13",
             </div>
             <StyledButton onClick={handlePasswordSubmit}>Access Dashboard
  </StyledButton>
-<div>
+ <div>
             <img
-              src="https://sanjaybasket.s3.ap-south-1.amazonaws.com/admin.gif"
+              src="https://sanjaybasket.s3.ap-south-1.amazonaws.com/admin.gif" 
               alt="Admin Only GIF"
-              style={{ maxWidth: '100%', marginTop: '20px' }}
+              style={{ maxWidth: '100%', marginTop: '20px',  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',  border: '2px solid #fff'
+              ,
+            }}
             />
           </div>
+ 
           </>
         ) : (
           <>
             {/* Display user details along with feedbacks and queries */}
             <h1>Dashboard</h1>
-            <p>User Details :</p>
+            <p>User wantToCollaborate:</p>
+          <ul>
+
+            {userDetails.map((user) => (
+              <li key={user._id.$oid}>
+                <strong>Full Name: {user.fullName}</strong>
+                <p>Want to Collaborate: {user.wantToCollaborate ? 'Yes' : 'No'}</p>
+                <p>Contact Number: {user.contactNumber}</p>
+              </li>
+            ))}
+          </ul>
+            <p>User Details:</p>
+
           <ul>
             {userProfiles.map((profile) => (
               <li key={profile._id.$oid}>
@@ -352,6 +386,7 @@ background: "#EB4B13",
               </li>
             ))}
           </ul>
+          
         </>
       )}
     </StyledWrapper>
