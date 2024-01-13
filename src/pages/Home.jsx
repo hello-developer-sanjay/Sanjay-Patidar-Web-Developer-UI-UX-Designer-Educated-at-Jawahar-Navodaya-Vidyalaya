@@ -5,7 +5,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { motion,useAnimation  } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-  
+  import { Helmet } from 'react-helmet';
+
 import {
   FaArrowRight,
   FaUserGraduate,
@@ -436,6 +437,19 @@ const Home = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.7, ease: 'easeInOut' }}
     >
+            <Helmet>
+    <title>Sanjay Patidar | Expert Web Developer & UI/UX Designer | Crafting Digital Experiences</title>
+    <meta
+      name="description"
+      content="Explore the professional journey of Sanjay Patidar, a skilled Web Developer and UI/UX Designer. Dive into a showcase of his expertise in web development and UI/UX design, featuring a collection of innovative projects, valuable experiences, and much more. Navigate through a portfolio that reflects passion, creativity, and a commitment to delivering exceptional digital solutions."
+    />
+    <script type="application/ld+json">
+      {JSON.stringify({
+        '@context': 'http://schema.org',
+        '@type': 'ItemList',
+      })}
+    </script>
+  </Helmet>
       <BackgroundOverlay />
       <ProfileImage
         src={profileImage1}
