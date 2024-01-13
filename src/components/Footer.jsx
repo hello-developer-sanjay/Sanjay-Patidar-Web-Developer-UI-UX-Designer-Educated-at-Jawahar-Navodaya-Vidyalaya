@@ -371,7 +371,7 @@ const footerRef = useRef(null);
               draggable: true, 
               progress: undefined, 
               style: {
-                background: "#333",
+                background: "#487503", 
                 color: "#fff", 
                 boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.4)", 
                 borderRadius: "10px", 
