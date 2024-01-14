@@ -1,15 +1,14 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PuffLoader } from 'react-spinners';
 
 const PageTransition = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const contentRef = useRef(null);
 
   const pageVariants = {
     initial: {
-      y: '100%',
+      y: '100vh',
       rotateX: 60,
       rotateY: 45,
       scale: 0.8,
@@ -27,7 +26,7 @@ const PageTransition = ({ children }) => {
     },
     exit: {
       opacity: 0,
-      y: '100%',
+      y: '100vh',
       rotateX: -60,
       rotateY: -45,
       scale: 0.8,
@@ -46,9 +45,6 @@ const PageTransition = ({ children }) => {
     const handleAnimationComplete = () => {
       setIsLoading(false);
     };
-
-    // Dynamically set contentHeight based on the actual content height
-    setContentHeight(`${contentRef.current.scrollHeight}px`);
 
     return () => {
       handleExitComplete();
@@ -93,13 +89,11 @@ const PageTransition = ({ children }) => {
             overflow: 'hidden',
             position: 'absolute',
             width: '100%',
-            height: '100%',
+            height: 'auto',
             perspective: '1200px',
           }}
         >
-          <div ref={contentRef} style={{ height: '100%' }}>
-            {children}
-          </div>
+          {children}
         </motion.div>
       </AnimatePresence>
     </div>
