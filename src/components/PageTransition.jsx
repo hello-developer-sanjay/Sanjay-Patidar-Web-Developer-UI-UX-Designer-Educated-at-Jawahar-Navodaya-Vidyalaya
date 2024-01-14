@@ -1,41 +1,11 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PuffLoader } from 'react-spinners';
 
 const PageTransition = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
-
-  const pageVariants = {
-    initial: {
-      y: '100vh',
-      rotateX: 60,
-      rotateY: 45,
-      scale: 0.8,
-    },
-    animate: {
-      opacity: 1,
-      y: 0,
-      rotateX: 0,
-      rotateY: 0,
-      scale: 1,
-      transition: {
-        duration: 2.5,
-        ease: [0.4, 0, 0.2, 1],
-      },
-    },
-    exit: {
-      opacity: 0,
-      y: '100vh',
-      rotateX: -60,
-      rotateY: -45,
-      scale: 0.8,
-      transition: {
-        duration: 2.5,
-        ease: [0.4, 0, 0.2, 1],
-      },
-    },
-  };
+  const contentRef = useRef(null);
 
   useEffect(() => {
     const handleExitComplete = () => {
@@ -83,7 +53,6 @@ const PageTransition = ({ children }) => {
           initial="initial"
           animate="animate"
           exit="exit"
-          variants={pageVariants}
           onAnimationComplete={() => setIsLoading(false)}
           style={{
             overflow: 'hidden',
@@ -93,7 +62,15 @@ const PageTransition = ({ children }) => {
             perspective: '1200px',
           }}
         >
-          {children}
+          <motion.div
+            ref={contentRef}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, height: contentRef.current ? contentRef.current.scrollHeight : 'auto' }}
+            exit={{ opacity: 0 }}
+            style={{ overflow: 'hidden' }}
+          >
+            {children}
+          </motion.div>
         </motion.div>
       </AnimatePresence>
     </div>
