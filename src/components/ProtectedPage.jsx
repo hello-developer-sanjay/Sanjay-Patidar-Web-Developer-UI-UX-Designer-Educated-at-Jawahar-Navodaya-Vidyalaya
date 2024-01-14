@@ -14,9 +14,7 @@ const StyledWrapper = styled.div`
   padding: 20px;
   min-height: 50vh;
   text-align: center;
-  background-color: #f5f5f5;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
   h1 {
     font-size: 2rem;
