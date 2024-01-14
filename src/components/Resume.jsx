@@ -97,7 +97,7 @@ const ResumeLink = styled.a`
 `;
 
 const Resume = () => {
-  const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Sanjay+Patidar+Resume.pdf';
+  const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Sanjay_Patidar_Web_Developer_Resume.pdf';
 
   return (
     <ResumeContainer>
