@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PuffLoader } from 'react-spinners';
 
 const PageTransition = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [contentHeight, setContentHeight] = useState('auto');
+  const contentRef = useRef(null);
 
   const pageVariants = {
     initial: {
@@ -46,14 +48,21 @@ const PageTransition = ({ children }) => {
       setIsLoading(false);
     };
 
+    if (contentRef.current) {
+      setContentHeight(`${contentRef.current.offsetHeight}px`);
+    }
+
     return () => {
       handleExitComplete();
       handleAnimationComplete();
     };
   }, []);
 
+  // Calculate the minimum height based on viewport height
+  const minViewportHeight = window.innerHeight;
+
   return (
-    <div style={{ position: 'relative', height: '100vh', overflow: 'hidden' }}>
+    <div style={{ position: 'relative', overflowY: 'scroll', minHeight: `${minViewportHeight}px` }}>
       <AnimatePresence wait>
         {isLoading && (
           <motion.div
@@ -89,11 +98,11 @@ const PageTransition = ({ children }) => {
             overflow: 'visible',
             position: 'absolute',
             width: '100%',
-            height: '100%',
+            height: contentHeight,
             perspective: '1200px',
           }}
         >
-          {children}
+          <div ref={contentRef}>{children}</div>
         </motion.div>
       </AnimatePresence>
     </div>
