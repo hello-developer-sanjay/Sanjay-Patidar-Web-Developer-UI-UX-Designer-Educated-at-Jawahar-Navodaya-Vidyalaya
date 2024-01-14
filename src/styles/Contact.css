@@ -3,6 +3,8 @@
   margin: 0 auto;
   padding: 20px;
   border-radius: 8px;
+    height: "100%";
+
   position: relative;
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
