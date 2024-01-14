@@ -77,7 +77,16 @@ const Contact = () => {
      
 
       {submitMessage && <p className="submit-message">{submitMessage}</p>}
- <div style={{
+      
+      {adminInfo && (
+        <div className="admin-info">
+          <h3>Admin Information:</h3>
+          <p>Admin: {adminInfo.admin}</p>
+          <p>Contact Number: {adminInfo.contactNumber}</p>
+          <p>Address: {adminInfo.address}</p>
+        </div>
+      )}
+       <div style={{
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -94,15 +103,7 @@ const Contact = () => {
   />
 </div>
 
-      
-      {adminInfo && (
-        <div className="admin-info">
-          <h3>Admin Information:</h3>
-          <p>Admin: {adminInfo.admin}</p>
-          <p>Contact Number: {adminInfo.contactNumber}</p>
-          <p>Address: {adminInfo.address}</p>
-        </div>
-      )}
+
     </div>
   );
 };
