@@ -74,6 +74,23 @@ const Contact = () => {
           Submit
         </button>
       </form>
+      <div style={{
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+}}>
+  <img
+    src="https://sanjaybasket.s3.ap-south-1.amazonaws.com/welcome.gif" 
+    alt="Admin Only GIF"
+    style={{
+      width: '100%', 
+      marginTop: '20px', 
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',  
+      border: '2px solid #fff'
+    }}
+  />
+</div>
+
 
       {submitMessage && <p className="submit-message">{submitMessage}</p>}
       {adminInfo && (
