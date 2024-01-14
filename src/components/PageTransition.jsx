@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PuffLoader } from 'react-spinners';
 
 const PageTransition = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [contentHeight, setContentHeight] = useState('100vh');
+  const contentRef = useRef(null);
 
   const pageVariants = {
     initial: {
-      y: contentHeight,
+      y: '100%',
       rotateX: 60,
       rotateY: 45,
       scale: 0.8,
@@ -27,7 +27,7 @@ const PageTransition = ({ children }) => {
     },
     exit: {
       opacity: 0,
-      y: contentHeight,
+      y: '100%',
       rotateX: -60,
       rotateY: -45,
       scale: 0.8,
@@ -48,7 +48,7 @@ const PageTransition = ({ children }) => {
     };
 
     // Dynamically set contentHeight based on the actual content height
-    setContentHeight(`${document.body.scrollHeight}px`);
+    setContentHeight(`${contentRef.current.scrollHeight}px`);
 
     return () => {
       handleExitComplete();
@@ -57,7 +57,7 @@ const PageTransition = ({ children }) => {
   }, []);
 
   return (
-    <div style={{ position: 'relative', height: contentHeight, overflow: 'hidden' }}>
+    <div style={{ position: 'relative', height: '100vh', overflow: 'hidden' }}>
       <AnimatePresence wait>
         {isLoading && (
           <motion.div
@@ -97,7 +97,9 @@ const PageTransition = ({ children }) => {
             perspective: '1200px',
           }}
         >
-          {children}
+          <div ref={contentRef} style={{ height: '100%' }}>
+            {children}
+          </div>
         </motion.div>
       </AnimatePresence>
     </div>
