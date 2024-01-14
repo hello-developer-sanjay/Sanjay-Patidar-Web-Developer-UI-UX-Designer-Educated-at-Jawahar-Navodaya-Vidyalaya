@@ -7,6 +7,8 @@ import { motion,useAnimation  } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
   import { Helmet } from 'react-helmet';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   FaArrowRight,
   FaUserGraduate,
@@ -393,7 +395,24 @@ const SubtitleLink = styled.a`
 
 
 const Home = () => {
-
+ useEffect(() => {
+    // Display an info toast message
+    toast.info("Sit tight! Enjoy smooth transitions as you explore my portfolio. Each page is carefully crafted for a seamless experience.", {
+      position: "bottom-right", // Set toast position
+      autoClose: 10000, 
+      hideProgressBar: false, 
+      closeOnClick: true, 
+      pauseOnHover: true, 
+      draggable: true, 
+      progress: undefined, 
+      style: {
+        background: "#487503", 
+        color: "#fff",
+        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.4)", 
+        borderRadius: "10px",
+      },
+    });
+  }, []);
   const controlsArray = Array.from({ length: 7 }, () => useAnimation());
 
   const animateInView = async (index) => {
