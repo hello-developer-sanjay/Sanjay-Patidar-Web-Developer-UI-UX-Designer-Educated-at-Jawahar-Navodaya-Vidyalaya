@@ -1,12 +1,18 @@
 import styled, { keyframes } from 'styled-components';
 
 const ResumeContainer = styled.div`
-  background: linear-gradient(to right, #1a1a2e, #132238);
   padding: 4rem 0;
   text-align: center;
   border-radius: 20px;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-bottom: 0;
+  padding: 20px;
+  height: "100%";
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
 
   &::before {
     content: '';
@@ -15,9 +21,7 @@ const ResumeContainer = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, #132238, #1a1a2e);
     z-index: -1;
-    clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 50% 100%, 0% 90%);
   }
 `;
 
@@ -25,26 +29,13 @@ const ResumeContainer = styled.div`
 
 const ResumeTitle = styled.h2`
   font-size: 2.8rem;
-  margin-bottom: 1rem;
+  margin-bottom: 4rem;
   color: #333;
   position: relative;
   display: inline-block;
   font-family: 'Pacifico', cursive;
   padding-bottom: 8px;
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    background: linear-gradient(to right, #ff6b6b, #ffb347);
-    z-index: -1;
-    transition: transform 0.3s ease-in-out;
-    transform-origin: 100% 100%;
-    transform: scaleX(0);
-  }
 
   &:hover::after {
     transform: scaleX(1);
@@ -106,7 +97,7 @@ const ResumeLink = styled.a`
 `;
 
 const Resume = () => {
-  const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Sanjay_Patidar_Web_Developer_Resume.pdf';
+  const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Sanjay+Patidar+Resume.pdf';
 
   return (
     <ResumeContainer>
@@ -115,6 +106,22 @@ const Resume = () => {
       <ResumeLink href={pdfResumeUrl} target="_blank" rel="noopener noreferrer">
         Get Resume
       </ResumeLink>
+      <div style={{
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+}}>
+  <img
+    src="https://sanjaybasket.s3.ap-south-1.amazonaws.com/welcome.gif" 
+    alt="Admin Only GIF"
+    style={{
+      width: '100%', 
+      marginTop: '60px', 
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',  
+      border: '2px solid #fff'
+    }}
+  />
+</div>
     </ResumeContainer>
   );
 };
