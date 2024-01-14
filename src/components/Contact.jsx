@@ -74,7 +74,10 @@ const Contact = () => {
           Submit
         </button>
       </form>
-      <div style={{
+     
+
+      {submitMessage && <p className="submit-message">{submitMessage}</p>}
+ <div style={{
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -91,8 +94,7 @@ const Contact = () => {
   />
 </div>
 
-
-      {submitMessage && <p className="submit-message">{submitMessage}</p>}
+      
       {adminInfo && (
         <div className="admin-info">
           <h3>Admin Information:</h3>
