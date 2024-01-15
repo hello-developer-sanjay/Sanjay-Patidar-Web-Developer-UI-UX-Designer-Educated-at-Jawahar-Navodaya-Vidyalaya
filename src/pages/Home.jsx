@@ -445,22 +445,21 @@ const Home = () => {
       const lastVisited = await lastVisitedResponse.json();
       console.log('Last recorded visit:', lastVisited);
 
-      // Always save user visit to the server
-      const saveLocationResponse = await fetch('https://portfolio-back-aruc.onrender.com/api/uservisited', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          location: {
-            type: 'Point',
-            coordinates: [longitude, latitude],
-          },
-        }),
-      });
+const saveLocationResponse = await fetch('https://portfolio-back-aruc.onrender.com/api/uservisited', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    location: {
+      type: 'Point',
+      coordinates: [longitude, latitude],
+    },
+  }),
+});
 
-      const saveLocationData = await saveLocationResponse.json();
-      console.log('User location saved:', saveLocationData);
+const saveLocationData = await saveLocationResponse.json();
+console.log('User location saved:', saveLocationData);
     } catch (error) {
       console.error('Error saving user location:', error);
     }
