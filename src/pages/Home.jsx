@@ -427,27 +427,75 @@ const Home = () => {
       },
     });
   };
-  useEffect(() => {
-    const watchId = navigator.geolocation.watchPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-        console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-        setFormData((prevData) => ({
-          ...prevData,
-          latitude,
-          longitude,
-        }));
-      },
-      (error) => {
-        console.error('Error getting location:', error.message);
-      },
-      { enableHighAccuracy: true }
-    );
+ useEffect(() => {
+  const watchId = navigator.geolocation.watchPosition(
+    (position) => {
+      const { latitude, longitude } = position.coords;
 
-    return () => {
-      navigator.geolocation.clearWatch(watchId);
-    };
-  }, []);
+      // Fetch the last recorded user visit to compare coordinates
+      fetch('/api/uservisited/last', {
+        method: 'GET',
+      })
+        .then((response) => response.json())
+        .then((lastVisited) => {
+          if (!lastVisited || distance(lastVisited.location, [longitude, latitude]) > 0.1) {
+            // Save user visit to the server only if the location has changed
+            fetch('/api/uservisited', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                location: {
+                  type: 'Point',
+                  coordinates: [longitude, latitude],
+                },
+              }),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log('User location saved:', data);
+              })
+              .catch((error) => {
+                console.error('Error saving user location:', error);
+              });
+          } else {
+            console.log('Location unchanged, not saving.');
+          }
+        })
+        .catch((error) => {
+          console.error('Error fetching last user visit:', error);
+        });
+    },
+    (error) => {
+      console.error('Error getting location:', error.message);
+    },
+    { enableHighAccuracy: true }
+  );
+
+  return () => {
+    navigator.geolocation.clearWatch(watchId);
+  };
+}, []);
+
+// Helper function to calculate distance between two coordinates
+function distance(coord1, coord2) {
+  const [lat1, lon1] = coord1.coordinates;
+  const [lat2, lon2] = coord2;
+  const R = 6371; // Radius of the earth in km
+  const dLat = deg2rad(lat2 - lat1);
+  const dLon = deg2rad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const distance = R * c; // Distance in km
+  return distance;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI / 180);
+}
   const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.3 });
 
   useEffect(() => {
