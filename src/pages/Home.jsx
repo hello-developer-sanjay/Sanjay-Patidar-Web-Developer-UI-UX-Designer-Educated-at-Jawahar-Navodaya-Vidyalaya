@@ -428,50 +428,46 @@ const Home = () => {
     });
   };
   useEffect(() => {
-    const saveUserLocation = async () => {
-      try {
-        // Get user's current position
-        const position = await new Promise((resolve, reject) => {
-          navigator.geolocation.getCurrentPosition(resolve, reject, {
-            enableHighAccuracy: true,
-          });
+  const saveUserLocation = async () => {
+    try {
+      // Get user's current position
+      const position = await new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject, {
+          enableHighAccuracy: true,
         });
+      });
 
-        const { latitude, longitude } = position.coords;
-        console.log('User coordinates:', latitude, longitude);
+      const { latitude, longitude } = position.coords;
+      console.log('User coordinates:', latitude, longitude);
 
-        // Fetch the last recorded user visit to compare coordinates
-        const lastVisitedResponse = await fetch('https://portfolio-back-aruc.onrender.com/api/uservisited/last');
-        const lastVisited = await lastVisitedResponse.json();
-        console.log('Last recorded visit:', lastVisited);
+      // Fetch the last recorded user visit to compare coordinates
+      const lastVisitedResponse = await fetch('https://portfolio-back-aruc.onrender.com/api/uservisited/last');
+      const lastVisited = await lastVisitedResponse.json();
+      console.log('Last recorded visit:', lastVisited);
 
-        if (!lastVisited || distance(lastVisited.location, [longitude, latitude]) > 0.1) {
-          // Save user visit to the server only if the location has changed
-          const saveLocationResponse = await fetch('https://portfolio-back-aruc.onrender.com/api/uservisited', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              location: {
-                type: 'Point',
-                coordinates: [longitude, latitude],
-              },
-            }),
-          });
+      // Always save user visit to the server
+      const saveLocationResponse = await fetch('https://portfolio-back-aruc.onrender.com/api/uservisited', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          location: {
+            type: 'Point',
+            coordinates: [longitude, latitude],
+          },
+        }),
+      });
 
-          const saveLocationData = await saveLocationResponse.json();
-          console.log('User location saved:', saveLocationData);
-        } else {
-          console.log('Location unchanged, not saving.');
-        }
-      } catch (error) {
-        console.error('Error saving user location:', error);
-      }
-    };
+      const saveLocationData = await saveLocationResponse.json();
+      console.log('User location saved:', saveLocationData);
+    } catch (error) {
+      console.error('Error saving user location:', error);
+    }
+  };
 
-    saveUserLocation();
-  }, []);
+  saveUserLocation();
+}, []);
 
   // Helper function to calculate distance between two coordinates
   function distance(coord1, coord2) {
