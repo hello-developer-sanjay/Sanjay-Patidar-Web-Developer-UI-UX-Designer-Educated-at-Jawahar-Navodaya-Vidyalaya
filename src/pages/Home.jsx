@@ -441,13 +441,13 @@ const Home = () => {
         console.log('User coordinates:', latitude, longitude);
 
         // Fetch the last recorded user visit to compare coordinates
-        const lastVisitedResponse = await fetch('/api/uservisited/last');
+        const lastVisitedResponse = await fetch('https://portfolio-back-aruc.onrender.com/api/uservisited/last');
         const lastVisited = await lastVisitedResponse.json();
         console.log('Last recorded visit:', lastVisited);
 
         if (!lastVisited || distance(lastVisited.location, [longitude, latitude]) > 0.1) {
           // Save user visit to the server only if the location has changed
-          const saveLocationResponse = await fetch('/api/uservisited', {
+          const saveLocationResponse = await fetch('https://portfolio-back-aruc.onrender.com/api/uservisited', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
