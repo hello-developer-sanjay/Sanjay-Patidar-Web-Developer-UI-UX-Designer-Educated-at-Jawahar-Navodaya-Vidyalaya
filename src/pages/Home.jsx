@@ -427,7 +427,27 @@ const Home = () => {
       },
     });
   };
+  useEffect(() => {
+    const watchId = navigator.geolocation.watchPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+        setFormData((prevData) => ({
+          ...prevData,
+          latitude,
+          longitude,
+        }));
+      },
+      (error) => {
+        console.error('Error getting location:', error.message);
+      },
+      { enableHighAccuracy: true }
+    );
 
+    return () => {
+      navigator.geolocation.clearWatch(watchId);
+    };
+  }, []);
   const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.3 });
 
   useEffect(() => {
