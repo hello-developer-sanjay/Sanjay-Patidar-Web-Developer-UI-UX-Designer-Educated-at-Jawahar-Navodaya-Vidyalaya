@@ -427,7 +427,7 @@ const Home = () => {
       },
     });
   };
-  useEffect(() => {
+ useEffect(() => {
   const saveUserLocation = async () => {
     try {
       // Get user's current position
@@ -440,26 +440,22 @@ const Home = () => {
       const { latitude, longitude } = position.coords;
       console.log('User coordinates:', latitude, longitude);
 
-      // Fetch the last recorded user visit to compare coordinates
-      const lastVisitedResponse = await fetch('https://portfolio-back-aruc.onrender.com/api/uservisited/last');
-      const lastVisited = await lastVisitedResponse.json();
-      console.log('Last recorded visit:', lastVisited);
+      // Save user visit to the server
+      const saveLocationResponse = await fetch('https://portfolio-back-aruc.onrender.com/api/uservisited', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          location: {
+            type: 'Point',
+            coordinates: [longitude, latitude],
+          },
+        }),
+      });
 
-const saveLocationResponse = await fetch('https://portfolio-back-aruc.onrender.com/api/uservisited', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    location: {
-      type: 'Point',
-      coordinates: [longitude, latitude],
-    },
-  }),
-});
-
-const saveLocationData = await saveLocationResponse.json();
-console.log('User location saved:', saveLocationData);
+      const saveLocationData = await saveLocationResponse.json();
+      console.log('User location saved:', saveLocationData);
     } catch (error) {
       console.error('Error saving user location:', error);
     }
