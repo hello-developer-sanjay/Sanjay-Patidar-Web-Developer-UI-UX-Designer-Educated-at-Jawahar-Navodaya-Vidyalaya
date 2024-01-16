@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import  { useState, useEffect } from 'react';
 
 const ResumeContainer = styled.div`
   padding: 4rem 0;
@@ -71,6 +72,7 @@ const ResumeLink = styled.a`
   text-decoration: none;
   font-weight: bold;
   font-size: 1.4rem;
+  curser:pointer;
   letter-spacing: 1px;
   position: relative;
   overflow: hidden;
@@ -97,31 +99,82 @@ const ResumeLink = styled.a`
 `;
 
 const Resume = () => {
-  const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Sanjay_Patidar_Web_Developer_Resume.pdf';
+  const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Sanjay+Patidar+Resume.pdf';
+  const [downloadCount, setDownloadCount] = useState(0);
+  const [loading, setLoading] = useState(false);
+
+  // Function to handle resume link clicks
+  const handleResumeClick = async () => {
+    try {
+      // Set loading state to true while waiting for the response
+      setLoading(true);
+
+      // Make a POST request to the backend to increment the click count
+      await fetch('https://portfolio-back-aruc.onrender.com/api/increment-resume-clicks', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      // Fetch the current download count after the click
+      const response = await fetch('https://portfolio-back-aruc.onrender.com/api/get-resume-click-count');
+      const data = await response.json();
+
+      // Update the local state with the new download count
+      setDownloadCount(data.count);
+
+      // After the request is successful, open the resume link in a new tab
+      window.open(pdfResumeUrl, '_blank');
+    } catch (error) {
+      console.error('Error incrementing resume click count:', error);
+    } finally {
+      // Set loading state back to false after the request is complete
+      setLoading(false);
+    }
+  };
+
+  // Fetch the initial download count when the component mounts
+  useEffect(() => {
+    const fetchDownloadCount = async () => {
+      try {
+        const response = await fetch('https://portfolio-back-aruc.onrender.com/api/get-resume-click-count');
+        const data = await response.json();
+        setDownloadCount(data.count);
+      } catch (error) {
+        console.error('Error fetching resume click count:', error);
+      }
+    };
+
+    fetchDownloadCount();
+  }, []);
 
   return (
     <ResumeContainer>
       <ResumeTitle>Unlock My Resume</ResumeTitle>
       <ResumeSubtitle>Click the link below to access my full resume.</ResumeSubtitle>
-      <ResumeLink href={pdfResumeUrl} target="_blank" rel="noopener noreferrer">
-        Get Resume
+      {/* Disable the link when loading to prevent re-clicks */}
+      <ResumeLink onClick={handleResumeClick} disabled={loading}>
+        {loading ? 'Opening Resume...' : 'Get Resume'}
       </ResumeLink>
+      <p>Resume Download Count: {downloadCount}</p>
+
       <div style={{
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-}}>
-  <img
-    src="https://sanjaybasket.s3.ap-south-1.amazonaws.com/welcome.gif" 
-    alt="Admin Only GIF"
-    style={{
-      width: '100%', 
-      marginTop: '60px', 
-      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',  
-      border: '2px solid #fff'
-    }}
-  />
-</div>
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+        <img
+          src="https://sanjaybasket.s3.ap-south-1.amazonaws.com/welcome.gif"
+          alt="Admin Only GIF"
+          style={{
+            width: '100%',
+            marginTop: '60px',
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+            border: '2px solid #fff',
+          }}
+        />
+      </div>
     </ResumeContainer>
   );
 };
