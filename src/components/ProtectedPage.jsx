@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const StyledWrapper = styled.div`
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
   min-height: 50vh;
@@ -206,7 +206,25 @@ const ProtectedPage = () => {
         fetchUserDetails();
       }
     }, [authenticated]);
-  
+    const [userVisitedLocations, setUserVisitedLocations] = useState([]);
+
+  useEffect(() => {
+    // Fetch user visited locations after successful authentication
+    const fetchUserVisitedLocations = async () => {
+      try {
+        const userVisitedLocationsResponse = await axios.get('https://portfolio-back-aruc.onrender.com/api/uservisited');
+        setUserVisitedLocations(userVisitedLocationsResponse.data);
+      } catch (error) {
+        console.error('Error fetching user visited locations:', error);
+      }
+    };
+
+    if (authenticated) {
+      fetchUserVisitedLocations();
+    }
+  }, [authenticated]);
+
+
     useEffect(() => {
       // Display a warning toast message
       toast.warning("Caution: This page is restricted to admin only, involving the management of sensitive information. Unauthorized access is strictly forbidden.", {
@@ -300,16 +318,23 @@ const ProtectedPage = () => {
             </div>
             <StyledButton onClick={handlePasswordSubmit}>Access Dashboard
  </StyledButton>
- <div>
-            <img
-              src="https://sanjaybasket.s3.ap-south-1.amazonaws.com/admin.gif" 
-              alt="Admin Only GIF"
-              style={{ maxWidth: '100%', marginTop: '20px',  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',  border: '2px solid #fff'
-              ,
-            }}
-            />
-          </div>
- 
+ <div style={{
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+}}>
+  <img
+    src="https://sanjaybasket.s3.ap-south-1.amazonaws.com/admin.gif" 
+    alt="Admin Only GIF"
+    style={{
+      width: '100%', 
+      marginTop: '20px', 
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',  
+      border: '2px solid #fff'
+    }}
+  />
+</div>
+
           </>
         ) : (
           <>
@@ -384,7 +409,34 @@ const ProtectedPage = () => {
               </li>
             ))}
           </ul>
-          
+          <h1>User Visited Locations</h1>
+          <ul>
+            {userVisitedLocations.map((location) => (
+              <li key={location._id}>
+                <strong>User ID: {location.userId}</strong>
+                {/* Display map with visited location coordinates */}
+                <MapContainer
+                  center={[location.location.coordinates[1], location.location.coordinates[0]]}
+                  zoom={13}
+                  style={{ height: '200px', width: '100%' }}
+                >
+                  <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  />
+                  <Marker
+                    position={[location.location.coordinates[1], location.location.coordinates[0]]}
+                  >
+                    <Popup>
+                      User Visited Location<br />
+                      Latitude: {location.location.coordinates[1]}<br />
+                      Longitude: {location.location.coordinates[0]}
+                    </Popup>
+                  </Marker>
+                </MapContainer>
+              </li>
+            ))}
+          </ul>
+
         </>
       )}
     </StyledWrapper>
