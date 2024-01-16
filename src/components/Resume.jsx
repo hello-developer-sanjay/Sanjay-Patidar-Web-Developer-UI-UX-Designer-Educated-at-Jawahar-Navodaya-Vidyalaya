@@ -72,7 +72,7 @@ const ResumeLink = styled.a`
   text-decoration: none;
   font-weight: bold;
   font-size: 1.4rem;
-  curser:pointer;
+  cursor:pointer;
   letter-spacing: 1px;
   position: relative;
   overflow: hidden;
