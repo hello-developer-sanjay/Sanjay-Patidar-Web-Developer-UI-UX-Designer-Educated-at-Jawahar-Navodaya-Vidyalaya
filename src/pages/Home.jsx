@@ -399,17 +399,17 @@ const Home = () => {
     latitude: null,
     longitude: null,
   });
-
   const controlsArray = Array.from({ length: 7 }, () => useAnimation());
-  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.3 });
-  const [isLocationUpdating, setIsLocationUpdating] = useState(false);
 
   useEffect(() => {
     const watchId = navigator.geolocation.watchPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
         console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-        setIsLocationUpdating(true);
+        setFormData({
+          latitude,
+          longitude,
+        });
 
         // Send coordinates to the server
         fetch('https://portfolio-back-aruc.onrender.com/api/store-visited-location', {
@@ -422,17 +422,20 @@ const Home = () => {
           .then(response => response.json())
           .then(data => {
             console.log(data);
+            // Assuming you don't want to trigger animation when location updates
+            // You can add a condition here based on your logic
+            if (data.message === 'Location not stored (user did not move more than 1 km)') {
+              // Do not trigger animation
+            } else {
+              // Trigger animation if needed
+            }
           })
           .catch(error => {
             console.error('Error storing location:', error);
-          })
-          .finally(() => {
-            setIsLocationUpdating(false);
           });
       },
       (error) => {
         console.error('Error getting location:', error.message);
-        setIsLocationUpdating(false);
       },
       { enableHighAccuracy: true }
     );
@@ -441,8 +444,6 @@ const Home = () => {
       navigator.geolocation.clearWatch(watchId);
     };
   }, []);
-
-
 
 
  useEffect(() => {
@@ -463,48 +464,48 @@ const Home = () => {
       },
     });
   }, []);
-  
+
   const animateInView = async (index) => {
-    if (inView && !isLocationUpdating) {
-      await controlsArray[index].start({
-        y: 0,
-        opacity: 1,
-        rotate: [0, (index % 2 === 0 ? 360 : -360)],
-        transition: {
-          duration: 1.5,
-          type: 'spring',
-          stiffness: 100,
-        },
-      });
-    }
+    await controlsArray[index].start({
+      y: 0,
+      opacity: 1,
+      rotate: [0, (index % 2 === 0 ? 360 : -360)],
+      transition: {
+        duration: 1.5,
+        type: 'spring',
+        stiffness: 100,
+      },
+    });
   };
+
+  
+  
+  
+  
+
+
+
+
+  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.3 });
+
   useEffect(() => {
     if (inView) {
       controlsArray.forEach(async (_, index) => {
         await animateInView(index);
       });
     }
-  }, [controlsArray, inView, isLocationUpdating]);
-
-
-  
-  
-  
-  
-
-
-
-
+  }, [controlsArray, inView]);
 
   useEffect(() => {
     // Create a slideshow effect
     const interval = setInterval(() => {
-      animateInView(0); // Assuming you want to animate the first ActionLink
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      // Update the profile image
+      document.querySelector('.profile-image').src = images[currentImageIndex];
     }, 5000);
 
     return () => clearInterval(interval);
   }, []);
-
 
   return (
     <HomeContainer
@@ -567,9 +568,7 @@ const Home = () => {
         animate={controlsArray[index]}
         transition={{ delay: 0.1 * index, duration: 0.5 }}
         ref={ref}
-        onClick={() => animateInView(index)}
       >
-
           <ActionLink to={link.to}>
             {link.icon}
             {link.text}
