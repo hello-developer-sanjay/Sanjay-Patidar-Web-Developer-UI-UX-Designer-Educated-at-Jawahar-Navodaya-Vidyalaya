@@ -415,8 +415,10 @@ const ProtectedPage = () => {
               <li key={location._id}>
                 <strong>User ID: {location.userId}</strong>
                            <p>IP Address: {location.ip}</p>
+      
             <p>Fingerprint: {location.fingerprint}</p>
- 
+                 <p>visitedAt : {location.visitedAt}</p>
+
                 <MapContainer
                   center={[location.location.coordinates[1], location.location.coordinates[0]]}
                   zoom={13}
