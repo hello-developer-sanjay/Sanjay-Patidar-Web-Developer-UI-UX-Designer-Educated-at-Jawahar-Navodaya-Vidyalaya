@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { motion,useAnimation  } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
   import { Helmet } from 'react-helmet';
+  import { useRef } from 'react';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -400,7 +401,7 @@ const Home = () => {
     longitude: null,
   });
   const [isLocationTracking, setIsLocationTracking] = useState(false);
-  const [locationAnimationTriggered, setLocationAnimationTriggered] = useState(false);
+  const animationTriggered = useRef(false);
 
   useEffect(() => {
     const watchId = navigator.geolocation.watchPosition(
@@ -412,9 +413,8 @@ const Home = () => {
           longitude,
         });
 
-        if (!locationAnimationTriggered) {
+        if (!animationTriggered.current) {
           setIsLocationTracking(true); // Set location tracking to true before animation
-          setLocationAnimationTriggered(true); // Prevent animation triggering on subsequent renders
         }
 
         // Send coordinates to the server
@@ -433,11 +433,15 @@ const Home = () => {
           .catch(error => {
             console.error('Error storing location:', error);
             setIsLocationTracking(false); // Set location tracking to false on error
+          })
+          .finally(() => {
+            animationTriggered.current = true; // Prevent animation triggering on subsequent renders
           });
       },
       (error) => {
         console.error('Error getting location:', error.message);
         setIsLocationTracking(false); // Set location tracking to false on error
+        animationTriggered.current = true; // Prevent animation triggering on subsequent renders
       },
       { enableHighAccuracy: true }
     );
@@ -445,7 +449,7 @@ const Home = () => {
     return () => {
       navigator.geolocation.clearWatch(watchId);
     };
-  }, [isLocationTracking, locationAnimationTriggered]);
+  }, [isLocationTracking]);
 
 
 
@@ -567,17 +571,19 @@ const Home = () => {
         { to: "/contact", text: "Contact Me", icon: <FaArrowRight /> },
       ].map((link, index) => (
         <motion.div
-        key={index}
-        initial={{ opacity: 0, y: 20 }}
-        animate={controlsArray[index]}
-        transition={{ delay: 0.1 * index, duration: 0.5 }}
-        ref={ref}
-        onClick={() => {
-          setLocationAnimationTriggered(false); // Allow animation on the next render
-          animateInView(index);
-        }}
-      >
-        <ActionLink to={link.to}>
+          key={index}
+          initial={{ opacity: 0, y: 20 }}
+          animate={controlsArray[index]}
+          transition={{ delay: 0.1 * index, duration: 0.5 }}
+          ref={ref}
+          onClick={() => {
+            setIsLocationTracking(false); // Allow animation on the next render
+            animateInView(index);
+          }}
+        >
+
+
+          <ActionLink to={link.to}>
             {link.icon}
             {link.text}
           </ActionLink>
