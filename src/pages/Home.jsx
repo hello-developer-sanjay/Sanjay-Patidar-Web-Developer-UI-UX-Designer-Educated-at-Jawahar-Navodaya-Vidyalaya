@@ -400,7 +400,7 @@ const Home = () => {
     longitude: null,
   });
   const [isLocationTracking, setIsLocationTracking] = useState(false);
-  const [initialRender, setInitialRender] = useState(true);
+  const [locationAnimationTriggered, setLocationAnimationTriggered] = useState(false);
 
   useEffect(() => {
     const watchId = navigator.geolocation.watchPosition(
@@ -411,6 +411,11 @@ const Home = () => {
           latitude,
           longitude,
         });
+
+        if (!locationAnimationTriggered) {
+          setIsLocationTracking(true); // Set location tracking to true before animation
+          setLocationAnimationTriggered(true); // Prevent animation triggering on subsequent renders
+        }
 
         // Send coordinates to the server
         fetch('https://portfolio-back-aruc.onrender.com/api/store-visited-location', {
@@ -437,12 +442,11 @@ const Home = () => {
       { enableHighAccuracy: true }
     );
 
-    setInitialRender(false);
-
     return () => {
       navigator.geolocation.clearWatch(watchId);
     };
-  }, [isLocationTracking, initialRender]);
+  }, [isLocationTracking, locationAnimationTriggered]);
+
 
 
  useEffect(() => {
@@ -569,13 +573,11 @@ const Home = () => {
         transition={{ delay: 0.1 * index, duration: 0.5 }}
         ref={ref}
         onClick={() => {
-          setIsLocationTracking(true); // Set location tracking to true before animation
+          setLocationAnimationTriggered(false); // Allow animation on the next render
           animateInView(index);
         }}
       >
-
-
-          <ActionLink to={link.to}>
+        <ActionLink to={link.to}>
             {link.icon}
             {link.text}
           </ActionLink>
