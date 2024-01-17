@@ -399,7 +399,7 @@ const Home = () => {
     latitude: null,
     longitude: null,
   });
-  const controlsArray = Array.from({ length: 7 }, () => useAnimation());
+  const [animationEnabled, setAnimationEnabled] = useState(true);
 
   useEffect(() => {
     const watchId = navigator.geolocation.watchPosition(
@@ -420,19 +420,8 @@ const Home = () => {
           body: JSON.stringify({ latitude, longitude }),
         })
           .then(response => response.json())
-          .then(data => {
-            console.log(data);
-            // Assuming you don't want to trigger animation when location updates
-            // You can add a condition here based on your logic
-            if (data.message === 'Location not stored (user did not move more than 1 km)') {
-              // Do not trigger animation
-            } else {
-              // Trigger animation if needed
-            }
-          })
-          .catch(error => {
-            console.error('Error storing location:', error);
-          });
+          .then(data => console.log(data))
+          .catch(error => console.error('Error storing location:', error));
       },
       (error) => {
         console.error('Error getting location:', error.message);
@@ -464,6 +453,7 @@ const Home = () => {
       },
     });
   }, []);
+  const controlsArray = Array.from({ length: 7 }, () => useAnimation());
 
   const animateInView = async (index) => {
     await controlsArray[index].start({
@@ -478,24 +468,26 @@ const Home = () => {
     });
   };
 
+
   
   
-  
-  
 
 
 
 
-  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.3 });
-
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.3 });
   useEffect(() => {
-    if (inView) {
+    if (inView && animationEnabled) {
       controlsArray.forEach(async (_, index) => {
         await animateInView(index);
       });
+      // Disable animation after the first trigger
+      setAnimationEnabled(false);
     }
-  }, [controlsArray, inView]);
+  }, [controlsArray, inView, animationEnabled]);
 
+
+  
   useEffect(() => {
     // Create a slideshow effect
     const interval = setInterval(() => {
@@ -567,9 +559,9 @@ const Home = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={controlsArray[index]}
         transition={{ delay: 0.1 * index, duration: 0.5 }}
-        ref={ref}
       >
-          <ActionLink to={link.to}>
+        <ActionLink to={link.to} ref={ref} onClick={() => animateInView(index)}>
+
             {link.icon}
             {link.text}
           </ActionLink>
