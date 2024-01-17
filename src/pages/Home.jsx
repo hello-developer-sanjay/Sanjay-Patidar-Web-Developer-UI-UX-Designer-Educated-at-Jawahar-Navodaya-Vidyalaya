@@ -399,7 +399,14 @@ const Home = () => {
     latitude: null,
     longitude: null,
   });
+  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.3 });
 
+  const onInView = () => {
+    controlsArray.forEach(async (_, index) => {
+      await animateInView(index);
+    });
+  };
+  
   useEffect(() => {
     const watchId = navigator.geolocation.watchPosition(
       (position) => {
@@ -475,7 +482,6 @@ const Home = () => {
 
 
 
-  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.3 });
 
   useEffect(() => {
     if (inView) {
@@ -552,21 +558,21 @@ const Home = () => {
         { to: "/contact", text: "Contact Me", icon: <FaArrowRight /> },
       ].map((link, index) => (
         <motion.div
-          key={index}
-          initial={{ opacity: 0, y: 20 }}
-          animate={controlsArray[index]}
-          transition={{ delay: 0.1 * index, duration: 0.5 }}
-          ref={ref}
-          onClick={() => animateInView(index)}
-        >
-          <ActionLink to={link.to}>
-            {link.icon}
-            {link.text}
-          </ActionLink>
-        </motion.div>
-      ))}
-    </ActionsContainer>
- 
+        key={index}
+        initial={{ opacity: 0, y: 20 }}
+        animate={controlsArray[index]}
+        transition={{ delay: 0.1 * index, duration: 0.5 }}
+        ref={ref}
+        onClick={() => animateInView(index)}
+      >
+        <ActionLink to={link.to}>
+          {link.icon}
+          {link.text}
+        </ActionLink>
+      </motion.div>
+    ))}
+  </ActionsContainer>
+
       <Subtitle>
         Want to know more? Check out my <SubtitleLink href="/blogs">Blogs</SubtitleLink> for tech insights and tutorials.
       </Subtitle>
