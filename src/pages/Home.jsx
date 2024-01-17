@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { motion,useAnimation  } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
   import { Helmet } from 'react-helmet';
-  import { useRef } from 'react';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -400,22 +399,17 @@ const Home = () => {
     latitude: null,
     longitude: null,
   });
-  const [isLocationTracking, setIsLocationTracking] = useState(false);
-  const animationTriggered = useRef(false);
+
+  const controlsArray = Array.from({ length: 7 }, () => useAnimation());
+  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.3 });
+  const [isLocationUpdating, setIsLocationUpdating] = useState(false);
 
   useEffect(() => {
     const watchId = navigator.geolocation.watchPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
         console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-        setFormData({
-          latitude,
-          longitude,
-        });
-
-        if (!animationTriggered.current) {
-          setIsLocationTracking(true); // Set location tracking to true before animation
-        }
+        setIsLocationUpdating(true);
 
         // Send coordinates to the server
         fetch('https://portfolio-back-aruc.onrender.com/api/store-visited-location', {
@@ -428,20 +422,17 @@ const Home = () => {
           .then(response => response.json())
           .then(data => {
             console.log(data);
-            setIsLocationTracking(false); // Set location tracking to false after storing
           })
           .catch(error => {
             console.error('Error storing location:', error);
-            setIsLocationTracking(false); // Set location tracking to false on error
           })
           .finally(() => {
-            animationTriggered.current = true; // Prevent animation triggering on subsequent renders
+            setIsLocationUpdating(false);
           });
       },
       (error) => {
         console.error('Error getting location:', error.message);
-        setIsLocationTracking(false); // Set location tracking to false on error
-        animationTriggered.current = true; // Prevent animation triggering on subsequent renders
+        setIsLocationUpdating(false);
       },
       { enableHighAccuracy: true }
     );
@@ -449,7 +440,8 @@ const Home = () => {
     return () => {
       navigator.geolocation.clearWatch(watchId);
     };
-  }, [isLocationTracking]);
+  }, []);
+
 
 
 
@@ -471,49 +463,48 @@ const Home = () => {
       },
     });
   }, []);
-  const controlsArray = Array.from({ length: 7 }, () => useAnimation());
-
+  
   const animateInView = async (index) => {
-    await controlsArray[index].start({
-      y: 0,
-      opacity: 1,
-      rotate: [0, (index % 2 === 0 ? 360 : -360)],
-      transition: {
-        duration: 1.5,
-        type: 'spring',
-        stiffness: 100,
-      },
-    });
+    if (inView && !isLocationUpdating) {
+      await controlsArray[index].start({
+        y: 0,
+        opacity: 1,
+        rotate: [0, (index % 2 === 0 ? 360 : -360)],
+        transition: {
+          duration: 1.5,
+          type: 'spring',
+          stiffness: 100,
+        },
+      });
+    }
   };
-
-  
-  
-  
-  
-
-
-
-
-  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.3 });
-
   useEffect(() => {
     if (inView) {
       controlsArray.forEach(async (_, index) => {
         await animateInView(index);
       });
     }
-  }, [controlsArray, inView]);
+  }, [controlsArray, inView, isLocationUpdating]);
+
+
+  
+  
+  
+  
+
+
+
+
 
   useEffect(() => {
     // Create a slideshow effect
     const interval = setInterval(() => {
-      currentImageIndex = (currentImageIndex + 1) % images.length;
-      // Update the profile image
-      document.querySelector('.profile-image').src = images[currentImageIndex];
+      animateInView(0); // Assuming you want to animate the first ActionLink
     }, 5000);
 
     return () => clearInterval(interval);
   }, []);
+
 
   return (
     <HomeContainer
@@ -571,17 +562,13 @@ const Home = () => {
         { to: "/contact", text: "Contact Me", icon: <FaArrowRight /> },
       ].map((link, index) => (
         <motion.div
-          key={index}
-          initial={{ opacity: 0, y: 20 }}
-          animate={controlsArray[index]}
-          transition={{ delay: 0.1 * index, duration: 0.5 }}
-          ref={ref}
-          onClick={() => {
-            setIsLocationTracking(false); // Allow animation on the next render
-            animateInView(index);
-          }}
-        >
-
+        key={index}
+        initial={{ opacity: 0, y: 20 }}
+        animate={controlsArray[index]}
+        transition={{ delay: 0.1 * index, duration: 0.5 }}
+        ref={ref}
+        onClick={() => animateInView(index)}
+      >
 
           <ActionLink to={link.to}>
             {link.icon}
