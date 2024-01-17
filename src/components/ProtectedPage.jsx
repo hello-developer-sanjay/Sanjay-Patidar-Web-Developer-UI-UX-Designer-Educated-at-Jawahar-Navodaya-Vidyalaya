@@ -414,7 +414,9 @@ const ProtectedPage = () => {
             {userVisitedLocations.map((location) => (
               <li key={location._id}>
                 <strong>User ID: {location.userId}</strong>
-                {/* Display map with visited location coordinates */}
+                           <p>IP Address: {location.ip}</p>
+            <p>Fingerprint: {location.fingerprint}</p>
+ 
                 <MapContainer
                   center={[location.location.coordinates[1], location.location.coordinates[0]]}
                   zoom={13}
