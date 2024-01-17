@@ -399,7 +399,9 @@ const Home = () => {
     latitude: null,
     longitude: null,
   });
-  const [animationTriggered, setAnimationTriggered] = useState(false);
+  const [isLocationTracking, setIsLocationTracking] = useState(false);
+  const [initialRender, setInitialRender] = useState(true);
+
   useEffect(() => {
     const watchId = navigator.geolocation.watchPosition(
       (position) => {
@@ -419,24 +421,28 @@ const Home = () => {
           body: JSON.stringify({ latitude, longitude }),
         })
           .then(response => response.json())
-          .then(data => console.log(data))
-          .catch(error => console.error('Error storing location:', error));
-
-        // Trigger animation only if it hasn't been triggered before
-        if (!animationTriggered) {
-          setAnimationTriggered(true);
-        }
+          .then(data => {
+            console.log(data);
+            setIsLocationTracking(false); // Set location tracking to false after storing
+          })
+          .catch(error => {
+            console.error('Error storing location:', error);
+            setIsLocationTracking(false); // Set location tracking to false on error
+          });
       },
       (error) => {
         console.error('Error getting location:', error.message);
+        setIsLocationTracking(false); // Set location tracking to false on error
       },
       { enableHighAccuracy: true }
     );
 
+    setInitialRender(false);
+
     return () => {
       navigator.geolocation.clearWatch(watchId);
     };
-  }, [animationTriggered]); // Include animationTriggered in the dependency array
+  }, [isLocationTracking, initialRender]);
 
 
  useEffect(() => {
@@ -557,13 +563,18 @@ const Home = () => {
         { to: "/contact", text: "Contact Me", icon: <FaArrowRight /> },
       ].map((link, index) => (
         <motion.div
-          key={index}
-          initial={{ opacity: 0, y: 20 }}
-          animate={controlsArray[index]}
-          transition={{ delay: 0.1 * index, duration: 0.5 }}
-          ref={ref}
-          onClick={() => animateInView(index)}
-        >
+        key={index}
+        initial={{ opacity: 0, y: 20 }}
+        animate={controlsArray[index]}
+        transition={{ delay: 0.1 * index, duration: 0.5 }}
+        ref={ref}
+        onClick={() => {
+          setIsLocationTracking(true); // Set location tracking to true before animation
+          animateInView(index);
+        }}
+      >
+
+
           <ActionLink to={link.to}>
             {link.icon}
             {link.text}
