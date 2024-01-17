@@ -424,6 +424,12 @@ const ProtectedPage = () => {
                            <p>IP Address: {location.ip}</p>
       
             <p>Fingerprint: {location.fingerprint}</p>
+                            <p>Browser: {location.userAgentDetails.browser}</p>
+            <p>Version: {location.userAgentDetails.version}</p>
+            <p>OS: {location.userAgentDetails.os}</p>
+            <p>Platform: {location.userAgentDetails.platform}</p>
+            <p>Source: {location.userAgentDetails.source}</p>
+
                  <p>visitedAt : {location.visitedAt}</p>
 
                 <MapContainer
