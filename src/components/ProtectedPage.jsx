@@ -94,14 +94,21 @@ const StyledWrapper = styled.div`
     margin-left: 10px;
   }
 
-  li {
+   li {
+    flex: 1 0 400px;  // Set a minimum width and allow flexibility to fit the screen
     border: 1px solid #ddd;
-    margin: 10px 0;
+    margin: 10px;
     padding: 15px;
     border-radius: 8px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;  // Hide any content that overflows
+
+    p {
+      word-wrap: break-word;  // Allow words to break and wrap onto the next line
+    }
   }
+
 `;
 
 const gradientAnimation = keyframes`
