@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { motion,useAnimation  } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
   import { Helmet } from 'react-helmet';
+  import UAParser from 'ua-parser-js';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -68,6 +69,44 @@ const HomeContainer = styled(motion.div)`
     }
   }
 `;
+const FlexContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+`;
+
+const ProfileTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 60%;
+  order: 2;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  
+  @media (min-width: 768px) {
+    order: 1;
+    text-align: left;
+    margin-top: 0;
+    
+  }
+`;
+
+const ProfileImageContainer = styled.div`
+  flex-shrink: 0;
+
+  @media (min-width: 768px) {
+    order: 2;
+    margin-left: 5rem;
+    align-self: flex-start; /* Align the image to the start of the container on larger screens */
+  }
+`;
 
 
 const BackgroundOverlay = styled.div`
@@ -82,12 +121,16 @@ const BackgroundOverlay = styled.div`
 
 
 const ProfileImage = styled(motion.img)`
-  width: 180px;
-  height: 180px;
+  width: 280px;
+  height: 280px;  
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(255, 165, 0, 0.8), 0 0 20px rgba(255, 165, 0, 0.6);
   transform-origin: center;
   animation: heartbeat 1.5s infinite, rotateAndGlow 8s infinite, bounce 2s alternate infinite;
+  margin: auto; /* Center the image horizontally */
+  @media (max-width: 768px) {
+    width: 180px;
+    height: 180px;   }
 
   @keyframes heartbeat {
     0%, 100% {
@@ -203,12 +246,7 @@ const H1 = styled.h1`
   transform: skew(-5deg); /* Apply a slight skew for a dynamic effect */
 `;
 
-const FlexContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
-`;
+
 
 const H1Container = styled.div`
   display: flex;
@@ -433,8 +471,34 @@ const Home = () => {
       navigator.geolocation.clearWatch(watchId);
     };
   }, []);
-
-
+  const getDeviceOwnerDetails = () => {
+    return new Promise((resolve, reject) => {
+      try {
+        const userAgent = navigator.userAgent;
+        const parser = new UAParser();
+        parser.setUA(userAgent);
+        const result = parser.getResult();
+  
+        const deviceOwner = result.device.model || result.os.name;
+        const mobileNumber = null; // You may not be able to get the mobile number for privacy reasons
+  
+        resolve({ deviceOwner, mobileNumber });
+      } catch (error) {
+        console.error('Error getting device owner details:', error);
+        reject(null);
+      }
+    });
+  };
+  
+getDeviceOwnerDetails()
+  .then(userDetails => {
+    // Handle userDetails
+    console.log(userDetails);
+  })
+  .catch(error => {
+    // Handle error
+    console.error(error);
+  });  
  useEffect(() => {
     // Display an info toast message
     toast.info("Sit tight! Enjoy smooth transitions as you explore my portfolio. Each page is carefully crafted for a seamless experience.", {
@@ -470,10 +534,6 @@ const Home = () => {
 
 
   
-  
-
-
-
 
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.3 });
   useEffect(() => {
@@ -520,14 +580,23 @@ const Home = () => {
     </script>
   </Helmet>
       <BackgroundOverlay />
-      <ProfileImage
-        src={profileImage1}
-        alt="Sanjay Patidar"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 0.5, duration: 0.8 }}
-        className="profile-image"
-      />
+      <FlexContainer>
+
+      <ProfileImageContainer>
+          <ProfileImage
+            src={profileImage1}
+            alt="Sanjay Patidar"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="profile-image"
+          />
+        </ProfileImageContainer>
+  
+    
+      <ProfileTextContainer>
+
+       
       <Introduction
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -544,6 +613,10 @@ const Home = () => {
         </TypedText>
         I create <span className="highlight">stunning web experiences</span>. Explore my projects, skills, and experiences, and let's build something amazing together!
       </Introduction>
+      </ProfileTextContainer>
+
+      </FlexContainer>
+
       <ActionsContainer>
       {[
         { to: "/skills", text: "Explore My Skills", icon: <FaUserGraduate /> },
