@@ -81,7 +81,6 @@ const FlexContainer = styled.div`
   }
 `;
 
-
 const ProfileTextContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -92,7 +91,7 @@ const ProfileTextContainer = styled.div`
   margin-right: 1rem;
   
   @media (min-width: 768px) {
-    order: 1;
+    order: 2;
     text-align: left;
     margin-top: 0;
 
@@ -105,12 +104,13 @@ const ProfileTextContainer = styled.div`
 
   }
 `;
+
 const ProfileImageContainer = styled.div`
   flex-shrink: 0;
 
   @media (min-width: 768px) {
-    order: 2;
-    margin-left: 5rem;
+    order: 1;
+    margin-right: 5rem;
     align-self: flex-start; /* Align the image to the start of the container on larger screens */
   }
 `;
@@ -242,8 +242,7 @@ const Introduction = styled(motion.p)`
     @media (max-width: 768px) {
   font-size: 1.5rem;
   line-height: 2rem;
-margin-left:1rem;
-margin-right: 1rem;
+
   }
   }
 
