@@ -122,15 +122,48 @@ const BackgroundOverlay = styled.div`
 
 const ProfileImage = styled(motion.img)`
   width: 380px;
-  height: 380px;  
+  height: 380px;
+  margin-top: 4rem;
+
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(255, 165, 0, 0.8), 0 0 20px rgba(255, 165, 0, 0.6);
   transform-origin: center;
   animation: heartbeat 1.5s infinite, rotateAndGlow 8s infinite, bounce 2s alternate infinite;
-  margin: auto; /* Center the image horizontally */
+
+  &.loading {
+    border: 2px solid transparent;
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      z-index: 1;
+      border-radius: 50%;
+      border: 2px solid #fff; // Change the color as needed
+      animation: loadingAnimation 1.5s linear infinite;
+    }
+  }
+
+  @keyframes loadingAnimation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+
+
   @media (max-width: 768px) {
     width: 180px;
-    height: 180px;   }
+    height: 180px;
+  margin-top : 0rem;
+}
 
   @keyframes heartbeat {
     0%, 100% {
@@ -183,6 +216,7 @@ const Introduction = styled(motion.p)`
   margin-bottom: 1rem;
   color: #ffffff; /* White on hover */
 
+  
   .highlight {
     position: relative;
     display: inline-block;
@@ -277,6 +311,7 @@ const TypedText = styled.span`
   display: block;
   margin-top: 1rem;
   margin-bottom: 3rem;
+  
   font-weight: bold;
   font-size: 4rem;
   background: linear-gradient(45deg, #00bcd4, #2196f3); /* Gradient from turquoise to blue */
@@ -315,6 +350,7 @@ const TypedText = styled.span`
 
   @media (max-width: 768px) {
     font-size: 1.2rem;
+   
   }
 `;
 
@@ -442,6 +478,7 @@ const Home = () => {
     longitude: null,
   });
   const [animationEnabled, setAnimationEnabled] = useState(true);
+  const [imageLoading, setImageLoading] = useState(true);
 
   useEffect(() => {
     const watchId = navigator.geolocation.watchPosition(
@@ -587,14 +624,15 @@ getDeviceOwnerDetails()
       <FlexContainer>
 
       <ProfileImageContainer>
-          <ProfileImage
-            src={profileImage1}
-            alt="Sanjay Patidar"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="profile-image"
-          />
+        <ProfileImage
+  src={profileImage1}
+  alt="Sanjay Patidar"
+  initial={{ scale: 0 }}
+  animate={{ scale: 1 }}
+  transition={{ delay: 0.5, duration: 0.8 }}
+  className={`profile-image ${imageLoading ? 'loading' : ''}`}
+  onLoad={() => setImageLoading(false)}
+/>
         </ProfileImageContainer>
   
     
