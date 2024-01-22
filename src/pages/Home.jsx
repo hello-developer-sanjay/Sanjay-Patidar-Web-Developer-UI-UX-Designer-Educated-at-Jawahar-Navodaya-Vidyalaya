@@ -183,7 +183,6 @@ const Introduction = styled(motion.p)`
   margin-bottom: 1rem;
   color: #ffffff; /* White on hover */
 
-  
   .highlight {
     position: relative;
     display: inline-block;
@@ -279,7 +278,7 @@ const TypedText = styled.span`
   margin-top: 1rem;
   margin-bottom: 3rem;
   font-weight: bold;
-  font-size: 3rem;
+  font-size: 4rem;
   background: linear-gradient(45deg, #00bcd4, #2196f3); /* Gradient from turquoise to blue */
   background-clip: text;
   -webkit-background-clip: text;
