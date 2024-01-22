@@ -85,7 +85,7 @@ const ProfileTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 60%;
+  max-width: 90%;
   order: 2;
   margin-top: 1rem;
   margin-right: 1rem;
