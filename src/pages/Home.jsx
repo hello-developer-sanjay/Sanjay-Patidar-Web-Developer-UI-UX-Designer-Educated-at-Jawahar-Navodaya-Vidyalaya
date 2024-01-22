@@ -81,11 +81,12 @@ const FlexContainer = styled.div`
   }
 `;
 
+
 const ProfileTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 90%;
+  max-width: 60%;
   order: 2;
   margin-top: 1rem;
   margin-right: 1rem;
@@ -94,10 +95,16 @@ const ProfileTextContainer = styled.div`
     order: 1;
     text-align: left;
     margin-top: 0;
+
+  }
+
+  
+  @media (max-width: 768px) {
     
+    max-width: 90%;
+
   }
 `;
-
 const ProfileImageContainer = styled.div`
   flex-shrink: 0;
 
