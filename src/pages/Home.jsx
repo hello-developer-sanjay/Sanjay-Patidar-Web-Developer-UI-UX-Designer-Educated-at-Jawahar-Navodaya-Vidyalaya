@@ -70,6 +70,8 @@ const HomeContainer = styled(motion.div)`
     }
   }
 `;
+
+
 const FlexContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -153,6 +155,18 @@ const ProfileImage = styled(motion.img)`
       border: 2px solid #fff; // Change the color as needed
       animation: loadingAnimation 1.5s linear infinite;
     }
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 0;
+      height: 100%;
+      border-left: 2px dashed #fff; // Change the color as needed
+      animation: loadingLineAnimation 1.5s linear infinite;
+    }
   }
 
   @keyframes loadingAnimation {
@@ -163,6 +177,19 @@ const ProfileImage = styled(motion.img)`
       transform: rotate(360deg);
     }
   }
+
+  @keyframes loadingLineAnimation {
+    0% {
+      height: 0;
+    }
+    50% {
+      height: 100%;
+    }
+    100% {
+      height: 0;
+    }
+  }
+
 
 
 
@@ -636,7 +663,7 @@ getDeviceOwnerDetails()
       <FlexContainer>
 
       <ProfileImageContainer>
-        <ProfileImage
+      <ProfileImage
   src={profileImage1}
   alt="Sanjay Patidar"
   initial={{ scale: 0 }}
@@ -645,6 +672,7 @@ getDeviceOwnerDetails()
   className={`profile-image ${imageLoading ? 'loading' : ''}`}
   onLoad={() => setImageLoading(false)}
 />
+
         </ProfileImageContainer>
   
     
@@ -710,6 +738,8 @@ getDeviceOwnerDetails()
           </h1>
         </H1Container>
       </FlexContainer>
+      
+
     </HomeContainer>
   );
 };
