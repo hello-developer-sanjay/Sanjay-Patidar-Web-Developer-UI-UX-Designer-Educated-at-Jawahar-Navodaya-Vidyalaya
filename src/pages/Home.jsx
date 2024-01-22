@@ -121,8 +121,8 @@ const BackgroundOverlay = styled.div`
 
 
 const ProfileImage = styled(motion.img)`
-  width: 280px;
-  height: 280px;  
+  width: 380px;
+  height: 380px;  
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(255, 165, 0, 0.8), 0 0 20px rgba(255, 165, 0, 0.6);
   transform-origin: center;
@@ -175,11 +175,11 @@ const images = [profileImage1, profileImage2];
 let currentImageIndex = 0;
 
 const Introduction = styled(motion.p)`
-  font-size: 1.5rem;
+  font-size: 2rem;
   line-height: 1.5;
   max-width: 800px;
   text-align: center;
-  margin-top: 2rem;
+  
   margin-bottom: 1rem;
   color: #ffffff; /* White on hover */
 
@@ -187,7 +187,7 @@ const Introduction = styled(motion.p)`
   .highlight {
     position: relative;
     display: inline-block;
-    font-size: 2rem;
+    font-size: 4rem;
     font-weight: bold;
     color: transparent;
     background: linear-gradient(45deg, #ff4081, #00bcd4); /* Gradient highlight */
@@ -196,7 +196,7 @@ const Introduction = styled(motion.p)`
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Shadow for depth */
     padding-bottom: 5px;
     margin-bottom: -5px;
-
+    line-height: 4rem;
     /* Animation for the highlight class */
     animation: highlightAnimation 3s ease-in-out infinite;
   }
@@ -234,6 +234,8 @@ const Introduction = styled(motion.p)`
   }
    @media (max-width: 768px) {
   margin-top:2rem;
+  font-size: 1.5rem;
+
   }
 `;
 const H1 = styled.h1`
@@ -270,10 +272,12 @@ const StyledSpan = styled.span`
   text-transform: uppercase;
   text-decoration: underline; /* Add an underline for a decorative touch */
   /* Add any additional styles here */
-`;const TypedText = styled.span`
+`;
+
+const TypedText = styled.span`
   display: block;
   margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
   font-weight: bold;
   font-size: 3rem;
   background: linear-gradient(45deg, #00bcd4, #2196f3); /* Gradient from turquoise to blue */
@@ -399,6 +403,7 @@ const Subtitle = styled.p`
   font-size: 1.4rem;
   color: #ccc;
   margin-top: 2rem;
+  margin-bottom:0rem;
   background-color: #333;
   padding: 0.5rem 1rem;
   border: 2px solid #ccc;
