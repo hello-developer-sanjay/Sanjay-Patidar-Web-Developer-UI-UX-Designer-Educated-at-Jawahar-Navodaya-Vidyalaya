@@ -33,6 +33,7 @@ const HomeContainer = styled(motion.div)`
   min-height: 100vh;
   background: linear-gradient(to bottom, #0d1b2a, #330867); /* Cosmic blue to deep purple */
   padding: 3rem;
+  
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
@@ -75,7 +76,6 @@ const FlexContainer = styled.div`
   align-items: center;
   flex-direction: column;
   text-align: center;
-
   @media (min-width: 768px) {
     flex-direction: row;
   }
@@ -212,7 +212,7 @@ const Introduction = styled(motion.p)`
   line-height: 1.5;
   max-width: 800px;
   text-align: center;
-  
+  margin-top : 0rem;
   margin-bottom: 1rem;
   color: #ffffff; /* White on hover */
 
@@ -232,6 +232,12 @@ const Introduction = styled(motion.p)`
     line-height: 4rem;
     /* Animation for the highlight class */
     animation: highlightAnimation 3s ease-in-out infinite;
+    @media (max-width: 768px) {
+  font-size: 1.5rem;
+  line-height: 2rem;
+margin-left:1rem;
+margin-right: 1rem;
+  }
   }
 
 
