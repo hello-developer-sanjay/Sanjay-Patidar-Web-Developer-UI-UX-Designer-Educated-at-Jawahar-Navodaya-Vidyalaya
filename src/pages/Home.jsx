@@ -22,7 +22,7 @@ import {
 import Typed from 'react-typed';
 
 import profileImage1 from '../assets/ssss.webp';
-import profileImage2 from '../assets/sixpack.jpeg ';
+import profileImage2 from '../assets/sixpack.jpeg';
 import CreaTeaImage from '../assets/tea.gif';
 
 const HomeContainer = styled(motion.div)`
