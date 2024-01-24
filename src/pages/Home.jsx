@@ -60,7 +60,6 @@ const HomeContainer = styled(motion.div)`
     animation: neonGlow 8s linear infinite;
   }
 
-  /* Animation for the neon glow effect */
   @keyframes neonGlow {
     0% {
       background-position: 0% 0%;
