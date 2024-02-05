@@ -148,7 +148,6 @@ const Resume = () => {
 
     fetchDownloadCount();
   }, []);
-
   return (
     <ResumeContainer>
       <ResumeTitle>Unlock My Resume</ResumeTitle>
