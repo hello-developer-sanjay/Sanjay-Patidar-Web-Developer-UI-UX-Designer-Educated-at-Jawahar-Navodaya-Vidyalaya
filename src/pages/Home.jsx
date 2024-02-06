@@ -374,7 +374,8 @@ const TypedText = styled.span`
   display: block;
   margin-top: 1rem;
   margin-bottom: 3rem;
-  
+    text-transform:uppercase;
+
   font-weight: bold;
   font-size: 4rem;
   background: linear-gradient(45deg, #00bcd4, #2196f3); /* Gradient from turquoise to blue */
