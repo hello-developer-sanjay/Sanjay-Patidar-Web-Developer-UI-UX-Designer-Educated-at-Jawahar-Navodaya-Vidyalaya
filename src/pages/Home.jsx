@@ -31,13 +31,38 @@ const HomeContainer = styled(motion.div)`
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #0d1b2a, #330867); /* Cosmic blue to deep purple */
   padding: 3rem;
-  
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
+
+  /* Creative lining background */
+  --line-color: rgba(255, 255, 255, 0.8);
+  --line-spacing: 10px;
+  --animation-duration: 6s;
+  --animation-timing: linear;
   
+  background: linear-gradient(
+    45deg,
+    var(--line-color) calc(50% - var(--line-spacing)),
+    transparent 0,
+    transparent calc(50% + var(--line-spacing)),
+    var(--line-color) 0
+  );
+  background-size: var(--line-spacing) var(--line-spacing);
+
+  /* Animation for the background */
+  animation: moveBackground var(--animation-duration) var(--animation-timing) infinite linear alternate-reverse;
+
+  @keyframes moveBackground {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: var(--line-spacing) var(--line-spacing);
+    }
+  }
+
   /* Add a subtle box shadow for depth */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 
@@ -60,6 +85,7 @@ const HomeContainer = styled(motion.div)`
     animation: neonGlow 8s linear infinite;
   }
 
+  /* Animation for the neon glow effect */
   @keyframes neonGlow {
     0% {
       background-position: 0% 0%;
@@ -69,7 +95,6 @@ const HomeContainer = styled(motion.div)`
     }
   }
 `;
-
 
 const FlexContainer = styled.div`
   display: flex;
