@@ -374,8 +374,8 @@ const TypedText = styled.span`
   display: block;
   margin-top: 1rem;
   margin-bottom: 3rem;
-    text-transform:uppercase;
-
+  text-transform:uppercase;
+  font-style: italic;
   font-weight: bold;
   font-size: 4rem;
   background: linear-gradient(45deg, #00bcd4, #2196f3); /* Gradient from turquoise to blue */
@@ -414,11 +414,17 @@ const TypedText = styled.span`
 
   @media (max-width: 768px) {
     font-size: 1.2rem;
-   
+  }
+
+  /* Change the color of the typing text */
+  @media (prefers-color-scheme: dark) {
+    color: #239498; /* Bright yellow in dark mode */
+  }
+
+  @media (prefers-color-scheme: light) {
+    color: #ffffff; /* Deep orange in light mode */
   }
 `;
-
-
 
 const ActionsContainer = styled(motion.div)`
   display: flex;
