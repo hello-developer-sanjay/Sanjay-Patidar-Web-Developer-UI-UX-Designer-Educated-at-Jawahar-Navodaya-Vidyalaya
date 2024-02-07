@@ -418,7 +418,7 @@ const TypedText = styled.span`
 
   /* Change the color of the typing text */
   @media (prefers-color-scheme: dark) {
-    color: #239498; /* Bright yellow in dark mode */
+    color: #51D5FF; /* Bright yellow in dark mode */
   }
 
   @media (prefers-color-scheme: light) {
