@@ -7,6 +7,7 @@ import { motion,useAnimation  } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
   import { Helmet } from 'react-helmet';
   import UAParser from 'ua-parser-js';
+import About from "../components/About"
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -770,6 +771,7 @@ getDeviceOwnerDetails()
         </H1Container>
       </FlexContainer>
       
+<About/>
 
     </HomeContainer>
   );
