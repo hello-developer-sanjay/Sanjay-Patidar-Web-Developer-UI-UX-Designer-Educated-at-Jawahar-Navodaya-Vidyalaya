@@ -14,7 +14,7 @@ module.exports = function (app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'https://edu-back-j3mz.onrender.com',
+      target: 'https://edu-back-j3mz.onrender.com/api/random-blog-titles',
       changeOrigin: true,
     })
   );
