@@ -9,5 +9,13 @@ module.exports = function (app) {
       changeOrigin: true,
     })
   );
-};
 
+  // Add additional proxy for https://edu-back-j3mz.onrender.com/
+  app.use(
+    '/api',
+    createProxyMiddleware({
+      target: 'https://edu-back-j3mz.onrender.com',
+      changeOrigin: true,
+    })
+  );
+};
