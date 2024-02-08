@@ -9,7 +9,6 @@ import { useInView } from 'react-intersection-observer';
   import UAParser from 'ua-parser-js';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { ComputersCanvas } from "../components/canvas";
 import About from "../components/About"
 import {
   FaArrowRight,
@@ -685,7 +684,6 @@ getDeviceOwnerDetails()
     
       <ProfileTextContainer>
 
-      <ComputersCanvas />
 
       <Introduction
         initial={{ opacity: 0 }}
