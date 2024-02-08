@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
+import CreaTeaImage from '../assets/tea.gif';
 
 const slideIn = keyframes`
   0% {
@@ -131,6 +132,55 @@ const BlogTitle = styled.h3`
   }
 `;
 
+
+
+
+
+const H1 = styled.h1`
+  font-size: 3xl;
+  font-weight: 900;
+  color: #2ecc71;
+  margin-right: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 2px; /* Increase letter spacing for a stylish look */
+  transform: skew(-5deg); /* Apply a slight skew for a dynamic effect */
+`;
+
+
+
+const H1Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StyledCreaTeaImage = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px rgba(46, 204, 113, 0.5);
+`;
+
+
+const StyledSpan = styled.span`
+  color: #ffffff;
+  font-size: 1.5rem; /* Increase font size for emphasis */
+  font-weight: bold;
+  letter-spacing: 3px; /* Add more letter spacing */
+  text-transform: uppercase;
+  text-decoration: underline; /* Add an underline for a decorative touch */
+  /* Add any additional styles here */
+`;
+const FlexContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+`;
 const About = () => {
   const [randomBlogTitles, setRandomBlogTitles] = useState([]);
   const [setAnimationTrigger] = useState(false);
@@ -150,6 +200,8 @@ const About = () => {
   }, []);
 
   return (
+
+    <>
     <CardWrapper> 
       <Title>Curated Blog Recommendations</Title>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
@@ -169,7 +221,22 @@ const About = () => {
           </Link>
         ))}
       </div>
+
+  
     </CardWrapper>
+    <FlexContainer>
+        <H1Container>
+          <H1>Designed With
+</H1>
+          <h1 className="text-4xl font-semibold text-blue-600 flex items-center creativity">
+            <StyledSpan className="text-white-600">Crea</StyledSpan>
+            <StyledCreaTeaImage src={CreaTeaImage} alt="CreaTea" className="mx-2" />
+            <StyledSpan className="text-green-600">vity</StyledSpan>
+          </h1>
+        </H1Container>
+        
+      </FlexContainer>
+    </>
   );
 };
 
