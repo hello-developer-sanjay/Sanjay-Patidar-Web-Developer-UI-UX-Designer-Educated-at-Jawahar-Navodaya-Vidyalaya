@@ -35,7 +35,6 @@ const HomeContainer = styled(motion.div)`
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
-margin-top:-15rem;
   /* Creative lining background */
   --line-color: rgba(255, 255, 255, 0.8);
   --line-spacing: 10px;
@@ -94,8 +93,7 @@ margin-top:-15rem;
       background-position: 400% 400%;
     }
   }
-  @media (max-width: 768px) {
-margin-top:0rem;  }
+ 
 `;
 
 
