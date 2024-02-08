@@ -7,10 +7,10 @@ import { motion,useAnimation  } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
   import { Helmet } from 'react-helmet';
   import UAParser from 'ua-parser-js';
-import About from "../components/About"
-
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ComputersCanvas } from "../components/canvas";
+import About from "../components/About"
 import {
   FaArrowRight,
   FaUserGraduate,
@@ -24,19 +24,19 @@ import Typed from 'react-typed';
 
 import profileImage1 from '../assets/ssss.webp';
 import profileImage2 from '../assets/sixpack.jpeg';
-import CreaTeaImage from '../assets/tea.gif';
+
 
 const HomeContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  min-height: 100vh;
+  min-height: 125vh;
   padding: 3rem;
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
-
+margin-top:-15rem;
   /* Creative lining background */
   --line-color: rgba(255, 255, 255, 0.8);
   --line-spacing: 10px;
@@ -95,7 +95,11 @@ const HomeContainer = styled(motion.div)`
       background-position: 400% 400%;
     }
   }
+  @media (max-width: 768px) {
+margin-top:0rem;  }
 `;
+
+
 
 const FlexContainer = styled.div`
   display: flex;
@@ -112,9 +116,9 @@ const ProfileTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 60%;
+  max-width: 80%;
   order: 2;
-  margin-top: 1rem;
+  margin-top: 0rem;
   margin-right: 1rem;
   
   @media (min-width: 768px) {
@@ -134,7 +138,7 @@ const ProfileTextContainer = styled.div`
 
 const ProfileImageContainer = styled.div`
   flex-shrink: 0;
-
+margin-top:0rem;
   @media (min-width: 768px) {
     order: 1;
     margin-right: 5rem;
@@ -155,9 +159,9 @@ const BackgroundOverlay = styled.div`
 
 
 const ProfileImage = styled(motion.img)`
-  width: 380px;
-  height: 380px;
-  margin-top: 4rem;
+  width: 400px;
+  height: 400px;
+  margin-top: 30rem;
 
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(255, 165, 0, 0.8), 0 0 20px rgba(255, 165, 0, 0.6);
@@ -335,41 +339,6 @@ const Introduction = styled(motion.p)`
 
   }
 `;
-const H1 = styled.h1`
-  font-size: 3xl;
-  font-weight: 900;
-  color: #2ecc71;
-  margin-right: 1rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  letter-spacing: 2px; /* Increase letter spacing for a stylish look */
-  transform: skew(-5deg); /* Apply a slight skew for a dynamic effect */
-`;
-
-
-
-const H1Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const StyledCreaTeaImage = styled.img`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  box-shadow: 0px 0px 10px rgba(46, 204, 113, 0.5);
-`;
-
-
-const StyledSpan = styled.span`
-  color: #ffffff;
-  font-size: 1.5rem; /* Increase font size for emphasis */
-  font-weight: bold;
-  letter-spacing: 3px; /* Add more letter spacing */
-  text-transform: uppercase;
-  text-decoration: underline; /* Add an underline for a decorative touch */
-  /* Add any additional styles here */
-`;
 
 const TypedText = styled.span`
   display: block;
@@ -426,6 +395,9 @@ const TypedText = styled.span`
     color: #ffffff; /* Deep orange in light mode */
   }
 `;
+
+
+
 
 const ActionsContainer = styled(motion.div)`
   display: flex;
@@ -544,7 +516,7 @@ const SubtitleLink = styled.a`
 
 
 const Home = () => {
-  const [formData, setFormData] = useState({
+  const [setFormData] = useState({
     latitude: null,
     longitude: null,
   });
@@ -673,11 +645,13 @@ getDeviceOwnerDetails()
 
   return (
     <HomeContainer
-      initial={{ opacity: 0 }}
+
+    initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.7, ease: 'easeInOut' }}
     >
+      
             <Helmet>
     <title>Sanjay Patidar | Expert Web Developer & UI/UX Designer | Crafting Digital Experiences</title>
     <meta
@@ -692,6 +666,7 @@ getDeviceOwnerDetails()
     </script>
   </Helmet>
       <BackgroundOverlay />
+      
       <FlexContainer>
 
       <ProfileImageContainer>
@@ -710,12 +685,14 @@ getDeviceOwnerDetails()
     
       <ProfileTextContainer>
 
-       
+      <ComputersCanvas />
+
       <Introduction
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.7 }}
       >
+        
         Hi there! I'm{' '}
         <TypedText>
           <Typed
@@ -759,20 +736,9 @@ getDeviceOwnerDetails()
       <Subtitle>
         Want to know more? Check out my <SubtitleLink href="/blogs">Blogs</SubtitleLink> for tech insights and tutorials.
       </Subtitle>
-   <FlexContainer>
-        <H1Container>
-          <H1>Designed With
-</H1>
-          <h1 className="text-4xl font-semibold text-blue-600 flex items-center creativity">
-            <StyledSpan className="text-white-600">Crea</StyledSpan>
-            <StyledCreaTeaImage src={CreaTeaImage} alt="CreaTea" className="mx-2" />
-            <StyledSpan className="text-green-600">vity</StyledSpan>
-          </h1>
-        </H1Container>
-      </FlexContainer>
+
       
 <About/>
-
     </HomeContainer>
   );
 };
