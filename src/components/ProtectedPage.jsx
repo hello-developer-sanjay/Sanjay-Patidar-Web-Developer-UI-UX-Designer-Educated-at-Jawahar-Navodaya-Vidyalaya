@@ -190,13 +190,14 @@ const ResolvedSpan = styled.span`
   }
 `;
 const ProtectedPage = () => {
-    const [password, setPassword] = useState('');
-    const [passwordVisible, setPasswordVisible] = useState(false);
-    const [authenticated, setAuthenticated] = useState(false);
-    const [userProfiles, setUserProfiles] = useState([]);
-    const [feedbacks, setFeedbacks] = useState([]);
-    const [queries, setQueries] = useState([]);
-    const [userDetails, setUserDetails] = useState([]); // New state to store user details
+  const [password, setPassword] = useState('');
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
+  const [userProfiles, setUserProfiles] = useState([]);
+  const [feedbacks, setFeedbacks] = useState([]);
+  const [queries, setQueries] = useState([]);
+  const [userDetails, setUserDetails] = useState([]);
+
 
     useEffect(() => {
       // Fetch user details after successful authentication
@@ -306,6 +307,11 @@ const ProtectedPage = () => {
         )
       );
     };
+    const handleKeyPress = (e) => {
+      if (e.key === 'Enter') {
+        handlePasswordSubmit();
+      }
+    };
   
     return (
       <StyledWrapper>
@@ -313,13 +319,15 @@ const ProtectedPage = () => {
           <>
             <h1>Unlock the Secrets!</h1>
             <div className="password-container">
-              <input
-                type={passwordVisible ? 'text' : 'password'}
-                placeholder="Enter the secret password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <UnlockButton className="toggle-button" onClick={togglePasswordVisibility}>
+            <input
+  type={passwordVisible ? 'text' : 'password'}
+  placeholder="Enter the secret password"
+  value={password}
+  onChange={(e) => setPassword(e.target.value)}
+  onKeyPress={handleKeyPress} // Add this line
+/>
+
+ <UnlockButton className="toggle-button" onClick={togglePasswordVisibility}>
                 {passwordVisible ? '🙈' : '👁️'}
               </UnlockButton>
             </div>
@@ -424,7 +432,7 @@ const ProtectedPage = () => {
                            <p>IP Address: {location.ip}</p>
       
             <p>Fingerprint: {location.fingerprint}</p>
-                            <p>Browser: {location.userAgentDetails.browser}</p>
+            <p>Browser: {location.userAgentDetails.browser}</p>
             <p>Version: {location.userAgentDetails.version}</p>
             <p>OS: {location.userAgentDetails.os}</p>
             <p>Platform: {location.userAgentDetails.platform}</p>
