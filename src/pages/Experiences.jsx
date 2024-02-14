@@ -3,6 +3,7 @@ import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeli
 import "react-vertical-timeline-component/style.min.css";
 import { FaReact } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { Helmet } from 'react-helmet';
 
 const experienceData = [
   {
@@ -69,12 +70,60 @@ const entryVariants = {
 
 const Experience = () => {
   return (
+    <>
+      <Helmet>
+      <title>Sanjay Patidar | Professional Experience - React.js Developer, Full Stack Developer, UI/UX Designer, Mobile App Developer</title>
+  <meta
+    name="description"
+    content="Explore Sanjay Patidar's professional experience, including roles as a React.js Developer, Full Stack Developer, UI/UX Designer, and Mobile App Developer. Learn about Sanjay's contributions, achievements, and expertise in various technology roles."
+  />
+  <meta
+    name="keywords"
+    content="Sanjay Patidar, professional experience, React.js Developer, Full Stack Developer, UI/UX Designer, Mobile App Developer, technology roles, achievements, expertise"
+  />
+  <meta
+    property="og:title"
+    content="Sanjay Patidar | Professional Experience - React.js Developer, Full Stack Developer, UI/UX Designer, Mobile App Developer"
+  />
+  <meta
+    property="og:description"
+    content="Explore Sanjay Patidar's professional experience, including roles as a React.js Developer, Full Stack Developer, UI/UX Designer, and Mobile App Developer. Learn about Sanjay's contributions, achievements, and expertise in various technology roles."
+  />
+  <meta
+    property="og:image"
+    content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png"
+  />
+  <meta
+    property="og:url"
+    content="https://sanjay-patidar.vercel.app/experience"
+  />
+  <meta property="og:type" content="website" />
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  />
+  <meta
+    name="twitter:title"
+    content="Sanjay Patidar | Professional Experience - React.js Developer, Full Stack Developer, UI/UX Designer, Mobile App Developer"
+  />
+  <meta
+    name="twitter:description"
+    content="Explore Sanjay Patidar's professional experience, including roles as a React.js Developer, Full Stack Developer, UI/UX Designer, and Mobile App Developer. Learn about Sanjay's contributions, achievements, and expertise in various technology roles."
+  />
+  <meta
+    name="twitter:image"
+    content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png"
+  />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sanjay-patidar.vercel.app/experience" />
+</Helmet>
+
     <motion.div
       className="experience"
       initial="hidden"
       animate="visible"
       variants={pageVariants}
-      style={{ background: "#f5f5f5", padding: "50px 0" }} // Add background color and padding
+      style={{ background: "#f5f5f5", padding: "50px 0" }} 
     >
       <div className="central-ring"></div>
       <VerticalTimeline>
@@ -89,7 +138,7 @@ const Experience = () => {
               borderRadius: "20px",
               padding: "20px",
               border: "2px solid #fff",
-              backgroundClip: "padding-box", // To prevent the gradient from overlapping the border
+              backgroundClip: "padding-box", 
             }}
             contentArrowStyle={{ borderRight: `10px solid ${experience.iconBg}`, borderLeft: `10px solid ${experience.iconBg}` }}
             date={experience.date}
@@ -123,6 +172,8 @@ const Experience = () => {
         ))}
       </VerticalTimeline>
     </motion.div>
+    </>
+
   );
 };
 
