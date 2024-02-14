@@ -4,6 +4,8 @@ import axios from "axios";
 import { css } from "@emotion/react";
 import { RingLoader } from "react-spinners";
 import "../styles/Certifications.css";
+import { Helmet } from "react-helmet";
+
 
 const Certifications = () => {
   const [certifications, setCertifications] = useState([]);
@@ -33,6 +35,25 @@ const Certifications = () => {
 `;
 
   return (
+    <>
+           <Helmet>
+        <title>Sanjay Patidar | Full Stack Web Developer | Certifications</title>
+        <meta
+          name="description"
+          content="Explore certifications obtained by Sanjay Patidar. Discover various certifications in Artificial Intelligence, Python, Machine Learning, Django, Full Stack Web Development, UI Design, and more."
+        />
+        <meta name="keywords" content="Sanjay Patidar, certifications, AI, Python, Machine Learning, Django, Full Stack Web Development, UI Design" />
+        <meta property="og:title" content="Sanjay Patidar | Certifications" />
+        <meta property="og:description" content="Explore certifications obtained by Sanjay Patidar. Discover various certifications in Artificial Intelligence, Python, Machine Learning, Django, Full Stack Web Development, UI Design, and more." />
+        <meta property="og:url" content="https://sanjay-patidar.vercel.app/certifications" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/icon+(2).png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Sanjay Patidar | Certifications" />
+        <meta name="twitter:description" content="Explore certifications obtained by Sanjay Patidar. Discover various certifications in Artificial Intelligence, Python, Machine Learning, Django, Full Stack Web Development, UI Design, and more." />
+        <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/icon+(2).png" />
+      </Helmet>
+
     <div className="certifications-container">
       {loading ? (
         <RingLoader color="#4b0082" loading={loading} css={override} size={150} />
@@ -60,6 +81,8 @@ const Certifications = () => {
         ))
       )}
     </div>
+    </>
+
   );
 };
 
