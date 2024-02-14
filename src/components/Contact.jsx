@@ -1,6 +1,7 @@
 import  { useState } from 'react';
 import axios from 'axios';
 import '../styles/Contact.css'; // Import your CSS file for styling
+import { Helmet } from 'react-helmet';
 
 const Contact = () => {
   const [fullName, setFullName] = useState('');
@@ -35,6 +36,24 @@ const Contact = () => {
 
   return (
     <div className="contact-container">
+      <Helmet>
+      <title>Contact Sanjay Patidar - Get in Touch, Collaborate</title>
+        <meta
+          name="description"
+          content="Fill and submit the contact form to get in touch with Sanjay Patidar. Receive admin details upon form submission."
+        />
+        <meta name="keywords" content="Sanjay Patidar, contact, collaboration, form submission, admin details" />
+        <meta property="og:title" content="Contact Sanjay Patidar - Get in Touch, Collaborate" />
+        <meta property="og:description" content="Fill and submit the contact form to get in touch with Sanjay Patidar. Receive admin details upon form submission." />
+        <meta property="og:url" content="https://sanjay-patidar.vercel.app/contact" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact Sanjay Patidar - Get in Touch, Collaborate" />
+        <meta name="twitter:description" content="Fill and submit the contact form to get in touch with Sanjay Patidar. Receive admin details upon form submission." />
+        <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
+      </Helmet>
+
       <h2>Fill and Submit Form to Get Admin Details</h2>
       <form onSubmit={handleSubmit} className="contact-form">
         <div className="form-group">
@@ -74,8 +93,7 @@ const Contact = () => {
           Submit
         </button>
       </form>
-     
-
+      
       {submitMessage && <p className="submit-message">{submitMessage}</p>}
       
       {adminInfo && (
@@ -102,7 +120,6 @@ const Contact = () => {
     }}
   />
 </div>
-
 
     </div>
   );
