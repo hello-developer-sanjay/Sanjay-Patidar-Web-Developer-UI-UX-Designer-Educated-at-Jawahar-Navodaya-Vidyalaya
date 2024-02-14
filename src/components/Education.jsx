@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 
+// Styled components for the main container
 const EducationContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
@@ -25,6 +26,7 @@ const EducationContainer = styled(motion.div)`
   }
 `;
 
+// Styled components for the heading
 const Heading = styled.h1`
   font-size: 3rem;
   font-weight: bold;
@@ -34,6 +36,7 @@ const Heading = styled.h1`
   animation: fadeInUp 1s ease;
 `;
 
+// Styled components for each education section
 const EducationSection = styled(motion.section)`
   display: flex;
   flex-direction: column;
@@ -57,6 +60,7 @@ const EducationSection = styled(motion.section)`
   }
 `;
 
+// Styled components for the text content of each education section
 const EducationText = styled.div`
   text-align: center;
   margin-bottom: 1rem;
@@ -96,6 +100,7 @@ const EducationText = styled.div`
   }
 `;
 
+// Styled components for the images in each education section
 const EducationImage = styled.div`
   text-align: center;
   margin: 1rem;
@@ -121,16 +126,43 @@ const Education = () => {
   return (
     <EducationContainer>
       <Helmet>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      </Helmet>
+      <title>Sanjay Patidar | Education: Navigating the Path of Learning and Growth</title>
+  <meta
+    name="description"
+    content="Explore the educational journey of Sanjay Patidar, including secondary education at Jawahar Navodaya Vidyalaya School and Bachelor of Technology in Computer Science Engineering at Chandigarh University."
+  />
+  <meta
+    name="keywords"
+    content="Sanjay Patidar, education, secondary education, Jawahar Navodaya Vidyalaya School, Bachelor of Technology, Computer Science Engineering, Chandigarh University"
+  />
+  <meta property="og:title" content="Sanjay Patidar | Education: Navigating the Path of Learning and Growth" />
+  <meta
+    property="og:description"
+    content="Explore the educational journey of Sanjay Patidar, including secondary education at Jawahar Navodaya Vidyalaya School and Bachelor of Technology in Computer Science Engineering at Chandigarh University."
+  />
+  <meta property="og:url" content="https://sanjay-patidar.vercel.app/education" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sanjay Patidar | Education: Navigating the Path of Learning and Growth" />
+  <meta
+    name="twitter:description"
+    content="Explore the educational journey of Sanjay Patidar, including secondary education at Jawahar Navodaya Vidyalaya School and Bachelor of Technology in Computer Science Engineering at Chandigarh University."
+  />
+  <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
+</Helmet>
 
+
+      {/* Main heading */}
       <Heading>Embarking on the Journey of Knowledge</Heading>
 
+      {/* First education section */}
       <EducationSection
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
+        {/* Text content for the first education section */}
         <EducationText>
           <h1>Secondary Education</h1>
           <p>
@@ -145,6 +177,7 @@ const Education = () => {
             </a>
           </p>
         </EducationText>
+        {/* Image for the first education section */}
         <EducationImage>
           <motion.img
             src="https://sanjaybasket.s3.ap-south-1.amazonaws.com/pngwing.com.png"
@@ -155,11 +188,13 @@ const Education = () => {
         </EducationImage>
       </EducationSection>
 
+      {/* Second education section */}
       <EducationSection
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
+        {/* Text content for the second education section */}
         <EducationText>
           <h1>Computer Science Odyssey</h1>
           <p>
@@ -175,6 +210,7 @@ const Education = () => {
             </a>
           </p>
         </EducationText>
+        {/* Image for the second education section */}
         <EducationImage>
           <motion.img
             src="https://sanjaybasket.s3.ap-south-1.amazonaws.com/campus.jpeg"
@@ -185,6 +221,7 @@ const Education = () => {
         </EducationImage>
       </EducationSection>
 
+      {/* Ad section */}
       <ins
         className="adsbygoogle"
         style={{ display: 'block', marginTop: '2rem' }}
