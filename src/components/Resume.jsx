@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import  { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 
 const ResumeContainer = styled.div`
   padding: 4rem 0;
@@ -30,7 +31,7 @@ const ResumeContainer = styled.div`
 
 const ResumeTitle = styled.h2`
   font-size: 2.8rem;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   color: #333;
   position: relative;
   display: inline-block;
@@ -150,6 +151,30 @@ const Resume = () => {
   }, []);
   return (
     <ResumeContainer>
+            <Helmet>
+            <title>Sanjay Patidar | Experienced Web Developer & Creative UI/UX Designer | Resume</title>
+        <meta
+          name="description"
+          content="Unlock Sanjay Patidar's resume to explore his professional experience and skills. Click the link to access the full resume."
+        />
+        <meta name="keywords" content="Sanjay Patidar, resume, experience, skills, web developer, UI/UX designer" />
+        <meta property="og:title" content="Sanjay Patidar | Experienced Web Developer & Creative UI/UX Designer | Resume" />
+        <meta
+          property="og:description"
+          content="Unlock Sanjay Patidar's resume to explore his professional experience and skills. Click the link to access the full resume."
+        />
+        <meta property="og:url" content="https://sanjay-patidar.vercel.app/resume" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Sanjay Patidar | Experienced Web Developer & Creative UI/UX Designer | Resume" />
+        <meta
+          name="twitter:description"
+          content="Unlock Sanjay Patidar's resume to explore his professional experience and skills. Click the link to access the full resume."
+        />
+        <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
+      </Helmet>
+      
       <ResumeTitle>Unlock My Resume</ResumeTitle>
       <ResumeSubtitle>Click the link below to access my full resume.</ResumeSubtitle>
       {/* Disable the link when loading to prevent re-clicks */}
