@@ -6,6 +6,7 @@ import appDevIcon from '../assets/app-development.png';
 import codingIcon from '../assets/coding.png';
 import goalIcon from '../assets/goal.png';
 import teamLeaderIcon from '../assets/team-leader.png';
+import { Helmet } from 'react-helmet';
 
 const SkillsContainer = styled.div`
   padding: 2rem;
@@ -109,12 +110,12 @@ const SkillIcon = styled.img`
 const SkillName = styled.h3`
   font-size: 2.2rem;
   margin-bottom: 1rem;
-  font-family: 'Caveat', cursive; /* A unique handwritten-style font */
-  color: #3d5a80; /* Ocean Blue color */
-  text-shadow: 2px 2px 4px rgba(61, 90, 128, 0.5); /* Subtle text shadow effect */
-  letter-spacing: 2px; /* Increased letter spacing for a distinct look */
-  line-height: 1.2; /* Improved line spacing for better readability */
-  font-weight: 600; /* Slightly bold for emphasis */
+  font-family: 'Caveat', cursive; 
+  color: #3d5a80;
+  text-shadow: 2px 2px 4px rgba(61, 90, 128, 0.5);
+  letter-spacing: 2px;
+  line-height: 1.2; 
+  font-weight: 600; 
 `;
 
 
@@ -175,10 +176,30 @@ const Skills = () => {
     },
   ];
   
-  // Add more skills if needed
+  
   
   return (
     <SkillsContainer>
+            <Helmet>
+              <title>Sanjay Patidar | Web Developer Skills & Expertise - Tech Architecture, Innovative Development, UI/UX Design, and More</title>
+
+        <meta
+          name="description"
+          content="Discover the diverse skills of Sanjay Patidar including Tech Architecture, Innovative Development, Design Alchemy, Strategic Navigation, Collaborative Leadership, Intuitive UX Design, Backend Sorcery, and API Mastery."
+        />
+        <meta name="keywords" content="Sanjay Patidar, skills, Tech Architecture, Innovative Development, Design Alchemy, Strategic Navigation, Collaborative Leadership, Intuitive UX Design, Backend Sorcery, API Mastery" />
+        <meta property="og:title" content="Sanjay Patidar | Skills" />
+        <meta property="og:description" content="Discover the diverse skills of Sanjay Patidar including Tech Architecture, Innovative Development, Design Alchemy, Strategic Navigation, Collaborative Leadership, Intuitive UX Design, Backend Sorcery, and API Mastery." />
+        <meta property="og:url" content="https://sanjay-patidar.vercel.app/skills" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Sanjay Patidar | Skills" />
+        <meta name="twitter:description" content="Discover the diverse skills of Sanjay Patidar including Tech Architecture, Innovative Development, Design Alchemy, Strategic Navigation, Collaborative Leadership, Intuitive UX Design, Backend Sorcery, and API Mastery." />
+        <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
+        {/* Add other relevant meta tags */}
+      </Helmet>
+
       <SkillsHeading>Skills</SkillsHeading>
       <SkillsGrid>
         {skillsData.map((skill, index) => (
