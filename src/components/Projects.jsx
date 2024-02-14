@@ -2,6 +2,7 @@ import  React,{ useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const ProjectsContainer = styled.div`
   padding: 2rem;
@@ -257,6 +258,27 @@ const Projects = () => {
   }, [category]);
   return (
     <ProjectsContainer>
+      <Helmet>
+      <title>Sanjay Patidar | Projects Portfolio: Web Development, Mobile App Development, UI/UX Design</title>
+  <meta name="description" content="Explore the diverse range of projects developed by Sanjay Patidar, showcasing expertise in web development, mobile app development, and various other categories. Discover innovative solutions, unique designs, and successful implementations." />
+  <meta name="keywords" content="Sanjay Patidar, projects, web development, mobile app development, innovative projects, technology, programming, coding, software development" />
+  <meta name="author" content="Sanjay Patidar" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Sanjay Patidar | Projects Portfolio: Web Development, Mobile App Development, UI/UX Design" />
+  <meta property="og:description" content="Explore the diverse range of projects developed by Sanjay Patidar, showcasing expertise in web development, mobile app development, and various other categories. Discover innovative solutions, unique designs, and successful implementations." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sanjay-patidar.vercel.app/projects" />
+  <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
+  <meta property="og:image:alt" content="Sanjay Patidar | Projects Portfolio: Web Development, Mobile App Development, UI/UX Design" />
+  <meta property="og:site_name" content="Sanjay Patidar | Projects Portfolio: Web Development, Mobile App Development, UI/UX Design" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sanjay Patidar | Projects Portfolio: Web Development, Mobile App Development, UI/UX Design" />
+  <meta name="twitter:description" content="Explore the diverse range of projects developed by Sanjay Patidar, showcasing expertise in web development, mobile app development, and various other categories. Discover innovative solutions, unique designs, and successful implementations." />
+  <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
+
+</Helmet>
+
      <ProjectsNavigation>
         <ProjectsNavList>
           <ProjectsNavItem>
