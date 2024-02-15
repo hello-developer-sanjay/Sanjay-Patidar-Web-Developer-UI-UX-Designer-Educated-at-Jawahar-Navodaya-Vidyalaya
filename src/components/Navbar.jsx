@@ -1,8 +1,10 @@
-  
-import { NavLink, Link } from 'react-router-dom';
-import { FaHome, FaFolder,FaUserShield } from 'react-icons/fa';
+
+import { NavLink} from 'react-router-dom';
 import styled from 'styled-components';
 import Sidebar from '../components/Sidebar';
+import { useState,  } from 'react';
+import { FaHome,FaProjectDiagram ,FaUserShield} from 'react-icons/fa';
+
 
 const Nav = styled.nav`
   background: linear-gradient(to right, #121212, #1e1e1e);
@@ -67,7 +69,8 @@ const Nav = styled.nav`
     .logo-small {
       display: block;
       font-size: 1.3rem;
-            font-weight: normal;
+      font-weight: normal;
+
 
     }
 
@@ -265,6 +268,8 @@ const SubNavItem = styled.li``;
 const SubNavLinkStyled = styled(NavLink)`
   text-decoration: none;
   color: #fff;
+  flex-direction: column;
+
   font-size: 1rem;
   padding: 1rem 2rem;
   transition: background-color 0.3s;
@@ -312,54 +317,183 @@ const SubNavLinkStyled = styled(NavLink)`
 
 
 
+
+
+const HamburgerIcon = styled.div`
+  display: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #fff;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: rotate(360deg) scale(1.2);
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 6px;
+    background-color: #fff;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  &::before {
+    transform: translateY(-12px);
+  }
+
+  &::after {
+    transform: translateY(12px);
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+
+    &::before,
+    &::after {
+      width: 40px;
+      height: 6px;
+      background-color: #fff;
+      border-radius: 8px;
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      margin: 6px 0;
+    }
+
+    &.open::before {
+      transform: translateY(6px) rotate(-45deg);
+    }
+
+    &.open::after {
+      transform: translateY(-6px) rotate(45deg);
+    }
+  }
+`;
+
+
+
+
+const HamburgerMenu = styled.div`
+  @media (max-width: 768px) {
+    display: none;
+
+    ${({ isOpen }) =>
+      isOpen &&
+      `
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 90%;
+        box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+
+        /* Create a complex and artistic background pattern */
+        background: 
+          radial-gradient(ellipse at center, rgba(173, 216, 230, 0.3) 0%, rgba(173, 216, 230, 0) 30%, rgba(173, 216, 230, 0.6) 50%, rgba(173, 216, 230, 0) 70%, rgba(173, 216, 230, 0.3) 100%),
+          linear-gradient(90deg, #3498db, #2c3e50);
+      
+        /* Optional: Add animation or transition properties for a dynamic effect */
+        transition: background 0.3s ease-in-out;        padding: 20px;
+        transform-origin: top;
+        animation: rollAndFold 0.5s ease-in-out;
+        opacity: 1;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      `}
+  }
+
+  @keyframes rollAndFold {
+    0% {
+      transform: scaleY(0.1) translateY(-20px) rotate(0deg);
+      opacity: 0;
+    }
+    50% {
+      transform: scaleY(0.5) translateY(0) rotate(180deg);
+      opacity: 1;
+    }
+    100% {
+      transform: scaleY(1) translateY(0) rotate(360deg);
+      opacity: 1;
+    }
+  }
+`;
+
+
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <>
       <style>{'body { margin: 0; }'}</style>
+      
       <Nav>
          <Sidebar />
         <NavLinkStyled to="/">
-          <Logo className="logo-small">Sanju</Logo>
+          <Logo className="logo-small">Sanjay Patidar</Logo>
           <Logo className="logo-large">Sanjay Patidar : A Web Developer</Logo>
         </NavLinkStyled>
-        <NavList>
-          <NavItem>
-            <NavLinkStyled to="/">
-              <FaHome /> Home
-            </NavLinkStyled>
-          </NavItem>
+       
+       
+       
+       
+       
+        <HamburgerIcon className={isOpen ? 'open' : ''} onClick={toggleMenu}>
+  <div></div>
+  <div></div>
+  <div></div>
+</HamburgerIcon>
+<HamburgerMenu isOpen={isOpen}>
+  <NavList>
+    <NavItem>
+      <NavLinkStyled to="/" aria-label="Home" onClick={toggleMenu}>
+      <FaHome />
 
-         
+        Home
+      </NavLinkStyled>
+    </NavItem>
+    <NavItem>
+      <NavLinkStyled to="/projects" aria-label="Projects" onClick={toggleMenu}>
+        Projects
+        <FaProjectDiagram    />
+      </NavLinkStyled>
+      <SubNavList className="SubNavList">
+        <SubNavItem>
+          <SubNavLinkStyled to="/projects/web" onClick={toggleMenu}>
+            Web Projects
+          </SubNavLinkStyled>
+        </SubNavItem>
+        <SubNavItem>
+          <SubNavLinkStyled to="/projects/mobile" onClick={toggleMenu}>
+            Mobile Projects
+          </SubNavLinkStyled>
+        </SubNavItem>
+        <SubNavItem>
+          <SubNavLinkStyled to="/projects/other" onClick={toggleMenu}>
+            Other Projects
+          </SubNavLinkStyled>
+        </SubNavItem>
+      </SubNavList>
+    </NavItem>
+    <NavItem>
+      <NavLinkStyled to="/protected" aria-label="Admin" onClick={toggleMenu}>
+        Admin
+        <FaUserShield/>
+      </NavLinkStyled>
+    </NavItem>
+  </NavList>
+</HamburgerMenu>
 
-          <NavItem>
-            <NavLinkStyled to="/projects">
-              <FaFolder /> Projects
-            </NavLinkStyled>
-            <SubNavList className="SubNavList">
-              <SubNavItem>
-                <SubNavLinkStyled to="/projects/web">
-                  Web Projects
-                </SubNavLinkStyled>
-              </SubNavItem>
-              <SubNavItem>
-                <SubNavLinkStyled to="/projects/mobile">
-                  Mobile Projects
-                </SubNavLinkStyled>
-              </SubNavItem>
-              <SubNavItem>
-                <SubNavLinkStyled to="/projects/other">
-                  Other Projects
-                </SubNavLinkStyled>
-              </SubNavItem>
-            </SubNavList>
-          </NavItem>
-          <NavItem>
-            <NavLinkStyled to="/protected">
-            <FaUserShield /> Admin
-            </NavLinkStyled>
-          </NavItem>
-
-        </NavList>
       </Nav>
     </>
   );
