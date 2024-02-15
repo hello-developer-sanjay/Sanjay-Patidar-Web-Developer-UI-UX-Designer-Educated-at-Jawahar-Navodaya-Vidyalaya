@@ -106,6 +106,57 @@
 
 <body>
   <div id="root"></div>
+      <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const sitemapUrls = [
+          
+          'https://sanjay-patidar.vercel.app/experiences', 
+
+          'https://sanjay-patidar.vercel.app/resume', 
+
+          'https://sanjay-patidar.vercel.app/contact', 
+          'https://sanjay-patidar.vercel.app/projects',
+          'https://sanjay-patidar.vercel.app/projects/all',
+          'https://sanjay-patidar.vercel.app/projects/web',
+          'https://sanjay-patidar.vercel.app/projects/mobile',
+          'https://sanjay-patidar.vercel.app/api/projects/details/6505a550d1e96d17df4fe123',
+          'https://sanjay-patidar.vercel.app/blogs',
+          'https://sanjay-patidar.vercel.app/protected',
+          'https://sanjay-patidar.vercel.app/skills',
+          'https://sanjay-patidar.vercel.app/education',
+          'https://sanjay-patidar.vercel.app/certifications',
+          'https://sanjay-patidar.vercel.app/certifications/Django%20Features%20and%20Libraries',
+          'https://sanjay-patidar.vercel.app/certifications/Building%20Web%20Applications%20in%20Django',
+          'https://sanjay-patidar.vercel.app/certifications/Web%20Application%20Technologies%20and%20Django',
+          'https://sanjay-patidar.vercel.app/certifications/Python%20Basics',
+          'https://sanjay-patidar.vercel.app/certifications/%0APython%20Functions%2C%20Files%2C%20and%20Dictionaries',
+          'https://sanjay-patidar.vercel.app/certifications/Introduction%20to%20Computer%20Vision',
+          'https://sanjay-patidar.vercel.app/certifications/Machine%20Learning%20for%20Computer%20Vision',
+          'https://sanjay-patidar.vercel.app/certifications/Object%20Tracking%20and%20Motion%20Detection%20with%20Computer%20Vision',
+          'https://sanjay-patidar.vercel.app/certifications/Introduction%20to%20H2O%20using%20Python', 
+          'https://sanjay-patidar.vercel.app/certifications/MERN%3A%20Advanced%20MERN%20Development', 
+
+          'https://sanjay-patidar.vercel.app/certifications/Developing%20Real%20Time%20Applications%20with%20WebRTC', 
+
+          'https://sanjay-patidar.vercel.app/certifications/Internet%20History%2C%20Technology%2C%20and%20Security', 
+
+        ];
+  
+        const rootElement = document.getElementById('root');
+        const internalLinksContainer = document.createElement('div');
+  
+        sitemapUrls.forEach(url => {
+          const link = document.createElement('a');
+          link.href = url;
+          link.textContent = url;
+          link.style.display = 'block'; 
+          internalLinksContainer.appendChild(link);
+        });
+  
+        rootElement.appendChild(internalLinksContainer);
+      });
+    </script>
+  
   <script type="module" src="/src/index.jsx"></script>
 </body>
 
