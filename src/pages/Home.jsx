@@ -644,19 +644,67 @@ getDeviceOwnerDetails()
       exit={{ opacity: 0 }}
       transition={{ duration: 0.7, ease: 'easeInOut' }}
     >
-            <Helmet>
-    <title>Sanjay Patidar | Expert Web Developer & UI/UX Designer | Crafting Digital Experiences</title>
-    <meta
-      name="description"
-      content="Explore the professional journey of Sanjay Patidar, a skilled Web Developer and UI/UX Designer. Dive into a showcase of his expertise in web development and UI/UX design, featuring a collection of innovative projects, valuable experiences, and much more. Navigate through a portfolio that reflects passion, creativity, and a commitment to delivering exceptional digital solutions."
-    />
-    <script type="application/ld+json">
-      {JSON.stringify({
-        '@context': 'http://schema.org',
-        '@type': 'ItemList',
-      })}
-    </script>
-  </Helmet>
+         <Helmet>
+  
+  <title>Sanjay Patidar | Expert Web Developer & UI/UX Designer | Crafting Digital Experiences</title>
+  <meta
+    name="description"
+    content="Explore the professional journey of Sanjay Patidar, a skilled Web Developer and UI/UX Designer. Dive into a showcase of his expertise in web development and UI/UX design, featuring a collection of innovative projects, valuable experiences, and much more. Navigate through a portfolio that reflects passion, creativity, and a commitment to delivering exceptional digital solutions."
+  />
+  
+  <link rel="canonical" href="https://sanjay-patidar.vercel.app" />
+
+  <meta property="og:title" content="Sanjay Patidar | Expert Web Developer & UI/UX Designer | Crafting Digital Experiences" />
+  <meta property="og:description" content="Explore the professional journey of Sanjay Patidar, a skilled Web Developer and UI/UX Designer. Dive into a showcase of his expertise in web development and UI/UX design, featuring a collection of innovative projects, valuable experiences, and much more. Navigate through a portfolio that reflects passion, creativity, and a commitment to delivering exceptional digital solutions." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sanjay-patidar.vercel.app" />
+  <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png " />
+  <meta property="og:image:alt" content="Sanjay Patidar" />
+  <meta property="og:site_name" content="Sanjay Patidar | Expert Web Developer & UI/UX Designer | Crafting Digital Experiences" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sanjay Patidar | Expert Web Developer & UI/UX Designer | Crafting Digital Experiences" />
+  <meta name="twitter:description" content="Explore the professional journey of Sanjay Patidar, a skilled Web Developer and UI/UX Designer. Dive into a showcase of his expertise in web development and UI/UX design, featuring a collection of innovative projects, valuable experiences, and much more. Navigate through a portfolio that reflects passion, creativity, and a commitment to delivering exceptional digital solutions." />
+  <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
+  <meta name="twitter:site" content="@sanjaypatidar" />
+  <meta name="twitter:creator" content="@sanjaypatidar" />
+
+  <meta name="keywords" content="web developer, ui/ux designer, portfolio, projects, certifications, experiences, resume, contact" />
+  <meta name="author" content="Sanjay Patidar" />
+
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Sanjay Patidar",
+      "url": "https://sanjay-patidar.vercel.app",
+      "sameAs": [
+        "https://www.linkedin.com/in/sanjay-patidar-25b580292/",
+        "https://github.com/hello-developer-sanjay",
+      
+        "https://www.instagram.com/sanjay_patidar_mcmxcviii/",
+        "https://eduxcel.vercel.app/",
+"https://sanjay-patidar.vercel.app/projects",
+        "https://sanjay-patidar.vercel.app/skills",
+        "https://sanjay-patidar.vercel.app/experiences",
+        "https://sanjay-patidar.vercel.app/certifications",
+        "https://sanjay-patidar.vercel.app/resume",
+        "https://sanjay-patidar.vercel.app/blogs",
+        "https://sanjay-patidar.vercel.app/education",
+        "https://sanjay-patidar.vercel.app/contact"
+       ],
+      "jobTitle": "Web Developer & UI/UX Designer",
+      "description": "Expert Web Developer & UI/UX Designer specializing in crafting digital experiences.",
+      "image": "https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Indore",
+        "addressRegion": "Madyapradesh",
+        "addressCountry": "India"
+      }
+    })}
+  </script>
+</Helmet>
       <BackgroundOverlay />
       <FlexContainer>
 
