@@ -153,14 +153,25 @@ const Logo = styled.span`
   }
 `;
 
+const NavListContainer = styled.div`
+  @media (max-width: 768px) {
+    display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+`;
 
 const NavList = styled.ul`
   list-style: none;
   display: flex;
-  flex-direction: column;
   gap: 1rem;
-`;
 
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
 const NavItem = styled.li`
   position: relative;
   &:hover {
@@ -429,7 +440,7 @@ const HamburgerMenu = styled.div`
 
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);   
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -437,38 +448,33 @@ const Navbar = () => {
   return (
     <>
       <style>{'body { margin: 0; }'}</style>
-      
       <Nav>
-         <Sidebar />
+        <Sidebar />
         <NavLinkStyled to="/">
           <Logo className="logo-small">Sanjay Patidar</Logo>
           <Logo className="logo-large">Sanjay Patidar : A Web Developer</Logo>
         </NavLinkStyled>
-       
-       
-       
-       
-       
-        <HamburgerIcon className={isOpen ? 'open' : ''} onClick={toggleMenu}>
-  <div></div>
-  <div></div>
-  <div></div>
-</HamburgerIcon>
-<HamburgerMenu isOpen={isOpen}>
-  <NavList>
-    <NavItem>
-      <NavLinkStyled to="/" aria-label="Home" onClick={toggleMenu}>
-      <FaHome />
 
-        Home
-      </NavLinkStyled>
-    </NavItem>
-    <NavItem>
-      <NavLinkStyled to="/projects" aria-label="Projects" onClick={toggleMenu}>
-        Projects
-        <FaProjectDiagram    />
-      </NavLinkStyled>
-      <SubNavList className="SubNavList">
+        <HamburgerIcon className={isOpen ? 'open' : ''} onClick={toggleMenu}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </HamburgerIcon>
+        <HamburgerMenu isOpen={isOpen}>
+          <NavListContainer isOpen={isOpen}>
+            <NavList>
+              <NavItem>
+                <NavLinkStyled to="/" aria-label="Home" onClick={toggleMenu}>
+                  <FaHome />
+                  Home
+                </NavLinkStyled>
+              </NavItem>
+              <NavItem>
+                <NavLinkStyled to="/projects" aria-label="Projects" onClick={toggleMenu}>
+                  Projects
+                  <FaProjectDiagram />
+                </NavLinkStyled>
+                <SubNavList className="SubNavList">
         <SubNavItem>
           <SubNavLinkStyled to="/projects/web" onClick={toggleMenu}>
             Web Projects
@@ -485,19 +491,22 @@ const Navbar = () => {
           </SubNavLinkStyled>
         </SubNavItem>
       </SubNavList>
-    </NavItem>
-    <NavItem>
-      <NavLinkStyled to="/protected" aria-label="Admin" onClick={toggleMenu}>
-        Admin
-        <FaUserShield/>
-      </NavLinkStyled>
-    </NavItem>
-  </NavList>
-</HamburgerMenu>
 
+              </NavItem>
+              <NavItem>
+                <NavLinkStyled to="/protected" aria-label="Admin" onClick={toggleMenu}>
+                  Admin
+                  <FaUserShield />
+                </NavLinkStyled>
+              </NavItem>
+            </NavList>
+          </NavListContainer>
+        </HamburgerMenu>
       </Nav>
     </>
   );
 };
+
+
 
 export default Navbar;
