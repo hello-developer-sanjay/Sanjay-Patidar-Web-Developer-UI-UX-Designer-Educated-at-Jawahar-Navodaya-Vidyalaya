@@ -673,8 +673,19 @@
                       placeholder="Enter your desired job title or keywords"
                       value={searchQuery}
                       onChange={handleSearchChange}
-                      style={{ padding: "0", marginTop: "0", borderWidth: "5px", borderRadius: "md", backgroundColor: "white", color: "black", marginBottom: "0" }}
-                    />
+                     style={{
+                        padding: "0.5rem",
+                        marginTop: "0",
+                        borderWidth: "0.5rem",
+                        borderRadius: "1.5rem",
+                        backgroundColor: "#F0F8FF", 
+                        color: "#2E8B57", 
+                        boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+                        transition: "all 0.3s ease-in-out", 
+                        fontFamily: "Arial, sans-serif",
+                        textAlign: "center",
+                        fontSize: "1rem",
+                      }}                    />
                     <div style={progressBarStyle} />
                     <div style={remainingBarStyle} />
                   </div>
