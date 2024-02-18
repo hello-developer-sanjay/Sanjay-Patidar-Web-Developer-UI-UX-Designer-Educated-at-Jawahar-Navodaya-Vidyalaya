@@ -468,7 +468,14 @@ const Navbar = () => {
                   Home
                 </NavLinkStyled>
               </NavItem>
-             
+              <NavItem>
+                <NavLinkStyled to="/careers" aria-label="Career" onClick={toggleMenu}>
+                  
+                  Career Insights
+                  <FaBriefcase style={{ marginLeft: '5px' }} /> 
+                </NavLinkStyled>
+              </NavItem>
+
               <NavItem>
                 <NavLinkStyled to="/projects" aria-label="Projects" onClick={toggleMenu}>
                   Projects
