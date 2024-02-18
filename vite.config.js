@@ -7,8 +7,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@emotion/styled': '@emotion/styled/base',
-      '@chakra-ui/system': '@chakra-ui/system'
+      '@emotion/styled': '@emotion/styled'
     }
   }
 });
