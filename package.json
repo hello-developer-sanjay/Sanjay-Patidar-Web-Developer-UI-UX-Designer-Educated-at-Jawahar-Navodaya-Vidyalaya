@@ -20,6 +20,9 @@
     "leaflet": "^1.9.4",
         "@vercel/analytics": "^1.1.1",
     "react-spinners": "^0.13.8",
+    "react-helmet-async": "^2.0.4",
+    "@emotion/react": "^11.11.3",
+    "@chakra-ui/react": "^2.8.2",
 
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",
