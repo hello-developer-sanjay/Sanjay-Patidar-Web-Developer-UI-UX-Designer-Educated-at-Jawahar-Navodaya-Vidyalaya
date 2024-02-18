@@ -377,16 +377,14 @@ cursor: "pointer",
         fontSize: "24px",
       };
 
-      const contentSectionStyle = {
+         const contentSectionStyle = {
         borderRadius: "12px",
         marginLeft: "50px",
-        padding: "20px",
-        color: "white",
+marginTop:"50px",        color: "white",
         fontSize:"20px ",
         justifyContent: "start",
         alignItems: "start",
       };
-      
       
       const sidebarStyle = {
         position: "fixed",
