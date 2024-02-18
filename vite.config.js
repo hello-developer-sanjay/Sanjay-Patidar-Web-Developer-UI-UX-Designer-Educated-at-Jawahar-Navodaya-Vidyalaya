@@ -7,7 +7,7 @@ export default defineConfig({
   ],
   build: {
     rollupOptions: {
-      external: /^(@emotion\/styled|@chakra-ui\/system)/
+      external: ['@emotion/styled', '@chakra-ui/system']
     }
   }
 });
