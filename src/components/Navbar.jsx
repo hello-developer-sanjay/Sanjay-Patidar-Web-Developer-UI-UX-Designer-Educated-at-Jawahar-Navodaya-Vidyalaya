@@ -3,8 +3,7 @@ import { NavLink} from 'react-router-dom';
 import styled from 'styled-components';
 import Sidebar from '../components/Sidebar';
 import { useState,  } from 'react';
-import { FaHome,FaProjectDiagram ,FaUserShield} from 'react-icons/fa';
-
+import { FaHome,FaProjectDiagram ,FaUserShield, FaBriefcase } from 'react-icons/fa';
 
 const Nav = styled.nav`
   background: linear-gradient(to right, #121212, #1e1e1e);
@@ -465,14 +464,22 @@ const Navbar = () => {
             <NavList>
               <NavItem>
                 <NavLinkStyled to="/" aria-label="Home" onClick={toggleMenu}>
-                  <FaHome />
+                  <FaHome style={{ marginRight: '5px' }}/>
                   Home
                 </NavLinkStyled>
               </NavItem>
               <NavItem>
+                <NavLinkStyled to="/careers" aria-label="Career" onClick={toggleMenu}>
+                  
+                  Career Insights
+                  <FaBriefcase style={{ marginLeft: '5px' }} /> 
+                </NavLinkStyled>
+              </NavItem>
+
+              <NavItem>
                 <NavLinkStyled to="/projects" aria-label="Projects" onClick={toggleMenu}>
                   Projects
-                  <FaProjectDiagram />
+                  <FaProjectDiagram style={{ marginLeft: '5px' }}/>
                 </NavLinkStyled>
                 <SubNavList className="SubNavList">
         <SubNavItem>
@@ -496,7 +503,7 @@ const Navbar = () => {
               <NavItem>
                 <NavLinkStyled to="/protected" aria-label="Admin" onClick={toggleMenu}>
                   Admin
-                  <FaUserShield />
+                  <FaUserShield style={{ marginLeft: '5px' }}/>
                 </NavLinkStyled>
               </NavItem>
             </NavList>
