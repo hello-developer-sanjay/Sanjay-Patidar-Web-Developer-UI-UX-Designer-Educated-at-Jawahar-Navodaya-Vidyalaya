@@ -5,7 +5,9 @@ export default defineConfig({
   plugins: [
     react()
   ],
-  define: {
-    '@emotion/styled': 'styled'
+  resolve: {
+    alias: {
+      '@emotion/styled': 'react/jsx-runtime'
+    }
   }
 });
