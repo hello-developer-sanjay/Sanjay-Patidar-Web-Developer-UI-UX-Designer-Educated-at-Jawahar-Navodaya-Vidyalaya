@@ -9,5 +9,8 @@ export default defineConfig({
     rollupOptions: {
       external: ['@emotion/styled']
     }
+  },
+  define: {
+    '@emotion/styled': '@emotion/styled'
   }
 });
