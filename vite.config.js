@@ -7,10 +7,10 @@ export default defineConfig({
   ],
   build: {
     rollupOptions: {
-      external: ['@emotion/styled']
+      external: /^@emotion\/styled/
     }
   },
-  define: {
-    '@emotion/styled': '@emotion/styled'
+  optimizeDeps: {
+    exclude: ['@emotion/styled']
   }
 });
