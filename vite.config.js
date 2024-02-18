@@ -5,12 +5,10 @@ export default defineConfig({
   plugins: [
     react()
   ],
-  build: {
-    rollupOptions: {
-      external: [
-        /^@emotion\/styled/,
-        '@chakra-ui/system'
-      ]
+  resolve: {
+    alias: {
+      '@emotion/styled': '@emotion/styled/base',
+      '@chakra-ui/system': '@chakra-ui/system/dist/system.cjs.js'
     }
   }
 });
