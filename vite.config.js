@@ -5,9 +5,9 @@ export default defineConfig({
   plugins: [
     react()
   ],
-  build: {
-    rollupOptions: {
-      external: ['@emotion/styled']
+  resolve: {
+    alias: {
+      '@emotion/styled': '@emotion/styled/base'
     }
   }
 });
