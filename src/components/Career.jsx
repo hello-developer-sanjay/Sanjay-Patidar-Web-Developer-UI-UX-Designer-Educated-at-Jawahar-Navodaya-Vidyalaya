@@ -1,19 +1,10 @@
     /* eslint-disable react/prop-types */
     /* eslint-disable react/display-name */
     import React, { useState,useMemo, useEffect, useRef, useCallback } from "react";
-    import {
-      Box,
-      Input,
-      VStack,
-      Text,
-      
-      IconButton,
-      useDisclosure,
-      Collapse,
-      Button,
-    } from "@chakra-ui/react";
+   
     import { Helmet } from "react-helmet-async";  // Import Helmet
-
+    import { Collapse } from 'react-collapse'; // Import Collapse from a library (e.g., react-collapse)
+    import useDisclosure from './useDisclosure'; // Import the custom hook
     import {
     
       RingLoader,
@@ -34,35 +25,40 @@
 
     import { Link } from "react-router-dom";
     const BlogTitle = React.forwardRef(({ title, collection, onClick, location }, ref) => (
-        <motion.div
-          whileHover={{
-            textDecoration: "underline",
-          }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ duration: 0.2 }}
-          onClick={() => onClick(title, collection)}
-          ref={ref}
-          style={{ cursor: "pointer", marginLeft: location === "main" ? "100px" : "0" }} // Adjust marginLeft based on location
+      <motion.div
+        whileHover={{
+          textDecoration: "underline",
+        }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ duration: 0.2 }}
+        onClick={() => onClick(title, collection)}
+        ref={ref}
+        style={{ cursor: "pointer", marginLeft: location === "main" ? "50px" : "0" }} // Adjust marginLeft based on location
+      >
+        <div
+          style={{
+            fontWeight: "bold",
+            textDecoration: "none",
+            fontFamily: "Roboto, sans-serif",
+            textAlign: "left",
+            padding: "8px",
+            fontSize: location === "main" ? "25px" : "20px",
+            color: location === "main" ? "white" : "Turquoise ",
+            marginTop:location === "main" ? "50px" : "5px",
+
+
+                      }}
         >
-          <Text
-            fontWeight="bold"
-            _hover={{ textDecoration: "none" }}
-            color="#ffffff" // White text color
-            fontFamily="Roboto, sans-serif"
-            textAlign="left"
-            p={2}
-            style={{ fontSize: location === "main" ? "24px" : "20px" }} // Adjust font sizes based on location
+          <Link
+            to={`/${collection}/${encodeURIComponent(title)}`}
+            style={{ color: "inherit", textDecoration: "none" }}
           >
-            <Link
-              to={`/${collection}/${encodeURIComponent(title)}`}
-              style={{ color: "inherit", textDecoration: "none" }}
-            >
-              {title}
-            </Link>
-          </Text>
-        </motion.div>
-      ));
-      
+            {title}
+          </Link>
+        </div>
+      </motion.div>
+    ));
+    
     
     
     
@@ -80,6 +76,8 @@
       const navigate = useNavigate();
       const titleRefs = useRef({});
       const { isOpen, onToggle } = useDisclosure();
+      const sidebarRef = useRef();
+
       const [lastVisitedBlog, setLastVisitedBlog] = useState(null);
 
       const debounce = (func, delay) => {
@@ -344,7 +342,7 @@
       };
 
       const scrollToTopButtonStyle = {
-        position: "fixed",
+        position: "sticky",
         bottom: "30px",
         right: "1px",
         zIndex: 2,
@@ -363,9 +361,12 @@
 
       const contentSectionStyle = {
         borderRadius: "12px",
-        marginLeft:"100px",
-       justifyContent:"start",
-       alignItems:"start",
+        marginLeft: "50px",
+        padding: "20px",
+        color: "white",
+        fontSize:"20px ",
+        justifyContent: "start",
+        alignItems: "start",
       };
       
       
@@ -383,11 +384,13 @@
         overflowX: "hidden",
         overflowY: "auto", 
   maxHeight: "calc(100% - 200px)", 
+  display: isOpen ? 'block' : 'none' // Adding display property here
+
       };
 
       const toggleButtonStyle = {
         position: "fixed",
-        top: "170px",
+        top: "180px",
         transform: "translateY(-50%)",
         left: isOpen ? "240px" : "20px",
         zIndex: 2,
@@ -434,7 +437,7 @@
         },
       };
 
-      const renderMediaContent = (content, title) => {
+      const renderMediaContent = (content, title, location) => {
         if (!content) {
           return null;
         }
@@ -447,9 +450,9 @@
         return content.map((item, index) => {
           if (Array.isArray(item)) {
             return (
-              <VStack key={index} align="start" spacing={2} mt={2}>
-                {renderMediaContent(item, title)}
-              </VStack>
+              <React.Fragment key={index}>
+{renderMediaContent(item.content, title, location)}
+              </React.Fragment>
             );
           }
       
@@ -458,7 +461,7 @@
           if (typeof item === "object" && item.title) {
             // Display object field titles on the same page as the parent title
             element = (
-              <VStack key={index} align="start" spacing={2} mt={2}>
+              <React.Fragment key={index}>
                 <BlogTitle
                   title={item.title}
                   collection="careers"
@@ -470,56 +473,47 @@
                 {renderMediaContent(item.steps, title)}
                 {renderMediaContent(item.career_path, title)}
                 {renderMediaContent(item.entry_level, title)}
-
-
-                 {renderMediaContent(item.components, title)}
-                 {renderMediaContent(item.whatIsJdk, title)}
-                                  {renderMediaContent(item.whatIsJvm, title)}
-
-
-
+                {renderMediaContent(item.components, title)}
+                {renderMediaContent(item.whatIsJdk, title)}
+                {renderMediaContent(item.whatIsJvm, title)}
                 {renderMediaContent(item.jvm, title)}
-                
                 {renderMediaContent(item.jdk, title)}
-
                 {renderMediaContent(item.settingUpJavaDevelopmentEnvironment, title)}
                 {renderMediaContent(item.overview, title)}
-               {renderMediaContent(item.settings, title)} 
-                
-               {renderMediaContent(item.features, title)} 
-              </VStack>
+                {renderMediaContent(item.settings, title)} 
+                {renderMediaContent(item.features, title)} 
+              </React.Fragment>
             );
           }
       
           if (typeof item === "string") {
             // Handle special characters
             const specialCharsRegex = /[*$~]([^*$~]+)[*$~]/;
-const matchSpecialChars = item.match(specialCharsRegex);
-
-if (matchSpecialChars) {
-  const specialText = matchSpecialChars[1];
-  const textBeforeSpecial = item.split(matchSpecialChars[0])[0];
-  const textAfterSpecial = item.split(matchSpecialChars[0])[1];
-
-  element = (
-    <Text key={index}>
-      {textBeforeSpecial}
-      <span
-  style={{
-    fontWeight: matchSpecialChars[0] === '*' ? 'bold' : 'normal',
-    color: matchSpecialChars[0] === '$' ? 'green' : matchSpecialChars[0] === '~' ? 'lime' : 'gold',
-    fontStyle: matchSpecialChars[0] === '*' ? 'italic' : 'normal',
-    textDecoration: 'none',
-    fontSize: matchSpecialChars[0] === '$' ? '1.2em' : matchSpecialChars[0] === '~' ? '1.1em' : '1em',
-  }}
->
-
-   {specialText}
-      </span>
-      {textAfterSpecial}
-    </Text>
-  );
-} else {              // Check for links
+            const matchSpecialChars = item.match(specialCharsRegex);
+      
+            if (matchSpecialChars) {
+              const specialText = matchSpecialChars[1];
+              const textBeforeSpecial = item.split(matchSpecialChars[0])[0];
+              const textAfterSpecial = item.split(matchSpecialChars[0])[1];
+      
+              element = (
+                <React.Fragment key={index}>
+                  {textBeforeSpecial}
+                  <span
+                    style={{
+                      fontWeight: matchSpecialChars[0] === '*' ? 'bold' : 'normal',
+                      color: matchSpecialChars[0] === '$' ? 'green' : matchSpecialChars[0] === '~' ? 'lime' : 'gold',
+                      fontStyle: matchSpecialChars[0] === '*' ? 'italic' : 'normal',
+                      textDecoration: 'none',
+                      fontSize: matchSpecialChars[0] === '$' ? '1.2em' : matchSpecialChars[0] === '~' ? '1.1em' : '1em',
+                    }}
+                  >
+                    {specialText}
+                  </span>
+                  {textAfterSpecial}
+                </React.Fragment>
+              );
+            } else {              
               const linkRegex = /@([^@]+)@/;
               const match = item.match(linkRegex);
       
@@ -530,7 +524,7 @@ if (matchSpecialChars) {
                 const textAfterLink = item.split(match[0])[1];
       
                 element = (
-                  <Text key={index}>
+                  <React.Fragment key={index}>
                     {textBeforeLink}
                     <span
                       style={{ color: "yellow", textDecoration: "underline", cursor: "pointer" }}
@@ -539,29 +533,25 @@ if (matchSpecialChars) {
                       {link}
                     </span>
                     {textAfterLink}
-                  </Text>
+                  </React.Fragment>
                 );
               } else if (item.startsWith("http")) {
                 // Handle images and videos
                 if (item.match(/\.(jpeg|jpg|gif|png)$/)) {
                   element = (
-                    <Box key={index} mb={2} className="image-container">
+                    <React.Fragment key={index}>
                       <ModalImage
                         small={item}
                         large={item}
+                       
                         alt={`Image ${index}`}
                         className="custom-modal-image"
                       />
-                    </Box>
+                    </React.Fragment>
                   );
                 } else if (item.match(/\.(mp4|webm|mkv)$/)) {
                   element = (
-                    <Box
-                      key={index}
-                      position="relative"
-                      paddingTop="56.25%"
-                      width="100%"
-                    >
+                    <React.Fragment key={index}>
                       <ReactPlayer
                         url={item}
                         controls
@@ -569,143 +559,134 @@ if (matchSpecialChars) {
                         height="100%"
                         style={{ position: "absolute", top: 0, left: 0 }}
                       />
-                    </Box>
+                    </React.Fragment>
                   );
                 } else {
-                  element = <Text key={index}>{item}</Text>;
+                  element = <React.Fragment key={index}>{item}</React.Fragment>;
                 }
               } else {
                 // Handle regular text
-                element = <Text key={index}>{item}</Text>;
+                element = <React.Fragment key={index}>{item}</React.Fragment>;
               }
             }
           }
       
-          return <Box key={index} mb={2}>{element}</Box>;
+          return <div key={index}>{element}</div>;
         });
       };
-      
       
       
 
 
       const navbarHeight = document.querySelector(".navbar")?.clientHeight || 0;
       return (
-        <Box
-          w="full"
-          minH="100vh"
-          mx="auto"
-          d="flex"
-          padding={`calc(${navbarHeight}px + 2rem) 2rem 2rem 2rem`}
-          flexDir="column"
-          alignItems="start"
-          justifyContent="flex-start"
+        <div
+          style={{
+            width: "full",
+            minHeight: "100vh",
+            margin: "auto",
+            display: "flex",
+            padding: `calc(${navbarHeight}px + 2rem) 2rem 2rem 2rem`,
+            flexDirection: "column",
+            alignItems: "start",
+            justifyContent: "flex-start",
+            overflowY: "scroll",
+            textAlign: "left",
+            maxHeight: "calc(100vh - 100px)",
+            height: "auto",
+            overflowX: "hidden",
+            boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+            marginTop: "-32px"
+          }}
           id="blogs-section"
-          overflowY="scroll"
-          textAlign={"left"}
-          maxHeight="calc(100vh - 100px)"
-          height="auto"
-          overflowX="hidden"
-          boxShadow="0px 4px 8px rgba(0, 0, 0, 0.1)"
           onScroll={handleScroll}
-          mt="0px"
         >
           {loading ? (
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
-          {loading && (
-                    <>
-                    <div style={{ marginRight: "20px" }}>
-                      <ClipLoader color={"#FF6347"} loading={loading} size={20} />
-                      <span style={{ color: "#FF6347", fontSize: "12px" }}>Fetching data...</span>
-                    </div>
-          
-                    <div style={{ marginRight: "20px" }}>
-                      <RingLoader color={"#36D7B7"} loading={loading} size={30} />
-                      <span style={{ color: "#36D7B7", fontSize: "14px" }}>Preparing content...</span>
-                    </div>
-          
-                    <div>
-                      <SyncLoader color={"#5E35B1"} loading={loading} size={40} />
-                      <span style={{ color: "#5E35B1", fontSize: "16px" }}>Almost there...</span>
-                    </div>
-                    {/* Add more loaders or customize the existing ones */}
-                  </>
-          
-          )}
-        </div>
-         
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100vh"
+              }}
+            >
+              {loading && (
+                <>
+                  <div style={{ marginRight: "20px" }}>
+                    <ClipLoader color={"#FF6347"} loading={loading} size={20} />
+                    <span style={{ color: "#FF6347", fontSize: "12px" }}>Fetching data...</span>
+                  </div>
+    
+                  <div style={{ marginRight: "20px" }}>
+                    <RingLoader color={"#36D7B7"} loading={loading} size={30} />
+                    <span style={{ color: "#36D7B7", fontSize: "14px" }}>Preparing content...</span>
+                  </div>
+    
+                  <div>
+                    <SyncLoader color={"#5E35B1"} loading={loading} size={40} />
+                    <span style={{ color: "#5E35B1", fontSize: "16px" }}>Almost there...</span>
+                  </div>
+                  {/* Add more loaders or customize the existing ones */}
+                </>
+              )}
+            </div>
           ) : (
             <>
               {/* Toggle Button */}
-              <Button
+              <button
                 style={toggleButtonStyle}
                 onClick={onToggle}
-                leftIcon={isOpen ? <FaTimes /> : <FaBars />}
               >
                 {isOpen ? "Close" : "Open"}
-              </Button>
-      
+              </button>
+              <Collapse isOpened={isOpen}>
+
               {/* Sidebar */}
-              <Collapse in={isOpen}>
-                <Box style={sidebarStyle}>
-                <VStack align="start" spacing={2}>
-  {Object.keys(blogsData).map((collection) => (
-    <VStack key={collection} align="start" spacing={2}>
-      <Text fontSize="md" fontWeight="semibold" mb={2}>
-        {`${collection.charAt(0).toUpperCase()}${collection.slice(1)}`}
-      </Text>
-      {filteredBlogs(collection).map((blog) => (
-       <BlogTitle
-       key={blog.title}
-       title={blog.title}
-       collection={collection}
-       onClick={(title, collection) => handleTitleClick(title, collection)}
-       location="sidebar" // Pass location prop indicating main content area
-     />
-     
-      ))}
-    </VStack>
-  ))}
-</VStack>
-
-
-                </Box>
+              <div style={{...sidebarStyle}} ref={sidebarRef}>
+                  <div>
+                  {Object.keys(blogsData).map((collection) => (
+                    <div key={collection}>
+                      <div style={{ fontSize: "md", fontWeight: "semibold", marginBottom: "2px" }}>
+                        {`${collection.charAt(0).toUpperCase()}${collection.slice(1)}`}
+                      </div>
+                      {filteredBlogs(collection).map((blog) => (
+                        <BlogTitle
+                          key={blog.title}
+                          title={blog.title}
+                          collection={collection}
+                          onClick={(title, collection) => handleTitleClick(title, collection)}
+                          location="sidebar" // Pass location prop indicating main content area
+                        />
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
               </Collapse>
-      
+
               {/* Main Content */}
-              <Box mt={0} p={0} ml={isOpen ? "200px" : "0"}>
-                <Box style={headerStyle}>
-                  <VStack spacing={0} align="start" w="100%" marginTop="0">
-                    <Input
+              <div style={{ marginTop: "0", padding: "0", marginLeft: isOpen ? "200px" : "0" }}>
+                <div style={headerStyle}>
+                  <div style={{ display: "flex", flexDirection: "column", width: "100%", marginTop: "0" }}>
+                    <input
                       type="text"
                       placeholder="Enter your desired job title or keywords"
-
-
-
-
-
-
                       value={searchQuery}
                       onChange={handleSearchChange}
-                      p={0}
-                      marginTop={0}
-                      borderWidth="5px"
-                      rounded="md"
-                      bg="white"
-                      color="black"
-                      mb={0}
+                      style={{ padding: "0", marginTop: "0", borderWidth: "5px", borderRadius: "md", backgroundColor: "white", color: "black", marginBottom: "0" }}
                     />
-                    <Box style={progressBarStyle} />
-                    <Box style={remainingBarStyle} />
-                  </VStack>
-                  <IconButton
-                    icon={<FaArrowCircleUp />}
+                    <div style={progressBarStyle} />
+                    <div style={remainingBarStyle} />
+                  </div>
+                  <button
                     aria-label="Scroll to Top"
                     onClick={scrollToTop}
                     style={scrollToTopButtonStyle}
-                  />
-                </Box>
-      
+                  >
+                    <FaArrowCircleUp />
+                  </button>
+                </div>
+    
                 {currentPosts.map((blog, index) => (
                   <motion.div
                     key={blog.title}
@@ -715,111 +696,60 @@ if (matchSpecialChars) {
                         : null
                     }
                   >
-                    <VStack align="start" spacing={2} id={`title-${blog.title}`} ref={(el) => (titleRefs.current[blog.title] = el)}>
+                    <div id={`title-${blog.title}`} ref={(el) => (titleRefs.current[blog.title] = el)}>
                       <BlogTitle
                         key={blog.title}
                         title={blog.title}
                         collection="careers"
                         onClick={() => handleTitleClick(blog.title, "careers")}
                         location="main" // Pass location prop indicating sidebar
-
                       />
-                     </VStack>
-       <VStack spacing={2} id={`content-${blog.title}-overview`} style={contentSectionStyle}>
-  {renderMediaContent(blog.overview, blog.title)}
-</VStack>
-
-<VStack spacing={2} id={`content-${blog.title}-description`} style={contentSectionStyle}>
-  {renderMediaContent(blog.description, blog.title)}
-</VStack>
-<VStack spacing={2} id={`content-${blog.title}-responsibilities`} style={contentSectionStyle}>
-  {renderMediaContent(blog.responsibilities, blog.title)}
-</VStack>
-<VStack spacing={2} id={`content-${blog.title}-skills`} style={contentSectionStyle}>
-  {renderMediaContent(blog.skills, blog.title)}
-</VStack>
-
-<VStack spacing={2} id={`content-${blog.title}-career_path`} style={contentSectionStyle}>
-  {renderMediaContent(blog.career_path, blog.title)}
-</VStack>
-
-<VStack spacing={2} id={`content-${blog.title}-entry_level`} style={contentSectionStyle}>
-  {renderMediaContent(blog.entry_level, blog.title)}
-</VStack>
-{/* new  */}
-<VStack spacing={2} id={`content-${blog.title}-career_outlook`} style={contentSectionStyle}>
-  {renderMediaContent(blog.career_outlook, blog.title)}
-</VStack>
-
-<VStack spacing={2} id={`content-${blog.title}-common_questions`} style={contentSectionStyle}>
-  {renderMediaContent(blog.common_questions, blog.title)}
-</VStack>
-
-
-<VStack spacing={2} id={`content-${blog.title}-entry_level`} style={contentSectionStyle}>
-{renderMediaContent(blog.career_path?.entry_level, blog.title)}
-</VStack>
-
-
-
-<VStack spacing={2} id={`content-${blog.title}-mid_level`} style={contentSectionStyle}>
-{renderMediaContent(blog.career_path?.mid_level, blog.title)}
-</VStack>
-
-
-
-<VStack spacing={2} id={`content-${blog.title}-senior_level`} style={contentSectionStyle}>
-{renderMediaContent(blog.career_path?.senior_level, blog.title)}
-</VStack>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<VStack spacing={2} id={`content-${blog.title}-best_practice`} style={contentSectionStyle}>
-  {renderMediaContent(blog.best_practice, blog.title)}
-</VStack>
-
-<VStack spacing={2} id={`content-${blog.title}-common_issues`} style={contentSectionStyle}>
-  {renderMediaContent(blog.common_issues, blog.title)}
-</VStack>
-
-
-
-<VStack spacing={2} id={`content-${blog.title}-common_tasks`} style={contentSectionStyle}>
-  {renderMediaContent(blog.common_tasks, blog.title)}
-</VStack>
-
-
-
-
-
-
-
- 
-
-
-
-      
+                    </div>
+                    <div id={`content-${blog.title}-overview`} style={contentSectionStyle}>
+                      {renderMediaContent(blog.overview, blog.title)}
+                    </div>
+                    <div id={`content-${blog.title}-description`} style={contentSectionStyle}>
+                      {renderMediaContent(blog.description, blog.title)}
+                    </div>
+                    <div id={`content-${blog.title}-responsibilities`} style={contentSectionStyle}>
+                      {renderMediaContent(blog.responsibilities, blog.title)}
+                    </div>
+                    <div id={`content-${blog.title}-skills`} style={contentSectionStyle}>
+                      {renderMediaContent(blog.skills, blog.title)}
+                    </div>
+                    <div id={`content-${blog.title}-career_path`} style={contentSectionStyle}>
+                      {renderMediaContent(blog.career_path, blog.title)}
+                    </div>
+                    <div id={`content-${blog.title}-entry_level`} style={contentSectionStyle}>
+                      {renderMediaContent(blog.entry_level, blog.title)}
+                    </div>
+                    {/* new  */}
+                    <div id={`content-${blog.title}-career_outlook`} style={contentSectionStyle}>
+                      {renderMediaContent(blog.career_outlook, blog.title)}
+                    </div>
+                    <div id={`content-${blog.title}-common_questions`} style={contentSectionStyle}>
+                      {renderMediaContent(blog.common_questions, blog.title)}
+                    </div>
+                    <div id={`content-${blog.title}-entry_level`} style={contentSectionStyle}>
+                      {renderMediaContent(blog.career_path?.entry_level, blog.title)}
+                    </div>
+                    <div id={`content-${blog.title}-mid_level`} style={contentSectionStyle}>
+                      {renderMediaContent(blog.career_path?.mid_level, blog.title)}
+                    </div>
+                    <div id={`content-${blog.title}-senior_level`} style={contentSectionStyle}>
+                      {renderMediaContent(blog.career_path?.senior_level, blog.title)}
+                    </div>
 
                   </motion.div>
                 ))}
       
-              </Box>
+              </div>
             </>
           )}
-        </Box>
+        </div>
       );
       };
       
       export default Career;
+      
       
