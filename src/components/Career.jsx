@@ -2,9 +2,9 @@
     /* eslint-disable react/display-name */
     import React, { useState,useMemo, useEffect, useRef, useCallback } from "react";
    
-    import { Helmet } from "react-helmet-async";  // Import Helmet
-    import { Collapse } from 'react-collapse'; // Import Collapse from a library (e.g., react-collapse)
-    import useDisclosure from './useDisclosure'; // Import the custom hook
+    import { Helmet } from "react-helmet-async";  
+    import { Collapse } from 'react-collapse'; 
+    import useDisclosure from './useDisclosure'; 
     import {
     
       RingLoader,
@@ -33,7 +33,7 @@
         transition={{ duration: 0.2 }}
         onClick={() => onClick(title, collection)}
         ref={ref}
-        style={{ cursor: "pointer", marginLeft: location === "main" ? "50px" : "0" }} // Adjust marginLeft based on location
+        style={{ cursor: "pointer", marginLeft: location === "main" ? "50px" : "0", position: "relative" }} // Add position relative
       >
         <div
           style={{
@@ -44,10 +44,8 @@
             padding: "8px",
             fontSize: location === "main" ? "25px" : "20px",
             color: location === "main" ? "white" : "Turquoise ",
-            marginTop:location === "main" ? "50px" : "5px",
-
-
-                      }}
+            marginTop: location === "main" ? "50px" : "5px",
+          }}
         >
           <Link
             to={`/${collection}/${encodeURIComponent(title)}`}
@@ -56,8 +54,27 @@
             {title}
           </Link>
         </div>
+        {location === "main" && (
+        <div
+        style={{
+          position: "absolute",
+          bottom: "-5px",
+          left: 0,
+          width: "100%",
+          height: "2px",
+          background: "linear-gradient(to right, rgba(255, 215, 0, 1), rgba(255, 255, 255, 0.7), rgba(255, 215, 0, 1))", // Use linear gradient for a more dynamic shine effect
+          borderRadius: "10px", 
+          animation: "shine 2s infinite linear", 
+        }}
+      />
+      
+        )}
       </motion.div>
     ));
+    
+    
+   
+    
     
     
     
@@ -326,7 +343,7 @@
     };
 
    
-    const progressBarStyle = {
+      const progressBarStyle = {
         width: `${scrollProgress}%`,
         height: "4px",
         backgroundColor: "yellow",
@@ -355,7 +372,7 @@
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        cursor: "pointer",
+cursor: "pointer",
         transition: "background-color 0.3s",
         fontSize: "24px",
       };
@@ -674,7 +691,7 @@
                       placeholder="Enter your desired job title or keywords"
                       value={searchQuery}
                       onChange={handleSearchChange}
-                     style={{
+                      style={{
                         padding: "0.5rem",
                         marginTop: "0",
                         borderWidth: "0.5rem",
@@ -686,7 +703,8 @@
                         fontFamily: "Arial, sans-serif",
                         textAlign: "center",
                         fontSize: "1rem",
-                      }}                    />
+                      }}
+                                          />
                     <div style={progressBarStyle} />
                     <div style={remainingBarStyle} />
                   </div>
@@ -708,15 +726,27 @@
                         : null
                     }
                   >
-                    <div id={`title-${blog.title}`} ref={(el) => (titleRefs.current[blog.title] = el)}>
-                      <BlogTitle
-                        key={blog.title}
-                        title={blog.title}
-                        collection="careers"
-                        onClick={() => handleTitleClick(blog.title, "careers")}
-                        location="main" // Pass location prop indicating sidebar
-                      />
-                    </div>
+                   <div id={`title-${blog.title}`} ref={(el) => (titleRefs.current[blog.title] = el)}>
+  <BlogTitle
+    key={blog.title}
+    title={blog.title}
+    collection="careers"
+    onClick={() => handleTitleClick(blog.title, "careers")}
+    location="main" // Pass location prop indicating sidebar
+  />
+<div style={{ marginTop: "30px", padding: "10px", border: "1px solid #ccc", color: "White", borderRadius: "8px" }}>
+  <div style={{ fontWeight: "bold", marginBottom: "10px" }}>Published By:</div>
+  <div>{renderMediaContent(blog.published_by, blog.title)}</div>
+
+  <div style={{ marginTop: "20px", fontWeight: "bold", marginBottom: "10px" }}>Keywords:</div>
+  <div>{renderMediaContent(blog.keywords, blog.title)}</div>
+
+  <div style={{ marginTop: "20px", fontWeight: "bold", marginBottom: "10px" }}>Last Modified:</div>
+  <div>{renderMediaContent(blog.Last_Modified, blog.title)}</div>
+</div>
+
+</div>
+
                     <div id={`content-${blog.title}-overview`} style={contentSectionStyle}>
                       {renderMediaContent(blog.overview, blog.title)}
                     </div>
@@ -751,6 +781,7 @@
                     <div id={`content-${blog.title}-senior_level`} style={contentSectionStyle}>
                       {renderMediaContent(blog.career_path?.senior_level, blog.title)}
                     </div>
+
 
                   </motion.div>
                 ))}
