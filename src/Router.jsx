@@ -1,6 +1,6 @@
 import  { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route , useLocation } from "react-router-dom";
-import PageTransition from "./components/PageTransition"; // Import your PageTransition component
+import PageTransition from "./components/PageTransition"; 
 import Home from "./pages/Home";
 import Projects from "./components/Projects";
 import Skills from "./pages/Skills";
