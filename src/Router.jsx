@@ -10,6 +10,7 @@ import CertificationDetails from "./pages/CertificationDetails";
 import Resume from './components/Resume';
 import Blogs from './components/Blogs';
 import { Analytics } from '@vercel/analytics/react';
+import Career from './components/Career';
 
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
@@ -49,6 +50,7 @@ const AppRouter = () => {
         <Route path="/education" element={<PageTransition><Education /></PageTransition>} />
         <Route path="/protected" element={<PageTransition><ProtectedPage /></PageTransition>} />
 <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+        <Route path="/careers/*" element={<Career />} />
 
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
