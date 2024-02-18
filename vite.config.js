@@ -5,7 +5,9 @@ export default defineConfig({
   plugins: [
     react()
   ],
-  optimizeDeps: {
-    exclude: ['@emotion/styled']
+  build: {
+    rollupOptions: {
+      external: /^(@emotion\/styled|@chakra-ui\/system)/
+    }
   }
 });
