@@ -326,18 +326,19 @@
     };
 
    
-      const progressBarStyle = {
+    const progressBarStyle = {
         width: `${scrollProgress}%`,
         height: "4px",
-        backgroundColor: "green",
+        backgroundColor: "yellow",
         borderRadius: "2px",
+        marginTop:"5px",
         transition: "width 0.3s",
       };
 
       const remainingBarStyle = {
         width: `${remainingProgress}%`,
         height: "4px",
-        backgroundColor: "lightgray",
+        backgroundColor: "black",
         borderRadius: "2px",
       };
 
