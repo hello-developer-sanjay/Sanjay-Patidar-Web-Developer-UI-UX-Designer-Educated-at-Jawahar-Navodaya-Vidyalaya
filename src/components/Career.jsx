@@ -42,13 +42,13 @@
             fontFamily: "Roboto, sans-serif",
             textAlign: "left",
             padding: "8px",
-            fontSize: location === "main" ? "25px" : "20px",
+            fontSize: location === "main" ? "25px" : "18px",
             color: location === "main" ? "white" : "Turquoise ",
             marginTop: location === "main" ? "50px" : "5px",
           }}
         >
           <Link
-            to={`/${collection}/${encodeURIComponent(title)}`}
+            to={`/careers/${collection}/${encodeURIComponent(title)}`}
             style={{ color: "inherit", textDecoration: "none" }}
           >
             {title}
@@ -228,14 +228,14 @@
           const pageIndex =
             Math.ceil(blogsData[collection].indexOf(matchingBlog) / postsPerPage) + 1;
     
-          navigate(`/${collection}/${encodedTitle}`, {
+          navigate(`/careers/${collection}/${encodedTitle}`, {
             replace: true,
           });
     
           setCurrentPage(pageIndex);
     
           // Set the title dynamically when a title is clicked
-          document.title = `${matchingBlog.title} | Eduxcel`; // Replace with your website name
+          document.title = `${matchingBlog.title} | Sanjay Patidar`; // Replace with your website name
         }
         setLastVisitedBlog({ title, collection });
       }, [blogsData, navigate, postsPerPage]);
@@ -251,7 +251,7 @@
     }
 
     // Check for title in URL and display the content directly
-    const urlTitleMatch = location.pathname.match(/(.+?)\/(.+)/);
+    const urlTitleMatch = location.pathname.match(/\/careers\/(.+?)\/(.+)/);
     if (urlTitleMatch) {
       const [, collection, encodedTitle] = urlTitleMatch;
       const urlTitle = decodeURIComponent(encodedTitle);
@@ -259,25 +259,7 @@
         (blog) =>
           blog.title === urlTitle ||
           (blog.parentTitle && blog.parentTitle.title === urlTitle) ||
-          (blog.extension1 && blog.extension1.title === urlTitle) ||
-          (blog.extension2 && blog.extension2.title === urlTitle) ||
-          (blog.extension3 && blog.extension3.title === urlTitle) ||
-          (blog.extension4 && blog.extension4.title === urlTitle) ||
-          (blog.extension5 && blog.extension5.title === urlTitle) ||
-          (blog.needForAdvancedTechniques && blog.needForAdvancedTechniques.title === urlTitle) ||
-          (blog.dask && blog.dask.title === urlTitle) ||
-          (blog.vaex && blog.vaex.title === urlTitle) ||
-          (blog.optimizationStrategies && blog.optimizationStrategies.title === urlTitle) ||
-          (blog.parallelComputing && blog.parallelComputing.title === urlTitle) ||
-
-
-          (blog.settingUpGit && blog.settingUpGit.title === urlTitle) ||
-
-          (blog.configuringUsernameAndEmail && blog.configuringUsernameAndEmail.title === urlTitle) ||
-
-          (blog.components && blog.components.title === urlTitle) ||
-          (blog.settingUpJavaDevelopmentEnvironment && blog.settingUpJavaDevelopmentEnvironment.title === urlTitle) ||
-          (blog.jvm && blog.jvm.title === urlTitle) ||
+          
           (blog.features && blog.features.title === urlTitle) ||
           (blog.entry_level && blog.entry_level.title === urlTitle) ||
           (blog.common_questions && blog.common_questions.title === urlTitle) ||
@@ -304,7 +286,7 @@
   Helmet.canUseDOM && Helmet.startUpdating();
   Helmet.canUseDOM &&
     Helmet.updateHelmet({
-      title: `${cleanedBlogTitle} | Eduxcel`,
+      title: `${cleanedBlogTitle} | Sanjay Patidar`,
       meta: [
         {
           name: 'description',
@@ -378,7 +360,7 @@ cursor: "pointer",
         fontSize: "24px",
       };
 
-         const contentSectionStyle = {
+      const contentSectionStyle = {
         borderRadius: "12px",
         marginLeft: "50px",
 marginTop:"50px",        color: "white",
@@ -386,6 +368,7 @@ marginTop:"50px",        color: "white",
         justifyContent: "start",
         alignItems: "start",
       };
+      
       
       const sidebarStyle = {
         position: "fixed",
@@ -490,15 +473,9 @@ marginTop:"50px",        color: "white",
                 {renderMediaContent(item.steps, title)}
                 {renderMediaContent(item.career_path, title)}
                 {renderMediaContent(item.entry_level, title)}
-                {renderMediaContent(item.components, title)}
-                {renderMediaContent(item.whatIsJdk, title)}
-                {renderMediaContent(item.whatIsJvm, title)}
-                {renderMediaContent(item.jvm, title)}
-                {renderMediaContent(item.jdk, title)}
-                {renderMediaContent(item.settingUpJavaDevelopmentEnvironment, title)}
                 {renderMediaContent(item.overview, title)}
-                {renderMediaContent(item.settings, title)} 
-                {renderMediaContent(item.features, title)} 
+                {renderMediaContent(item.common_questions, title)}
+                
               </React.Fragment>
             );
           }
@@ -672,6 +649,8 @@ marginTop:"50px",        color: "white",
                           title={blog.title}
                           collection={collection}
                           onClick={(title, collection) => handleTitleClick(title, collection)}
+                          ref={(el) => (titleRefs.current[`${collection}-${blog.title}`] = el)}
+
                           location="sidebar" // Pass location prop indicating main content area
                         />
                       ))}
@@ -755,13 +734,16 @@ marginTop:"50px",        color: "white",
 
   <div style={{ marginTop: "20px", fontWeight: "bold", marginBottom: "10px" , fontSize: "1.2rem"}}>Last Modified:</div>
   <div>{renderMediaContent(blog.Last_Modified, blog.title)}</div>
-</div></div>
+</div>
+
+</div>
 
                     <div id={`content-${blog.title}-overview`} style={contentSectionStyle}>
                       {renderMediaContent(blog.overview, blog.title)}
                     </div>
+                
 
-                        <div id={`content-${blog.title}-design`} style={contentSectionStyle}>
+                    <div id={`content-${blog.title}-design`} style={contentSectionStyle}>
                       {renderMediaContent(blog.responsibilities?.design, blog.title)}
                     </div>
 
@@ -780,15 +762,15 @@ marginTop:"50px",        color: "white",
                       {renderMediaContent(blog.responsibilities?.continous_learning, blog.title)}
                     </div>
 
-                  
+                    
                     <div id={`content-${blog.title}-description`} style={contentSectionStyle}>
                       {renderMediaContent(blog.description, blog.title)}
                     </div>
                     <div id={`content-${blog.title}-responsibilities`} style={contentSectionStyle}>
                       {renderMediaContent(blog.responsibilities, blog.title)}
                     </div>
-                    <div id={`content-${blog.title}-skills`} style={contentSectionStyle}>
-                      {renderMediaContent(blog.skills, blog.title)}
+                    <div id={`content-${blog.title}-skill`} style={contentSectionStyle}>
+                      {renderMediaContent(blog.skill, blog.title)}
                     </div>
                     <div id={`content-${blog.title}-career_path`} style={contentSectionStyle}>
                       {renderMediaContent(blog.career_path, blog.title)}
@@ -812,8 +794,8 @@ marginTop:"50px",        color: "white",
                     <div id={`content-${blog.title}-senior_level`} style={contentSectionStyle}>
                       {renderMediaContent(blog.career_path?.senior_level, blog.title)}
                     </div>
-
- <div id={`content-${blog.title}-ProgrammingLanguages`} style={contentSectionStyle}>
+                                  {/* new */}
+                     <div id={`content-${blog.title}-ProgrammingLanguages`} style={contentSectionStyle}>
                       {renderMediaContent(blog.skills?.ProgrammingLanguages, blog.title)}
                     </div>
                     <div id={`content-${blog.title}-BackendDevelopment`} style={contentSectionStyle}>
@@ -834,7 +816,6 @@ marginTop:"50px",        color: "white",
                     <div id={`content-${blog.title}-ContinuousLearningAndAdaptability`} style={contentSectionStyle}>
                       {renderMediaContent(blog.skills?.ContinuousLearningAndAdaptability, blog.title)}
                     </div>  
-                 
                   </motion.div>
                 ))}
       
