@@ -280,6 +280,7 @@
           (blog.jvm && blog.jvm.title === urlTitle) ||
           (blog.features && blog.features.title === urlTitle) ||
           (blog.entry_level && blog.entry_level.title === urlTitle) ||
+          (blog.common_questions && blog.common_questions.title === urlTitle) ||
 
           // Add more checks for other extensions as needed
           // ...
