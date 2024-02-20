@@ -12,7 +12,7 @@
       ClipLoader,
     
     } from "react-spinners";
-    
+
     import { motion } from "framer-motion";
     import ModalImage from "react-modal-image"; 
 
@@ -24,53 +24,68 @@
 
 
     import { Link } from "react-router-dom";
-    const BlogTitle = React.forwardRef(({ title, collection, onClick, location }, ref) => (
-      <motion.div
-        whileHover={{
-          textDecoration: "underline",
-        }}
-        whileTap={{ scale: 0.95 }}
-        transition={{ duration: 0.2 }}
-        onClick={() => onClick(title, collection)}
-        ref={ref}
-        style={{ cursor: "pointer", marginLeft: location === "main" ? "50px" : "0", position: "relative" }} // Add position relative
-      >
-        <div
-          style={{
-            fontWeight: "bold",
-            textDecoration: "none",
-            fontFamily: "Roboto, sans-serif",
-            textAlign: "left",
-            padding: "8px",
-            fontSize: location === "main" ? "25px" : "18px",
-            color: location === "main" ? "white" : "Turquoise ",
-            marginTop: location === "main" ? "50px" : "5px",
+    const slugify = (text) => {
+      return text.toString().toLowerCase()
+        .replace(/\s+/g, '-')        // Replace spaces with -
+        .replace(/[^\w-]+/g, '')     // Remove all non-word characters
+        .replace(/--+/g, '-')        // Replace multiple - with single -
+        .replace(/^-+/, '')          // Trim - from start of text
+        .replace(/-+$/, '');         // Trim - from end of text
+    };
+    
+    const BlogTitle = React.forwardRef(({ title, collection, onClick, location }, ref) => {
+      const slug = slugify(title); // Generate slug from title
+    
+      return (
+        <motion.div
+          whileHover={{
+            textDecoration: "underline",
           }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.2 }}
+          onClick={() => onClick(title, collection)}
+          ref={ref}
+          style={{ cursor: "pointer", marginLeft: location === "main" ? "50px" : "0", position: "relative" }} // Add position relative
         >
-          <Link
-            to={`/careers/${collection}/${encodeURIComponent(title)}`}
-            style={{ color: "inherit", textDecoration: "none" }}
+          <div
+            style={{
+              fontWeight: "bold",
+              textDecoration: "none",
+              fontFamily: "Roboto, sans-serif",
+              textAlign: "left",
+              padding: "8px",
+              fontSize: location === "main" ? "25px" : "18px",
+              color: location === "main" ? "white" : "Turquoise ",
+              marginTop: location === "main" ? "50px" : "5px",
+            }}
           >
-            {title}
-          </Link>
-        </div>
-        {location === "main" && (
-        <div
-        style={{
-          position: "absolute",
-          bottom: "-5px",
-          left: 0,
-          width: "100%",
-          height: "2px",
-          background: "linear-gradient(to right, rgba(255, 215, 0, 1), rgba(255, 255, 255, 0.7), rgba(255, 215, 0, 1))", // Use linear gradient for a more dynamic shine effect
-          borderRadius: "10px", 
-          animation: "shine 2s infinite linear", 
-        }}
-      />
-      
-        )}
-      </motion.div>
-    ));
+            <Link
+              to={`/careers/${collection}/${slug}`} 
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
+              {title}
+            </Link>
+          </div>
+          {location === "main" && (
+            <div
+              style={{
+                position: "absolute",
+                bottom: "-5px",
+                left: 0,
+                width: "100%",
+                height: "2px",
+                background: "linear-gradient(to right, rgba(255, 215, 0, 1), rgba(255, 255, 255, 0.7), rgba(255, 215, 0, 1))", // Use linear gradient for a more dynamic shine effect
+                borderRadius: "10px",
+                animation: "shine 2s infinite linear",
+              }}
+            />
+          )}
+        </motion.div>
+      );
+    });
+    
+    
+    
     
     
    
@@ -220,26 +235,38 @@
         }
       };
        
-  const handleTitleClick = useCallback((title, collection) => {
-        const encodedTitle = encodeURIComponent(title);
-        const matchingBlog = blogsData[collection].find((blog) => blog.title === title);
-    
-        if (matchingBlog) {
-          const pageIndex =
-            Math.ceil(blogsData[collection].indexOf(matchingBlog) / postsPerPage) + 1;
-    
-          navigate(`/careers/${collection}/${encodedTitle}`, {
-            replace: true,
-          });
-    
-          setCurrentPage(pageIndex);
-    
-          // Set the title dynamically when a title is clicked
-          document.title = `${matchingBlog.title} | Sanjay Patidar`; // Replace with your website name
-        }
-        setLastVisitedBlog({ title, collection });
-      }, [blogsData, navigate, postsPerPage]);
-    
+      
+        const generateSlug = (text) => {
+          return text.toString().toLowerCase()
+            .replace(/\s+/g, '-')        // Replace spaces with -
+            .replace(/[^\w-]+/g, '')     // Remove all non-word characters
+            .replace(/--+/g, '-')        // Replace multiple - with single -
+            .replace(/^-+/, '')          // Trim - from start of text
+            .replace(/-+$/, '');         // Trim - from end of text
+        };
+      
+        const handleTitleClick = useCallback((title, collection) => {
+          const encodedTitle = encodeURIComponent(title);
+          const matchingBlog = blogsData[collection].find((blog) => blog.title === title);
+      
+          if (matchingBlog) {
+            const pageIndex =
+              Math.ceil(blogsData[collection].indexOf(matchingBlog) / postsPerPage) + 1;
+      
+            const slug = generateSlug(title); // Generate slug from title
+      
+            navigate(`/careers/${collection}/${slug}`, {
+              replace: true,
+            });
+      
+            setCurrentPage(pageIndex);
+      
+            // Set the title dynamically when a title is clicked
+            document.title = `${matchingBlog.title} | Sanjay Patidar`; 
+          }
+          setLastVisitedBlog({ title, collection });
+        }, [blogsData, navigate, postsPerPage, setCurrentPage, setLastVisitedBlog]);
+      
   useEffect(() => {
     const query = location.pathname.split("/careers/search/")[1] || "";
     setSearchQuery(decodeURIComponent(query));
@@ -257,7 +284,7 @@
       const urlTitle = decodeURIComponent(encodedTitle);
       const matchingBlog = blogsData[collection]?.find(
         (blog) =>
-          blog.title === urlTitle ||
+        slugify(blog.title) === urlTitle ||
           (blog.parentTitle && blog.parentTitle.title === urlTitle) ||
           
           (blog.features && blog.features.title === urlTitle) ||
@@ -277,7 +304,7 @@
 
   // Set the title and description dynamically for SEO
   const blogTitle = decodeURIComponent(matchingBlog.title);
-  const cleanedBlogTitle = blogTitle.replace(/%20/g, ' ').replace(/%28/g, '(').replace(/%29/g, ')');
+  const slugify = blogTitle.replace(/%20/g, ' ').replace(/%28/g, '(').replace(/%29/g, ')');
   const blogDescription = matchingBlog.overview
     ? matchingBlog.overview.join(' ')
     : matchingBlog.description || '';
@@ -286,7 +313,7 @@
   Helmet.canUseDOM && Helmet.startUpdating();
   Helmet.canUseDOM &&
     Helmet.updateHelmet({
-      title: `${cleanedBlogTitle} | Sanjay Patidar`,
+      title: `${slugify} | Sanjay Patidar`,
       meta: [
         {
           name: 'description',
