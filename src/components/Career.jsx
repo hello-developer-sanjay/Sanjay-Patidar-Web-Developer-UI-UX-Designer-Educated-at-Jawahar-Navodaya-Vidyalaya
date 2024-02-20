@@ -267,69 +267,47 @@
           setLastVisitedBlog({ title, collection });
         }, [blogsData, navigate, postsPerPage, setCurrentPage, setLastVisitedBlog]);
       
-  useEffect(() => {
-    const query = location.pathname.split("/careers/search/")[1] || "";
-    setSearchQuery(decodeURIComponent(query));
-    fetchDataForAllCollections();
-
-    if (clickedTitle) {
-      // Reset the clicked title state
-      setClickedTitle(null);
-    }
-
-    // Check for title in URL and display the content directly
-    const urlTitleMatch = location.pathname.match(/\/careers\/(.+?)\/(.+)/);
-    if (urlTitleMatch) {
-      const [, collection, encodedTitle] = urlTitleMatch;
-      const urlTitle = decodeURIComponent(encodedTitle);
-      const matchingBlog = blogsData[collection]?.find(
-        (blog) =>
-        slugify(blog.title) === urlTitle ||
-          (blog.parentTitle && blog.parentTitle.title === urlTitle) ||
-          
-          (blog.features && blog.features.title === urlTitle) ||
-          (blog.entry_level && blog.entry_level.title === urlTitle) ||
-          (blog.common_questions && blog.common_questions.title === urlTitle) ||
-
-          // Add more checks for other extensions as needed
-          // ...
-          false
-      );
-
-      if (matchingBlog) {
-  // Set the current page to the matched blog's page
-  const pageIndex =
-    Math.ceil(blogsData[collection].indexOf(matchingBlog) / postsPerPage) + 1;
-  setCurrentPage(pageIndex);
-
-  // Set the title and description dynamically for SEO
-  const blogTitle = decodeURIComponent(matchingBlog.title);
-  const slugify = blogTitle.replace(/%20/g, ' ').replace(/%28/g, '(').replace(/%29/g, ')');
-  const blogDescription = matchingBlog.overview
-    ? matchingBlog.overview.join(' ')
-    : matchingBlog.description || '';
-
-  // Use Helmet to update the document head
-  Helmet.canUseDOM && Helmet.startUpdating();
-  Helmet.canUseDOM &&
-    Helmet.updateHelmet({
-      title: `${slugify} | Sanjay Patidar`,
-      meta: [
-        {
-          name: 'description',
-          content: blogDescription,
-        },
-      ],
-    });
-  Helmet.canUseDOM && Helmet.stopUpdating();
-}
+ 
+        useEffect(() => {
+          const query = location.pathname.split("/careers/search/")[1] || "";
+          setSearchQuery(decodeURIComponent(query));
+          fetchDataForAllCollections();
       
-    }
-    if (lastVisitedBlog) {
-      localStorage.setItem('lastVisitedBlog', JSON.stringify(lastVisitedBlog));
-    }
-  }, [location.pathname, clickedTitle, blogsData, fetchDataForAllCollections]);
-
+          if (clickedTitle) {
+            // Reset the clicked title state
+            setClickedTitle(null);
+          }
+      
+          // Check for title in URL and display the content directly
+          const urlTitleMatch = location.pathname.match(/\/careers\/(.+?)\/(.+)/);
+          if (urlTitleMatch) {
+            const [, collection, encodedTitle] = urlTitleMatch;
+            const urlTitle = decodeURIComponent(encodedTitle);
+            const matchingBlog = blogsData[collection]?.find(
+              (blog) =>
+                slugify(blog.title) === urlTitle ||
+                (blog.parentTitle && blog.parentTitle.title === urlTitle) ||
+                (blog.features && blog.features.title === urlTitle) ||
+                (blog.entry_level && blog.entry_level.title === urlTitle) ||
+                (blog.common_questions && blog.common_questions.title === urlTitle) ||
+                // Add more checks for other extensions as needed
+                // ...
+                false
+            );
+            
+            if (matchingBlog) {
+              // Set the current page to the matched blog's page
+              const pageIndex =
+                Math.ceil(blogsData[collection].indexOf(matchingBlog) / postsPerPage) + 1;
+              setCurrentPage(pageIndex);
+      
+              // Set the title and description dynamically for SEO
+              const blogTitle = decodeURIComponent(matchingBlog.title);
+              document.title = `${blogTitle} | Sanjay Patidar`;
+            }
+          }
+        }, [blogsData, fetchDataForAllCollections, location, postsPerPage, setCurrentPage]);
+      
       const indexOfLastPost = currentPage * postsPerPage;
       const indexOfFirstPost = indexOfLastPost - postsPerPage;
       const currentPosts = filteredBlogs("careers").slice(indexOfFirstPost, indexOfLastPost);
