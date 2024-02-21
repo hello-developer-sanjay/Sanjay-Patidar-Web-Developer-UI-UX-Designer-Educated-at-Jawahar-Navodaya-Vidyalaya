@@ -18,7 +18,7 @@ const SkillsHeading = styled.h1`
   margin-bottom: 1rem;
   text-align: center;
   justify-content: center;
-  color: #ff5e62;
+  color: #24086C;
   text-transform: uppercase;
   letter-spacing: 3px;
   position: relative;
@@ -39,7 +39,7 @@ const SkillsHeading = styled.h1`
     content: '🚀';
     font-size: 2rem;
     position: absolute;
-    top: -25px;
+    top: -30px;
     left: 50%;
     transform: translateX(-50%);
     animation: bounce 2s infinite;
