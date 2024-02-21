@@ -200,7 +200,7 @@ const Skills = () => {
         {/* Add other relevant meta tags */}
       </Helmet>
 
-      <SkillsHeading>Skills</SkillsHeading>
+      <SkillsHeading>Sanjay Patidar | Web Developer Skills & Expertise - Tech Architecture, Innovative Development, UI/UX Design, and More</SkillsHeading>
       <SkillsGrid>
         {skillsData.map((skill, index) => (
           <SkillCard key={index}>
