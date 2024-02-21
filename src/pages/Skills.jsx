@@ -14,7 +14,7 @@ const SkillsContainer = styled.div`
   background-color: #d0eae7;
 `;
 const SkillsHeading = styled.h1`
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 1rem;
   text-align: center;
   justify-content: center;
