@@ -9,7 +9,6 @@ const EducationContainer = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #192f3e, #0b132b);
   padding: 3rem;
   box-sizing: border-box;
   overflow: hidden;
@@ -26,15 +25,7 @@ const EducationContainer = styled(motion.div)`
   }
 `;
 
-// Styled components for the heading
-const Heading = styled.h1`
-  font-size: 3rem;
-  font-weight: bold;
-  color: #ffd700;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  margin-bottom: 2rem;
-  animation: fadeInUp 1s ease;
-`;
+
 
 // Styled components for each education section
 const EducationSection = styled(motion.section)`
@@ -59,12 +50,60 @@ const EducationSection = styled(motion.section)`
     flex-direction: row;
   }
 `;
+const EduHeading = styled.h1`
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  justify-content: center;
+  color: #24086C;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  position: relative;
 
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, #ff5e62, #ff9966);
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    border-radius: 10px;
+  }
+
+  &:before {
+    content: '🎓';
+    font-size: 2rem;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-20px);
+    }
+    60% {
+      transform: translateY(-10px);
+    }
+  }
+  @media (max-width: 768px) {
+    font-size: 1rem;
+
+  
+  }
+`;
 // Styled components for the text content of each education section
 const EducationText = styled.div`
   text-align: center;
   margin-bottom: 1rem;
-  color: #f0f0f0;
+  color: #0F0701;
   transition: color 0.3s ease;
 
   &:hover {
@@ -78,14 +117,18 @@ const EducationText = styled.div`
   }
 
   h1 {
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
-    color: #ffd700;
+    font-size: 2rem;
+    font-weight: 900;
+    color: #2ecc71;
+    margin-right: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 2px; 
+    transform: skew(-5deg); 
   }
 
   p {
     font-size: 1.2rem;
-    color: #a0a0a0;
+    color: #0F0701;
     margin-bottom: 0.5rem;
   }
 
@@ -126,8 +169,9 @@ const Education = () => {
   return (
     <EducationContainer>
       <Helmet>
-      <title>Sanjay Patidar | Education: Navigating the Path of Learning and Growth</title>
-  <meta
+      <title>Sanjay Patidar | Education: Navigating the Path of Learning and Growth in Web Development and UI/UX Design</title>
+
+<meta
     name="description"
     content="Explore the educational journey of Sanjay Patidar, including secondary education at Jawahar Navodaya Vidyalaya School and Bachelor of Technology in Computer Science Engineering at Chandigarh University."
   />
@@ -135,7 +179,7 @@ const Education = () => {
     name="keywords"
     content="Sanjay Patidar, education, secondary education, Jawahar Navodaya Vidyalaya School, Bachelor of Technology, Computer Science Engineering, Chandigarh University"
   />
-  <meta property="og:title" content="Sanjay Patidar | Education: Navigating the Path of Learning and Growth" />
+  <meta property="og:title" content="Sanjay Patidar | Education: Navigating the Path of Learning and Growth in Web Development and UI/UX Design" />
   <meta
     property="og:description"
     content="Explore the educational journey of Sanjay Patidar, including secondary education at Jawahar Navodaya Vidyalaya School and Bachelor of Technology in Computer Science Engineering at Chandigarh University."
@@ -144,7 +188,7 @@ const Education = () => {
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Sanjay Patidar | Education: Navigating the Path of Learning and Growth" />
+  <meta name="twitter:title" content="Sanjay Patidar | Education: Navigating the Path of Learning and Growth in Web Development and UI/UX Design" />
   <meta
     name="twitter:description"
     content="Explore the educational journey of Sanjay Patidar, including secondary education at Jawahar Navodaya Vidyalaya School and Bachelor of Technology in Computer Science Engineering at Chandigarh University."
@@ -154,7 +198,7 @@ const Education = () => {
 
 
       {/* Main heading */}
-      <Heading>Embarking on the Journey of Knowledge</Heading>
+      <EduHeading>Sanjay Patidar | Education: Navigating the Path of Learning and Growth in Web Development and UI/UX Design</EduHeading>
 
       {/* First education section */}
       <EducationSection
@@ -196,7 +240,7 @@ const Education = () => {
       >
         {/* Text content for the second education section */}
         <EducationText>
-          <h1>Computer Science Odyssey</h1>
+          <h1>Computer Science Engineering</h1>
           <p>
             Currently pursuing Bachelor of Technology in Computer Science
             Engineering at Chandigarh University (2019-2024). Chandigarh
@@ -221,15 +265,7 @@ const Education = () => {
         </EducationImage>
       </EducationSection>
 
-      {/* Ad section */}
-      <ins
-        className="adsbygoogle"
-        style={{ display: 'block', marginTop: '2rem' }}
-        data-ad-client="ca-pub-4434555762031338"
-        data-ad-slot="6547883433"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      ></ins>
+  
     </EducationContainer>
   );
 };
