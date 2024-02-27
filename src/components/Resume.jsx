@@ -129,7 +129,7 @@ padding: 1rem;
   }
 
   &:before {
-    content: '🎯';
+    content: '📑';
     font-size: 2rem;
     position: absolute;
     top: -30px;
