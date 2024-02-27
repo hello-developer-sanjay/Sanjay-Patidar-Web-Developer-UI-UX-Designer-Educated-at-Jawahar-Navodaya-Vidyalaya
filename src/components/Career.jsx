@@ -99,7 +99,6 @@
     const Career = () => {
       const [blogsData, setBlogsData] = useState({
         careers: [],
-        choice: [],
       });
       const [loading, setLoading] = useState(true);
 
@@ -164,7 +163,7 @@
       };
 
       const fetchDataForAllCollections = async () => {
-        const collections = ["careers", "choice"];
+        const collections = ["careers"];
         const promises = collections.map((collection) => fetchData(collection));
         await Promise.all(promises);
       };
@@ -380,12 +379,12 @@ marginTop:"50px",        color: "white",
       };
       
       
-      const sidebarStyle = {
+       const sidebarStyle = {
         position: "fixed",
-        top: "190px",
+        top: "60px",
         left: 0,
         height: "100%",
-        width: "200px",
+        width: "190px",
         backgroundColor: "black",
         borderRight: "1px solid lightgray",
         padding: "20px",
@@ -393,11 +392,10 @@ marginTop:"50px",        color: "white",
         transition: "left 0.3s",
         overflowX: "hidden",
         overflowY: "auto", 
-  maxHeight: "calc(100% - 200px)", 
+  maxHeight: "calc(100% - 100px)", 
   display: isOpen ? 'block' : 'none' // Adding display property here
 
       };
-
       const toggleButtonStyle = {
         position: "fixed",
         top: "180px",
