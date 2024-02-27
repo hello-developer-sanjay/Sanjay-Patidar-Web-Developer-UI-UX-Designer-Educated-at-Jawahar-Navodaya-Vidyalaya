@@ -8,6 +8,7 @@ import { useInView } from 'react-intersection-observer';
   import { Helmet } from 'react-helmet';
   import UAParser from 'ua-parser-js';
 import About from "../components/About"
+import { FaLinkedin, FaTwitter, FaInstagram, FaGithub } from "react-icons/fa";
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -507,6 +508,88 @@ const SubtitleLink = styled.a`
   }
 `;
 
+
+
+
+const SocialIconsContainer = styled(motion.div)`
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 1rem;
+margin-top: 1rem;
+@media (max-width: 768px) {
+  display: none;
+  margin-top: 0rem;
+
+}
+
+`;
+const socialButtons = [
+  { icon: <FaLinkedin />, label: "LinkedIn", link: "https://www.linkedin.com/in/sanjay-patidar-25b580292" },
+  { icon: <FaGithub />, label: "GitHub", link: "https://github.com/hello-developer-sanjay" },
+  { icon: <FaTwitter />, label: "Twitter", link: "#" },
+  { icon: <FaInstagram />, label: "Instagram", link: "https://www.instagram.com/sanjay_patidar_mcmxcviii" },
+];
+
+const SocialIcon = styled(motion.a)`
+display: flex;
+align-items: center;
+justify-content: center;
+width: 3rem;
+height: 3rem;
+border-radius: 50%;
+background: ${props => props.color || '#ff6347'};
+cursor: pointer;
+overflow: hidden;
+position: relative;
+transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+  background 0.3s ease;
+
+&:hover {
+  transform: scale(1.2) rotate(360deg);
+  background: ${props => props.color || '#e74c3c'};
+}
+
+@media (max-width: 768px) {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+&:not(:last-child) {
+  margin-right: 1rem;
+}
+
+&:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0)
+  );
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 50%;
+}
+
+&:hover:before {
+  transform: translateY(0);
+}
+
+/* Add a heartbeat animation for extra flair */
+animation: heartbeat 1.5s infinite;
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+`;
   
 
 
@@ -722,6 +805,26 @@ getDeviceOwnerDetails()
   onLoad={() => setImageLoading(false)}
 />
 
+
+<SocialIconsContainer>
+          {socialButtons.map((button, index) => (
+            <SocialIcon
+              key={index}
+              color={button.color}
+              initial={{ opacity: 0, y: -50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              href={button.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={button.label} 
+            >
+              {button.icon}
+            </SocialIcon>
+          ))}
+        </SocialIconsContainer>
+        
         </ProfileImageContainer>
   
     
