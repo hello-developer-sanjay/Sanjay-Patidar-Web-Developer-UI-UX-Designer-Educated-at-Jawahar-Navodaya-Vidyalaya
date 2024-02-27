@@ -84,7 +84,7 @@ const Certifications = () => {
   return (
     <>
       <Helmet>
-        <title>Sanjay Patidar | Expert Web Developer & UI/UX Designer | Certifications</title>
+        <title>Sanjay Patidar | Web Developer & UI/UX Designer | Certifications | Crafting Scalable Digital Solutions for Global Innovation</title>
         <meta
           name="description"
           content="Explore certifications obtained by Sanjay Patidar. Discover various certifications in Artificial Intelligence, Python, Machine Learning, Django, Full Stack Web Development, UI Design, and more."
