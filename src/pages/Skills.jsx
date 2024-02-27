@@ -36,7 +36,7 @@ const SkillsHeading = styled.h1`
   }
 
   &:before {
-    content: '🚀';
+    content: '🎯';
     font-size: 2rem;
     position: absolute;
     top: -30px;
@@ -55,6 +55,11 @@ const SkillsHeading = styled.h1`
     60% {
       transform: translateY(-10px);
     }
+  }
+  @media (max-width: 768px) {
+    font-size: 1rem;
+
+  
   }
 `;
 
@@ -181,26 +186,25 @@ const Skills = () => {
   return (
     <SkillsContainer>
             <Helmet>
-              <title>Sanjay Patidar | Web Developer Skills & Expertise - Tech Architecture, Innovative Development, UI/UX Design, and More</title>
+              <title>Sanjay Patidar | Web Developer: Proficient in Tech Architecture, Innovative Development, UI/UX Design, and More - Showcasing Skills and Expertise</title>
 
         <meta
           name="description"
           content="Discover the diverse skills of Sanjay Patidar including Tech Architecture, Innovative Development, Design Alchemy, Strategic Navigation, Collaborative Leadership, Intuitive UX Design, Backend Sorcery, and API Mastery."
         />
         <meta name="keywords" content="Sanjay Patidar, skills, Tech Architecture, Innovative Development, Design Alchemy, Strategic Navigation, Collaborative Leadership, Intuitive UX Design, Backend Sorcery, API Mastery" />
-        <meta property="og:title" content="Sanjay Patidar | Web Developer Skills & Expertise - Tech Architecture, Innovative Development, UI/UX Design, and More" />
+        <meta property="og:title" content="Sanjay Patidar | Web Developer: Proficient in Tech Architecture, Innovative Development, UI/UX Design, and More - Showcasing Skills and Expertise" />
         <meta property="og:description" content="Discover the diverse skills of Sanjay Patidar including Tech Architecture, Innovative Development, Design Alchemy, Strategic Navigation, Collaborative Leadership, Intuitive UX Design, Backend Sorcery, and API Mastery." />
         <meta property="og:url" content="https://sanjay-patidar.vercel.app/skills" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Sanjay Patidar | Web Developer Skills & Expertise - Tech Architecture, Innovative Development, UI/UX Design, and More" />
+        <meta name="twitter:title" content="Sanjay Patidar | Web Developer: Proficient in Tech Architecture, Innovative Development, UI/UX Design, and More - Showcasing Skills and Expertise" />
         <meta name="twitter:description" content="Discover the diverse skills of Sanjay Patidar including Tech Architecture, Innovative Development, Design Alchemy, Strategic Navigation, Collaborative Leadership, Intuitive UX Design, Backend Sorcery, and API Mastery." />
         <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
-        {/* Add other relevant meta tags */}
       </Helmet>
 
-      <SkillsHeading>Sanjay Patidar | Web Developer Skills & Expertise - Tech Architecture, Innovative Development, UI/UX Design, and More</SkillsHeading>
+      <SkillsHeading>Sanjay Patidar | Web Developer: Proficient in Tech Architecture, Innovative Development, UI/UX Design, and More - Showcasing Skills and Expertise</SkillsHeading>
       <SkillsGrid>
         {skillsData.map((skill, index) => (
           <SkillCard key={index}>
