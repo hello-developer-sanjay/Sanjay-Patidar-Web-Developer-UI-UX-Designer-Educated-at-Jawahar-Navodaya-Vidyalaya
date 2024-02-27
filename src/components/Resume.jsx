@@ -31,24 +31,29 @@ const ResumeContainer = styled.div`
 
 const ResumeTitle = styled.h2`
   font-size: 2.8rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   color: #333;
   position: relative;
   display: inline-block;
   font-family: 'Pacifico', cursive;
-  padding-bottom: 8px;
 
 
   &:hover::after {
     transform: scaleX(1);
   }
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 const ResumeSubtitle = styled.h3`
   font-size: 1.8rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   color: #555;
   font-family: 'Roboto', sans-serif;
+  @media (max-width: 768px) {
+    font-size: 1.4rem;
+  }
 `;
 
 
@@ -98,6 +103,59 @@ const ResumeLink = styled.a`
     animation: ${shadowPop} 1s ease-in-out infinite;
   }
 `;
+
+const ResumeHeading = styled.h1`
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+padding: 1rem;
+  text-align: center;
+  justify-content: center;
+  color: #24086C;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  position: relative;
+
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, #ff5e62, #ff9966);
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    border-radius: 10px;
+  }
+
+  &:before {
+    content: '🎯';
+    font-size: 2rem;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-20px);
+    }
+    60% {
+      transform: translateY(-10px);
+    }
+  }
+  @media (max-width: 768px) {
+    font-size: 1rem;
+
+  
+  }
+`;
+
 
 const Resume = () => {
   const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Sanjay_Patidar_Web_Developer_Resume.pdf';
@@ -149,16 +207,23 @@ const Resume = () => {
 
     fetchDownloadCount();
   }, []);
-  return (
+  return (<>
+    <ResumeHeading>Sanjay Patidar | Seasoned Web Developer & Creative UI/UX Designer | Crafting Immersive Digital Experiences - Comprehensive Resume</ResumeHeading>
+
     <ResumeContainer>
             <Helmet>
-            <title>Sanjay Patidar | Experienced Web Developer & Creative UI/UX Designer | Resume</title>
-        <meta
+            <title>Sanjay Patidar | Seasoned Web Developer & Creative UI/UX Designer | Crafting Immersive Digital Experiences - Comprehensive Resume</title>
+
+
+
+
+
+<meta
           name="description"
           content="Unlock Sanjay Patidar's resume to explore his professional experience and skills. Click the link to access the full resume."
         />
-        <meta name="keywords" content="Sanjay Patidar, resume, experience, skills, web developer, UI/UX designer" />
-        <meta property="og:title" content="Sanjay Patidar | Experienced Web Developer & Creative UI/UX Designer | Resume" />
+        <meta name="keywords" content="Sanjay Patidar, resume, experience,chandigarh university, jawahar Navodaya Vidyalaya, jnv, work, skills, web developer, UI/UX designer" />
+        <meta property="og:title" content="Sanjay Patidar | Seasoned Web Developer & Creative UI/UX Designer | Crafting Immersive Digital Experiences - Comprehensive Resume" />
         <meta
           property="og:description"
           content="Unlock Sanjay Patidar's resume to explore his professional experience and skills. Click the link to access the full resume."
@@ -167,14 +232,14 @@ const Resume = () => {
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Sanjay Patidar | Experienced Web Developer & Creative UI/UX Designer | Resume" />
+        <meta name="twitter:title" content="Sanjay Patidar | Seasoned Web Developer & Creative UI/UX Designer | Crafting Immersive Digital Experiences - Comprehensive Resume" />
         <meta
           name="twitter:description"
           content="Unlock Sanjay Patidar's resume to explore his professional experience and skills. Click the link to access the full resume."
         />
         <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
       </Helmet>
-      
+
       <ResumeTitle>Unlock My Resume</ResumeTitle>
       <ResumeSubtitle>Click the link below to access my full resume.</ResumeSubtitle>
       {/* Disable the link when loading to prevent re-clicks */}
@@ -193,13 +258,14 @@ const Resume = () => {
           alt="Admin Only GIF"
           style={{
             width: '100%',
-            marginTop: '60px',
+            marginTop: '20px',
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
             border: '2px solid #fff',
           }}
         />
       </div>
     </ResumeContainer>
+    </>
   );
 };
 
