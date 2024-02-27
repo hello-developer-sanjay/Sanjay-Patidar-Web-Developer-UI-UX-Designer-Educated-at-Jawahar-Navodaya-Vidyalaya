@@ -24,7 +24,6 @@ import Typed from 'react-typed';
 
 import profileImage1 from '../assets/ssss.webp';
 import profileImage2 from '../assets/sixpack.jpeg';
-import CreaTeaImage from '../assets/tea.gif';
 
 const HomeContainer = styled(motion.div)`
   display: flex;
@@ -32,7 +31,7 @@ const HomeContainer = styled(motion.div)`
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
-  padding: 3rem;
+  padding: 1rem;
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
@@ -112,7 +111,7 @@ const ProfileTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 60%;
+  max-width: 80%;
   order: 2;
   margin-top: 1rem;
   margin-right: 1rem;
@@ -157,7 +156,7 @@ const BackgroundOverlay = styled.div`
 const ProfileImage = styled(motion.img)`
   width: 380px;
   height: 380px;
-  margin-top: 4rem;
+  margin-top: 5rem;
 
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(255, 165, 0, 0.8), 0 0 20px rgba(255, 165, 0, 0.6);
@@ -221,7 +220,7 @@ const ProfileImage = styled(motion.img)`
   @media (max-width: 768px) {
     width: 180px;
     height: 180px;
-  margin-top : 0rem;
+  margin-top : 1rem;
 }
 
   @keyframes heartbeat {
@@ -267,7 +266,7 @@ const images = [profileImage1, profileImage2];
 let currentImageIndex = 0;
 
 const Introduction = styled(motion.p)`
-  font-size: 2rem;
+  font-size: 1.5rem;
   line-height: 1.5;
   max-width: 800px;
   text-align: center;
@@ -287,7 +286,7 @@ const Introduction = styled(motion.p)`
     -webkit-background-clip: text;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Shadow for depth */
     padding-bottom: 5px;
-    margin-bottom: -5px;
+    margin-bottom: 1px;
     line-height: 4rem;
     /* Animation for the highlight class */
     animation: highlightAnimation 3s ease-in-out infinite;
@@ -330,7 +329,7 @@ const Introduction = styled(motion.p)`
     }
   }
    @media (max-width: 768px) {
-  margin-top:2rem;
+  margin-top:1rem;
   font-size: 1.5rem;
 
   }
@@ -381,6 +380,8 @@ const TypedText = styled.span`
 
   @media (max-width: 768px) {
     font-size: 1.2rem;
+    margin-bottom: 1rem;
+
   }
 
   /* Change the color of the typing text */
@@ -741,7 +742,7 @@ getDeviceOwnerDetails()
             loop
           />
         </TypedText>
-        I create <span className="highlight">stunning web experiences</span>. Explore my projects, skills, and experiences, and let's build something amazing together!
+        I create <br/> <span className="highlight">stunning web experiences</span><br/>that captivate users and drive engagement. Dive into my meticulously crafted projects, explore my diverse skill set, and immerse yourself in my rich professional experiences. Let's collaborate to craft something extraordinary together and leave a lasting impact in the digital landscape!
       </Introduction>
       </ProfileTextContainer>
 
