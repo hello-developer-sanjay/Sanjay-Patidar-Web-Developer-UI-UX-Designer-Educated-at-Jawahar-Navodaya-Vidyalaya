@@ -669,7 +669,7 @@ getDeviceOwnerDetails()
   <meta name="twitter:site" content="@sanjaypatidar" />
   <meta name="twitter:creator" content="@sanjaypatidar" />
 
-  <meta name="keywords" content="web developer, ui/ux designer, portfolio, projects, certifications, experiences, resume, contact" />
+  <meta name="keywords" content="portfolio, personal-portfolio,developer_sanju,sanjay, Sanjay, SANJAY, Sanjay Patidar, SANJAY PATIDAR, SANJAY WEB DEVELOPER, SANJAY DEVELOPER, Full Stack Web Developer, Mern Stack Web Developer, sanjay patidar, sanjay-patidar, professional, web developer portfolio, coder, web development, UI/UX design, Chandigarh University, EduXcel, Indore,contact, developer, programmer, engineer, AI, Artificial Intelligence ,tech enthusiastic, creativity ,creator, work , technology, coding, projects, experiences, resume, cv" />
   <meta name="author" content="Sanjay Patidar" />
 
   <script type="application/ld+json">
