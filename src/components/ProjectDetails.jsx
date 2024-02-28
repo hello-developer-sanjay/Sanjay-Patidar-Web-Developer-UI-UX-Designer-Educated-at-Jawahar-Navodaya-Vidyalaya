@@ -52,7 +52,7 @@ const ProjectWebsiteLink = styled.a`
   }
 `;
 const ProjectDetailsTitle = styled.h2`
-  font-size: 3rem;
+  font-size: 2rem;
   margin-bottom: 1rem;
   
   color: #ff6b6b;
