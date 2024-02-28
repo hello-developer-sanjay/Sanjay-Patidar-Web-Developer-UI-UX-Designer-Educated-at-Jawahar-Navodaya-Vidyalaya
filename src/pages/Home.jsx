@@ -804,18 +804,37 @@ getDeviceOwnerDetails()
   <meta name="author" content="Sanjay Patidar" />
 
   <script type="application/ld+json">
-    {
+    {JSON.stringify({
       "@context": "http://schema.org",
       "@type": "Person",
       "name": "Sanjay Patidar",
-      "birthDate": "1998-07-01",
+      "url": "https://sanjay-patidar.vercel.app",
+      "sameAs": [
+        "https://www.linkedin.com/in/sanjay-patidar-25b580292/",
+        "https://github.com/hello-developer-sanjay",
+      
+        "https://www.instagram.com/sanjay_patidar_mcmxcviii/",
+        "https://eduxcel.vercel.app/",
+"https://sanjay-patidar.vercel.app/projects",
+        "https://sanjay-patidar.vercel.app/careers",
+
+        "https://sanjay-patidar.vercel.app/skills",
+        "https://sanjay-patidar.vercel.app/experiences",
+        "https://sanjay-patidar.vercel.app/certifications",
+        "https://sanjay-patidar.vercel.app/resume",
+        "https://sanjay-patidar.vercel.app/blogs",
+        "https://sanjay-patidar.vercel.app/education",
+        "https://sanjay-patidar.vercel.app/contact"
+       ],
+      "jobTitle": "Web Developer & UI/UX Designer",
+      "description": "Expert Web Developer & UI/UX Designer specializing in crafting digital experiences.",
+      "image": "https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png",
       "birthPlace": {
-        "@type": "Place",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Indore"
-        }
-      },
+        "@type": "PostalAddress",
+        "addressLocality": "Indore",
+        "addressRegion": "Madyapradesh",
+        "addressCountry": "India"
+      }, 
       "alumniOf": {
         "@type": "CollegeOrUniversity",
         "name": "Chandigarh University",
@@ -971,32 +990,13 @@ getDeviceOwnerDetails()
           "postalCode": "492001",
           "addressCountry": "India"
         }
+      ],
 
-              ],
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Eduxcel" 
-      },
-      "url": "https://sanjay-patidar.vercel.app/",
-      "sameAs": [
-        "https://www.linkedin.com/in/sanjay-patidar-25b580292/",
-        "https://github.com/hello-developer-sanjay",
-        "https://www.instagram.com/sanjay_patidar_mcmxcviii/",
-        "https://eduxcel.vercel.app/",
-        "https://sanjay-patidar.vercel.app/projects",
-        "https://sanjay-patidar.vercel.app/careers",
-        "https://sanjay-patidar.vercel.app/skills",
-        "https://sanjay-patidar.vercel.app/experiences",
-        "https://sanjay-patidar.vercel.app/certifications",
-        "https://sanjay-patidar.vercel.app/resume",
-        "https://sanjay-patidar.vercel.app/blogs",
-        "https://sanjay-patidar.vercel.app/education",
-        "https://sanjay-patidar.vercel.app/contact"
-      ]
-    }
-    
+
+    })}
   </script>
-</Helmet>
+         
+         </Helmet>
       <BackgroundOverlay />
       <FlexContainer>
 
