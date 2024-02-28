@@ -9,7 +9,8 @@ import { useInView } from 'react-intersection-observer';
   import UAParser from 'ua-parser-js';
 import About from "../components/About"
 import { FaLinkedin, FaTwitter, FaInstagram, FaGithub } from "react-icons/fa";
-
+import DuckImage from "../assets/duck4.gif";
+import unlock from "../assets/unlock.gif";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
@@ -107,6 +108,52 @@ const FlexContainer = styled.div`
     flex-direction: row;
   }
 `;
+const H1Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 768px) {
+    display: none;
+    margin-top: 0rem;
+  
+  }
+`;
+const H1 = styled.h1`
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #2ecc71;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 2px; /* Increase letter spacing for a stylish look */
+  transform: skew(-5deg); /* Apply a slight skew for a dynamic effect */
+`;
+
+const StyledCreaTeaImage = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px rgba(46, 204, 113, 0.5);
+`;
+
+const StyledUnlockImage = styled.img`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 0.5rem; 
+  box-shadow: 0px 0px 10px rgba(46, 204, 113, 0.5);
+`;
+
+const StyledSpan = styled.span`
+  color: #ffffff;
+  font-size: 1.5rem; /* Increase font size for emphasis */
+  font-weight: bold;
+  letter-spacing: 3px; /* Add more letter spacing */
+  text-transform: uppercase;
+  text-decoration: underline; /* Add an underline for a decorative touch */
+  /* Add any additional styles here */
+`;
 
 const ProfileTextContainer = styled.div`
   display: flex;
@@ -157,7 +204,7 @@ const BackgroundOverlay = styled.div`
 const ProfileImage = styled(motion.img)`
   width: 380px;
   height: 380px;
-  margin-top: 5rem;
+  margin-top: 2rem;
 
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(255, 165, 0, 0.8), 0 0 20px rgba(255, 165, 0, 0.6);
@@ -271,7 +318,7 @@ const Introduction = styled(motion.p)`
   line-height: 1.5;
   max-width: 800px;
   text-align: center;
-  margin-top : 0rem;
+  margin-top : 2rem;
   margin-bottom: 1rem;
   color: #ffffff; /* White on hover */
 
@@ -534,6 +581,7 @@ const socialButtons = [
 const SocialIcon = styled(motion.a)`
 display: flex;
 align-items: center;
+margin-top:1rem;
 justify-content: center;
 width: 3rem;
 height: 3rem;
@@ -847,10 +895,30 @@ getDeviceOwnerDetails()
         </TypedText>
         I create <br/> <span className="highlight">stunning web experiences</span><br/>that captivate users and drive engagement. Dive into my meticulously crafted projects, explore my diverse skill set, and immerse yourself in my rich professional experiences. Let's collaborate to craft something extraordinary together and leave a lasting impact in the digital landscape!
       </Introduction>
+
       </ProfileTextContainer>
 
       </FlexContainer>
-
+      
+        <H1Container>
+          <H1>Discover the Key to Enhanced 
+</H1>
+          <h1 className="text-4xl font-semibold text-blue-600 flex items-center creativity">
+            <StyledSpan className="text-white-600">Pro</StyledSpan>
+            <StyledCreaTeaImage src={DuckImage} alt="CreaTea" className="mx-2" />
+            <StyledSpan className="text-green-600">tivity</StyledSpan>
+          </h1>
+            <H1> Partner with Me to 
+              
+          <StyledUnlockImage src={unlock} alt="Unlock" className="mx-2" />
+            
+            
+            Your Full Potential !
+</H1>
+        </H1Container>
+        
+     
+   
       <ActionsContainer>
       {[
         { to: "/skills", text: "Explore My Skills", icon: <FaUserGraduate /> },
