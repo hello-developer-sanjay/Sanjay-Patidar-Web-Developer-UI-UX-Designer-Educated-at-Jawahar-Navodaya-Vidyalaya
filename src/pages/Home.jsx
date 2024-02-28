@@ -65,7 +65,6 @@ const HomeContainer = styled(motion.div)`
     }
   }
 
-  /* Add a subtle box shadow for depth */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 
   /* Add a border with a neon glow effect */
