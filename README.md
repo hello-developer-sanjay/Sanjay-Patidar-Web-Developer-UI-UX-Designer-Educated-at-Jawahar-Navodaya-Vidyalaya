@@ -1,4 +1,4 @@
-# Portfolio
+# Sanjay Patidar | Web Developer & UI/UX Designer | Educated at Jawahar Navodaya Vidyalaya and Chandigarh University | Crafting Scalable Digital Solutions for Global Innovation
 
 Welcome to my portfolio! This repository showcases my skills, projects, and experiences as a Web Developer and UI/UX Designer. Feel free to explore and learn more about my work.
 
@@ -15,8 +15,14 @@ Welcome to my portfolio! This repository showcases my skills, projects, and expe
 
 I am a Web Developer and UI/UX Designer with expertise in creating captivating web experiences. My skills include:
 
-- Web Development
-- UI/UX Design
+- Tech Architect : Crafting the structural masterpiece of the digital landscape with expertise in Structured HTML and Algorithms.
+- Strategic Navigator : Navigating the tech terrain with precision and strategic insight, fueled by clear objectives and effective use of Node and Express.
+- Innovative Developer : Pioneering smart and efficient solutions for smartphones, blending Analytical Mindset, DSA, and JavaScript mastery.
+- Design Alchemist : Transforming concepts into reality, shaping intuitive digital interfaces for user delight using CSS and Tailwind.
+- Collaborative Leader : Leading and inspiring tech teams to success, harmonizing collective efforts, and steering towards excellence in Git Version Control.
+- Intuitive UX Maestro : Crafting user-centric experiences with React JS, blending innovation with effective communication for seamless interaction.
+- Backend Sorcerer : Integrating backend magic with Node JS, transforming ideas into functional realities, and ensuring a smooth user experience.
+- API Maestro : Collaborating seamlessly in the API realm with Express JS, ensuring data flow like a well-choreographed symphony.
 
 ## Projects
 
@@ -56,6 +62,11 @@ Feel free to reach out if you have any questions about my projects or if you'd l
 ## Blogs
 
 I also share tech insights and tutorials through my blogs. You can read them [here](https://eduxcel.vercel.app/blogs).
+
+## Blogs
+
+I also share tech insights and tutorials through my careers blogs. You can read them [here](https://sanjay-patidar.vercel.app/careers).
+
 
 ## Contact Me
 
