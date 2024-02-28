@@ -804,38 +804,19 @@ getDeviceOwnerDetails()
   <meta name="author" content="Sanjay Patidar" />
 
   <script type="application/ld+json">
-    {JSON.stringify({
+    {
       "@context": "http://schema.org",
       "@type": "Person",
       "name": "Sanjay Patidar",
-      "url": "https://sanjay-patidar.vercel.app",
-      "sameAs": [
-        "https://www.linkedin.com/in/sanjay-patidar-25b580292/",
-        "https://github.com/hello-developer-sanjay",
-      
-        "https://www.instagram.com/sanjay_patidar_mcmxcviii/",
-        "https://eduxcel.vercel.app/",
-"https://sanjay-patidar.vercel.app/projects",
-        "https://sanjay-patidar.vercel.app/careers",
-
-        "https://sanjay-patidar.vercel.app/skills",
-        "https://sanjay-patidar.vercel.app/experiences",
-        "https://sanjay-patidar.vercel.app/certifications",
-        "https://sanjay-patidar.vercel.app/resume",
-        "https://sanjay-patidar.vercel.app/blogs",
-        "https://sanjay-patidar.vercel.app/education",
-        "https://sanjay-patidar.vercel.app/contact"
-       ],
-      "jobTitle": "Web Developer & UI/UX Designer",
-      "description": "Expert Web Developer & UI/UX Designer specializing in crafting digital experiences.",
-      "image": "https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Indore",
-        "addressRegion": "Madyapradesh",
-        "addressCountry": "India"
+      "birthDate": "1998-07-01",
+      "birthPlace": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Indore"
+        }
       },
-       "alumniOf": {
+      "alumniOf": {
         "@type": "CollegeOrUniversity",
         "name": "Chandigarh University",
         "location": {
@@ -848,7 +829,15 @@ getDeviceOwnerDetails()
           }
         }
       },
-       {
+      "address": [
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Indore",
+          "addressRegion": "Madhya Pradesh",
+          "postalCode": "452001",
+          "addressCountry": "India"
+        },
+        {
           "@type": "PostalAddress",
           "addressLocality": "Chandigarh",
           "addressRegion": "Punjab",
@@ -983,7 +972,29 @@ getDeviceOwnerDetails()
           "addressCountry": "India"
         }
 
-    })}
+              ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Eduxcel" 
+      },
+      "url": "https://sanjay-patidar.vercel.app/",
+      "sameAs": [
+        "https://www.linkedin.com/in/sanjay-patidar-25b580292/",
+        "https://github.com/hello-developer-sanjay",
+        "https://www.instagram.com/sanjay_patidar_mcmxcviii/",
+        "https://eduxcel.vercel.app/",
+        "https://sanjay-patidar.vercel.app/projects",
+        "https://sanjay-patidar.vercel.app/careers",
+        "https://sanjay-patidar.vercel.app/skills",
+        "https://sanjay-patidar.vercel.app/experiences",
+        "https://sanjay-patidar.vercel.app/certifications",
+        "https://sanjay-patidar.vercel.app/resume",
+        "https://sanjay-patidar.vercel.app/blogs",
+        "https://sanjay-patidar.vercel.app/education",
+        "https://sanjay-patidar.vercel.app/contact"
+      ]
+    }
+    
   </script>
 </Helmet>
       <BackgroundOverlay />
