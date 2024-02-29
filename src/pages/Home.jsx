@@ -36,63 +36,7 @@ const HomeContainer = styled(motion.div)`
   overflow: hidden;
   position: relative;
 
-  /* Creative lining background */
-  --line-color: rgba(255, 255, 255, 0.8);
-  --line-spacing: 10px;
-  --animation-duration: 6s;
-  --animation-timing: linear;
-  
-  background: linear-gradient(
-    45deg,
-    var(--line-color) calc(50% - var(--line-spacing)),
-    transparent 0,
-    transparent calc(50% + var(--line-spacing)),
-    var(--line-color) 0
-  );
-  background-size: var(--line-spacing) var(--line-spacing);
-
-  /* Animation for the background */
-  animation: moveBackground var(--animation-duration) var(--animation-timing) infinite linear alternate-reverse;
-
-  @keyframes moveBackground {
-    from {
-      background-position: 0 0;
-    }
-    to {
-      background-position: var(--line-spacing) var(--line-spacing);
-    }
-  }
-
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-
-  /* Add a border with a neon glow effect */
-  border: 2px solid #3f51b5; /* Royal blue */
-  border-radius: 10px;
-
-  /* Neon glow effect */
-  &:before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    z-index: -1;
-    border-radius: 12px;
-    background: linear-gradient(45deg, #ff4081, #3f51b5, #009688, #ff4081);
-    background-size: 400% 400%;
-    animation: neonGlow 8s linear infinite;
-  }
-
-  /* Animation for the neon glow effect */
-  @keyframes neonGlow {
-    0% {
-      background-position: 0% 0%;
-    }
-    100% {
-      background-position: 400% 400%;
-    }
-  }
+ 
 `;
 
 const FlexContainer = styled.div`
