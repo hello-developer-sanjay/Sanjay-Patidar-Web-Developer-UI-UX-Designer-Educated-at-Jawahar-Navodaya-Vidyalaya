@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import styled from 'styled-components';
 import { FaChalkboardTeacher, FaUserGraduate, FaClock } from 'react-icons/fa';
 import WhyUsImage from '../assets/whyus.png';
-import Skill from '../pages/Skill.jsx'
+import Skill from './Skill.jsx'
 import '../styles/home.css'; 
 
 const ClientContainer = styled(motion.div)`
