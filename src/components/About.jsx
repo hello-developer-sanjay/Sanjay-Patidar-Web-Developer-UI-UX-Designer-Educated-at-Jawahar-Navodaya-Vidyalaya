@@ -1,251 +1,168 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
-import CreaTeaImage from '../assets/tea.gif';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import styled from 'styled-components';
+import { FaChalkboardTeacher, FaUserGraduate, FaClock } from 'react-icons/fa';
+import WhyUsImage from '../assets/whyus.png';
 
-const slideIn = keyframes`
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`;
+import '../styles/home.css'; 
 
-const CardWrapper = styled.div`
-  position: relative;
-  border: 2px solid #ff6b6b; 
-  border-radius: 20px;
-  padding: 20px;
-  margin-top: 100px;
-`;
-
-const Title = styled.h1`
-  position: absolute;
-  top: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 0;
-  font-size: 24px;
-  color: #fff; /* Text color */
-  background-color: #333; /* Background color for the "metal plate" */
-  padding: 10px 20px; /* Padding to create space around the text */
-  border-radius: 20px; /* Rounded corners for the "metal plate" */
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* Shadow to make it pop */
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
-  border: 2px solid #ff6b6b; /* Border color */
-  overflow: hidden; /* Hide any overflowing text */
-  z-index: 1; /* Ensure the title appears above other elements */
-  
-  /* Engraved effect */
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 0%, transparent 50%, rgba(0, 0, 0, 0.5) 100%);
-    pointer-events: none; /* Allow interaction with elements behind the pseudo-element */
-  }
-`;
-
-
-
-const CardContainer = styled.div`
-  width: 300px;
-  height: auto;
-  border-radius: 20px;
-  margin: 20px 10px;
-  overflow: hidden;
-  cursor: pointer;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.3s ease-in-out;
-  animation: ${slideIn} 0.5s ease forwards; /* Apply slide-in animation */
-
-  &:hover {
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-  }
-  @media (max-width: 600px) {
-    margin: 20px 0;
-
-  }
-`;
-
-const ImageContainer = styled.div`
-  position: relative;
-  overflow: hidden;
-`;
-
-const CardImage = styled.img`
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  transition: transform 0.3s ease-in-out;
-
-  ${ImageContainer}:hover & {
-    transform: scale(1.05);
-  }
-`;
-
-const TitleSection = styled.div`
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-`;
-
-const BlogTitle = styled.h3`
-  margin: 0;
-  font-size: 18px;
-  color: #333;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  transition: color 0.3s ease-in-out;
-
-  &:before {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: #ff6b6b;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease-in-out;
-  }
-
-  ${CardContainer}:hover & {
-    color: #ff6b6b;
-  }
-
-  ${CardContainer}:hover &:before {
-    transform: scaleX(1);
-  }
-`;
-
-
-
-
-
-const H1 = styled.h1`
-  font-size: 3xl;
-  font-weight: 900;
-  color: #2ecc71;
-  margin-right: 1rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  letter-spacing: 2px; /* Increase letter spacing for a stylish look */
-  transform: skew(-5deg); /* Apply a slight skew for a dynamic effect */
-`;
-
-
-
-const H1Container = styled.div`
+const ClientContainer = styled(motion.div)`
   display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const StyledCreaTeaImage = styled.img`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  box-shadow: 0px 0px 10px rgba(46, 204, 113, 0.5);
-`;
-
-
-const StyledSpan = styled.span`
-  color: #ffffff;
-  font-size: 1.5rem; /* Increase font size for emphasis */
-  font-weight: bold;
-  letter-spacing: 3px; /* Add more letter spacing */
-  text-transform: uppercase;
-  text-decoration: underline; /* Add an underline for a decorative touch */
-  /* Add any additional styles here */
-`;
-const FlexContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  text-align: center;
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
+  justify-content: space-between;
+  align-items: center;
+  top : 0;
+  padding: 2rem;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  background-color: "#050816";
 `;
+
 const About = () => {
-  const [randomBlogTitles, setRandomBlogTitles] = useState([]);
-  const [setAnimationTrigger] = useState(false);
+  const [refImage, inViewImage] = useInView({ triggerOnce: true });
+  const [refContent, inViewContent] = useInView({ triggerOnce: true });
+  const controlsImage = useAnimation();
+  const controlsContent = useAnimation();
 
   useEffect(() => {
-    const fetchRandomBlogTitles = async () => {
-      try {
-        const response = await axios.get('https://edu-back-j3mz.onrender.com/api/random-blog-titles');
-        setRandomBlogTitles(response.data);
-        setAnimationTrigger(true); // Trigger animation after data fetch
-      } catch (error) {
-        console.error('Error fetching random blog titles:', error);
-      }
-    };
+    if (inViewImage) {
+      controlsImage.start({
+        scale: [0.8, 1.2, 1],
+        rotateY: [0, 360],
+        opacity: [0, 1],
+        transition: {
+          duration: 2,
+          ease: 'easeInOut',
+          bounce: 0.5,
+        },
+      });
+    }
+  }, [inViewImage, controlsImage]);
 
-    fetchRandomBlogTitles();
-  }, []);
-const slugify = (text) => {
-    return text.toString().toLowerCase()
-      .replace(/\s+/g, '-')        // Replace spaces with -
-      .replace(/[^\w-]+/g, '')     // Remove all non-word characters
-      .replace(/--+/g, '-')        // Replace multiple - with single -
-      .replace(/^-+/, '')          // Trim - from start of text
-      .replace(/-+$/, '');         // Trim - from end of text
-  };
+  useEffect(() => {
+    if (inViewContent) {
+      controlsContent.start((index) => ({
+        y: 0,
+        opacity: 1,
+        rotate: [0, index % 2 === 0 ? 360 : -360],
+        transition: {
+          duration: 1.5,
+          delay: index * 0.2,
+          type: 'spring',
+          stiffness: 100,
+        },
+      }));
+    }
+  }, [inViewContent, controlsContent]);
+
+  const contentBlocks = [
+    {
+      title: 'Remarkable Journey of Sanjay Patidar',
+      description: 'Discover the remarkable journey of Sanjay Patidar, a dedicated and passionate individual excelling in the realms of web development and UI/UX design. As a Computer Science and Engineering student, Sanjay embodies a profound commitment to mastering the intricacies of programming, with a specialized focus on crafting immersive digital experiences. Currently pursuing a Bachelor of Engineering degree at Chandigarh University, Sanjay brings forth a proactive approach and an unwavering dedication to excellence in all endeavors.'
+    },
+    {
+      title: 'Educational Odyssey at Jawahar Navodaya Vidyalaya School',
+      description: 'His educational odyssey began at Jawahar Navodaya Vidyalaya School, where he laid the foundation for his academic and extracurricular prowess from 2009 to 2016. This esteemed residential institution, administered under the Ministry of Education, fostered holistic development and instilled a fervent pursuit of excellence.'
+    },
+    {
+      title: 'Active Participation in Coding Competitions',
+      description: 'Beyond the confines of academia, Sanjay\'s passion for technology extends to the realms of practical application. Actively participating in coding competitions, hackathons, and collaborative projects, he honed his problem-solving prowess and cultivated invaluable teamwork skills.'
+    },
+    {
+      title: 'Exceptional Digital Solutions',
+      description: 'Explore the professional portfolio of Sanjay Patidar, where innovation meets expertise, and witness firsthand the culmination of passion, creativity, and a relentless pursuit of excellence in web development and UI/UX design.'
+    },
+    {
+      title: 'Serving Clients Across India',
+      description: 'Based in Indore, Madhya Pradesh, Sanjay serves clients across India, including Chandigarh, Punjab, Mumbai, Maharashtra, Bangalore, Karnataka, Delhi, Kolkata, West Bengal, Chennai, Tamil Nadu, Hyderabad, Telangana, Pune, Ahmedabad, Gujarat, Jaipur, Rajasthan, Lucknow, Uttar Pradesh, Bhopal, Nagpur, Visakhapatnam, Andhra Pradesh, Kochi, Kerala, Guwahati, Assam, Bhubaneswar, Odisha, Dehradun, Uttarakhand, Raipur, Chhattisgarh, and beyond.'
+    }
+  ];
+  
+
   return (
+    <ClientContainer>
+      <section className={`relative w-full min-h-screen mx-auto`}>
 
-    <>
-    <CardWrapper>
-        <Title>Curated Blog Recommendations</Title>
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-          {randomBlogTitles.map((title, index) => {
-            const slug = slugify(title);
-            return (
-              <Link key={index} to={`https://eduxcel.vercel.app/blogs/tools/${slug}`}>
-                <CardContainer style={{ animationDelay: `${index * 0.1}s` }}>
-                  {/* Image Section */}
-                  <ImageContainer>
-                    <CardImage src="https://sanjaybasket.s3.ap-south-1.amazonaws.com/e.webp" alt="Blog Thumbnail" />
-                  </ImageContainer>
-
-                  {/* Title Section */}
-                  <TitleSection>
-                    <BlogTitle>{title}</BlogTitle>
-                  </TitleSection>
-                </CardContainer>
-              </Link>
-            );
-          })}
+        <div>
+         
+          <div className="why-us-section">
+            <div className="flex-container">
+            <div className="flex flex-col lg:flex-row items-center mb-12">
+      <div className="shining-ring-container">
+        <div className="shining-ring"></div>
+        <div className="flex-container">
+          <motion.img
+            ref={refImage}
+            src={WhyUsImage}
+            alt="Why Choose Us"
+            className="w-full lg:w-full rounded-lg shadow-lg mb-6 lg-mb-0"
+            initial={{ scale: 0, rotateY: 0, opacity: 0 }}
+            animate={controlsImage}
+            style={{ visibility: inViewImage ? 'visible' : 'hidden' }}
+          />
         </div>
-      </CardWrapper>
-    <FlexContainer>
-        <H1Container>
-          <H1>Designed With
-</H1>
-          <h1 className="text-4xl font-semibold text-blue-600 flex items-center creativity">
-            <StyledSpan className="text-white-600">Crea</StyledSpan>
-            <StyledCreaTeaImage src={CreaTeaImage} alt="CreaTea" className="mx-2" />
-            <StyledSpan className="text-green-600">vity</StyledSpan>
-          </h1>
-        </H1Container>
-        
-      </FlexContainer>
-    </>
+      </div>
+    </div>
+
+               <div className="lg:w-1/2 lg:pl-12 why-us-content">
+              {contentBlocks.map((block, index) => (
+                <motion.div
+                  key={index}
+                  ref={refContent}
+                  custom={index}
+                  className="mb-8"
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={controlsContent}
+                >
+                  <motion.h3 className="text-3xl font-bold mb-4 text-purple-500">
+                    {block.title}
+                  </motion.h3>
+                  <motion.p className="text-gray-800 mb-6 text-lg">
+                    {block.description}
+                  </motion.p>
+                </motion.div>
+              ))}
+            </div>
+            </div>
+          </div>
+
+          <div className="skills-grid">
+            <div className="card1">
+              <div style={{ fontSize: '3rem', marginBottom: '10px' }}>
+                <FaChalkboardTeacher />
+              </div>
+              <h2 className="text-2xl font-semibold mb-4" style={{ color: '#ffffff', textShadow: '1px 1px 2px #000000' }}>
+              Web Developer & UI/UX Designer              </h2>
+             
+            </div>
+            <div className="card1">
+              <div style={{ fontSize: '3rem', marginBottom: '10px' }}>
+                <FaUserGraduate />
+              </div>
+              <h2 className="text-2xl font-semibold mb-4" style={{ color: '#ffffff', textShadow: '1px 1px 2px #000000' }}>
+                Expert Instructor
+              </h2>
+            
+            </div>
+            <div className="card1">
+              <div style={{ fontSize: '3rem', marginBottom: '10px' }}>
+                <FaClock />
+              </div>
+              <h2 className="text-2xl font-semibold mb-4" style={{ color: '#ffffff', textShadow: '1px 1px 2px #000000' }}>
+                Flexible Learner
+              </h2>
+           
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </ClientContainer>
   );
 };
+
 
 export default About;
