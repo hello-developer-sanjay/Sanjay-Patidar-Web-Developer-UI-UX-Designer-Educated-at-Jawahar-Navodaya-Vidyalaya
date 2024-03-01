@@ -3,7 +3,7 @@ import { NavLink} from 'react-router-dom';
 import styled from 'styled-components';
 import Sidebar from '../components/Sidebar';
 import { useState,  } from 'react';
-import { FaHome,FaProjectDiagram ,FaUserShield, FaBriefcase } from 'react-icons/fa';
+import { FaHome,FaProjectDiagram ,FaUserShield, FaBriefcase ,FaUserTie } from 'react-icons/fa';
 
 const Nav = styled.nav`
   background: linear-gradient(to right, #121212, #1e1e1e);
@@ -506,6 +506,16 @@ const Navbar = () => {
                   <FaUserShield style={{ marginLeft: '5px' }}/>
                 </NavLinkStyled>
               </NavItem>
+
+              
+              <NavItem>
+                <NavLinkStyled to="/founder-eduxcel" aria-label="FounderEduxcel" onClick={toggleMenu}>
+                  Founder Profile
+                  <FaUserTie  style={{ marginLeft: '5px' }}/>
+                </NavLinkStyled>
+              </NavItem>
+
+
             </NavList>
           </NavListContainer>
         </HamburgerMenu>
