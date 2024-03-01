@@ -16,18 +16,18 @@ import Typed from 'react-typed';
 import profileImage1 from '../assets/ssss.webp';
 import profileImage2 from '../assets/sixpack.jpeg';
 
-const HomeContainer = styled(motion.div)`
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-align-items: center;
-padding: 1rem;
-box-sizing: border-box;
-overflow: hidden;
-position: relative;
+ const HomeContainer = styled(motion.div)`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
 
-background-color: #050816; 
-`;
+    background-color: #050816; 
+    `;
 
 const FlexContainer = styled.div`
   display: flex;
@@ -261,7 +261,7 @@ const images = [profileImage1, profileImage2];
 let currentImageIndex = 0;
 
 const Introduction = styled(motion.p)`
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   line-height: 1.5;
   max-width: 800px;
   text-align: center;
@@ -327,8 +327,12 @@ const Introduction = styled(motion.p)`
     }
   }
    @media (max-width: 768px) {
+    .highlight{
+      font-size: 1.4rem;
+
+    }
   margin-top:1rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 
   }
 `;
@@ -847,7 +851,7 @@ const Founder = () => {
             loop
           />
         </TypedText>
-        <H2> Sanjay Patidar</H2>  <br/> <span className="highlight">Founder : EduXcel</span><br/>Embark on the inspiring journey of Sanjay Patidar, the visionary founder behind EduXcel, dedicated to revolutionizing the tech industry.<br/> Sanjay is an accomplished web developer and UI/UX designer, driven by a passion for innovation and excellence.<br/> <p>to Know more about Sanjay Patidar <a href="https://sanjay-patidar.vercel.app/" target="_blank"> 🌐 click here</a></p>
+        <H2> Sanjay Patidar</H2>  <br/> <span className="highlight">Founder : EduXcel</span><br/>Embark on the inspiring journey of Sanjay Patidar, the visionary founder behind EduXcel, dedicated to revolutionizing the tech industry.<br/> Sanjay is an accomplished web developer and UI/UX designer, driven by a passion for innovation and excellence.<br/> <p>Empower your career. Ignite your passion. Excel with <a href="https://eduxcel.vercel.app/" target="_blank"> 🌐 click here to explore EduXcel</a></p>
 
 
 
