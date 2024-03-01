@@ -18,6 +18,7 @@ import Education from "./components/Education";
 import Contact from "./components/Contact";
 import Career from './components/Career';
 import About from'./components/About';
+import  Founder from './components/Founder';
 
 import BlogSuggestion from "./components/BlogSuggestion";
 const ScrollToTop = () => {
@@ -38,7 +39,8 @@ const AppRouter = () => {
       <ScrollToTop />
       <Routes>
       <Route path="/" element={<HomeWithBlogSuggestion />} />
-        
+      <Route path="/founder-eduxcel" element={<Founder/>} />
+
         <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
         <Route path="/projects/:category" element={<PageTransition><Projects /></PageTransition>} />
         <Route path="/api/projects/details/:id" element={<PageTransition><ProjectDetails /></PageTransition>} />
