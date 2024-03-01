@@ -17,6 +17,7 @@ import ProjectDetails from './components/ProjectDetails';
 import Education from "./components/Education";
 import Contact from "./components/Contact";
 import Career from './components/Career';
+import About from'./components/About';
 
 import BlogSuggestion from "./components/BlogSuggestion";
 const ScrollToTop = () => {
@@ -63,6 +64,8 @@ const HomeWithBlogSuggestion = () => {
   return (
     <>
       <Home />
+            <About/>
+
       <BlogSuggestion />
    
     </>
