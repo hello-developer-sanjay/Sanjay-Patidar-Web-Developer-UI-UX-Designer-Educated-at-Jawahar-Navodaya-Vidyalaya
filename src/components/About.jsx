@@ -12,7 +12,7 @@ const ClientContainer = styled(motion.div)`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  top : 0;
+  top: 0;
   padding: 2rem;
   max-width: 100%;
   box-sizing: border-box;
@@ -20,6 +20,7 @@ const ClientContainer = styled(motion.div)`
   position: relative;
   background-color: #050816; 
 `;
+
 
 const About = () => {
   const [refImage, inViewImage] = useInView({ triggerOnce: true });
@@ -90,42 +91,62 @@ const About = () => {
          
           <div className="why-us-section">
             <div className="flex-container">
-            <div className="flex flex-col lg:flex-row items-center mb-12">
-      <div className="shining-ring-container">
-        <div className="shining-ring"></div>
-        <div className="flex-container">
-          <motion.img
-            ref={refImage}
-            src={WhyUsImage}
-            alt="Why Choose Us"
-            className="w-full lg:w-full rounded-lg shadow-lg mb-6 lg-mb-0"
-            initial={{ scale: 0, rotateY: 0, opacity: 0 }}
-            animate={controlsImage}
-            style={{ visibility: inViewImage ? 'visible' : 'hidden' }}
-          />
-        </div>
-      </div>
-    </div>
+              <div className="flex flex-col lg:flex-row items-center mb-12">
+                <div className="shining-ring-container">
+                  <div className="shining-ring"></div>
+                  <div className="flex-container">
+                    <motion.img
+                      ref={refImage}
+                      src={WhyUsImage}
+                      alt="Why Choose Us"
+                      className="w-full lg:w-full rounded-lg shadow-lg mb-6 lg-mb-0"
+                      initial={{ scale: 0, rotateY: 0, opacity: 0 }}
+                      animate={controlsImage}
+                      style={{ visibility: inViewImage ? 'visible' : 'hidden' }}
+                    />
+                  </div>
+                </div>
+              </div>
 
-               <div className="lg:w-1/2 lg:pl-12 why-us-content">
-              {contentBlocks.map((block, index) => (
-                <motion.div
-                  key={index}
-                  ref={refContent}
-                  custom={index}
-                  className="mb-8"
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={controlsContent}
-                >
-                  <motion.h3 className="text-3xl font-bold mb-4 text-purple-500">
-                    {block.title}
-                  </motion.h3>
-                  <motion.p className="text-gray-800 mb-6 text-lg">
-                    {block.description}
-                  </motion.p>
-                </motion.div>
-              ))}
-            </div>
+              <div className="lg:w-1/2 lg:pl-12 why-us-content">
+                {contentBlocks.map((block, index) => {
+                  const [refContent, inViewContent] = useInView({ triggerOnce: true });
+                  const controlsContent = useAnimation();
+
+                  useEffect(() => {
+                    if (inViewContent) {
+                      controlsContent.start({
+                        y: 0,
+                        opacity: 1,
+                        rotate: [0, index % 2 === 0 ? 360 : -360],
+                        transition: {
+                          duration: 1.5,
+                          delay: index * 0.2,
+                          type: 'spring',
+                          stiffness: 100,
+                        },
+                      });
+                    }
+                  }, [inViewContent, controlsContent, index]);
+
+                  return (
+                    <motion.div
+                      key={index}
+                      ref={refContent}
+                      className="mb-8"
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={controlsContent}
+                    >
+                      <motion.h3 className="text-3xl font-bold mb-4 text-purple-500">
+                        {block.title}
+                      </motion.h3>
+                      <motion.p className="text-gray-800 mb-6 text-lg">
+                        {block.description}
+                      </motion.p>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
@@ -135,8 +156,8 @@ const About = () => {
                 <FaChalkboardTeacher />
               </div>
               <h2 className="text-2xl font-semibold mb-4" style={{ color: '#ffffff', textShadow: '1px 1px 2px #000000' }}>
-              Web Developer & UI/UX Designer              </h2>
-             
+                Web Developer & UI/UX Designer              
+              </h2>
             </div>
             <div className="card1">
               <div style={{ fontSize: '3rem', marginBottom: '10px' }}>
@@ -145,7 +166,6 @@ const About = () => {
               <h2 className="text-2xl font-semibold mb-4" style={{ color: '#ffffff', textShadow: '1px 1px 2px #000000' }}>
                 Expert Instructor
               </h2>
-            
             </div>
             <div className="card1">
               <div style={{ fontSize: '3rem', marginBottom: '10px' }}>
@@ -154,7 +174,6 @@ const About = () => {
               <h2 className="text-2xl font-semibold mb-4" style={{ color: '#ffffff', textShadow: '1px 1px 2px #000000' }}>
                 Flexible Learner
               </h2>
-           
             </div>
           </div>
 
@@ -164,5 +183,5 @@ const About = () => {
   );
 };
 
-
 export default About;
+
