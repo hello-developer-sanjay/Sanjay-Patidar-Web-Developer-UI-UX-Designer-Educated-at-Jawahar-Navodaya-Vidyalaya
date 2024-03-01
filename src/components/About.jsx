@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import styled from 'styled-components';
 import { FaChalkboardTeacher, FaUserGraduate, FaClock } from 'react-icons/fa';
 import WhyUsImage from '../assets/whyus.png';
-
+import Skill from '../pages/Skill.jsx'
 import '../styles/home.css'; 
 
 const ClientContainer = styled(motion.div)`
@@ -150,38 +150,13 @@ const About = () => {
             </div>
           </div>
 
-          <div className="skills-grid">
-            <div className="card1">
-              <div style={{ fontSize: '3rem', marginBottom: '10px' }}>
-                <FaChalkboardTeacher />
-              </div>
-              <h2 className="text-2xl font-semibold mb-4" style={{ color: '#ffffff', textShadow: '1px 1px 2px #000000' }}>
-                Web Developer & UI/UX Designer              
-              </h2>
-            </div>
-            <div className="card1">
-              <div style={{ fontSize: '3rem', marginBottom: '10px' }}>
-                <FaUserGraduate />
-              </div>
-              <h2 className="text-2xl font-semibold mb-4" style={{ color: '#ffffff', textShadow: '1px 1px 2px #000000' }}>
-                Expert Instructor
-              </h2>
-            </div>
-            <div className="card1">
-              <div style={{ fontSize: '3rem', marginBottom: '10px' }}>
-                <FaClock />
-              </div>
-              <h2 className="text-2xl font-semibold mb-4" style={{ color: '#ffffff', textShadow: '1px 1px 2px #000000' }}>
-                Flexible Learner
-              </h2>
-            </div>
-          </div>
+    
 
         </div>
       </section>
+      <Skill/>
     </ClientContainer>
   );
 };
 
 export default About;
-
