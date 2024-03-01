@@ -23,9 +23,10 @@
   .card1 {
     width: calc(33.33% - 100px); /* Adjust as needed for spacing between cards */
     margin-bottom: 20px;
-    background-color: #333333;
     padding: 20px;
     border-radius: 10px;
+    border: 2px solid #ff6b6b; 
+
   }
   
   @media (max-width: 768px) {
@@ -37,20 +38,7 @@
   
  
   
-  .card1::before {
-    content: "";
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    bottom: -5px;
-    left: -5px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .card1:hover::before {
-    opacity: 1; /* Show border on hover */
-  }
+ 
   
   .card1 h2 {
     font-size: 1.8rem;
@@ -61,16 +49,7 @@
     font-size: 16px;
   }
   
-  /* Different colors for different cards */
-  .card1:nth-child(2) {
-    border-color: #6ab04c;
-    color: #6ab04c;
-  }
-  
-  .card1:nth-child(3) {
-    border-color: #ff9f43;
-    color: #ff9f43;
-  }
+
   .shining-ring-container {
     position: relative;
     width: 100%;
@@ -141,6 +120,7 @@
     padding: 2px 0;
     @media (max-width: 768px) {
         max-width:100%; /* Adjust the width for smaller screens */
+        margin-top: 0px;
     }
 
   }
@@ -160,7 +140,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 0rem;
   }
   
   @media (min-width: 768px) {
@@ -170,7 +150,7 @@
     }
   
     .why-us-section .flex-container img {
-      margin-right: 1rem; /* Adjust the margin as needed */
+      margin-right: 2rem; /* Adjust the margin as needed */
     }
   }
   
