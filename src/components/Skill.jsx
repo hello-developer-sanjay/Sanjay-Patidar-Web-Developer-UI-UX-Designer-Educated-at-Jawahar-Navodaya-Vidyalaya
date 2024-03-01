@@ -80,6 +80,7 @@ const SkillDescription = styled.p`
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.3s, transform 0.3s;
+  color:#fff;
 
   ${SkillCard}:hover & {
     opacity: 1;
