@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { motion, AnimatePresence, useAnimation } from "framer-motion";
-import { FaLinkedin, FaTwitter, FaInstagram, FaGithub,FaComment, FaUsers, FaTimes } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaLinkedin, FaTwitter, FaInstagram, FaGithub, FaUsers } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "../styles/Sidebar.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,23 +9,25 @@ import "react-toastify/dist/ReactToastify.css";
 const FooterContainer = styled(motion.footer)`
   position: relative;
   color: white;
-  padding: 1rem;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   border-radius: 20px;
   overflow: hidden;
+  background-color: #050816;
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
-
+  
   /* Create a complex and artistic background pattern */
   background: 
-    radial-gradient(ellipse at center, rgba(33, 33, 77, 0.3) 0%, rgba(33, 33, 77, 0) 30%, rgba(33, 33, 77, 0.6) 50%, rgba(33, 33, 77, 0) 70%, rgba(33, 33, 77, 0.3) 100%),
-    linear-gradient(90deg, #3498db, #2c3e50);
-
+    radial-gradient(ellipse at center, rgba(5, 8, 22, 0.15) 0%, rgba(5, 8, 22, 0) 30%, rgba(5, 8, 22, 0.4) 50%, rgba(5, 8, 22, 0) 70%, rgba(5, 8, 22, 0.15) 100%),
+    linear-gradient(90deg, #010102, #010204);
+  
   /* Optional: Add animation or transition properties for a dynamic effect */
   transition: background 0.3s ease-in-out;
-`;
+    
+  `;
 const BorderLineTop = styled(motion.div)`
   position: absolute;
   top: 0;
@@ -89,7 +91,7 @@ const CatchyMessage = styled(motion.p)`
   font-size: 1.5rem;
   font-weight: bold;
   margin-top: 1rem;
-  color: black;
+  color: white;
   word-wrap: break-word;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease-in-out;
@@ -201,6 +203,8 @@ const ContactForm = styled(motion.form)`
   border-radius: 15px;
   width: 100%;
   max-width: 500px;
+  border: 2px solid #ff6b6b; 
+
 `;
 
 const ContactInput = styled.input`
@@ -209,7 +213,7 @@ const ContactInput = styled.input`
   border-radius: 5px;
   width: 100%;
   font-size: 1rem;
-  color: white;
+  color: green;
   background-color: rgba(0, 0, 0, 0.5);
   transition: background-color 0.3s ease;
 
