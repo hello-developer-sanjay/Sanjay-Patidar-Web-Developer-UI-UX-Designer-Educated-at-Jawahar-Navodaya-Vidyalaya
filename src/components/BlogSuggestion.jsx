@@ -75,8 +75,7 @@ const Title = styled.h1`
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
   border: 2px solid #ff6b6b; /* Border color */
   overflow: hidden; /* Hide any overflowing text */
-  z-index: 1; /* Ensure the title appears above other elements */
-  
+  z-index: 1; 
   /* Engraved effect */
   &:after {
     content: '';
