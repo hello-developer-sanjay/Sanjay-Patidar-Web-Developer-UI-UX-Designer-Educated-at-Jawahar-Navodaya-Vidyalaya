@@ -18,7 +18,7 @@ const ClientContainer = styled(motion.div)`
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
-  background-color: "#050816";
+  background-color: #050816; 
 `;
 
 const About = () => {
