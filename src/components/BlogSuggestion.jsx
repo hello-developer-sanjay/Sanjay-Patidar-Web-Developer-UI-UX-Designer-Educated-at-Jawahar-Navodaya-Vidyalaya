@@ -14,18 +14,7 @@ const HomeContainer = styled(motion.div)`
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
-
-  /* Create a complex and artistic background pattern */
-  background: 
-    radial-gradient(ellipse at center, rgba(33, 33, 77, 0.3) 0%, rgba(33, 33, 77, 0) 30%, rgba(33, 33, 77, 0.6) 50%, rgba(33, 33, 77, 0) 70%, rgba(33, 33, 77, 0.3) 100%),
-    linear-gradient(90deg, #3498db, #2c3e50);
-
-  /* Optional: Add animation or transition properties for a dynamic effect */
-  transition: background 0.3s ease-in-out;
-
-
-
-
+  background-color: #050816; 
 `;
 
 
