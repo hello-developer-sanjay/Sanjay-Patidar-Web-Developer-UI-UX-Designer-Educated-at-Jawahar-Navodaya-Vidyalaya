@@ -52,6 +52,19 @@ const H1Container = styled.div`
   
   }
 `;
+
+
+const Onlyforlap = styled.div`
+
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    display: none;
+    margin-top: 0rem;
+  
+  }
+`;
 const H1 = styled.h1`
   font-size: 1.5rem;
   font-weight: 900;
@@ -69,11 +82,16 @@ const H2 = styled.h1`
   margin-bottom: 0rem;
   font-weight: 900;
   color: #2ecc71;
-
   font-family: 'Playfair Display', serif;
-
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  margin-top: 0rem;
+ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   transform: skew(-5deg); /* Apply a slight skew for a dynamic effect */
+  
+  @media (max-width: 768px) {
+    margin-top: 0rem;
+    font-size: 2rem;
+
+  }
 `;
 const StyledCreaTeaImage = styled.img`
   width: 40px;
@@ -135,7 +153,14 @@ const ProfileImageContainer = styled.div`
     align-self: flex-start; /* Align the image to the start of the container on larger screens */
   }
 `;
+const Text = styled.h1`
+  margin-top: 1rem;;
+  font-size: 1.1rem;
+  text-align: left;
+  color: #fff; 
+  padding: 5px 10px; /* Padding to create space around the text */
 
+`;
 
 const BackgroundOverlay = styled.div`
   position: absolute;
@@ -151,7 +176,7 @@ const BackgroundOverlay = styled.div`
 const ProfileImage = styled(motion.img)`
   width: 380px;
   height: 380px;
-  margin-top: 3rem;
+  margin-top: 7rem;
 
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(255, 165, 0, 0.8), 0 0 20px rgba(255, 165, 0, 0.6);
@@ -279,13 +304,11 @@ const Introduction = styled(motion.p)`
     color: transparent;
     font-family: 'Playfair Display', serif;
 
+
     background: linear-gradient(45deg, #ff4081, #00bcd4); /* Gradient highlight */
     background-clip: text;
     -webkit-background-clip: text;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Shadow for depth */
-    padding-bottom: 5px;
-    margin-bottom: 1px;
-    line-height: 2rem;
     /* Animation for the highlight class */
     animation: highlightAnimation 3s ease-in-out infinite;
     @media (max-width: 768px) {
@@ -341,7 +364,7 @@ const Introduction = styled(motion.p)`
 const TypedText = styled.span`
   display: block;
   margin-top: 1rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   text-transform:uppercase;
   font-style: italic;
   font-weight: bold;
@@ -397,7 +420,18 @@ const TypedText = styled.span`
   }
 `;
 
+const Onlyformob = styled.div`
+  display: none;
 
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column; /* Change to column */
+    justify-content: center;
+    align-items: center;
+    margin-top: 0rem;
+    margin-bottom: 1rem;
+  }
+`;
 
 
 
@@ -493,8 +527,37 @@ const Founder = () => {
   const [animationEnabled, setAnimationEnabled] = useState(true);
   const [imageLoading, setImageLoading] = useState(true);
 
+  const copyContactNumber = () => {
+    const contactNumber = document.getElementById('contactNumber');
+    const range = document.createRange();
+    range.selectNode(contactNumber);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+    alert('Contact number copied!');
+  };
+  const copyInstaID = () => {
+    const instaID = document.getElementById('instaID');
+    const range = document.createRange();
+    range.selectNode(instaID);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+    alert('Instagram ID copied!');
+  };
 
-
+  const copyEduxcelID = () => {
+    const eduxcelID = document.getElementById('eduxcelID');
+    const range = document.createRange();
+    range.selectNode(eduxcelID);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+    alert('Eduxcel Website Link copied!');
+  };
   
 
   const controlsArray = Array.from({ length: 7 }, () => useAnimation());
@@ -823,8 +886,36 @@ const Founder = () => {
         
           ))}
         </SocialIconsContainer>
-        
-        </ProfileImageContainer>
+
+
+<Onlyforlap>
+  
+
+<Text>
+              ☎  Sanjay Patidar  <span className="highlight">Contact | Mobile Number : </span>{' '}
+              <span id="contactNumber">+91 9131743250 </span>
+              
+              <button onClick={copyContactNumber} style={{  color: '#fff', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
+            </Text>
+
+
+            <Text>
+            <FaInstagram style={{ marginRight: '8px' }}/>
+  Sanjay Patidar <span className="highlight">Instagram ID  : </span>{' '}
+              <span id="instaID">sanjay_patidar_mcmxcviii </span>
+              
+              <button onClick={copyInstaID} style={{  color: '#fff', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
+            </Text>
+            <Text>
+            🔗    Eduxcel <span className="highlight">Website link : </span>{' '}
+              <span id="eduxcelID">https://eduxcel.vercel.app </span>
+              
+              <button onClick={copyEduxcelID} style={{  color: '#fff', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
+            </Text>
+
+</Onlyforlap>
+
+        </ProfileImageContainer>  
   
     
       <ProfileTextContainer>
@@ -851,11 +942,47 @@ const Founder = () => {
             loop
           />
         </TypedText>
-        <H2> Sanjay Patidar</H2>  <br/> <span className="highlight">Founder : EduXcel</span><br/>Embark on the inspiring journey of Sanjay Patidar, the visionary founder behind EduXcel, dedicated to revolutionizing the tech industry.<br/> Sanjay is an accomplished web developer and UI/UX designer, driven by a passion for innovation and excellence.<br/> <p>Empower your career. Ignite your passion. Excel with <a href="https://eduxcel.vercel.app/" target="_blank"> 🌐 click here to explore EduXcel</a></p>
+        <H2> Sanjay Patidar</H2>  <br/> <span className="highlight">Founder & Developer : EduXcel</span><br/>
+        <Text>Meet Sanjay Patidar, the Man Behind EduXcel</Text>
+<Text>
+🙋 Hey there! Ready to hear about Sanjay Patidar's incredible journey?<br/> He's the genius behind EduXcel, and he's on a mission to revolutionize the tech industry!
+
+Now, let's talk about Sanjay. He's not your run-of-the-mill entrepreneur. Nope, he's a master at web development, crafting stunning digital landscapes, and he's got a knack for making UI/UX designs that'll make your jaw drop.<br/> 🙋 Seriously, the guy's got talent for days!
+
+So, what's Sanjay's secret sauce?<br/> It's all about pushing boundaries and striving for excellence. Think of him as a digital wizard, conjuring up immersive experiences that leave you wanting more.
+
+But here's the kicker: Sanjay isn't just about the tech. He's passionate about education too. See, he believes in empowering people through knowledge, and that's the driving force behind EduXcel. It's not just a tech company; it's a platform for growth and learning, fueled by Sanjay's vision and dedication.</Text>
 
 
+        <Text>Curious to know more about EduXcel ? <a href="https://eduxcel.vercel.app/" target="_blank">Click here</a> to explore!</Text>
 
+<Onlyformob>
+        <Text>
+              ☎  Sanjay Patidar  Contact | Mobile Number :{' '}
+              <span id="contactNumber">+91 9131743250 </span>
+              
+              <button onClick={copyContactNumber} style={{  color: '#fff', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
+            </Text>
+
+
+            <Text>
+            <FaInstagram style={{ marginRight: '8px' }}/>
+  Sanjay Patidar Instagram ID  : {' '}
+              <span id="instaID">sanjay_patidar_mcmxcviii </span>
+              
+              <button onClick={copyInstaID} style={{  color: '#fff', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
+            </Text>
+            <Text>
+            🔗    Eduxcel Website link : {' '}
+              <span id="eduxcelID">https://eduxcel.vercel.app </span>
+              
+              <button onClick={copyEduxcelID} style={{  color: '#fff', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
+            </Text>
+
+            </Onlyformob>
       </Introduction>
+
+      
       </ProfileTextContainer>
 
       </FlexContainer>
