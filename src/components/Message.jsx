@@ -120,6 +120,26 @@ const BlogTitle = styled.h3`
 
 const Message = () => {
   
+  const copyContactNumber = () => {
+    const contactNumber = document.getElementById('contactNumber');
+    const range = document.createRange();
+    range.selectNode(contactNumber);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+    alert('Contact number copied!');
+  };
+  const copyInstaID = () => {
+    const instaID = document.getElementById('instaID');
+    const range = document.createRange();
+    range.selectNode(instaID);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+    alert('Instagram ID copied!');
+  };
 
   return (
     <>
@@ -154,6 +174,23 @@ const Message = () => {
     <span className="highlight">Founder, EduXcel | Empowering Careers in Tech
 
 </span>
+
+
+<Text>
+              ☎  Sanjay Patidar  <span className="highlight">Contact | Mobile Number : </span>{' '}
+              <span id="contactNumber">+91 9131743250 </span>
+              
+              <button onClick={copyContactNumber} style={{  color: '#fff', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
+            </Text>
+
+
+            <Text>
+              ☎  Sanjay Patidar <span className="highlight">Instagram ID  : </span>{' '}
+              <span id="instaID">sanjay_patidar_mcmxcviii </span>
+              
+              <button onClick={copyInstaID} style={{  color: '#fff', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
+            </Text>
+
 
         </TitleSection>
               </Introduction>
