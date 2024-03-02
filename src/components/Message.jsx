@@ -1,5 +1,6 @@
 
 import styled from 'styled-components';
+import {  FaInstagram } from "react-icons/fa";
 
 
 
@@ -185,7 +186,8 @@ const Message = () => {
 
 
             <Text>
-              ☎  Sanjay Patidar <span className="highlight">Instagram ID  : </span>{' '}
+                          <FaInstagram style={{ marginRight: '8px' }}/>
+  Sanjay Patidar <span className="highlight">Instagram ID  : </span>{' '}
               <span id="instaID">sanjay_patidar_mcmxcviii </span>
               
               <button onClick={copyInstaID} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
