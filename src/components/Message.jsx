@@ -181,7 +181,7 @@ const Message = () => {
               ☎  Sanjay Patidar  <span className="highlight">Contact | Mobile Number : </span>{' '}
               <span id="contactNumberforme">+91 9131743250 </span>
               
-              <button onClick={copyContactNumberforme} style={{  color: '#fff', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
+              <button onClick={copyContactNumberforme} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
             </Text>
 
 
@@ -190,7 +190,7 @@ const Message = () => {
 Sanjay Patidar <span className="highlight">Instagram ID  : </span>{' '}
               <span id="instaIDforme">sanjay_patidar_mcmxcviii </span>
               
-              <button onClick={copyInstaIDforme} style={{  color: '#fff', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
+              <button onClick={copyInstaIDforme} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
             </Text>
 
 
