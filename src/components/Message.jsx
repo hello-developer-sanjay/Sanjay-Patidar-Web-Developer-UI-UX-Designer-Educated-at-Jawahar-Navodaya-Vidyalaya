@@ -1,7 +1,7 @@
 
 import styled from 'styled-components';
-import {  FaInstagram } from "react-icons/fa";
 
+import {  FaInstagram } from "react-icons/fa";
 
 
 const CardWrapper = styled.div`
@@ -121,20 +121,20 @@ const BlogTitle = styled.h3`
 
 const Message = () => {
   
-  const copyContactNumber = () => {
-    const contactNumber = document.getElementById('contactNumber');
+  const copyContactNumberforme = () => {
+    const contactNumberforme = document.getElementById('contactNumberforme');
     const range = document.createRange();
-    range.selectNode(contactNumber);
+    range.selectNode(contactNumberforme);
     window.getSelection().removeAllRanges();
     window.getSelection().addRange(range);
     document.execCommand('copy');
     window.getSelection().removeAllRanges();
-    alert('Contact number copied!');
+    alert(' Attention: By copying this contact number, you agree to use it solely for legitimate purposes. Any illegal activities or unauthorized promotion using this number are strictly prohibited and may result in legal action. !');
   };
-  const copyInstaID = () => {
-    const instaID = document.getElementById('instaID');
+  const copyInstaIDforme = () => {
+    const instaIDforme = document.getElementById('instaIDforme');
     const range = document.createRange();
-    range.selectNode(instaID);
+    range.selectNode(instaIDforme);
     window.getSelection().removeAllRanges();
     window.getSelection().addRange(range);
     document.execCommand('copy');
@@ -179,18 +179,18 @@ const Message = () => {
 
 <Text>
               ☎  Sanjay Patidar  <span className="highlight">Contact | Mobile Number : </span>{' '}
-              <span id="contactNumber">+91 9131743250 </span>
+              <span id="contactNumberforme">+91 9131743250 </span>
               
-              <button onClick={copyContactNumber} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
+              <button onClick={copyContactNumberforme} style={{  color: '#fff', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
             </Text>
 
 
             <Text>
-                          <FaInstagram style={{ marginRight: '8px' }}/>
-  Sanjay Patidar <span className="highlight">Instagram ID  : </span>{' '}
-              <span id="instaID">sanjay_patidar_mcmxcviii </span>
+            <FaInstagram style={{ marginRight: '8px' }}/>
+Sanjay Patidar <span className="highlight">Instagram ID  : </span>{' '}
+              <span id="instaIDforme">sanjay_patidar_mcmxcviii </span>
               
-              <button onClick={copyInstaID} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
+              <button onClick={copyInstaIDforme} style={{  color: '#fff', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
             </Text>
 
 
