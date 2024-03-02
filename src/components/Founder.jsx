@@ -559,6 +559,45 @@ const Founder = () => {
     alert('Eduxcel Website Link copied!');
   };
   
+  
+
+  const copyContactNumberformob = () => {
+    const contactNumberformob = document.getElementById('contactformobNumber');
+    const range = document.createRange();
+    range.selectNode(contactNumberformob);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+    alert('Contact number copied!');
+  };
+  const copyInstaIDformob = () => {
+    const instaformobID = document.getElementById('instaformobID');
+    const range = document.createRange();
+    range.selectNode(instaformobID);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+    alert('Instagram ID copied!');
+  };
+
+  const copyEduxcelIDformob = () => {
+    const eduxcelformobID = document.getElementById('eduxcelformobID');
+    const range = document.createRange();
+    range.selectNode(eduxcelformobID);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+    alert('Eduxcel Website Link copied!');
+  };
+  
+  
+
+
+
+
 
   const controlsArray = Array.from({ length: 7 }, () => useAnimation());
 
@@ -609,237 +648,232 @@ const Founder = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.7, ease: 'easeInOut' }}
     >
-         <Helmet>
+ <Helmet>
   
-         <title>Sanjay Patidar | Founder & Developer of EduXcel | Empowering Careers in Tech | Web Development & UI/UX Design Expert | Chandigarh University | Crafting Scalable Digital Solutions for Global Innovation</title>
-  <meta
-    name="description"
-    content="Discover the remarkable journey of Sanjay Patidar, a dedicated and passionate individual excelling in the realms of web development and UI/UX design. As a Computer Science and Engineering student, Sanjay embodies a profound commitment to mastering the intricacies of programming, with a specialized focus on crafting immersive digital experiences. Currently pursuing a Bachelor of Engineering degree at Chandigarh University, Sanjay brings forth a proactive approach and an unwavering dedication to excellence in all endeavors. His educational odyssey began at Jawahar Navodaya Vidyalaya School, where he laid the foundation for his academic and extracurricular prowess from 2009 to 2016. This esteemed residential institution, administered under the Ministry of Education, fostered holistic development and instilled a fervent pursuit of excellence. Throughout his tenure, Sanjay actively engaged in a plethora of inter-school competitions, showcasing his versatility and achieving distinction in both academic and non-academic domains. Building upon this robust foundation, Sanjay embarked on his tertiary education journey at Chandigarh University, where he embarked on a quest for knowledge and innovation. Embracing the cutting-edge infrastructure and progressive pedagogical approaches of the university, he delved deep into the intricacies of Computer Science Engineering. His academic trajectory is marked by a stellar GPA of 7.5, a testament to his unwavering dedication and intellectual acumen. Beyond the confines of academia, Sanjay's passion for technology extends to the realms of practical application. Actively participating in coding competitions, hackathons, and collaborative projects, he honed his problem-solving prowess and cultivated invaluable teamwork skills. His journey is characterized by a relentless pursuit of excellence, driven by a profound sense of creativity, innovation, and a commitment to delivering exceptional digital solutions. Explore the professional portfolio of Sanjay Patidar, where innovation meets expertise, and witness firsthand the culmination of passion, creativity, and a relentless pursuit of excellence in web development and UI/UX design.Based in Indore, Madhya Pradesh, Sanjay serves clients across India, including	Chandigarh, Punjab, Mumbai,Maharashtra, Bangalore,Karnataka, Delhi, Kolkata, West Bengal, Chennai, Tamil Nadu, Hyderabad, Telangana, Pune, Ahmedabad, Gujarat, Jaipur, Rajasthan, Lucknow, Uttar Pradesh, Bhopal, Nagpur, Visakhapatnam, Andhra Pradesh, Kochi, Kerala, Guwahati, Assam, Bhubaneswar, Odisha, Dehradun, Uttarakhand, Raipur, Chhattisgarh,  and beyond."
-  />
-  
-  <link rel="canonical" href="https://sanjay-patidar.vercel.app" />
+  <title>Sanjay Patidar | Founder & Developer of EduXcel | Empowering Careers in Tech | Web Development & UI/UX Design Expert | Chandigarh University | Crafting Scalable Digital Solutions for Global Innovation</title>
+<meta
+name="description"
+content="Discover the remarkable journey of Sanjay Patidar, a dedicated and passionate individual excelling in the realms of web development and UI/UX design. As a Computer Science and Engineering student, Sanjay embodies a profound commitment to mastering the intricacies of programming, with a specialized focus on crafting immersive digital experiences. Currently pursuing a Bachelor of Engineering degree at Chandigarh University, Sanjay brings forth a proactive approach and an unwavering dedication to excellence in all endeavors. His educational odyssey began at Jawahar Navodaya Vidyalaya School, where he laid the foundation for his academic and extracurricular prowess from 2009 to 2016. This esteemed residential institution, administered under the Ministry of Education, fostered holistic development and instilled a fervent pursuit of excellence. Throughout his tenure, Sanjay actively engaged in a plethora of inter-school competitions, showcasing his versatility and achieving distinction in both academic and non-academic domains. Building upon this robust foundation, Sanjay embarked on his tertiary education journey at Chandigarh University, where he embarked on a quest for knowledge and innovation. Embracing the cutting-edge infrastructure and progressive pedagogical approaches of the university, he delved deep into the intricacies of Computer Science Engineering. His academic trajectory is marked by a stellar GPA of 7.5, a testament to his unwavering dedication and intellectual acumen. Beyond the confines of academia, Sanjay's passion for technology extends to the realms of practical application. Actively participating in coding competitions, hackathons, and collaborative projects, he honed his problem-solving prowess and cultivated invaluable teamwork skills. His journey is characterized by a relentless pursuit of excellence, driven by a profound sense of creativity, innovation, and a commitment to delivering exceptional digital solutions. Explore the professional portfolio of Sanjay Patidar, where innovation meets expertise, and witness firsthand the culmination of passion, creativity, and a relentless pursuit of excellence in web development and UI/UX design.Based in Indore, Madhya Pradesh, Sanjay serves clients across India, including	Chandigarh, Punjab, Mumbai,Maharashtra, Bangalore,Karnataka, Delhi, Kolkata, West Bengal, Chennai, Tamil Nadu, Hyderabad, Telangana, Pune, Ahmedabad, Gujarat, Jaipur, Rajasthan, Lucknow, Uttar Pradesh, Bhopal, Nagpur, Visakhapatnam, Andhra Pradesh, Kochi, Kerala, Guwahati, Assam, Bhubaneswar, Odisha, Dehradun, Uttarakhand, Raipur, Chhattisgarh,  and beyond."
+/>
 
-  <meta property="og:title" content="Sanjay Patidar | Founder & Developer of EduXcel | Empowering Careers in Tech | Web Development & UI/UX Design Expert | Chandigarh University | Crafting Scalable Digital Solutions for Global Innovation" />
-  <meta property="og:description" content="Discover the remarkable journey of Sanjay Patidar, a dedicated and passionate individual excelling in the realms of web development and UI/UX design. As a Computer Science and Engineering student, Sanjay embodies a profound commitment to mastering the intricacies of programming, with a specialized focus on crafting immersive digital experiences. Currently pursuing a Bachelor of Engineering degree at Chandigarh University, Sanjay brings forth a proactive approach and an unwavering dedication to excellence in all endeavors. His educational odyssey began at Jawahar Navodaya Vidyalaya School, where he laid the foundation for his academic and extracurricular prowess from 2009 to 2016. This esteemed residential institution, administered under the Ministry of Education, fostered holistic development and instilled a fervent pursuit of excellence. Throughout his tenure, Sanjay actively engaged in a plethora of inter-school competitions, showcasing his versatility and achieving distinction in both academic and non-academic domains. Building upon this robust foundation, Sanjay embarked on his tertiary education journey at Chandigarh University, where he embarked on a quest for knowledge and innovation. Embracing the cutting-edge infrastructure and progressive pedagogical approaches of the university, he delved deep into the intricacies of Computer Science Engineering. His academic trajectory is marked by a stellar GPA of 7.5, a testament to his unwavering dedication and intellectual acumen. Beyond the confines of academia, Sanjay's passion for technology extends to the realms of practical application. Actively participating in coding competitions, hackathons, and collaborative projects, he honed his problem-solving prowess and cultivated invaluable teamwork skills. His journey is characterized by a relentless pursuit of excellence, driven by a profound sense of creativity, innovation, and a commitment to delivering exceptional digital solutions. Explore the professional portfolio of Sanjay Patidar, where innovation meets expertise, and witness firsthand the culmination of passion, creativity, and a relentless pursuit of excellence in web development and UI/UX design.Based in Indore, Madhya Pradesh, Sanjay serves clients across India, including	Chandigarh, Punjab, Mumbai,Maharashtra, Bangalore,Karnataka, Delhi, Kolkata, West Bengal, Chennai, Tamil Nadu, Hyderabad, Telangana, Pune, Ahmedabad, Gujarat, Jaipur, Rajasthan, Lucknow, Uttar Pradesh, Bhopal, Nagpur, Visakhapatnam, Andhra Pradesh, Kochi, Kerala, Guwahati, Assam, Bhubaneswar, Odisha, Dehradun, Uttarakhand, Raipur, Chhattisgarh,  and beyond." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://sanjay-patidar.vercel.app" />
-  <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/sixpack.jpeg" />
-  <meta property="og:image:alt" content="Sanjay Patidar" />
-  <meta property="og:site_name" content="Sanjay Patidar | Founder & Developer of EduXcel | Empowering Careers in Tech | Web Development & UI/UX Design Expert | Chandigarh University | Crafting Scalable Digital Solutions for Global Innovation" />
+<link rel="canonical" href="https://sanjay-patidar.vercel.app" />
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Sanjay Patidar | Founder & Developer of EduXcel | Empowering Careers in Tech | Web Development & UI/UX Design Expert | Chandigarh University | Crafting Scalable Digital Solutions for Global Innovation" />
-  <meta name="twitter:description" content="Discover the remarkable journey of Sanjay Patidar, a dedicated and passionate individual excelling in the realms of web development and UI/UX design. As a Computer Science and Engineering student, Sanjay embodies a profound commitment to mastering the intricacies of programming, with a specialized focus on crafting immersive digital experiences. Currently pursuing a Bachelor of Engineering degree at Chandigarh University, Sanjay brings forth a proactive approach and an unwavering dedication to excellence in all endeavors. His educational odyssey began at Jawahar Navodaya Vidyalaya School, where he laid the foundation for his academic and extracurricular prowess from 2009 to 2016. This esteemed residential institution, administered under the Ministry of Education, fostered holistic development and instilled a fervent pursuit of excellence. Throughout his tenure, Sanjay actively engaged in a plethora of inter-school competitions, showcasing his versatility and achieving distinction in both academic and non-academic domains. Building upon this robust foundation, Sanjay embarked on his tertiary education journey at Chandigarh University, where he embarked on a quest for knowledge and innovation. Embracing the cutting-edge infrastructure and progressive pedagogical approaches of the university, he delved deep into the intricacies of Computer Science Engineering. His academic trajectory is marked by a stellar GPA of 7.5, a testament to his unwavering dedication and intellectual acumen. Beyond the confines of academia, Sanjay's passion for technology extends to the realms of practical application. Actively participating in coding competitions, hackathons, and collaborative projects, he honed his problem-solving prowess and cultivated invaluable teamwork skills. His journey is characterized by a relentless pursuit of excellence, driven by a profound sense of creativity, innovation, and a commitment to delivering exceptional digital solutions. Explore the professional portfolio of Sanjay Patidar, where innovation meets expertise, and witness firsthand the culmination of passion, creativity, and a relentless pursuit of excellence in web development and UI/UX design.Based in Indore, Madhya Pradesh, Sanjay serves clients across India, including	Chandigarh, Punjab, Mumbai,Maharashtra, Bangalore,Karnataka, Delhi, Kolkata, West Bengal, Chennai, Tamil Nadu, Hyderabad, Telangana, Pune, Ahmedabad, Gujarat, Jaipur, Rajasthan, Lucknow, Uttar Pradesh, Bhopal, Nagpur, Visakhapatnam, Andhra Pradesh, Kochi, Kerala, Guwahati, Assam, Bhubaneswar, Odisha, Dehradun, Uttarakhand, Raipur, Chhattisgarh,  and beyond." />
-  <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/sixpack.jpeg" />
-  <meta name="twitter:site" content="@sanjaypatidar" />
-  <meta name="twitter:creator" content="@sanjaypatidar" />
+<meta property="og:title" content="Sanjay Patidar | Founder & Developer of EduXcel | Empowering Careers in Tech | Web Development & UI/UX Design Expert | Chandigarh University | Crafting Scalable Digital Solutions for Global Innovation" />
+<meta property="og:description" content="Discover the remarkable journey of Sanjay Patidar, a dedicated and passionate individual excelling in the realms of web development and UI/UX design. As a Computer Science and Engineering student, Sanjay embodies a profound commitment to mastering the intricacies of programming, with a specialized focus on crafting immersive digital experiences. Currently pursuing a Bachelor of Engineering degree at Chandigarh University, Sanjay brings forth a proactive approach and an unwavering dedication to excellence in all endeavors. His educational odyssey began at Jawahar Navodaya Vidyalaya School, where he laid the foundation for his academic and extracurricular prowess from 2009 to 2016. This esteemed residential institution, administered under the Ministry of Education, fostered holistic development and instilled a fervent pursuit of excellence. Throughout his tenure, Sanjay actively engaged in a plethora of inter-school competitions, showcasing his versatility and achieving distinction in both academic and non-academic domains. Building upon this robust foundation, Sanjay embarked on his tertiary education journey at Chandigarh University, where he embarked on a quest for knowledge and innovation. Embracing the cutting-edge infrastructure and progressive pedagogical approaches of the university, he delved deep into the intricacies of Computer Science Engineering. His academic trajectory is marked by a stellar GPA of 7.5, a testament to his unwavering dedication and intellectual acumen. Beyond the confines of academia, Sanjay's passion for technology extends to the realms of practical application. Actively participating in coding competitions, hackathons, and collaborative projects, he honed his problem-solving prowess and cultivated invaluable teamwork skills. His journey is characterized by a relentless pursuit of excellence, driven by a profound sense of creativity, innovation, and a commitment to delivering exceptional digital solutions. Explore the professional portfolio of Sanjay Patidar, where innovation meets expertise, and witness firsthand the culmination of passion, creativity, and a relentless pursuit of excellence in web development and UI/UX design.Based in Indore, Madhya Pradesh, Sanjay serves clients across India, including	Chandigarh, Punjab, Mumbai,Maharashtra, Bangalore,Karnataka, Delhi, Kolkata, West Bengal, Chennai, Tamil Nadu, Hyderabad, Telangana, Pune, Ahmedabad, Gujarat, Jaipur, Rajasthan, Lucknow, Uttar Pradesh, Bhopal, Nagpur, Visakhapatnam, Andhra Pradesh, Kochi, Kerala, Guwahati, Assam, Bhubaneswar, Odisha, Dehradun, Uttarakhand, Raipur, Chhattisgarh,  and beyond." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://sanjay-patidar.vercel.app" />
+<meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/sixpack.jpeg" />
+<meta property="og:image:alt" content="Sanjay Patidar" />
+<meta property="og:site_name" content="Sanjay Patidar | Founder & Developer of EduXcel | Empowering Careers in Tech | Web Development & UI/UX Design Expert | Chandigarh University | Crafting Scalable Digital Solutions for Global Innovation" />
 
-  <meta name="keywords" content="portfolio, personal-portfolio,developer_sanju,sanjay, Sanjay, SANJAY, Sanjay Patidar, SANJAY PATIDAR, SANJAY WEB DEVELOPER, SANJAY DEVELOPER, Full Stack Web Developer, Mern Stack Web Developer, sanjay patidar, sanjay-patidar, professional, web developer portfolio, coder, web development, UI/UX design, Chandigarh University, EduXcel, Indore,contact, developer, programmer, engineer, AI, Artificial Intelligence ,tech enthusiastic,Based in Indore, Madhya Pradesh, Sanjay serves clients across India, including	Chandigarh, Punjab, Mumbai,Maharashtra, Bangalore,Karnataka, Delhi, Kolkata, West Bengal, Chennai, Tamil Nadu, Hyderabad, Telangana, Pune, Ahmedabad, Gujarat, Jaipur, Rajasthan, Lucknow, Uttar Pradesh, Bhopal, Nagpur, Visakhapatnam, Andhra Pradesh, Kochi, Kerala, Guwahati, Assam, Bhubaneswar, Odisha, Dehradun, Uttarakhand, Raipur, Chhattisgarh,  and beyond. creativity ,creator, work , technology, coding, projects, experiences, resume, cv" />
-  <meta name="author" content="Sanjay Patidar" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Sanjay Patidar | Founder & Developer of EduXcel | Empowering Careers in Tech | Web Development & UI/UX Design Expert | Chandigarh University | Crafting Scalable Digital Solutions for Global Innovation" />
+<meta name="twitter:description" content="Discover the remarkable journey of Sanjay Patidar, a dedicated and passionate individual excelling in the realms of web development and UI/UX design. As a Computer Science and Engineering student, Sanjay embodies a profound commitment to mastering the intricacies of programming, with a specialized focus on crafting immersive digital experiences. Currently pursuing a Bachelor of Engineering degree at Chandigarh University, Sanjay brings forth a proactive approach and an unwavering dedication to excellence in all endeavors. His educational odyssey began at Jawahar Navodaya Vidyalaya School, where he laid the foundation for his academic and extracurricular prowess from 2009 to 2016. This esteemed residential institution, administered under the Ministry of Education, fostered holistic development and instilled a fervent pursuit of excellence. Throughout his tenure, Sanjay actively engaged in a plethora of inter-school competitions, showcasing his versatility and achieving distinction in both academic and non-academic domains. Building upon this robust foundation, Sanjay embarked on his tertiary education journey at Chandigarh University, where he embarked on a quest for knowledge and innovation. Embracing the cutting-edge infrastructure and progressive pedagogical approaches of the university, he delved deep into the intricacies of Computer Science Engineering. His academic trajectory is marked by a stellar GPA of 7.5, a testament to his unwavering dedication and intellectual acumen. Beyond the confines of academia, Sanjay's passion for technology extends to the realms of practical application. Actively participating in coding competitions, hackathons, and collaborative projects, he honed his problem-solving prowess and cultivated invaluable teamwork skills. His journey is characterized by a relentless pursuit of excellence, driven by a profound sense of creativity, innovation, and a commitment to delivering exceptional digital solutions. Explore the professional portfolio of Sanjay Patidar, where innovation meets expertise, and witness firsthand the culmination of passion, creativity, and a relentless pursuit of excellence in web development and UI/UX design.Based in Indore, Madhya Pradesh, Sanjay serves clients across India, including	Chandigarh, Punjab, Mumbai,Maharashtra, Bangalore,Karnataka, Delhi, Kolkata, West Bengal, Chennai, Tamil Nadu, Hyderabad, Telangana, Pune, Ahmedabad, Gujarat, Jaipur, Rajasthan, Lucknow, Uttar Pradesh, Bhopal, Nagpur, Visakhapatnam, Andhra Pradesh, Kochi, Kerala, Guwahati, Assam, Bhubaneswar, Odisha, Dehradun, Uttarakhand, Raipur, Chhattisgarh,  and beyond." />
+<meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/sixpack.jpeg" />
+<meta name="twitter:site" content="@sanjaypatidar" />
+<meta name="twitter:creator" content="@sanjaypatidar" />
 
-  <script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "http://schema.org",
-      "@type": "Person",
-      "name": "Sanjay Patidar",
-      "url": "https://sanjay-patidar.vercel.app",
-      "sameAs": [
-        "https://www.linkedin.com/in/sanjay-patidar-25b580292/",
-        "https://github.com/hello-developer-sanjay",
-      
-        "https://www.instagram.com/sanjay_patidar_mcmxcviii/",
-        "https://eduxcel.vercel.app/",
+<meta name="keywords" content="portfolio, personal-portfolio,developer_sanju,sanjay, Sanjay, SANJAY, Sanjay Patidar, SANJAY PATIDAR, SANJAY WEB DEVELOPER, SANJAY DEVELOPER, Full Stack Web Developer, Mern Stack Web Developer, sanjay patidar, sanjay-patidar, professional, web developer portfolio, coder, web development, UI/UX design, Chandigarh University, EduXcel, Indore,contact, developer, programmer, engineer, AI, Artificial Intelligence ,tech enthusiastic,Based in Indore, Madhya Pradesh, Sanjay serves clients across India, including	Chandigarh, Punjab, Mumbai,Maharashtra, Bangalore,Karnataka, Delhi, Kolkata, West Bengal, Chennai, Tamil Nadu, Hyderabad, Telangana, Pune, Ahmedabad, Gujarat, Jaipur, Rajasthan, Lucknow, Uttar Pradesh, Bhopal, Nagpur, Visakhapatnam, Andhra Pradesh, Kochi, Kerala, Guwahati, Assam, Bhubaneswar, Odisha, Dehradun, Uttarakhand, Raipur, Chhattisgarh,  and beyond. creativity ,creator, work , technology, coding, projects, experiences, resume, cv" />
+<meta name="author" content="Sanjay Patidar" />
+
+<script type="application/ld+json">
+{JSON.stringify({
+"@context": "http://schema.org",
+"@type": "Person",
+"name": "Sanjay Patidar",
+"url": "https://sanjay-patidar.vercel.app",
+"sameAs": [
+ "https://www.linkedin.com/in/sanjay-patidar-25b580292/",
+ "https://github.com/hello-developer-sanjay",
+
+ "https://www.instagram.com/sanjay_patidar_mcmxcviii/",
+ "https://eduxcel.vercel.app/",
 "https://sanjay-patidar.vercel.app/projects",
-        "https://sanjay-patidar.vercel.app/careers",
+ "https://sanjay-patidar.vercel.app/careers",
 
-        "https://sanjay-patidar.vercel.app/skills",
-        "https://sanjay-patidar.vercel.app/experiences",
-        "https://sanjay-patidar.vercel.app/certifications",
-        "https://sanjay-patidar.vercel.app/resume",
-        "https://sanjay-patidar.vercel.app/blogs",
-        "https://sanjay-patidar.vercel.app/education",
-        "https://sanjay-patidar.vercel.app/contact"
-       ],
-      "jobTitle": "Sanjay Patidar | Founder & Developer of EduXcel | Empowering Careers in Tech | Web Development & UI/UX Design Expert | Chandigarh University | Crafting Scalable Digital Solutions for Global Innovation",
-      "description": "Expert Web Developer & UI/UX Designer specializing in crafting digital experiences.",
-      "image": "https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png",
-      "birthPlace": {
-        "@type": "PostalAddress",
-        "addressLocality": "Indore",
-        "addressRegion": "Madyapradesh",
-        "addressCountry": "India"
-      }, 
-      "alumniOf": {
-        "@type": "CollegeOrUniversity",
-        "name": "Chandigarh University",
-        "location": {
-          "@type": "Place",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Chandigarh",
-            "addressRegion": "Punjab",
-            "addressCountry": "India"
-          }
-        }
-      },
-      "address": [
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Indore",
-          "addressRegion": "Madhya Pradesh",
-          "postalCode": "452001",
-          "addressCountry": "India"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Chandigarh",
-          "addressRegion": "Punjab",
-          "postalCode": "160001",
-          "addressCountry": "India"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Mumbai",
-          "addressRegion": "Maharashtra",
-          "postalCode": "400001",
-          "addressCountry": "India"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Bangalore",
-          "addressRegion": "Karnataka",
-          "postalCode": "560001",
-          "addressCountry": "India"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Delhi",
-          "addressRegion": "Delhi",
-          "postalCode": "110001",
-          "addressCountry": "India"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Kolkata",
-          "addressRegion": "West Bengal",
-          "postalCode": "700001",
-          "addressCountry": "India"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Chennai",
-          "addressRegion": "Tamil Nadu",
-          "postalCode": "600001",
-          "addressCountry": "India"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Hyderabad",
-          "addressRegion": "Telangana",
-          "postalCode": "500001",
-          "addressCountry": "India"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Pune",
-          "addressRegion": "Maharashtra",
-          "postalCode": "411001",
-          "addressCountry": "India"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Ahmedabad",
-          "addressRegion": "Gujarat",
-          "postalCode": "380001",
-          "addressCountry": "India"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Jaipur",
-          "addressRegion": "Rajasthan",
-          "postalCode": "302001",
-          "addressCountry": "India"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Lucknow",
-          "addressRegion": "Uttar Pradesh",
-          "postalCode": "226001",
-          "addressCountry": "India"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Bhopal",
-          "addressRegion": "Madhya Pradesh",
-          "postalCode": "462001",
-          "addressCountry": "India"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Nagpur",
-          "addressRegion": "Maharashtra",
-          "postalCode": "440001",
-          "addressCountry": "India"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Visakhapatnam",
-          "addressRegion": "Andhra Pradesh",
-          "postalCode": "530001",
-          "addressCountry": "India"
-        },
+ "https://sanjay-patidar.vercel.app/skills",
+ "https://sanjay-patidar.vercel.app/experiences",
+ "https://sanjay-patidar.vercel.app/certifications",
+ "https://sanjay-patidar.vercel.app/resume",
+ "https://sanjay-patidar.vercel.app/blogs",
+ "https://sanjay-patidar.vercel.app/education",
+ "https://sanjay-patidar.vercel.app/contact"
+],
+"jobTitle": "Sanjay Patidar | Founder & Developer of EduXcel | Empowering Careers in Tech | Web Development & UI/UX Design Expert | Chandigarh University | Crafting Scalable Digital Solutions for Global Innovation",
+"description": "Expert Web Developer & UI/UX Designer specializing in crafting digital experiences.",
+"image": "https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png",
+"birthPlace": {
+ "@type": "PostalAddress",
+ "addressLocality": "Indore",
+ "addressRegion": "Madyapradesh",
+ "addressCountry": "India"
+}, 
+"alumniOf": {
+ "@type": "CollegeOrUniversity",
+ "name": "Chandigarh University",
+ "location": {
+   "@type": "Place",
+   "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Chandigarh",
+     "addressRegion": "Punjab",
+     "addressCountry": "India"
+   }
+ }
+},
+"address": [
+ {
+   "@type": "PostalAddress",
+   "addressLocality": "Indore",
+   "addressRegion": "Madhya Pradesh",
+   "postalCode": "452001",
+   "addressCountry": "India"
+ },
+ {
+   "@type": "PostalAddress",
+   "addressLocality": "Chandigarh",
+   "addressRegion": "Punjab",
+   "postalCode": "160001",
+   "addressCountry": "India"
+ },
+ {
+   "@type": "PostalAddress",
+   "addressLocality": "Mumbai",
+   "addressRegion": "Maharashtra",
+   "postalCode": "400001",
+   "addressCountry": "India"
+ },
+ {
+   "@type": "PostalAddress",
+   "addressLocality": "Bangalore",
+   "addressRegion": "Karnataka",
+   "postalCode": "560001",
+   "addressCountry": "India"
+ },
+ {
+   "@type": "PostalAddress",
+   "addressLocality": "Delhi",
+   "addressRegion": "Delhi",
+   "postalCode": "110001",
+   "addressCountry": "India"
+ },
+ {
+   "@type": "PostalAddress",
+   "addressLocality": "Kolkata",
+   "addressRegion": "West Bengal",
+   "postalCode": "700001",
+   "addressCountry": "India"
+ },
+ {
+   "@type": "PostalAddress",
+   "addressLocality": "Chennai",
+   "addressRegion": "Tamil Nadu",
+   "postalCode": "600001",
+   "addressCountry": "India"
+ },
+ {
+   "@type": "PostalAddress",
+   "addressLocality": "Hyderabad",
+   "addressRegion": "Telangana",
+   "postalCode": "500001",
+   "addressCountry": "India"
+ },
+ {
+   "@type": "PostalAddress",
+   "addressLocality": "Pune",
+   "addressRegion": "Maharashtra",
+   "postalCode": "411001",
+   "addressCountry": "India"
+ },
+ {
+   "@type": "PostalAddress",
+   "addressLocality": "Ahmedabad",
+   "addressRegion": "Gujarat",
+   "postalCode": "380001",
+   "addressCountry": "India"
+ },
+ {
+   "@type": "PostalAddress",
+   "addressLocality": "Jaipur",
+   "addressRegion": "Rajasthan",
+   "postalCode": "302001",
+   "addressCountry": "India"
+ },
+ {
+   "@type": "PostalAddress",
+   "addressLocality": "Lucknow",
+   "addressRegion": "Uttar Pradesh",
+   "postalCode": "226001",
+   "addressCountry": "India"
+ },
+ {
+   "@type": "PostalAddress",
+   "addressLocality": "Bhopal",
+   "addressRegion": "Madhya Pradesh",
+   "postalCode": "462001",
+   "addressCountry": "India"
+ },
+ {
+   "@type": "PostalAddress",
+   "addressLocality": "Nagpur",
+   "addressRegion": "Maharashtra",
+   "postalCode": "440001",
+   "addressCountry": "India"
+ },
+ {
+   "@type": "PostalAddress",
+   "addressLocality": "Visakhapatnam",
+   "addressRegion": "Andhra Pradesh",
+   "postalCode": "530001",
+   "addressCountry": "India"
+ },
 
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Kochi",
-          "addressRegion": "Kerala",
-          "postalCode": "682001",
-          "addressCountry": "India"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Guwahati",
-          "addressRegion": "Assam",
-          "postalCode": "781001",
-          "addressCountry": "India"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Bhubaneswar",
-          "addressRegion": "Odisha",
-          "postalCode": "751001",
-          "addressCountry": "India"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Dehradun",
-          "addressRegion": "Uttarakhand",
-          "postalCode": "248001",
-          "addressCountry": "India"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Raipur",
-          "addressRegion": "Chhattisgarh",
-          "postalCode": "492001",
-          "addressCountry": "India"
-        }
-      ],
+ {
+   "@type": "PostalAddress",
+   "addressLocality": "Kochi",
+   "addressRegion": "Kerala",
+   "postalCode": "682001",
+   "addressCountry": "India"
+ },
+ {
+   "@type": "PostalAddress",
+   "addressLocality": "Guwahati",
+   "addressRegion": "Assam",
+   "postalCode": "781001",
+   "addressCountry": "India"
+ },
+ {
+   "@type": "PostalAddress",
+   "addressLocality": "Bhubaneswar",
+   "addressRegion": "Odisha",
+   "postalCode": "751001",
+   "addressCountry": "India"
+ },
+ {
+   "@type": "PostalAddress",
+   "addressLocality": "Dehradun",
+   "addressRegion": "Uttarakhand",
+   "postalCode": "248001",
+   "addressCountry": "India"
+ },
+ {
+   "@type": "PostalAddress",
+   "addressLocality": "Raipur",
+   "addressRegion": "Chhattisgarh",
+   "postalCode": "492001",
+   "addressCountry": "India"
+ }
+],
 
 
-    })}
-  </script>
+})}
+</script>
 </Helmet>
       <BackgroundOverlay />
       <FlexContainer>
 
       <ProfileImageContainer>
       <ProfileImage
-
-
-
-
-
 
   src={profileImage1}
   alt="Sanjay Patidar"
@@ -858,11 +892,6 @@ const Founder = () => {
 />
 
 
-
-
-
-
-
 <SocialIconsContainer>
           {socialButtons.map((button, index) => (
   <SocialIcon
@@ -878,11 +907,7 @@ const Founder = () => {
   aria-label={button.label} 
 >
   {button.icon}
-</SocialIcon>
-
-
-    
-       
+</SocialIcon> 
         
           ))}
         </SocialIconsContainer>
@@ -895,7 +920,7 @@ const Founder = () => {
               ☎  Sanjay Patidar  <span className="highlight">Contact | Mobile Number : </span>{' '}
               <span id="contactNumber">+91 9131743250 </span>
               
-              <button onClick={copyContactNumber} style={{  color: '#fff', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
+              <button onClick={copyContactNumber} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
             </Text>
 
 
@@ -904,13 +929,13 @@ const Founder = () => {
   Sanjay Patidar <span className="highlight">Instagram ID  : </span>{' '}
               <span id="instaID">sanjay_patidar_mcmxcviii </span>
               
-              <button onClick={copyInstaID} style={{  color: '#fff', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
+              <button onClick={copyInstaID} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
             </Text>
             <Text>
             🔗    Eduxcel <span className="highlight">Website link : </span>{' '}
               <span id="eduxcelID">https://eduxcel.vercel.app </span>
               
-              <button onClick={copyEduxcelID} style={{  color: '#fff', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
+              <button onClick={copyEduxcelID} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Weblink</button>
             </Text>
 
 </Onlyforlap>
@@ -959,24 +984,24 @@ But here's the kicker: Sanjay isn't just about the tech. He's passionate about e
 <Onlyformob>
         <Text>
               ☎  Sanjay Patidar  Contact | Mobile Number :{' '}
-              <span id="contactNumber">+91 9131743250 </span>
+              <span id="contactformobNumber">+91 9131743250 </span>
               
-              <button onClick={copyContactNumber} style={{  color: '#fff', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
+              <button onClick={copyContactNumberformob} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
             </Text>
 
 
             <Text>
             <FaInstagram style={{ marginRight: '8px' }}/>
   Sanjay Patidar Instagram ID  : {' '}
-              <span id="instaID">sanjay_patidar_mcmxcviii </span>
+              <span id="instaformobID">sanjay_patidar_mcmxcviii </span>
               
-              <button onClick={copyInstaID} style={{  color: '#fff', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
+              <button onClick={copyInstaIDformob} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
             </Text>
             <Text>
             🔗    Eduxcel Website link : {' '}
-              <span id="eduxcelID">https://eduxcel.vercel.app </span>
+              <span id="eduxcelformobID">https://eduxcel.vercel.app </span>
               
-              <button onClick={copyEduxcelID} style={{  color: '#fff', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
+              <button onClick={copyEduxcelIDformob} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Weblink</button>
             </Text>
 
             </Onlyformob>
