@@ -15,7 +15,6 @@ const SidebarContainer = styled.nav`
   top: 70px;
   left: 0;
   z-index: 1000;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   align-items: center;
