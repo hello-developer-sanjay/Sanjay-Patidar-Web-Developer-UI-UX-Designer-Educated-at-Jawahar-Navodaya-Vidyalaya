@@ -16,10 +16,8 @@ background-color: #050816;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
   
 
-  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
   
   @media (max-width: 768px) {
