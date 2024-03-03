@@ -528,7 +528,6 @@ const H3 = styled.h1`
     color: #ccc;
     margin-top: 2rem;
     margin-bottom:2rem;
-    background-color: #333;
     padding: 0.5rem 1rem;
     border: 2px solid #ccc;
     border-radius: 20px;
