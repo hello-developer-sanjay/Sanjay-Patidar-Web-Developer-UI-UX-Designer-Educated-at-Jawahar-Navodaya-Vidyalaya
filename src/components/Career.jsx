@@ -565,7 +565,7 @@ marginTop:"50px",        color: "white",
 
 <Helmet>
     
-    <title>Mastering Tech Careers: Web Development Insights and Education with Sanjay Patidar - Expert Guidance for Aspiring Developers</title>
+    <title>Sanjay Patidar | Mastering Tech Careers: Web Development Insights and Education with Sanjay Patidar - Expert Guidance for Aspiring Developers | Founder-Eduxcel </title>
  <meta
    name="description"
    content="Unlock the gateway to success in web development with Sanjay Patidar, your expert guide to mastering tech careers. Delve into a world of unparalleled insights and cutting-edge education, tailored specifically for aspiring developers. From honing your coding skills to crafting immersive digital experiences, Sanjay's journey from Computer Science and Engineering student to accomplished web developer showcases a relentless pursuit of excellence. Explore his professional portfolio and witness firsthand the fusion of passion, creativity, and expertise in web development and UI/UX design. With a proactive approach and unwavering dedication to excellence, Sanjay empowers individuals to excel in the dynamic landscape of technology. Join the ranks of successful developers under his expert guidance and embark on a journey towards realizing your full potential in the tech world.
@@ -573,16 +573,16 @@ marginTop:"50px",        color: "white",
  />
  
 
- <meta property="og:title" content=" Mastering Tech Careers: Web Development Insights and Education with Sanjay Patidar - Expert Guidance for Aspiring Developers" />
+ <meta property="og:title" content="Sanjay Patidar | Mastering Tech Careers: Web Development Insights and Education with Sanjay Patidar - Expert Guidance for Aspiring Developers | Founder-Eduxcel " />
  <meta property="og:description" content="Unlock the gateway to success in web development with Sanjay Patidar, your expert guide to mastering tech careers. Delve into a world of unparalleled insights and cutting-edge education, tailored specifically for aspiring developers. From honing your coding skills to crafting immersive digital experiences, Sanjay's journey from Computer Science and Engineering student to accomplished web developer showcases a relentless pursuit of excellence. Explore his professional portfolio and witness firsthand the fusion of passion, creativity, and expertise in web development and UI/UX design. With a proactive approach and unwavering dedication to excellence, Sanjay empowers individuals to excel in the dynamic landscape of technology. Join the ranks of successful developers under his expert guidance and embark on a journey towards realizing your full potential in the tech world." />
  <meta property="og:type" content="website" />
- <meta property="og:url" content="https://eduxcel.vercel.app" />
+ <meta property="og:url" content="https://sanjay-patidar.vercel.app" />
  <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/sixpack.jpeg" />
  <meta property="og:image:alt" content="Sanjay Patidar" />
- <meta property="og:site_name" content="Mastering Tech Careers: Web Development Insights and Education with Sanjay Patidar - Expert Guidance for Aspiring Developers" />
+ <meta property="og:site_name" content="Sanjay Patidar | Mastering Tech Careers: Web Development Insights and Education with Sanjay Patidar - Expert Guidance for Aspiring Developers | Founder-Eduxcel " />
 
  <meta name="twitter:card" content="summary_large_image" />
- <meta name="twitter:title" content=" Mastering Tech Careers: Web Development Insights and Education with Sanjay Patidar - Expert Guidance for Aspiring Developers" />
+ <meta name="twitter:title" content=" Sanjay Patidar | Mastering Tech Careers: Web Development Insights and Education with Sanjay Patidar - Expert Guidance for Aspiring Developers | Founder-Eduxcel " />
  <meta name="twitter:description" content="Unlock the gateway to success in web development with Sanjay Patidar, your expert guide to mastering tech careers. Delve into a world of unparalleled insights and cutting-edge education, tailored specifically for aspiring developers. From honing your coding skills to crafting immersive digital experiences, Sanjay's journey from Computer Science and Engineering student to accomplished web developer showcases a relentless pursuit of excellence. Explore his professional portfolio and witness firsthand the fusion of passion, creativity, and expertise in web development and UI/UX design. With a proactive approach and unwavering dedication to excellence, Sanjay empowers individuals to excel in the dynamic landscape of technology. Join the ranks of successful developers under his expert guidance and embark on a journey towards realizing your full potential in the tech world." />
  <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/sixpack.jpeg" />
  <meta name="twitter:site" content="@sanjaypatidar" />
