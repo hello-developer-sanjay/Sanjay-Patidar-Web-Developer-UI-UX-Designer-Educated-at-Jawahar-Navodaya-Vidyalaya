@@ -1,8 +1,11 @@
 import  { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaBars, FaTimes, FaHome } from "react-icons/fa";
+import {  FaHome } from "react-icons/fa";
 import axios from "axios";
 import styled from "styled-components";
+import certificateIcon from "../assets/cs.png";
+import closeIcon from "../assets/close.png";
+
 const SidebarContainer = styled.nav`
   background-color: #050816;
   padding: 20px;
@@ -73,7 +76,10 @@ const SidebarContainer = styled.nav`
   }
 `;
 
-
+const StyledCsImage = styled.img`
+width: 30px;
+height: 30px;
+`;
 
 const SidebarLink = styled(Link)`
   text-decoration: none;
@@ -136,20 +142,15 @@ const SidebarCertificationItem = styled.li`
 const SidebarToggle = styled.div`
   position: sticky;
   top:0rem;
-  right: 1rem;
+  left: 2rem;
   font-size: 0.8rem;
   cursor: pointer;
-  color: #ffcc29; /* Yellow color */
-  background: #20232a; /* Background color */
-  padding: 8px;
+  padding: 2px;
   z-index: 1001;
   border-radius: 50%; /* Circular shape */
   transition: all 0.3s ease-in-out;
 
   &:hover {
-    background: #ffcc29; /* Yellow color on hover */
-    color: #20232a; /* Background color on hover */
-    transform: scale(1.1); /* Slightly larger size on hover */
   }
 `;
 
@@ -178,9 +179,11 @@ const Sidebar = () => {
 
   return (
     <>
-      <SidebarToggle onClick={toggleSidebar}>
-        {sidebarOpen ? <FaTimes /> : <FaBars />}
-      </SidebarToggle>
+    
+    <SidebarToggle onClick={toggleSidebar}>
+    {sidebarOpen ? <StyledCsImage src= {closeIcon} /> : <StyledCsImage src={certificateIcon} alt="Certificate Icon" />}
+  </SidebarToggle>
+  
       <SidebarContainer open={sidebarOpen}>
         <SidebarLink to="/">
           <FaHome /> Home
