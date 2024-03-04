@@ -1030,7 +1030,7 @@ const H3 = styled.h1`
         <Text>
 🙋 Hey there! Ready to hear about Sanjay Patidar's incredible journey?<br/>➥  He's the genius behind EduXcel, and he's on a mission to revolutionize the tech industry!
 
-Now, let's talk about Sanjay. He's not your run-of-the-mill entrepreneur. Nope, he's a master at web development, crafting stunning digital landscapes, and he's got a knack for making UI/UX designs that'll make your jaw drop.<br/> 🙋 Seriously, the guy's got talent for days!
+Now, let's talk about Sanjay Patidar. He's not your run-of-the-mill entrepreneur. Nope, he's a master at web development, crafting stunning digital landscapes, and he's got a knack for making UI/UX designs that'll make your jaw drop.<br/> 🙋 Seriously, the guy's got talent for days!
 
 So, what's Sanjay's secret sauce?<br/> ➥  It's all about pushing boundaries and striving for excellence. Think of him as a digital wizard, conjuring up immersive experiences that leave you wanting more.
 
