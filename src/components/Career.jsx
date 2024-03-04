@@ -1,8 +1,8 @@
     /* eslint-disable react/prop-types */
     /* eslint-disable react/display-name */
-    import React, { useState,useMemo, useEffect, useRef, useCallback } from "react";
+    import React, { useState, useEffect, useRef, useCallback } from "react";
    
-    import { Helmet } from "react-helmet-async";  
+    import { Helmet } from "react-helmet";  
     import { Collapse } from 'react-collapse'; 
     import useDisclosure from './useDisclosure'; 
     import {
@@ -16,7 +16,7 @@
     import { motion } from "framer-motion";
     import ModalImage from "react-modal-image"; 
 
-    import { FaArrowCircleUp, FaBars, FaTimes } from "react-icons/fa";
+    import { FaArrowCircleUp } from "react-icons/fa";
 
     import { useNavigate, useLocation } from "react-router-dom";
     import ReactPlayer from "react-player";
@@ -85,20 +85,10 @@
     });
     
     
-    
-    
-    
-   
-    
-    
-    
-    
-    
-
-
     const Career = () => {
       const [blogsData, setBlogsData] = useState({
         careers: [],
+        
       });
       const [loading, setLoading] = useState(true);
 
@@ -109,7 +99,7 @@
       const { isOpen, onToggle } = useDisclosure();
       const sidebarRef = useRef();
 
-      const [lastVisitedBlog, setLastVisitedBlog] = useState(null);
+      const [ setLastVisitedBlog] = useState(null);
 
       const debounce = (func, delay) => {
         let timeoutId;
@@ -121,9 +111,7 @@
         };
       };
       
-      const handlePageChange = (pageNumber) => {
-        setCurrentPage(pageNumber);
-      };  
+      
       const observer = useRef();
 
       const [searchQuery, setSearchQuery] = useState("");
@@ -132,15 +120,7 @@
 
       const location = useLocation();
       const [clickedTitle, setClickedTitle] = useState(null);
-      const scrollToTitle = (title, collection, isChildTitle) => {
-        const titleRef = titleRefs.current[`${collection}-${title}`];
-        if (titleRef) {
-          titleRef.scrollIntoView({
-            behavior: "smooth",
-            block: isChildTitle ? "center" : "start",
-          });
-        }
-      };
+   
 
       const handleSearchChange = (event) => {
         const newQuery = event.target.value;
@@ -183,12 +163,7 @@
         debouncedSearchChange(searchQuery);
       }, [debouncedSearchChange, searchQuery]);
     
-      const filteredBlogsMemoized = useMemo(() => {
-        return Object.keys(blogsData).reduce((acc, collection) => {
-          acc[collection] = filteredBlogs(collection);
-          return acc;
-        }, {});
-      }, [blogsData]);
+     
     
       const observeLastBlog = useCallback(
         (collection, node) => {
@@ -245,7 +220,6 @@
         };
       
         const handleTitleClick = useCallback((title, collection) => {
-          const encodedTitle = encodeURIComponent(title);
           const matchingBlog = blogsData[collection].find((blog) => blog.title === title);
       
           if (matchingBlog) {
@@ -266,7 +240,13 @@
           setLastVisitedBlog({ title, collection });
         }, [blogsData, navigate, postsPerPage, setCurrentPage, setLastVisitedBlog]);
       
- 
+
+
+
+
+
+
+
         useEffect(() => {
           const query = location.pathname.split("/careers/search/")[1] || "";
           setSearchQuery(decodeURIComponent(query));
@@ -300,18 +280,15 @@
                 Math.ceil(blogsData[collection].indexOf(matchingBlog) / postsPerPage) + 1;
               setCurrentPage(pageIndex);
       
-           // Set the title dynamically for SEO
-      const pageTitle = `${matchingBlog.title} | EduXcel | Sanjay Patidar`;
-
-      // Update Helmet to set the dynamically generated title
-      const helmet = document.querySelector('title');
-      if (helmet) {
-        helmet.innerText = pageTitle;
-      }
+              // Set the title and description dynamically for SEO
+              const blogTitle = decodeURIComponent(matchingBlog.title);
+              document.title = `${blogTitle} | Sanjay Patidar`;
             }
           }
         }, [blogsData, fetchDataForAllCollections, location, postsPerPage, setCurrentPage]);
       
+        
+        
       const indexOfLastPost = currentPage * postsPerPage;
       const indexOfFirstPost = indexOfLastPost - postsPerPage;
       const currentPosts = filteredBlogs("careers").slice(indexOfFirstPost, indexOfLastPost);
@@ -379,7 +356,7 @@ marginTop:"50px",        color: "white",
       };
       
       
-       const sidebarStyle = {
+      const sidebarStyle = {
         position: "fixed",
         top: "60px",
         left: 0,
@@ -396,6 +373,7 @@ marginTop:"50px",        color: "white",
   display: isOpen ? 'block' : 'none' // Adding display property here
 
       };
+
       const toggleButtonStyle = {
         position: "fixed",
         top: "180px",
@@ -582,6 +560,223 @@ marginTop:"50px",        color: "white",
 
       const navbarHeight = document.querySelector(".navbar")?.clientHeight || 0;
       return (
+
+        <>
+
+<Helmet>
+    
+    <title>Mastering Tech Careers: Web Development Insights and Education with Sanjay Patidar - Expert Guidance for Aspiring Developers</title>
+ <meta
+   name="description"
+   content="Unlock the gateway to success in web development with Sanjay Patidar, your expert guide to mastering tech careers. Delve into a world of unparalleled insights and cutting-edge education, tailored specifically for aspiring developers. From honing your coding skills to crafting immersive digital experiences, Sanjay's journey from Computer Science and Engineering student to accomplished web developer showcases a relentless pursuit of excellence. Explore his professional portfolio and witness firsthand the fusion of passion, creativity, and expertise in web development and UI/UX design. With a proactive approach and unwavering dedication to excellence, Sanjay empowers individuals to excel in the dynamic landscape of technology. Join the ranks of successful developers under his expert guidance and embark on a journey towards realizing your full potential in the tech world.
+   "
+ />
+ 
+
+ <meta property="og:title" content=" Mastering Tech Careers: Web Development Insights and Education with Sanjay Patidar - Expert Guidance for Aspiring Developers" />
+ <meta property="og:description" content="Unlock the gateway to success in web development with Sanjay Patidar, your expert guide to mastering tech careers. Delve into a world of unparalleled insights and cutting-edge education, tailored specifically for aspiring developers. From honing your coding skills to crafting immersive digital experiences, Sanjay's journey from Computer Science and Engineering student to accomplished web developer showcases a relentless pursuit of excellence. Explore his professional portfolio and witness firsthand the fusion of passion, creativity, and expertise in web development and UI/UX design. With a proactive approach and unwavering dedication to excellence, Sanjay empowers individuals to excel in the dynamic landscape of technology. Join the ranks of successful developers under his expert guidance and embark on a journey towards realizing your full potential in the tech world." />
+ <meta property="og:type" content="website" />
+ <meta property="og:url" content="https://eduxcel.vercel.app" />
+ <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/sixpack.jpeg" />
+ <meta property="og:image:alt" content="Sanjay Patidar" />
+ <meta property="og:site_name" content="Mastering Tech Careers: Web Development Insights and Education with Sanjay Patidar - Expert Guidance for Aspiring Developers" />
+
+ <meta name="twitter:card" content="summary_large_image" />
+ <meta name="twitter:title" content=" Mastering Tech Careers: Web Development Insights and Education with Sanjay Patidar - Expert Guidance for Aspiring Developers" />
+ <meta name="twitter:description" content="Unlock the gateway to success in web development with Sanjay Patidar, your expert guide to mastering tech careers. Delve into a world of unparalleled insights and cutting-edge education, tailored specifically for aspiring developers. From honing your coding skills to crafting immersive digital experiences, Sanjay's journey from Computer Science and Engineering student to accomplished web developer showcases a relentless pursuit of excellence. Explore his professional portfolio and witness firsthand the fusion of passion, creativity, and expertise in web development and UI/UX design. With a proactive approach and unwavering dedication to excellence, Sanjay empowers individuals to excel in the dynamic landscape of technology. Join the ranks of successful developers under his expert guidance and embark on a journey towards realizing your full potential in the tech world." />
+ <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/sixpack.jpeg" />
+ <meta name="twitter:site" content="@sanjaypatidar" />
+ <meta name="twitter:creator" content="@sanjaypatidar" />
+
+ <meta name="keywords" content="portfolio, signup ,careers,  eduxcel , tech, education, careers, opportunity, personal-portfolio,developer_sanju,sanjay, Sanjay, SANJAY, Sanjay Patidar, SANJAY PATIDAR, SANJAY WEB DEVELOPER, SANJAY DEVELOPER, Full Stack Web Developer, Mern Stack Web Developer, sanjay patidar, sanjay-patidar, professional, web developer portfolio, coder, web development, UI/UX design, Chandigarh University, EduXcel, Indore,contact, developer, programmer, engineer, AI, Artificial Intelligence ,tech enthusiastic, creativity ,creator, work , technology, coding, projects, experiences, resume, cv" />
+ <meta name="author" content="Sanjay Patidar" />        <script type="application/ld+json">
+       {JSON.stringify({
+         '@context': 'http://schema.org',
+         '@type': 'ItemList',
+         "name": "Sanjay Patidar",
+         "birthDate": "1998-07-01",
+         "birthPlace": {
+           "@type": "Place",
+           "address": {
+             "@type": "PostalAddress",
+             "addressLocality": "Indore"
+           }
+         },
+         "alumniOf": {
+           "@type": "CollegeOrUniversity",
+           "name": "Chandigarh University",
+           "location": {
+             "@type": "Place",
+             "address": {
+               "@type": "PostalAddress",
+               "addressLocality": "Chandigarh",
+               "addressRegion": "Punjab",
+               "addressCountry": "India"
+             }
+           }
+         },
+         "address": [
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Indore",
+             "addressRegion": "Madhya Pradesh",
+             "postalCode": "452001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Chandigarh",
+             "addressRegion": "Punjab",
+             "postalCode": "160001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Mumbai",
+             "addressRegion": "Maharashtra",
+             "postalCode": "400001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Bangalore",
+             "addressRegion": "Karnataka",
+             "postalCode": "560001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Delhi",
+             "addressRegion": "Delhi",
+             "postalCode": "110001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Kolkata",
+             "addressRegion": "West Bengal",
+             "postalCode": "700001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Chennai",
+             "addressRegion": "Tamil Nadu",
+             "postalCode": "600001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Hyderabad",
+             "addressRegion": "Telangana",
+             "postalCode": "500001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Pune",
+             "addressRegion": "Maharashtra",
+             "postalCode": "411001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Ahmedabad",
+             "addressRegion": "Gujarat",
+             "postalCode": "380001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Jaipur",
+             "addressRegion": "Rajasthan",
+             "postalCode": "302001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Lucknow",
+             "addressRegion": "Uttar Pradesh",
+             "postalCode": "226001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Bhopal",
+             "addressRegion": "Madhya Pradesh",
+             "postalCode": "462001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Nagpur",
+             "addressRegion": "Maharashtra",
+             "postalCode": "440001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Visakhapatnam",
+             "addressRegion": "Andhra Pradesh",
+             "postalCode": "530001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Kochi",
+             "addressRegion": "Kerala",
+             "postalCode": "682001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Guwahati",
+             "addressRegion": "Assam",
+             "postalCode": "781001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Bhubaneswar",
+             "addressRegion": "Odisha",
+             "postalCode": "751001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Dehradun",
+             "addressRegion": "Uttarakhand",
+             "postalCode": "248001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Raipur",
+             "addressRegion": "Chhattisgarh",
+             "postalCode": "492001",
+             "addressCountry": "India"
+           }
+         ],
+         "worksFor": {
+           "@type": "Organization",
+           "name": "Eduxcel" 
+         },
+         "url": "https://sanjay-patidar.vercel.app/",
+         "sameAs": [
+           "https://www.linkedin.com/in/sanjay-patidar-25b580292/",
+           "https://github.com/hello-developer-sanjay",
+           "https://www.instagram.com/sanjay_patidar_mcmxcviii/",
+           "https://eduxcel.vercel.app/",
+                        "https://eduxcel.vercel.app/signup"
+
+         ]
+   
+
+       })}
+     </script>
+
+
+    </Helmet>
         <div
           style={{
             width: "full",
@@ -603,6 +798,9 @@ marginTop:"50px",        color: "white",
           id="blogs-section"
           onScroll={handleScroll}
         >
+
+
+          
           {loading ? (
             <div
               style={{
@@ -726,13 +924,13 @@ marginTop:"50px",        color: "white",
   <a href="https://sanjay-patidar.vercel.app" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "#007bff", marginRight: "20px", padding: "10px", borderRadius: "5px", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)" }}>
     <span style={{ fontSize: "1.1rem", fontWeight: "bold" }}>Sanjay Patidar</span>
     <br />
-    <span style={{ fontSize: "0.9rem", color: "#6c757d" }}>Click to visit Sanjay Patidar's website</span>
+    <span style={{ fontSize: "0.9rem", color: "#6c757d" }}>Click to visit Sanjay Patidar website</span>
   </a>
   <span style={{ color: "#6c757d" }}>|</span>
   <a href="https://eduxcel.vercel.app" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "#007bff", marginLeft: "20px", padding: "10px", borderRadius: "5px", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)" }}>
-    <span style={{ fontSize: "1.1rem", fontWeight: "bold" }}>Founder: EduXcel - Nurturing Excellence through Online Education</span>
+    <span style={{ fontSize: "1.1rem", fontWeight: "bold" }}>Founder: EduXcel | Empowering Careers in Tech: Expert Insights, Cutting-Edge Education, and Skill Mastery</span>
     <br />
-    <span style={{ fontSize: "0.9rem", color: "#6c757d" }}>Click to visit EduXcel's website</span>
+    <span style={{ fontSize: "0.9rem", color: "#6c757d" }}>Click to visit EduXcel website</span>
   </a>
 </div>
 
@@ -748,11 +946,6 @@ marginTop:"50px",        color: "white",
 
                     <div id={`content-${blog.title}-overview`} style={contentSectionStyle}>
                       {renderMediaContent(blog.overview, blog.title)}
-                    </div>
-                
-
-                    <div id={`content-${blog.title}-design`} style={contentSectionStyle}>
-                      {renderMediaContent(blog.responsibilities?.design, blog.title)}
                     </div>
 
                     <div id={`content-${blog.title}-development`} style={contentSectionStyle}>
@@ -824,6 +1017,11 @@ marginTop:"50px",        color: "white",
                     <div id={`content-${blog.title}-ContinuousLearningAndAdaptability`} style={contentSectionStyle}>
                       {renderMediaContent(blog.skills?.ContinuousLearningAndAdaptability, blog.title)}
                     </div>  
+
+                    <div id={`content-${blog.title}-design`} style={contentSectionStyle}>
+                      {renderMediaContent(blog.responsibilities?.design, blog.title)}
+                    </div>
+
                   </motion.div>
                 ))}
       
@@ -831,6 +1029,7 @@ marginTop:"50px",        color: "white",
             </>
           )}
         </div>
+        </>
       );
       };
       
