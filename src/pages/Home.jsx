@@ -6,7 +6,6 @@
   import { motion,useAnimation  } from 'framer-motion';
   import { useInView } from 'react-intersection-observer';
     import { Helmet } from 'react-helmet';
-    import UAParser from 'ua-parser-js';
   import { FaLinkedin, FaTwitter, FaInstagram, FaGithub } from "react-icons/fa";
   import DuckImage from "../assets/duck4.gif";
   import unlock from "../assets/unlock.gif";
@@ -197,8 +196,8 @@ const H3 = styled.h1`
 
 
   const ProfileImage = styled(motion.img)`
-    width: 380px;
-    height: 380px;
+    width: 400px;
+    height: 400px;
     margin-top: 4rem;
 
     border-radius: 50%;
@@ -531,6 +530,11 @@ const H3 = styled.h1`
     padding: 0.5rem 1rem;
     border: 2px solid #ccc;
     border-radius: 20px;
+    
+    @media (max-width: 768px) {
+      font-size: 1rem;
+
+    }
   `;
 
   const SubtitleLink = styled.a`
@@ -689,6 +693,17 @@ const H3 = styled.h1`
     };
     
     
+
+    const copyGithubIDforlap = () => {
+      const githubID = document.getElementById('githubIDforlap');
+      const range = document.createRange();
+      range.selectNode(githubID);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      document.execCommand('copy');
+      window.getSelection().removeAllRanges();
+      alert('Github Link copied ! Reminder: By copying this link to Github Profile, you can access valuable projects and insights. . ');
+    };
   
     const copyContactNumberforu = () => {
       const contactNumberforu = document.getElementById('contactNumberforu');
@@ -723,67 +738,48 @@ const H3 = styled.h1`
     };
     
     
-
     useEffect(() => {
       const watchId = navigator.geolocation.watchPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+          const timestamp = position.timestamp;
+          const date = new Date(timestamp); // Convert timestamp to Date object
+          console.log(`Latitude: ${latitude}, Longitude: ${longitude}, Timestamp: ${date}`);
           setFormData({
             latitude,
             longitude,
           });
-
+    
           // Send coordinates to the server
           fetch('https://portfolio-back-aruc.onrender.com/api/store-visited-location', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ latitude, longitude }),
+            body: JSON.stringify({ latitude, longitude, timestamp }),
           })
-            .then(response => response.json())
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Failed to store location');
+              }
+              return response.json();
+            })
             .then(data => console.log(data))
-            .catch(error => console.error('Error storing location:', error));
+            .catch(error => console.error('Error storing location:', error.message));
         },
         (error) => {
           console.error('Error getting location:', error.message);
         },
         { enableHighAccuracy: true }
       );
-
+    
       return () => {
         navigator.geolocation.clearWatch(watchId);
       };
     }, []);
-    const getDeviceOwnerDetails = () => {
-      return new Promise((resolve, reject) => {
-        try {
-          const userAgent = navigator.userAgent;
-          const parser = new UAParser();
-          parser.setUA(userAgent);
-          const result = parser.getResult();
     
-          const deviceOwner = result.device.model || result.os.name;
-          const mobileNumber = null; // You may not be able to get the mobile number for privacy reasons
-    
-          resolve({ deviceOwner, mobileNumber });
-        } catch (error) {
-          console.error('Error getting device owner details:', error);
-          reject(null);
-        }
-      });
-    };
-    
-  getDeviceOwnerDetails()
-    .then(userDetails => {
-      // Handle userDetails
-      console.log(userDetails);
-    })
-    .catch(error => {
-      // Handle error
-      console.error(error);
-    });  
+
+ 
   useEffect(() => {
       // Display an info toast message
       toast.info("Sit tight! Enjoy smooth transitions as you explore my portfolio. Each page is carefully crafted for a seamless experience.", {
@@ -891,6 +887,7 @@ const H3 = styled.h1`
         
           "https://www.instagram.com/sanjay_patidar_mcmxcviii/",
           "https://eduxcel.vercel.app/",
+          
   "https://sanjay-patidar.vercel.app/projects",
           "https://sanjay-patidar.vercel.app/careers",
 
@@ -995,6 +992,15 @@ const H3 = styled.h1`
                 
                 <button onClick={copyEduxcelIDforlap} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Weblink</button>
               </Text>
+
+
+
+              <Text>
+              🔗  <span className="highlight">Github Profile: </span>{' '}
+                <span id="githubIDforlap">https://github.com/hello-developer-sanjay </span>
+                
+                <button onClick={copyGithubIDforlap} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Weblink</button>
+              </Text>
   
   </Onlyforlap>
           </ProfileImageContainer>
@@ -1028,15 +1034,16 @@ const H3 = styled.h1`
         <H3>  I create <br/> <span className="highlight">stunning web experiences</span><br/>that captivate users and drive engagement.</H3>
         
         <Text>
-🙋 Hey there! Ready to hear about Sanjay Patidar's incredible journey?<br/>➥  He's the genius behind EduXcel, and he's on a mission to revolutionize the tech industry!
+🙋 Who is Sanjay Patidar and what's his story?<br/>
+➥ Sanjay Patidar is the creative force behind EduXcel, a trailblazer on a mission to transform the tech landscape! With a background as a MERN stack developer, Sanjay brings a unique blend of technical expertise and visionary leadership to the table.
+<br/>
+🙋 What sets Sanjay apart from other entrepreneurs?<br/>
+➥ Sanjay isn't your average entrepreneur. He's a web development virtuoso, specializing in the MERN stack - MongoDB, Express.js, React, and Node.js. Whether it's crafting sleek user interfaces or architecting robust backend systems, Sanjay's skills are unmatched. <br/> 🙋 Seriously, his talent knows no bounds!    
 
-Now, let's talk about Sanjay Patidar. He's not your run-of-the-mill entrepreneur. Nope, he's a master at web development, crafting stunning digital landscapes, and he's got a knack for making UI/UX designs that'll make your jaw drop.<br/> 🙋 Seriously, the guy's got talent for days!
-
-So, what's Sanjay's secret sauce?<br/> ➥  It's all about pushing boundaries and striving for excellence. Think of him as a digital wizard, conjuring up immersive experiences that leave you wanting more.
-
+  What's the secret to Sanjay's success?<br/>
+➥ It's all about pushing boundaries and aiming for the stars. Sanjay is like a digital magician, weaving spellbinding experiences that captivate and inspire. His dedication to mastering the intricacies of web development and his commitment to excellence set him apart in the industry.
 </Text>
 
-<Text>| Explore | Projects | Skills | Education | Certifications | Experiences | Resume | </Text>
 
 
        
@@ -1115,7 +1122,7 @@ So, what's Sanjay's secret sauce?<br/> ➥  It's all about pushing boundaries an
       </ActionsContainer>
   
         <Subtitle>
-          Want to know more? Check out my <SubtitleLink href="/blogs">Blogs</SubtitleLink> for tech insights and tutorials.
+          Want to know more? Check out my <SubtitleLink href="/careers">Blogs</SubtitleLink> for tech insights and tutorials.
         </Subtitle>
         
 
