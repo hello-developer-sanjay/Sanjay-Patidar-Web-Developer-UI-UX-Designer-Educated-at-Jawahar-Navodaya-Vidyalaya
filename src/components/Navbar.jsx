@@ -414,7 +414,7 @@ const Navbar = () => {
                 </NavLinkStyled>
               </NavItem>
               <NavItem>
-                <NavLinkStyled to="/careers" aria-label="Career" onClick={toggleMenu}>
+                <NavLinkStyled to="https://eduxcel.vercel.app/careers" aria-label="Career" onClick={toggleMenu}>
                   
                   Career Insights
                   <FaBriefcase style={{ marginLeft: '5px' }} /> 
