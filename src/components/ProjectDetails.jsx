@@ -7,12 +7,41 @@ import ModalImage from 'react-modal-image';
  
 const ProjectDetailsContainer = styled.div`
   padding: 2rem;
-  min-height: 100vh;
-  background-color: #CBD1C3;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #050816;
+
 `;
+
+
+const ProjectsContent = styled.div`
+background-color: #050816;
+padding: 1.5rem;
+border-radius: 10px;
+box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+overflow-y: auto; 
+max-height: calc(100vh - 4rem);
+margin-top: 2rem; 
+
+/* Custom scrollbar styles */
+&::-webkit-scrollbar {
+  width: 10px !important; 
+}
+&::-webkit-scrollbar-track {
+  background: linear-gradient(to right, #050816, #111); 
+}
+&::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #0070f3, #00ff95); 
+  border-radius: 5px !important; 
+  border: 3px solid #050816; 
+}
+&::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to right, #ff6b6b, #ffdd59); 
+  border-color: #111; 
+}
+`;
+
 const ProjectWebsiteLink = styled.a`
   text-decoration: none;
   color: #ffffff; /* White text */
@@ -75,6 +104,13 @@ const ProjectDetailsTitle = styled.h2`
       background-position: 0% 50%;
     }
   }
+
+
+  @media (max-width: 768px) {
+    font-size: 1.3rem;
+
+  }
+
 `;
 
 
@@ -83,7 +119,7 @@ const ProjectDetailsDescription = styled.p`
   line-height: 1.6;
   margin-top: 1rem;
   position: relative;
-  color: #333; /* Default text color */
+  color: #fff; /* Default text color */
 
   span.highlight {
     color: #0070f3; /* Highlighted text color */
@@ -157,7 +193,7 @@ const ProjectDetailsVideoContainer = styled.div`
 `;
 
 const ProjectDetailsLinkContainer = styled.div`
-  margin-top: 2rem;
+  margin-top: 0.2rem;
   text-align: center;
   width:100%;
  
@@ -192,16 +228,16 @@ const ProjectDetailsLinkList = styled.ul`
 const ProjectDetailsLinkItem = styled.li`
   display: inline-block;
 `;
-
 const ProjectDetailsLink = styled.a`
-  color: #0070f3;
+  color: #3498db; /* Dodger Blue color */
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   position: relative;
+  font-weight: 500; /* Medium font weight for balance */
   transition: color 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    color: #004080;
+    color: #2980b9; /* Darker Dodger Blue on hover */
     &:before {
       transform-origin: bottom center;
       transform: scaleX(1);
@@ -213,7 +249,7 @@ const ProjectDetailsLink = styled.a`
     display: block;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, #0070f3, #004080);
+    background: linear-gradient(90deg, #3498db, #2980b9); /* Gradient underline */
     position: absolute;
     bottom: 0;
     left: 0;
@@ -224,9 +260,12 @@ const ProjectDetailsLink = styled.a`
 `;
 
 
+
+
+
 const AdditionalDetailsContainer = styled.div`
   width: 100%;
-  max-width: 800px; /* Adjust the max width as needed */
+  max-width: 1000px; 
   margin: 0 auto;
 `;
 
@@ -234,8 +273,8 @@ const AdditionalDetailsItem = styled.div`
   margin-bottom: 1rem;
   font-size: 1rem;
   line-height: 1.4;
-  color: #0070f3; /* Change text color to a creative blue */
-  font-weight: bold; /* Add bold font weight */
+  color: #0070f3; 
+  font-weight: bold; 
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Change font-family */
 `;
 
@@ -263,22 +302,24 @@ const ProjectDetails = () => {
 
   return (
     <ProjectDetailsContainer>
-      {project ? (
-        <>
-          <ProjectDetailsTitle>{project.title}</ProjectDetailsTitle>
-          {project.links && (
-           <ProjectDetailsLinkContainer>
-              <h3>Links:</h3>
-              <ProjectDetailsLinkList>
-                {project.links.map((link, index) => (
-                  <ProjectDetailsLinkItem key={index}>
-                    <ProjectDetailsLink href={link.url} target="_blank">
-                      {link.label}
-                    </ProjectDetailsLink>
-                  </ProjectDetailsLinkItem>
-                ))}
-              </ProjectDetailsLinkList>
-               {project.websiteLink && (
+        {project ? (
+          <>
+            <ProjectDetailsTitle>{project.title}</ProjectDetailsTitle>
+            <ProjectsContent>
+
+            {project.links && (
+              <ProjectDetailsLinkContainer>
+                <h3>Links:</h3>
+                <ProjectDetailsLinkList>
+                  {project.links.map((link, index) => (
+                    <ProjectDetailsLinkItem key={index}>
+                      <ProjectDetailsLink href={link.url} target="_blank">
+                        {link.label}
+                      </ProjectDetailsLink>
+                    </ProjectDetailsLinkItem>
+                  ))}
+                </ProjectDetailsLinkList>
+                {project.websiteLink && (
                   <ProjectWebsiteLink href={project.websiteLink} target="_blank" rel="noopener noreferrer">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -310,83 +351,77 @@ const ProjectDetails = () => {
                     Visit Website
                   </ProjectWebsiteLink>
                 )}
-            </ProjectDetailsLinkContainer>
-          )}
-         {project.description && (
-                  <ProjectDetailsDescription>
-                    {project.description.map((desc, index) => {
-                      // Use regular expressions to find text between ^ markers and apply styling
-                      const highlightedText = desc.split(/\^([^]+?)\^/).map((part, i) => {
-                        if (i % 2 === 1) {
-                          // Apply styles to text between markers
-                          return <span key={i} className="highlight">{part}</span>;
-                        }
-                        return part;
-                      });
-
-                      return (
-                        <React.Fragment key={index}>
-                          {highlightedText}
-                          <br />
-                        </React.Fragment>
-                      );
-                    })}
-                  </ProjectDetailsDescription>
-          )}
-          
-        
-          {project.additionalDetails && (
-            <AdditionalDetailsContainer>
-              <h3>Additional Details:</h3>
-              {project.additionalDetails.map((detail, index) => (
-                <AdditionalDetailsItem key={index}>
-                  {isURL(detail) ? (
-                    detail.endsWith('.mp4') ? (
-                      <ProjectDetailsVideoContainer>
-                        <ReactPlayer
-                          url={detail}
-                          width="100%"
-                          height="100%"
-                          controls
-                        />
-                      </ProjectDetailsVideoContainer>
+              </ProjectDetailsLinkContainer>
+            )}
+            {project.description && (
+              <ProjectDetailsDescription>
+                {project.description.map((desc, index) => {
+                  const highlightedText = desc.split(/\^([^]+?)\^/).map((part, i) => {
+                    if (i % 2 === 1) {
+                      return <span key={i} className="highlight">{part}</span>;
+                    }
+                    return part;
+                  });
+                  return (
+                    <React.Fragment key={index}>
+                      {highlightedText}
+                      <br />
+                    </React.Fragment>
+                  );
+                })}
+              </ProjectDetailsDescription>
+            )}
+            {project.additionalDetails && (
+              <AdditionalDetailsContainer>
+                <h3>Additional Details:</h3>
+                {project.additionalDetails.map((detail, index) => (
+                  <AdditionalDetailsItem key={index}>
+                    {isURL(detail) ? (
+                      detail.endsWith('.mp4') ? (
+                        <ProjectDetailsVideoContainer>
+                          <ReactPlayer
+                            url={detail}
+                            width="100%"
+                            height="100%"
+                            controls
+                          />
+                        </ProjectDetailsVideoContainer>
+                      ) : (
+                        <ProjectDetailsImageGrid>
+                          <ProjectDetailsImage
+                            small={detail}
+                            large={detail}
+                            alt={`Additional Image ${index}`}
+                          />
+                        </ProjectDetailsImageGrid>
+                      )
                     ) : (
-                      <ProjectDetailsImageGrid>
-                        <ProjectDetailsImage
-                          small={detail}
-                          large={detail}
-                          alt={`Additional Image ${index}`}
-                        />
-                      </ProjectDetailsImageGrid>
-                    )
-                  ) : (
-                    detail
-                  )}
-                </AdditionalDetailsItem>
-              ))}
-            </AdditionalDetailsContainer>
-          )}
+                      detail
+                    )}
+                  </AdditionalDetailsItem>
+                ))}
+              </AdditionalDetailsContainer>
+            )}
+            {project.codeSnippets && (
+              <div>
+                <h3>Code Snippets:</h3>
+                {project.codeSnippets.map((snippet, index) => (
+                  <pre key={index}>
+                    <code>{snippet}</code>
+                  </pre>
+                ))}
+              </div>
+            )}
+                  </ProjectsContent>
 
-          {project.codeSnippets && (
-            <div>
-              <h3>Code Snippets:</h3>
-              {project.codeSnippets.map((snippet, index) => (
-                <pre key={index}>
-                  <code>{snippet}</code>
-                </pre>
-              ))}
-            </div>
-          )}
-
-          
-      
-
-        </>
-      ) : (
-        <p>Loading project details...</p>
-      )}
+          </>
+        ) : (
+          <p>Loading project details...</p>
+        )}
     </ProjectDetailsContainer>
   );
+  
+  
 };
 
 export default ProjectDetails;
