@@ -201,11 +201,11 @@ const ProjectDetailsVideoContainer = styled.div`
 `;
 
 const ProjectDetailsLinkContainer = styled.div`
-  margin-top: 0.2rem;
+  margin-top: 0rem;
   text-align: center;
   width:100%;
  
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 15px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   position: relative;
