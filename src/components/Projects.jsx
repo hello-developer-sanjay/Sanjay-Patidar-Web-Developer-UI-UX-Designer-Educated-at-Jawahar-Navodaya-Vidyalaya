@@ -5,21 +5,40 @@ import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 
 const ProjectsContainer = styled.div`
-  padding: 2rem;
-  background-color: #D0EAE7;
-  min-height: 100vh;
+padding: 2rem;
+background-color: #050816;
+min-height: 100vh;
+overflow: hidden; /* Hide overflow for container */
 `;
 
 const ProjectsNavigation = styled.nav`
+position: sticky;
+  top: 0;
+  z-index: 1; /* Ensure it's above other content */
   margin-bottom: 2rem;
-`;
+  background-color: #050816;
+  padding: 1rem 2rem;
+  overflow-y: auto; /* Enable vertical scrolling for navigation */
+  max-height: calc(100vh - 4rem); /* Limit height to viewport height minus padding */
+  &::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar thumb */
+    border-radius: 4px; /* Roundness of the scrollbar thumb */
+  }`;
 
 const ProjectsNavList = styled.ul`
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+list-style: none;
+display: flex;
+color: #fff;
+flex-wrap: wrap;
+gap: 1rem;
 `;
+
+
+
+
 const ProjectWebsiteLink = styled.a`
   text-decoration: none;
   color: #ffffff;
@@ -85,91 +104,60 @@ const ProjectTitle = styled.span`
 
 
 const ProjectsNavItem = styled.li`
-  flex: 1;
-  padding: 0.5rem;
-  text-align: center;
-  background-color: #f0f8ff; /* Light blue background */
-  border-radius: 5px;
-  transition: transform 0.2s, background-color 0.2s;
-
-  &:hover {
-    transform: translateY(-2px);
-    background-color: #0070f3; /* Blue background on hover */
-    color: #ffffff; /* White text on hover */
-  }
+flex: 1;
+padding: 0.5rem;
+text-align: center;
+border-radius: 5px;
+transition: transform 0.2s, background-color 0.2s;
+color: #ffffff;
   
 `;
 
 const ProjectsNavLinkContainer = styled(NavLink)`
-  text-decoration: none;
-  color: #333;
-  display: block;
-  height: 100%; /* Make the link take up the full height of the container */
-  position: relative;
+text-decoration: none;
+display: block;
+position: relative;
+color: #fff;
 
-  &:hover {
-    color: #ff6b6b;
-    &:before {
-      content: ''; /* Add a decorative line under the link on hover */
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background-color: #ff6b6b;
-    }
-  }
+&:hover {
+  color: yellow;
+}
 
-  &.active {
-    color: #ffffff;
-    background: linear-gradient(to right, #0070f3, #ff6b6b, #33d9b2, #ffad5a); /* Gradient background for the active link */
-    background-size: 300% 100%; /* Control the gradient width */
-    animation: gradient-shift 5s linear infinite; /* Animation for gradient shift */
-  }
-
-  @keyframes gradient-shift {
-    0% {
-      background-position: 0% 0%;
-    }
-    100% {
-      background-position: 100% 0%;
-    }
-  }
+&.active {
+  color: red;
+  /* Text color for the active link */
+}
 `;
 
 
-const ProjectsNavLink = styled(NavLink)`
-  text-decoration: none;
-  font-weight: bold;
-  color: #333;
-  position: relative;
-  transition: color 0.3s, transform 0.3s;
 
-  &:hover {
-
-    transform: translateY(-2px); /* Add a subtle upward hover effect */
-  }
-
-  &.active {
-    color: #ff6b6b;
-    &:before {
-      content: ''; /* Add a decorative line under the active link */
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background-color: #ff6b6b;
-    }
-  }
-`;
 
 
 const ProjectsContent = styled.div`
-  background-color: #C9DACD;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+background-color: #050816;
+padding: 1.5rem;
+border-radius: 10px;
+box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+overflow-y: auto; 
+max-height: calc(100vh - 4rem);
+margin-top: 2rem; 
+
+/* Custom scrollbar styles */
+&::-webkit-scrollbar {
+  width: 10px !important; 
+}
+&::-webkit-scrollbar-track {
+  background: linear-gradient(to right, #050816, #111); 
+}
+&::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #0070f3, #00ff95); 
+  border-radius: 5px !important; 
+  border: 3px solid #050816; 
+}
+&::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to right, #ff6b6b, #ffdd59); 
+  border-color: #111; 
+}
 `;
 
 const ProjectList = styled.ul`
@@ -186,7 +174,7 @@ const ProjectDescription = styled.p`
   line-height: 1.6;
   margin-top: 1rem;
   position: relative;
-  color: #333; /* Default text color */
+  color: #fff; /* Default text color */
 
   span.highlight {
     color: #0070f3; /* Highlighted text color */
@@ -195,14 +183,14 @@ const ProjectDescription = styled.p`
 
 
   &:before {
-    content: '✨ Project Description ✨'; /* Use decorative stars as labels */
+    content: ' Project Description'; /* Use decorative stars as labels */
     display: block;
     font-weight: bold;
     margin-bottom: 0.5rem;
     color: #0070f3; /* Change the label color */
     font-size: 1.2rem; /* Adjust label font size */
     letter-spacing: 2px; /* Add letter spacing for emphasis */
-    text-align: center;
+    text-align: left;
     text-transform: uppercase; /* Uppercase text for emphasis */
   }
 
@@ -238,6 +226,7 @@ const ProjectDescription = styled.p`
 const Projects = () => {
   const { category } = useParams();
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true); // Add loading state
 
   useEffect(() => {
     async function fetchProjects() {
@@ -249,6 +238,7 @@ const Projects = () => {
           response = await axios.get(`https://portfolio-back-aruc.onrender.com/api/projects/category/${category}`);
         }
         setProjects(response.data);
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching projects:', error);
       }
@@ -259,23 +249,212 @@ const Projects = () => {
   return (
     <ProjectsContainer>
       <Helmet>
-      <title>Sanjay Patidar | Projects Portfolio: Web Development, Mobile App Development, UI/UX Design</title>
+      <title>Sanjay Patidar Projects Portfolio: Web Development, Mobile App Development, UI/UX Design</title>
   <meta name="description" content="Explore the diverse range of projects developed by Sanjay Patidar, showcasing expertise in web development, mobile app development, and various other categories. Discover innovative solutions, unique designs, and successful implementations." />
   <meta name="keywords" content="Sanjay Patidar, projects, web development, mobile app development, innovative projects, technology, programming, coding, software development" />
   <meta name="author" content="Sanjay Patidar" />
   <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Sanjay Patidar | Projects Portfolio: Web Development, Mobile App Development, UI/UX Design" />
+  <meta property="og:title" content="Sanjay Patidar Projects Portfolio: Web Development, Mobile App Development, UI/UX Design" />
   <meta property="og:description" content="Explore the diverse range of projects developed by Sanjay Patidar, showcasing expertise in web development, mobile app development, and various other categories. Discover innovative solutions, unique designs, and successful implementations." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sanjay-patidar.vercel.app/projects" />
   <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
-  <meta property="og:image:alt" content="Sanjay Patidar | Projects Portfolio: Web Development, Mobile App Development, UI/UX Design" />
-  <meta property="og:site_name" content="Sanjay Patidar | Projects Portfolio: Web Development, Mobile App Development, UI/UX Design" />
+  <meta property="og:image:alt" content="Sanjay Patidar Projects Portfolio: Web Development, Mobile App Development, UI/UX Design" />
+  <meta property="og:site_name" content="Sanjay Patidar Projects Portfolio: Web Development, Mobile App Development, UI/UX Design" />
   <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Sanjay Patidar | Projects Portfolio: Web Development, Mobile App Development, UI/UX Design" />
+  <meta name="twitter:title" content="Sanjay Patidar Projects Portfolio: Web Development, Mobile App Development, UI/UX Design" />
   <meta name="twitter:description" content="Explore the diverse range of projects developed by Sanjay Patidar, showcasing expertise in web development, mobile app development, and various other categories. Discover innovative solutions, unique designs, and successful implementations." />
   <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
+  <script type="application/ld+json">
+       {JSON.stringify({
+         '@context': 'http://schema.org',
+         '@type': 'ItemList',
+         "name": "Sanjay Patidar",
+         "birthDate": "1998-07-01",
+         "birthPlace": {
+           "@type": "Place",
+           "address": {
+             "@type": "PostalAddress",
+             "addressLocality": "Indore"
+           }
+         },
+         "alumniOf": {
+           "@type": "CollegeOrUniversity",
+           "name": "Chandigarh University",
+           "location": {
+             "@type": "Place",
+             "address": {
+               "@type": "PostalAddress",
+               "addressLocality": "Chandigarh",
+               "addressRegion": "Punjab",
+               "addressCountry": "India"
+             }
+           }
+         },
+         "address": [
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Indore",
+             "addressRegion": "Madhya Pradesh",
+             "postalCode": "452001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Chandigarh",
+             "addressRegion": "Punjab",
+             "postalCode": "160001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Mumbai",
+             "addressRegion": "Maharashtra",
+             "postalCode": "400001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Bangalore",
+             "addressRegion": "Karnataka",
+             "postalCode": "560001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Delhi",
+             "addressRegion": "Delhi",
+             "postalCode": "110001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Kolkata",
+             "addressRegion": "West Bengal",
+             "postalCode": "700001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Chennai",
+             "addressRegion": "Tamil Nadu",
+             "postalCode": "600001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Hyderabad",
+             "addressRegion": "Telangana",
+             "postalCode": "500001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Pune",
+             "addressRegion": "Maharashtra",
+             "postalCode": "411001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Ahmedabad",
+             "addressRegion": "Gujarat",
+             "postalCode": "380001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Jaipur",
+             "addressRegion": "Rajasthan",
+             "postalCode": "302001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Lucknow",
+             "addressRegion": "Uttar Pradesh",
+             "postalCode": "226001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Bhopal",
+             "addressRegion": "Madhya Pradesh",
+             "postalCode": "462001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Nagpur",
+             "addressRegion": "Maharashtra",
+             "postalCode": "440001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Visakhapatnam",
+             "addressRegion": "Andhra Pradesh",
+             "postalCode": "530001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Kochi",
+             "addressRegion": "Kerala",
+             "postalCode": "682001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Guwahati",
+             "addressRegion": "Assam",
+             "postalCode": "781001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Bhubaneswar",
+             "addressRegion": "Odisha",
+             "postalCode": "751001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Dehradun",
+             "addressRegion": "Uttarakhand",
+             "postalCode": "248001",
+             "addressCountry": "India"
+           },
+           {
+             "@type": "PostalAddress",
+             "addressLocality": "Raipur",
+             "addressRegion": "Chhattisgarh",
+             "postalCode": "492001",
+             "addressCountry": "India"
+           }
+         ],
+         "worksFor": {
+           "@type": "Organization",
+           "name": "Eduxcel" 
+         },
+         "url": "https://sanjay-patidar.vercel.app/",
+         "sameAs": [
+           "https://www.linkedin.com/in/sanjay-patidar-25b580292/",
+           "https://github.com/hello-developer-sanjay",
+           "https://www.instagram.com/sanjay_patidar_mcmxcviii/",
+           "https://eduxcel.vercel.app/",
+                        "https://sanjay-patidar.vercel.app/projects",
+                        "https://sanjay-patidar.vercel.app/api/projects/details/6505a550d1e96d17df4fe123",
+                        "https://sanjay-patidar.vercel.app/api/projects/details/65a4bfcdc63d5aab2ed3cb71",
+                        "https://sanjay-patidar.vercel.app/api/projects/details/65a4c4b0c63d5aab2ed3cb73",
+
+
+         ]
+   
+
+       })}
+     </script>
 
 </Helmet>
 
@@ -303,9 +482,15 @@ const Projects = () => {
           </ProjectsNavItem>
         </ProjectsNavList>
       </ProjectsNavigation>
+
+
+
       <ProjectsContent>
-        {projects.length > 0 ? (
-         <ProjectList>
+
+      {loading ? ( // Show loading indicator when loading
+          <p>Loading...</p>
+        ) : projects.length > 0 ? (
+               <ProjectList>
             {projects.map((project) => (
               <ProjectItem key={project._id}>
                 <NavLink to={`/api/projects/details/${project._id}`}
@@ -375,7 +560,9 @@ const Projects = () => {
         ) : (
           <p>No projects found.</p>
         )}
+
       </ProjectsContent>
+
     </ProjectsContainer>
   );
 };
