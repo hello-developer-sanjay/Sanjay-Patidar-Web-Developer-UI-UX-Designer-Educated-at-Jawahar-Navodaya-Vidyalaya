@@ -41,9 +41,9 @@ const AppRouter = () => {
       <Route path="/" element={<HomeWithBlogSuggestion />} />
       <Route path="/founder-eduxcel" element={<Founder/>} />
 
-        <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
-        <Route path="/projects/:category" element={<PageTransition><Projects /></PageTransition>} />
-        <Route path="/api/projects/details/:id" element={<PageTransition><ProjectDetails /></PageTransition>} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/projects/:category" element={<Projects />} />
+        <Route path="/api/projects/details/:id" element={<ProjectDetails />} />
         <Route path="/skills" element={<PageTransition><Skills /></PageTransition>} />
         <Route path="/experiences" element={<PageTransition><Experiences /></PageTransition>} />
         <Route path="/certifications" element={<PageTransition><Certifications /></PageTransition>} />
