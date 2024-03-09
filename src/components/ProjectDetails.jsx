@@ -6,12 +6,11 @@ import ReactPlayer from 'react-player';
 import ModalImage from 'react-modal-image';
  
 const ProjectDetailsContainer = styled.div`
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #050816;
-
+ padding: 2rem;
+background-color: #050816;
+min-height: 100vh;
+overflow: hidden; 
+align-items: center;
 `;
 
 
@@ -19,10 +18,11 @@ const ProjectsContent = styled.div`
 background-color: #050816;
 padding: 1.5rem;
 border-radius: 10px;
+
 box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
 overflow-y: auto; 
 max-height: calc(100vh - 4rem);
-margin-top: 2rem; 
+margin-top: 1rem; 
 
 /* Custom scrollbar styles */
 &::-webkit-scrollbar {
@@ -118,6 +118,8 @@ const ProjectDetailsDescription = styled.p`
   font-size: 1rem; /* Small font size */
   line-height: 1.6;
   margin-top: 1rem;
+  margin-left: 10rem;  
+  
   position: relative;
   color: #fff; /* Default text color */
 
@@ -162,6 +164,12 @@ const ProjectDetailsDescription = styled.p`
     100% {
       background-position: 100% 0%;
     }
+  }
+  
+
+  @media (max-width: 768px) {
+    margin-left: 0rem;  
+
   }
 `;
 
@@ -267,6 +275,7 @@ const AdditionalDetailsContainer = styled.div`
   width: 100%;
   max-width: 1000px; 
   margin: 0 auto;
+  margin-top : 2rem;
 `;
 
 const AdditionalDetailsItem = styled.div`
