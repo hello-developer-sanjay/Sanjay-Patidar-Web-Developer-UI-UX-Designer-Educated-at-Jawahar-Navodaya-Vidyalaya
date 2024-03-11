@@ -19,6 +19,8 @@ import Contact from "./components/Contact";
 import Career from './components/Career';
 import About from'./components/About';
 import  Founder from './components/Founder';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import BlogSuggestion from "./components/BlogSuggestion";
 const ScrollToTop = () => {
@@ -35,7 +37,8 @@ const AppRouter = () => {
   return (
     <Router>
       <Navbar />
-      
+            <ToastContainer />
+
       <ScrollToTop />
       <Routes>
       <Route path="/" element={<HomeWithBlogSuggestion />} />
