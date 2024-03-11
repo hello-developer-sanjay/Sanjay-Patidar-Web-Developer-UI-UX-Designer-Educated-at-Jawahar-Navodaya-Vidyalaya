@@ -391,13 +391,14 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-  const handleCareerInsightsClick = () => {
-  
+const handleCareerInsightsClick = () => {
   toast.info("You're being redirected to explore career insights at Eduxcel...", {
-    autoClose: 3000, 
+    autoClose: 2000, 
   });
 
-  window.open("https://eduxcel.vercel.app/careers", "_blank");
+  setTimeout(() => {
+    window.open("https://eduxcel.vercel.app/careers", "_blank");
+  }, 2000); 
 };
 
   return (
