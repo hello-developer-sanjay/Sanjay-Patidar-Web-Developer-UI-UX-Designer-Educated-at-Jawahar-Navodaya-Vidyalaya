@@ -387,19 +387,24 @@ const HamburgerMenu = styled.div`
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);   
+  const [isToastVisible, setIsToastVisible] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 const handleCareerInsightsClick = () => {
-  toast.info("You're being redirected to explore career insights at Eduxcel...", {
-    autoClose: 2000, 
-  });
+    if (!isToastVisible) {
+      toast.info("You're being redirected to explore career insights at Eduxcel...", {
+        autoClose: 2000,
+        onOpen: () => setIsToastVisible(true),
+        onClose: () => setIsToastVisible(false),
+      });
 
-  setTimeout(() => {
-    window.open("https://eduxcel.vercel.app/careers", "_blank");
-  }, 2000); 
-};
+      setTimeout(() => {
+        window.open("https://eduxcel.vercel.app/careers", "_blank");
+      }, 2000); 
+    }
+  };
 
   return (
     <>
