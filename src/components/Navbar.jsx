@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Sidebar from '../components/Sidebar';
 import { useState,  } from 'react';
 import { FaHome,FaProjectDiagram ,FaUserShield, FaBriefcase ,FaUserTie } from 'react-icons/fa';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Nav = styled.nav`
@@ -389,6 +391,15 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+  const handleCareerInsightsClick = () => {
+  
+  toast.info("You're being redirected to explore career insights at Eduxcel...", {
+    autoClose: 3000, 
+  });
+
+  window.open("https://eduxcel.vercel.app/careers", "_blank");
+};
+
   return (
     <>
       <style>{'body { margin: 0; }'}</style>
@@ -413,13 +424,12 @@ const Navbar = () => {
                   Home
                 </NavLinkStyled>
               </NavItem>
-              <NavItem>
-                <NavLinkStyled to="https://eduxcel.vercel.app/careers" aria-label="Career" onClick={toggleMenu}>
-                  
-                  Career Insights
-                  <FaBriefcase style={{ marginLeft: '5px' }} /> 
-                </NavLinkStyled>
-              </NavItem>
+                  <NavItem>
+        <NavLinkStyled to="#" aria-label="Career" onClick={handleCareerInsightsClick}>
+          Career Insights
+          <FaBriefcase style={{ marginLeft: '5px' }} />
+        </NavLinkStyled>
+      </NavItem>
 
               <NavItem>
                 <NavLinkStyled to="/projects" aria-label="Projects" onClick={toggleMenu}>
