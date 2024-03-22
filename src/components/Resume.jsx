@@ -212,11 +212,7 @@ const Resume = () => {
 
     <ResumeContainer>
             <Helmet>
-            <title>Sanjay Patidar | Seasoned Web Developer & Creative UI/UX Designer | Crafting Immersive Digital Experiences - Comprehensive Resume</title>
-
-
-
-
+            <title>Sanjay Patidar | Comprehensive Resume</title>
 
 <meta
           name="description"
