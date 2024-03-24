@@ -221,7 +221,14 @@ const ProjectDescription = styled.p`
 `;
 
 
-
+const generateSlug = (title) => {
+  return title.toString().toLowerCase()
+    .replace(/\s+/g, '-')        // Replace spaces with -
+    .replace(/[^\w-]+/g, '')     // Remove all non-word characters
+    .replace(/--+/g, '-')        // Replace multiple - with single -
+    .replace(/^-+/, '')          // Trim - from start of text
+    .replace(/-+$/, '');         // Trim - from end of text
+};
 
 const Projects = () => {
   const { category } = useParams();
@@ -493,9 +500,8 @@ const Projects = () => {
                <ProjectList>
             {projects.map((project) => (
               <ProjectItem key={project._id}>
-                <NavLink to={`/api/projects/details/${project._id}`}
-                   style={{ textDecoration: 'none' }}
-                  >
+                               <NavLink to={`/project/details/${generateSlug(project.title)}`} style={{ textDecoration: 'none' }}>
+
                   <ProjectTitle>
                     <span className="arrow">Project Insights 👇</span>
                     {project.title}
