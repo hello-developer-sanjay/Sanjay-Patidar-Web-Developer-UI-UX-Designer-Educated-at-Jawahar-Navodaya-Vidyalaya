@@ -260,7 +260,7 @@ const ProtectedPage = () => {
       const fetchData = async () => {
         try {
           // Fetch queries after successful authentication
-          const queriesResponse = await axios.get('https://portfolio-api-b53a.onrender.com/api/queries');
+          const queriesResponse = await axios.get('https://eduxcel-api3.onrender.com/api/queries');
           setQueries(queriesResponse.data.map(query => ({ ...query, resolved: false })));
   
           // Fetch user profiles after successful authentication
@@ -287,7 +287,7 @@ const ProtectedPage = () => {
           setAuthenticated(true);
   
           // Fetch feedbacks after successful authentication
-          const feedbacksResponse = await axios.get('https://portfolio-api-b53a.onrender.com/api/feedbacks');
+          const feedbacksResponse = await axios.get('https://eduxcel-api3.onrender.com/api/feedbacks');
           setFeedbacks(feedbacksResponse.data);
         } else {
           console.log('Authentication failed');
