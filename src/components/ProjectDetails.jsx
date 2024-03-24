@@ -294,7 +294,7 @@ const ProjectDetails = () => {
   useEffect(() => {
     async function fetchProjectDetails() {
       try {
-        const response = await axios.get(`https://portfolio-back-aruc.onrender.com/api/projects/details/${id}`);
+        const response = await axios.get(`https://portfolio-api-b53a.onrender.com/api/projects/details/${id}`);
         setProject(response.data);
       } catch (error) {
         console.error('Error fetching project details:', error);
