@@ -505,7 +505,13 @@ const ProjectDetails = () => {
 
 
                         "https://sanjay-patidar.vercel.app/",
-"https://sanjay-patidar.vercel.app/projects"
+"https://sanjay-patidar.vercel.app/projects",
+          "https://sanjay-patidar.vercel.app/project/eduxcel-empowering-careers-in-tech-expert-insights-cutting-edge-education-and-skill-mastery",
+
+          "https://sanjay-patidar.vercel.app/project/property-rent-website-checkhere",
+
+          "https://sanjay-patidar.vercel.app/project/rentride-your-car-rental-platform"
+
          ]
    
 
