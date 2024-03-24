@@ -197,7 +197,7 @@ const Resume = () => {
   useEffect(() => {
     const fetchDownloadCount = async () => {
       try {
-        const response = await fetch('https://portfolio-api-b53a.onrender.coms/api/get-resume-click-count');
+        const response = await fetch('https://portfolio-api-b53a.onrender.com/api/get-resume-click-count');
         const data = await response.json();
         setDownloadCount(data.count);
       } catch (error) {
