@@ -500,7 +500,7 @@ const Projects = () => {
                <ProjectList>
             {projects.map((project) => (
               <ProjectItem key={project._id}>
-                               <NavLink to={`/project/details/${generateSlug(project.title)}`} style={{ textDecoration: 'none' }}>
+                               <NavLink to={`/project/${generateSlug(project.title)}`} style={{ textDecoration: 'none' }}>
 
                   <ProjectTitle>
                     <span className="arrow">Project Insights 👇</span>
