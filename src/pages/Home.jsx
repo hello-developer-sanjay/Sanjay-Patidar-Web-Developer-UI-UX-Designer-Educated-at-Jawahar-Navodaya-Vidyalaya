@@ -751,7 +751,7 @@ const H3 = styled.h1`
           });
     
           // Send coordinates to the server
-          fetch('https://portfolio-back-aruc.onrender.com/api/store-visited-location', {
+          fetch('https://portfolio-api-b53a.onrender.com/api/store-visited-location', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
