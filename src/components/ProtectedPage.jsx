@@ -221,7 +221,7 @@ const ProtectedPage = () => {
     // Fetch user visited locations after successful authentication
     const fetchUserVisitedLocations = async () => {
       try {
-        const userVisitedLocationsResponse = await axios.get('https://portfolio-api2-zhoj.onrender.com/api/uservisited');
+        const userVisitedLocationsResponse = await axios.get('https://portfolio-api2-zhoj.onrender.com/api/uservisiteds');
         setUserVisitedLocations(userVisitedLocationsResponse.data);
       } catch (error) {
         console.error('Error fetching user visited locations:', error);
