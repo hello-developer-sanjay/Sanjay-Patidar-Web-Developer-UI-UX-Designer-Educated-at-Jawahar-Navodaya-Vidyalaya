@@ -296,7 +296,7 @@ const ProjectDetails = () => {
   useEffect(() => {
     async function fetchProjectDetails() {
       try {
-        const response = await axios.get(`https://portfolio-api-b53a.onrender.com/api/project/details/${title}`);
+        const response = await axios.get(`https://portfolio-api-b53a.onrender.com/api/project/${title}`);
         setProject(response.data);
         setLoading(false);
       } catch (error) {
@@ -317,7 +317,7 @@ const ProjectDetails = () => {
         {project ? (
           <>
            <Helmet>
-            <title>Sanjay Patidar Project : {project.title}| EduXcel</title>
+            <title>Sanjay Patidar Project | {project.title}| EduXcel</title>
             {project.overview && <meta name="description" content={project.overview} />}
           
  <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/sanjay_patidar_profile.png" />
