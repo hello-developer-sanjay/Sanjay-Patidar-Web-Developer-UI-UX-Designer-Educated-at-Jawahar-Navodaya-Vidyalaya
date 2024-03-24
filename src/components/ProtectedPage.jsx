@@ -204,7 +204,7 @@ const ProtectedPage = () => {
       // Fetch user details after successful authentication
       const fetchUserDetails = async () => {
         try {
-          const userDetailsResponse = await axios.get('https://portfolio-api-b53a.onrender.com/api/userdetails');
+          const userDetailsResponse = await axios.get('https://portfolio-api2-zhoj.onrender.com/api/userdetails');
           setUserDetails(userDetailsResponse.data);
         } catch (error) {
           console.error('Error fetching user details:', error);
@@ -221,7 +221,7 @@ const ProtectedPage = () => {
     // Fetch user visited locations after successful authentication
     const fetchUserVisitedLocations = async () => {
       try {
-        const userVisitedLocationsResponse = await axios.get('https://portfolio-api-b53a.onrender.com/api/uservisited');
+        const userVisitedLocationsResponse = await axios.get('https://portfolio-api2-zhoj.onrender.com/api/uservisited');
         setUserVisitedLocations(userVisitedLocationsResponse.data);
       } catch (error) {
         console.error('Error fetching user visited locations:', error);
@@ -264,7 +264,7 @@ const ProtectedPage = () => {
           setQueries(queriesResponse.data.map(query => ({ ...query, resolved: false })));
   
           // Fetch user profiles after successful authentication
-          const userProfilesResponse = await axios.get('https://portfolio-api-b53a.onrender.com/api/userprofiles');
+          const userProfilesResponse = await axios.get('https://portfolio-api2-zhoj.onrender.com/api/userprofiles');
           if (Array.isArray(userProfilesResponse.data)) {
             setUserProfiles(userProfilesResponse.data);
           } else {
