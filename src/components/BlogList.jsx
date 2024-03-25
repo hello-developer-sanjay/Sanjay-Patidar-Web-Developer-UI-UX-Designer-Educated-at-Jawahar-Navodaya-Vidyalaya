@@ -74,7 +74,7 @@ function getImageForVision(vision) {
   switch (vision) {
     case 'vs_code_articles':
       return courseImage1;
-    case 'gitarticles':
+    case 'git_articles':
       return courseImage2;
  
     default:
