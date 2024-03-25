@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import '../styles/BlogList.css';
 import courseImage1 from '../assets/vs_code_articles.jpg';
 import courseImage2 from '../assets/gitarticles.jpg';
-
 function BlogList() {
   const [journals, setJournals] = useState([]);
   const { vision } = useParams();
