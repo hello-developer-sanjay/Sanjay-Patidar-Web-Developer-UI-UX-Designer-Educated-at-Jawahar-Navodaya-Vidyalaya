@@ -29,7 +29,6 @@ import { Helmet } from "react-helmet";
 
     import { useNavigate, useLocation } from "react-router-dom";
     import ReactPlayer from "react-player";
-    import "../styles/Blogs.css";
 
 
     import { Link } from "react-router-dom";
@@ -787,12 +786,25 @@ if (matchSpecialChars) {
 </div>
 </div>
        <VStack spacing={2} id={`content-${blog.title}-overview`} style={contentSectionStyle}>
-  {renderMediaContent(blog.overview, blog.title)}
+  {renderMediaContent(blog.content?.overview, blog.title)}
 </VStack>
 
 
+<VStack spacing={2} id={`content-${blog.title}-use_and_purpose`} style={contentSectionStyle}>
+  {renderMediaContent(blog.content?.use_and_purpose, blog.title)}
+</VStack>
 
 
+<VStack spacing={2} id={`content-${blog.title}-history`} style={contentSectionStyle}>
+  {renderMediaContent(blog.content?.history, blog.title)}
+</VStack>
+
+<VStack spacing={2} id={`content-${blog.title}-creators`} style={contentSectionStyle}>
+  {renderMediaContent(blog.content?.creators, blog.title)}
+</VStack>
+<VStack spacing={2} id={`content-${blog.title}-features`} style={contentSectionStyle}>
+  {renderMediaContent(blog.content?.features, blog.title)}
+</VStack>
 
 
 
@@ -828,105 +840,7 @@ if (matchSpecialChars) {
                       {renderMediaContent(blog.components?.Middleware, blog.title)}
                     </div>
 
-                    <div id={`content-${blog.title}-Serverless_Computing`} style={contentSectionStyle}>
-                      {renderMediaContent(blog.components?.Serverless_Computing, blog.title)}
-                    </div>
-                    <div id={`content-${blog.title}-API_Development`} style={contentSectionStyle}>
-                      {renderMediaContent(blog.skills?.API_Development, blog.title)}
-                    </div>
-                    <div id={`content-${blog.title}-Authentication_and_Authorization`} style={contentSectionStyle}>
-                      {renderMediaContent(blog.skills?.Authentication_and_Authorization, blog.title)}
-                    </div>
-
-                    <div id={`content-${blog.title}-Continuous_Learning`} style={contentSectionStyle}>
-                      {renderMediaContent(blog.skills?.Continuous_Learning, blog.title)}
-                    </div>
-
-
-                    <div id={`content-${blog.title}-Communication_and_Collaboration`} style={contentSectionStyle}>
-                      {renderMediaContent(blog.skills?.Communication_and_Collaboration, blog.title)}
-                    </div>
-
-
-                    <div id={`content-${blog.title}-Database_Management`} style={contentSectionStyle}>
-                      {renderMediaContent(blog.skills?.Database_Management, blog.title)}
-                    </div>
-
-
-
-                    <div id={`content-${blog.title}-Problem_Solving_Skills`} style={contentSectionStyle}>
-                      {renderMediaContent(blog.skills?.Problem_Solving_Skills, blog.title)}
-                    </div>
-
-
-
-                    <div id={`content-${blog.title}-Programming_Languages`} style={contentSectionStyle}>
-                      {renderMediaContent(blog.skills?.Programming_Languages, blog.title)}
-                    </div>
-
-
-
-                    <div id={`content-${blog.title}-Server_Side_Frameworks`} style={contentSectionStyle}>
-                      {renderMediaContent(blog.skills?.Server_Side_Frameworks, blog.title)}
-                    </div>
-
-
-
-                    <div id={`content-${blog.title}-Version_Control`} style={contentSectionStyle}>
-                      {renderMediaContent(blog.skills?.Version_Control, blog.title)}
-                    </div>
-
-
-
-                    <div id={`content-${blog.title}-Web_Servers_and_Deployment`} style={contentSectionStyle}>
-                      {renderMediaContent(blog.skills?.Web_Servers_and_Deployment, blog.title)}
-                    </div>
-
-
-
-
-
-                    <div id={`content-${blog.title}-User_Interface_UI`} style={contentSectionStyle}>
-                      {renderMediaContent(blog.components?.User_Interface_UI, blog.title)}
-                    </div>
-
-                    <div id={`content-${blog.title}-HTML_Hypertext_Markup_Language`} style={contentSectionStyle}>
-                      {renderMediaContent(blog.components?.HTML_Hypertext_Markup_Language, blog.title)}
-                    </div>
-
-                    <div id={`content-${blog.title}-CSS_Cascading_Style_Sheets`} style={contentSectionStyle}>
-                      {renderMediaContent(blog.components?.CSS_Cascading_Style_Sheets, blog.title)}
-                    </div>
-
-
-                    <div id={`content-${blog.title}-JavaScript`} style={contentSectionStyle}>
-                      {renderMediaContent(blog.components?.JavaScript, blog.title)}
-                    </div>
-
-
-                    <div id={`content-${blog.title}-Frameworks_and_Libraries`} style={contentSectionStyle}>
-                      {renderMediaContent(blog.components?.Frameworks_and_Libraries, blog.title)}
-                    </div>
-
-                    <div id={`content-${blog.title}-Responsive_Design`} style={contentSectionStyle}>
-                      {renderMediaContent(blog.components?.Responsive_Design, blog.title)}
-                    </div>
-
-                    <div id={`content-${blog.title}-Cross_Browser_Compatibility`} style={contentSectionStyle}>
-                      {renderMediaContent(blog.components?.Cross_Browser_Compatibility, blog.title)}
-                    </div>
-
-
-                    <div id={`content-${blog.title}-Performance_Optimization`} style={contentSectionStyle}>
-                      {renderMediaContent(blog.components?.Performance_Optimization, blog.title)}
-                    </div>
-
-<VStack spacing={2} id={`content-${blog.title}-description`} style={contentSectionStyle}>
-  {renderMediaContent(blog.description, blog.title)}
-</VStack>
-<VStack spacing={2} id={`content-${blog.title}-responsibilities`} style={contentSectionStyle}>
-  {renderMediaContent(blog.responsibilities, blog.title)}
-</VStack>
+         
                   </motion.div>
                 ))}
       
