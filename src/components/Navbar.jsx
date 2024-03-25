@@ -430,6 +430,13 @@ const handleCareerInsightsClick = () => {
                   Home
                 </NavLinkStyled>
               </NavItem>
+              <NavItem>
+              <NavLinkStyled to="/blogs" aria-label="Blogs" onClick={toggleMenu}>
+          Blogs
+          <FaBriefcase style={{ marginLeft: '5px' }} />
+        </NavLinkStyled>
+      </NavItem>
+
                   <NavItem>
         <NavLinkStyled to="#" aria-label="Career" onClick={handleCareerInsightsClick}>
           Career Insights
