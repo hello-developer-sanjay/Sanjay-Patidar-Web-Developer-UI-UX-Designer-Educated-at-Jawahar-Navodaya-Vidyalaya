@@ -2,13 +2,15 @@ import  { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route ,useLocation } from "react-router-dom";
 import PageTransition from "./components/PageTransition"; // Import your PageTransition component
 import Home from "./pages/Home";
+
+import BlogPage from "./components/BlogPage";
+import BlogPost from './components/BlogPost';
 import Projects from "./components/Projects";
 import Skills from "./pages/Skills";
 import Experiences from "./pages/Experiences";
 import Certifications from "./pages/Certifications";
 import CertificationDetails from "./pages/CertificationDetails";
 import Resume from './components/Resume';
-import Blogs from './components/Blogs';
 import NotFound from "./pages/NotFound";
 import ProtectedPage from './components/ProtectedPage';
 import Navbar from "./components/Navbar";
@@ -49,8 +51,8 @@ const AppRouter = () => {
         <Route path="/certifications" element={<PageTransition><Certifications /></PageTransition>} />
         <Route path="/certifications/:title" element={<PageTransition><CertificationDetails /></PageTransition>} />
         <Route path="/resume" element={<PageTransition><Resume /></PageTransition>} />
-        
-        <Route path="/blogs" element={<PageTransition><Blogs /></PageTransition>} />
+        <Route path="/blogs/*" element={<BlogPage />} />
+      <Route path="/:vision/*" element={<BlogPost/>} />
         <Route path="/education" element={<PageTransition><Education /></PageTransition>} />
         <Route path="/protected" element={<PageTransition><ProtectedPage /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
