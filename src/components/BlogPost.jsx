@@ -12,6 +12,10 @@
       Collapse,
       Button,
     } from "@chakra-ui/react";
+    import videojs from 'video.js';
+    import 'video.js/dist/video-js.css'; 
+    import "../styles/Blogs.css";
+
 import { Helmet } from "react-helmet";
     import {
     
@@ -382,7 +386,21 @@ color: '#fff',
         overflowY: "auto", 
   maxHeight: "calc(100% - 50px)", 
       };
-
+      useEffect(() => {
+        // Initialize Video.js for each video element
+        const videos = document.querySelectorAll('video');
+        videos.forEach(videoElement => {
+          videojs(videoElement);
+        });
+      
+        // Cleanup on unmount
+        return () => {
+          videos.forEach(videoElement => {
+            const player = videojs(videoElement);
+            player.dispose();
+          });
+        };
+      }, []);
       const toggleButtonStyle = {
         position: "fixed",
         top: "170px",
@@ -438,12 +456,14 @@ color: '#fff',
         }
       
         if (!Array.isArray(content)) {
-          // If content is not an array, wrap it in an array to handle it uniformly
           content = [content];
         }
       
         return content.map((item, index) => {
+          let element;
+      
           if (Array.isArray(item)) {
+            // Recursive call for nested arrays
             return (
               <VStack key={index} align="start" spacing={2} mt={2}>
                 {renderMediaContent(item, title)}
@@ -451,118 +471,77 @@ color: '#fff',
             );
           }
       
-          let element;
-      
-          if (typeof item === "object" && item.title) {
-            // Display object field titles on the same page as the parent title
+          if (typeof item === 'object' && item.title) {
+            // Render object fields
             element = (
               <VStack key={index} align="start" spacing={2} mt={2}>
                 <BlogTitle
                   title={item.title}
-                  library={vision}
-                  onClick={() => handleTitleClick(item.title, vision)}
+                  collection="tools"
+                  onClick={() => handleTitleClick(item.title, 'tools')}
                 />
-                {renderMediaContent(item.description, title)}
-                {renderMediaContent(item.content, title)}
-         
-
-
-                
+                {Object.keys(item).map(key => {
+                  if (key !== 'title') {
+                    return renderMediaContent(item[key], title);
+                  }
+                  return null;
+                })}
               </VStack>
             );
           }
       
-          if (typeof item === "string") {
-            // Handle special characters
-            const specialCharsRegex = /[*$~]([^*$~]+)[*$~]/;
-const matchSpecialChars = item.match(specialCharsRegex);
-
-if (matchSpecialChars) {
-  const specialText = matchSpecialChars[1];
-  const textBeforeSpecial = item.split(matchSpecialChars[0])[0];
-  const textAfterSpecial = item.split(matchSpecialChars[0])[1];
-
-  element = (
-    <Text key={index}>
-      {textBeforeSpecial}
-      <span
-  style={{
-    fontWeight: matchSpecialChars[0] === '*' ? 'bold' : 'normal',
-    color: matchSpecialChars[0] === '$' ? 'green' : matchSpecialChars[0] === '~' ? 'lime' : 'gold',
-    fontStyle: matchSpecialChars[0] === '*' ? 'italic' : 'normal',
-    textDecoration: 'none',
-    fontSize: matchSpecialChars[0] === '$' ? '1.2em' : matchSpecialChars[0] === '~' ? '1.1em' : '1em',
-  }}
->
-
-   {specialText}
-      </span>
-      {textAfterSpecial}
-    </Text>
-  );
-} else {              // Check for links
-              const linkRegex = /@([^@]+)@/;
-              const match = item.match(linkRegex);
+          if (typeof item === 'string') {
+            const videoRegex = /\.(mp4|webm|mkv)$/; // Regex to match video file extensions
       
-              if (match) {
-                // Handle links
-                const link = match[1];
-                const textBeforeLink = item.split(match[0])[0];
-                const textAfterLink = item.split(match[0])[1];
-      
-                element = (
-                  <Text key={index}>
-                    {textBeforeLink}
-                    <span
-                      style={{ color: "yellow", textDecoration: "underline", cursor: "pointer" }}
-                      onClick={() => window.open(link, "_blank")}
+            // Check for video URLs
+            if (item.match(videoRegex)) {
+              console.log("Video URL detected:", item); // Check if video URL is correctly detected
+              element = (
+                <Box
+                  key={index}
+                  position="relative"
+                  paddingTop="0%"
+                  width="100%"
+                  mb={2}
+                  className="video-container"
+                >
+                {
+                  !isPdfPrinting ?
+                    <video
+                      id={`video-${index}`}
+                      className="video-js vjs-default-skin"
+                      controls
+                      preload="auto"
+                      width="200%"
+                      height="200%"
                     >
-                      {link}
-                    </span>
-                    {textAfterLink}
-                  </Text>
-                );
-              } else if (item.startsWith("http")) {
-                // Handle images and videos
-                if (item.match(/\.(jpeg|jpg|gif|png)$/)) {
-                  element = (
-                    <Box key={index} mb={2} className="image-container">
-                      <ModalImage
-                        small={item}
-                        large={item}
-                        alt={`Image ${index}`}
-                        className="custom-modal-image"
-                      />
-                    </Box>
-                  );
-                } else if (item.match(/\.(mp4|webm|mkv)$/)) {
-                  element = (
-                    <Box
-                      key={index}
-                      position="relative"
-                      paddingTop="56.25%"
-                      width="100%"
-                    >
-                      <ReactPlayer
-                        url={item}
-                        controls
-                        width="100%"
-                        height="100%"
-                        style={{ position: "absolute", top: 0, left: 0 }}
-                      />
-                    </Box>
-                  );
-                } else {
-                  element = <Text key={index}>{item}</Text>;
+                      <source src={item} type="video/mp4" /> {/* Adjust type based on your video format */}
+                    </video> : null
                 }
-              } else {
-                // Handle regular text
-                element = <Text key={index}>{item}</Text>;
-              }
+                </Box>
+              );
+              
+            } else if (item.match(/\.(jpeg|jpg|gif|png)$/)) {
+              // Handle images
+              console.log("Image URL detected:", item); // Check if image URL is correctly detected
+              element = (
+                <Box key={index} mb={2} className="image-container">
+                  <ModalImage
+                    small={item}
+                    large={item}
+                    alt={`Image ${index}`}
+                    className="custom-modal-image"
+                  />
+                </Box>
+              );
+            } else {
+              // Handle regular text
+              console.log("Text detected:", item); // Check if plain text is detected
+              element = <Text key={index}>{item}</Text>;
             }
           }
       
-          return <Box key={index} mb={2}>{element}</Box>;
+          return <Box key={index}>{element}</Box>;
         });
       };
       
@@ -572,31 +551,49 @@ if (matchSpecialChars) {
 
       const navbarHeight = document.querySelector(".navbar")?.clientHeight || 0;
 
-      const handleDownloadPDF = () => {
-        alert("Please close the sidebar to ensure complete content is printed.");
+      const [ isPdfPrinting, setPdfPrinting ] = useState(false);
+
+    const handleDownloadPDF = () => {
+    // Remove video elements from the cloned container
+    // const videoElements = containerClone.querySelectorAll('video');
+    // videoElements.forEach(video => {
+    //     video.parentNode.removeChild(video);
+    // });
+    setPdfPrinting(true);
+};
+
+  useEffect(()=> {
+    if(isPdfPrinting){
+      alert("Please close the sidebar to ensure complete content is printed.");
+  
+      const scrollableContainer = document.getElementById('blogs-section');
       
-        const scrollableContainer = document.getElementById('blogs-section');
-        
-        const htmlContent = scrollableContainer.innerHTML;
-      
-        const title = currentPosts.length > 0 ? currentPosts[0].title : "";
-      
-        const printWindow = window.open('', '_blank');
-        printWindow.document.open();
-        printWindow.document.write(`
-          <html>
-            <head>
-              <title>${title}| EduXcel | Sanjay Patidar</title>
-            </head>
-            <body>
-              ${htmlContent}
-            </body>
-          </html>
-        `);
-        printWindow.document.close();
-              printWindow.print();
-      };
-      
+      // Clone the container to avoid modifying the original content
+      const containerClone = scrollableContainer.cloneNode(true);
+          // Get the HTML content of the cloned container
+      const htmlContent = containerClone.innerHTML;
+    
+      const title = currentPosts.length > 0 ? currentPosts[0].title : "";
+    
+      const printWindow = window.open('', '_blank');
+      printWindow.document.open();
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>${title} | EduXcel | Sanjay Patidar</title>
+          </head>
+          <body>
+            ${htmlContent}
+          </body>
+        </html>
+      `);
+      printWindow.document.close();
+      printWindow.print();
+      setPdfPrinting(false);
+    }
+  }, [isPdfPrinting]);
+
+  
 
       return (
 
@@ -652,14 +649,14 @@ if (matchSpecialChars) {
          
           ) : (
             <>
-              {/* Toggle Button */}
-              <Button
+{
+  !isPdfPrinting ?               <Button
                 style={toggleButtonStyle}
                 onClick={onToggle}
                 leftIcon={isOpen ? <FaTimes /> : <FaBars />}
               >
                 {isOpen ? "Close" : "Open"}
-              </Button>
+              </Button>:null}
       
               {/* Sidebar */}
               <Collapse in={isOpen}>
@@ -689,9 +686,11 @@ if (matchSpecialChars) {
 
                 </Box>
               </Collapse>
-      
-              {/* Main Content */}
+ 
+
               <Box mt={0} p={0} ml={isOpen ? "200px" : "0"}>
+              {
+  !isPdfPrinting ? 
                 <Box style={headerStyle}>
                   <VStack spacing={0} align="start" w="100%" marginTop="0">
                     <Input
@@ -718,7 +717,7 @@ if (matchSpecialChars) {
                     onClick={scrollToTop}
                     style={scrollToTopButtonStyle}
                   />
-                </Box>
+                </Box>: null}
          
 
       
@@ -739,13 +738,16 @@ if (matchSpecialChars) {
     onClick={() => handleTitleClick(blog.title, vision)}
     location="main" // Pass location prop indicating sidebar
   />
-         <Button 
+ 
+{
+  !isPdfPrinting ? 
+  <Button 
   onClick={handleDownloadPDF} 
   isLoading={loading} 
   loadingText="Downloading..."
   style={{
     marginLeft: '20px', 
-    marginTop:'0.5rem',  
+    marginTop: '0.5rem',
     backgroundColor: 'rgb(63, 81, 181)', 
     color: 'white', 
     borderRadius: '30px',
@@ -760,7 +762,9 @@ if (matchSpecialChars) {
   }}
 >
   <span style={{ marginRight: '8px' }}>🖨️</span> Print PDF
-</Button>
+</Button> : null
+}
+
 <div style={{ marginTop: "30px", padding: "10px", border: "1px solid #ccc", color: "White", borderRadius: "8px" }}>
 <div style={{ fontWeight: "bold", marginBottom: "10px", fontSize: "1.2rem" }}>Published By:</div>
 <div style={{ display: "flex", alignItems: "center" }}>
