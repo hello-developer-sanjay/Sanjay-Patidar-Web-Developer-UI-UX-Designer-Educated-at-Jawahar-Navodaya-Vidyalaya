@@ -456,14 +456,12 @@ color: '#fff',
         }
       
         if (!Array.isArray(content)) {
+          // If content is not an array, wrap it in an array to handle it uniformly
           content = [content];
         }
       
         return content.map((item, index) => {
-          let element;
-      
           if (Array.isArray(item)) {
-            // Recursive call for nested arrays
             return (
               <VStack key={index} align="start" spacing={2} mt={2}>
                 {renderMediaContent(item, title)}
@@ -471,80 +469,124 @@ color: '#fff',
             );
           }
       
-          if (typeof item === 'object' && item.title) {
-            // Render object fields
+          let element;
+      
+          if (typeof item === "object" && item.title) {
+            // Display object field titles on the same page as the parent title
             element = (
               <VStack key={index} align="start" spacing={2} mt={2}>
                 <BlogTitle
                   title={item.title}
-                  collection="tools"
-                  onClick={() => handleTitleClick(item.title, 'tools')}
+                  library={vision}
+                  onClick={() => handleTitleClick(item.title, vision)}
                 />
-                {Object.keys(item).map(key => {
-                  if (key !== 'title') {
-                    return renderMediaContent(item[key], title);
-                  }
-                  return null;
-                })}
+                {renderMediaContent(item.description, title)}
+                {renderMediaContent(item.content, title)}
+         
+
+
+                
               </VStack>
             );
           }
       
-          if (typeof item === 'string') {
-            const videoRegex = /\.(mp4|webm|mkv)$/; // Regex to match video file extensions
+          if (typeof item === "string") {
+            // Handle special characters
+            const specialCharsRegex = /[*$~]([^*$~]+)[*$~]/;
+const matchSpecialChars = item.match(specialCharsRegex);
+
+if (matchSpecialChars) {
+  const specialText = matchSpecialChars[1];
+  const textBeforeSpecial = item.split(matchSpecialChars[0])[0];
+  const textAfterSpecial = item.split(matchSpecialChars[0])[1];
+
+  element = (
+    <Text key={index}>
+      {textBeforeSpecial}
+      <span
+  style={{
+    fontWeight: matchSpecialChars[0] === '*' ? 'bold' : 'normal',
+    color: matchSpecialChars[0] === '$' ? 'green' : matchSpecialChars[0] === '~' ? 'lime' : 'gold',
+    fontStyle: matchSpecialChars[0] === '*' ? 'italic' : 'normal',
+    textDecoration: 'none',
+    fontSize: matchSpecialChars[0] === '$' ? '1.2em' : matchSpecialChars[0] === '~' ? '1.1em' : '1em',
+  }}
+>
+
+   {specialText}
+      </span>
+      {textAfterSpecial}
+    </Text>
+  );
+} else {              // Check for links
+              const linkRegex = /@([^@]+)@/;
+              const match = item.match(linkRegex);
       
-            // Check for video URLs
-            if (item.match(videoRegex)) {
-              console.log("Video URL detected:", item); // Check if video URL is correctly detected
-              element = (
-                <Box
-                  key={index}
-                  position="relative"
-                  paddingTop="0%"
-                  width="100%"
-                  mb={2}
-                  className="video-container"
-                >
-                {
-                  !isPdfPrinting ?
-                    <video
-                      id={`video-${index}`}
-                      className="video-js vjs-default-skin"
-                      controls
-                      preload="auto"
-                      width="200%"
-                      height="200%"
+              if (match) {
+                // Handle links
+                const link = match[1];
+                const textBeforeLink = item.split(match[0])[0];
+                const textAfterLink = item.split(match[0])[1];
+      
+                element = (
+                  <Text key={index}>
+                    {textBeforeLink}
+                    <span
+                      style={{ color: "yellow", textDecoration: "underline", cursor: "pointer" }}
+                      onClick={() => window.open(link, "_blank")}
                     >
-                      <source src={item} type="video/mp4" /> {/* Adjust type based on your video format */}
-                    </video> : null
+                      {link}
+                    </span>
+                    {textAfterLink}
+                  </Text>
+                );
+              } else if (item.startsWith("http")) {
+                // Handle images and videos
+                if (item.match(/\.(jpeg|jpg|gif|png)$/)) {
+                  element = (
+                    <Box key={index} mb={2} className="image-container">
+                      <ModalImage
+                        small={item}
+                        large={item}
+                        alt={`Image ${index}`}
+                        className="custom-modal-image"
+                      />
+                    </Box>
+                  );
+                } else if (item.match(/\.(mp4|webm|mkv)$/)) {
+                  element = (
+                    <Box
+                      key={index}
+                      position="relative"
+                      paddingTop="56.25%"
+                      width="100%"
+                    >
+                      <ReactPlayer
+                        url={item}
+                        controls
+                        width="100%"
+                        height="100%"
+                        style={{ position: "absolute", top: 0, left: 0 }}
+                      />
+                    </Box>
+                  );
+                } else {
+                  element = <Text key={index}>{item}</Text>;
                 }
-                </Box>
-              );
-              
-            } else if (item.match(/\.(jpeg|jpg|gif|png)$/)) {
-              // Handle images
-              console.log("Image URL detected:", item); // Check if image URL is correctly detected
-              element = (
-                <Box key={index} mb={2} className="image-container">
-                  <ModalImage
-                    small={item}
-                    large={item}
-                    alt={`Image ${index}`}
-                    className="custom-modal-image"
-                  />
-                </Box>
-              );
-            } else {
-              // Handle regular text
-              console.log("Text detected:", item); // Check if plain text is detected
-              element = <Text key={index}>{item}</Text>;
+              } else {
+                // Handle regular text
+                element = <Text key={index}>{item}</Text>;
+              }
             }
           }
       
-          return <Box key={index}>{element}</Box>;
+          return <Box key={index} mb={2}>{element}</Box>;
         });
       };
       
+      
+      
+
       
       
 
@@ -736,7 +778,7 @@ color: '#fff',
     title={blog.title}
     library={vision}
     onClick={() => handleTitleClick(blog.title, vision)}
-    location="main" // Pass location prop indicating sidebar
+    location="main" 
   />
  
 {
@@ -809,6 +851,35 @@ color: '#fff',
 <VStack spacing={2} id={`content-${blog.title}-features`} style={contentSectionStyle}>
   {renderMediaContent(blog.content?.features, blog.title)}
 </VStack>
+
+
+
+{/* new */}
+
+<VStack spacing={2} id={`content-${blog.title}-use_and_purposes`} style={contentSectionStyle}>
+  {renderMediaContent(blog.content?.use_and_purposes, blog.title)}
+</VStack>
+
+
+<VStack spacing={2} id={`content-${blog.title}-historys`} style={contentSectionStyle}>
+  {renderMediaContent(blog.content?.historys, blog.title)}
+</VStack>
+
+<VStack spacing={2} id={`content-${blog.title}-creator`} style={contentSectionStyle}>
+  {renderMediaContent(blog.content?.creator, blog.title)}
+</VStack>
+<VStack spacing={2} id={`content-${blog.title}-feature`} style={contentSectionStyle}>
+  {renderMediaContent(blog.content?.feature, blog.title)}
+</VStack>
+
+
+
+
+
+
+
+
+
 
 
 
