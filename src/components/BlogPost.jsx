@@ -299,6 +299,12 @@ import { Helmet } from "react-helmet";
       if (helmet) {
         helmet.innerText = pageTitle;
       }
+              // Set the canonical URL using React Helmet
+const canonicalUrl = window.location.origin + location.pathname; // Modify this as per your URL structure
+<Helmet>
+  <link rel="canonical" href={canonicalUrl} />
+</Helmet>;
+
           }
         } 
         if (lastVisitedBlog) {
