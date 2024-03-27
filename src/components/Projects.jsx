@@ -17,7 +17,7 @@ position: sticky;
   z-index: 1; /* Ensure it's above other content */
   margin-bottom: 2rem;
   background-color: #050816;
-  padding: 1rem 2rem;
+  padding: 0.2rem 0.2rem;
   overflow-y: auto; /* Enable vertical scrolling for navigation */
   max-height: calc(100vh - 4rem); /* Limit height to viewport height minus padding */
   &::-webkit-scrollbar {
@@ -140,7 +140,7 @@ border-radius: 10px;
 box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
 overflow-y: auto; 
 max-height: calc(100vh - 4rem);
-margin-top: 2rem; 
+margin-top: 0rem; 
 
 /* Custom scrollbar styles */
 &::-webkit-scrollbar {
