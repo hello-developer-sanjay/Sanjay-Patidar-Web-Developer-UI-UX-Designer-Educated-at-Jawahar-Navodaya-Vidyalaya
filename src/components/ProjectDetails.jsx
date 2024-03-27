@@ -523,7 +523,7 @@ const ProjectDetails = () => {
 
             {project.links && (
               <ProjectDetailsLinkContainer>
-                <h3>Links:</h3>
+               
                 <ProjectDetailsLinkList>
                   {project.links.map((link, index) => (
                     <ProjectDetailsLinkItem key={index}>
