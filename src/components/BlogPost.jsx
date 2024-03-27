@@ -299,11 +299,7 @@ import { Helmet } from "react-helmet";
       if (helmet) {
         helmet.innerText = pageTitle;
       }
-              // Set the canonical URL using React Helmet
-const canonicalUrl = window.location.origin + location.pathname; // Modify this as per your URL structure
-<Helmet>
-  <link rel="canonical" href={canonicalUrl} />
-</Helmet>;
+            
 
           }
         } 
@@ -649,7 +645,8 @@ if (matchSpecialChars) {
 <>
 <Helmet>
         <title>{`${currentPosts.length > 0 ? currentPosts[0].title : ""} | EduXcel | Sanjay Patidar`}</title>
-        
+                <link rel="canonical" href={window.location.href} />
+
       </Helmet>
 
       <Box
