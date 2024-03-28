@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import CreaTeaImage from '../assets/tea.gif';
 import { motion  } from 'framer-motion';
+import CourseList from './CourseList';
 const HomeContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
@@ -16,7 +17,60 @@ const HomeContainer = styled(motion.div)`
   position: relative;
   background-color: #050816; 
 `;
+const SectionContainer = styled.section`
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: ${props => props.theme.padding};
+`;
 
+const SectionTitle = styled.div`
+    text-align: center;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+
+    font-size:2.5rem;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 1.5;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+
+
+    @media screen and (max-width: 768px) {
+        font-size: calc(${props => props.theme.sectionHeadTextSize} * 0.8);
+        margin-bottom: 1rem;
+        font-size:1.8rem;
+    }
+
+    @media screen and (max-width: 480px) {
+        font-size: calc(${props => props.theme.sectionHeadTextSize} * 0.6);
+        margin-bottom: 0.5rem;
+        font-size:1.8rem;
+
+    }
+`;
+
+const SectionSubtitle = styled.p`
+color: #2ecc71;
+   font-size: 2rem;
+  margin: 2rem;
+  font-weight: 900;
+  font-family: 'Playfair Display', serif;
+  margin-top: 0rem;
+ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  transform: skew(-5deg); /* Apply a slight skew for a dynamic effect */
+  
+  @media (max-width: 768px) {
+    margin-top: 0rem;
+    font-size: 1.5rem;
+
+  }
+
+`;
 
 const BorderLineTop = styled(motion.div)`
   position: absolute;
@@ -57,7 +111,7 @@ const CardWrapper = styled.div`
   border: 2px solid #ff6b6b; 
   border-radius: 20px;
   padding: 20px;
-  margin-top: 100px;
+  margin-top: 10px;
 `;
 
 const Title = styled.h1`
@@ -249,7 +303,15 @@ const slugify = (text) => {
         animate={{ width: "80%" }}
         transition={{ duration: 0.8, delay: 0.5 }}
       />
-     
+     <SectionContainer>
+
+        <SectionTitle>  Elevate Your Skills with Our Featured Courses
+</SectionTitle>
+<SectionSubtitle>Embark on an Enlightening Educational Journey with EduXcel's Diverse and Comprehensive Course Selection, Meticulously Curated to Equip You with the Skills, Knowledge, and Expertise Needed to Thrive in Your Chosen Field.</SectionSubtitle>
+          
+     <CourseList/>
+     </SectionContainer>
+
     <>
     <CardWrapper>
         <Title>Curated Blog Recommendations</Title>
