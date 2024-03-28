@@ -36,29 +36,10 @@ function CourseList() {
 
   const uniqueCategories = Array.from(new Set(courses.map(course => course.category)));
 
-  const handleCourseCardClick = (clickedCategory) => {
-    if (localStorage.getItem('token')) {
-      const link = "https://eduxcel.vercel.app/";
-      window.open(link, '_blank');
-    } else {
-      toast.info('Please sign in to view the course details', {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        style: {
-          backgroundColor: '#040521',
-          color: 'white',
-          borderRadius: '8px',
-          padding: '12px',
-          fontSize: '16px',
-        }
-      });
-    }
-  };
+ const handleCourseCardClick = () => {
+  const link = "https://eduxcel.vercel.app/";
+  window.open(link, '_blank');
+};
 
   const getImageForCategory = (category) => {
     switch (category) {
