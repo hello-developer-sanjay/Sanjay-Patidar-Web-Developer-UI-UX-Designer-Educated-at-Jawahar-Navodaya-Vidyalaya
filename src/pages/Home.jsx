@@ -22,8 +22,10 @@
 
   import Typed from 'react-typed';
 
-  import profileImage1 from '../assets/ssss.webp';
-  import profileImage2 from '../assets/sixpack.jpeg';
+   import profileImage1 from '../assets/ssss.webp';
+  import profileImage2 from '../assets/profilepic.jpg';
+
+  import profileImage3 from '../assets/sixpack.jpeg';
 
   const HomeContainer = styled(motion.div)`
     display: flex;
@@ -304,7 +306,7 @@ const H3 = styled.h1`
   `;
 
 
-  const images = [profileImage1, profileImage2];
+  const images = [profileImage1, profileImage2,profileImage3];
   let currentImageIndex = 0;
 
   const Introduction = styled(motion.p)`
