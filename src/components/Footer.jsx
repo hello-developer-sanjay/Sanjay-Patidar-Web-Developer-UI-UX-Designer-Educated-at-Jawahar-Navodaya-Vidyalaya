@@ -1,11 +1,18 @@
 import { useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { motion, AnimatePresence } from "framer-motion";
-import { FaLinkedin, FaTwitter, FaInstagram, FaGithub, FaUsers } from "react-icons/fa";
+import { FaLinkedin, FaTwitter, FaInstagram, FaGithub, FaUsers, FaHome, FaBlog, FaBriefcase, FaUserCog, FaChalkboardTeacher, FaFileDownload, FaEnvelope } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "../styles/Sidebar.css";
-import "react-toastify/dist/ReactToastify.css";
+import { useState,  } from 'react';
+import {
+  FaUserGraduate,
+  FaUserTie,
 
+} from 'react-icons/fa';
+
+import "react-toastify/dist/ReactToastify.css";
+import { NavLink } from 'react-router-dom';
 const FooterContainer = styled(motion.footer)`
   position: relative;
   color: white;
@@ -338,12 +345,48 @@ const QueryButton = styled(SubmitButton)`
     }
   }
 `;
+const Text = styled.h1`
+  margin-top: 0rem;;
+  font-size: 1.1rem;
+  text-align: left;
+  letter-spacing: 0.2px; 
+  color: #fff; 
+  padding: 2px 5px; /* Padding to create space around the text */
 
+`;
+const NavigationContainer = styled.nav`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 60%;
+    margin: 0 auto;
+  }
+`;
 
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
+const Link = styled(NavLink)`
+  text-decoration: none;
+  color: #333;
+  margin: 5px 0;
 
+  &:hover {
+    color: #666;
+  }
+`;
 
+const NavHeading = styled.h2`
+  color: #333;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+`;
 
 
 const Footer = () => {
@@ -353,6 +396,30 @@ const Footer = () => {
     "Exploring the Future. Get Involved!",
     "Unlock Knowledge. Engage and Share.",
   ];
+  const getCurrentDate = () => {
+    const currentDate = new Date();
+    const month = currentDate.toLocaleString('default', { month: 'long' });
+    const day = currentDate.getDate();
+    const year = currentDate.getFullYear();
+    return `${month} ${day}, ${year}`;
+  };
+
+  const [isToastVisible, setIsToastVisible] = useState(false);
+
+  const handleCareerInsightsClick = () => {
+    if (!isToastVisible) {
+      toast.info("You're being redirected to explore career insights at Eduxcel...", {
+        autoClose: 2000,
+        onOpen: () => setIsToastVisible(true),
+        onClose: () => setIsToastVisible(false),
+      });
+
+      setTimeout(() => {
+        window.open("https://eduxcel.vercel.app/careers", "_blank");
+      }, 3000); 
+    }
+  };
+
 const footerRef = useRef(null);
   useEffect(() => {
     const options = {
@@ -532,6 +599,77 @@ const footerRef = useRef(null);
       </QueryButton>
       </ContactForm>
       <ToastContainer className="custom-toast-container" position="top-right" />
+
+      <NavigationContainer>
+  <Column>
+    <NavHeading>Main</NavHeading>
+    <NavLink exact to="/">
+      <FaHome /> Home
+    </NavLink>
+    <NavLink to="/blogs">
+      <FaBlog/> Blogs
+    </NavLink>
+    <NavLink to="#" aria-label="Blogs" onClick={handleCareerInsightsClick}>
+      <FaChalkboardTeacher /> Career Insights
+    </NavLink>  
+    <NavLink to="/projects">
+      <FaBriefcase /> Projects
+    </NavLink>
+    <NavLink to="/protected">
+      <FaUserCog /> Admin
+    </NavLink>
+    <NavLink to="/founder-eduxcel">
+      <FaUserTie /> Founder Profile
+    </NavLink>
+   
+  </Column>
+  <Column>
+    <NavHeading>NavLinks</NavHeading>
+    <NavLink to="/skills">
+      <FaBriefcase /> Explore My Skills
+    </NavLink>
+    <NavLink to="/education">
+      <FaUserGraduate/>My  Education
+    </NavLink>
+    <NavLink to="/experiences">
+      <FaBriefcase />View My Experiences
+    </NavLink>
+    <NavLink to="/resume">
+      <FaFileDownload /> Download Resume
+    </NavLink>
+    <NavLink to="/contact">
+      <FaEnvelope />Contact  Me
+    </NavLink>
+  </Column>
+  <Column>  
+    <NavHeading>Certifications</NavHeading>
+    <NavLink to="/certifications">
+      <FaHome /> Certifications Home
+    </NavLink>
+    <NavLink to="/certifications/Django%20Features%20and%20Libraries">
+      <FaGithub/> Django Features and Libraries
+    </NavLink>
+    <NavLink to="/certifications/MERN%3A%20Advanced%20MERN%20Development">
+      <FaChalkboardTeacher /> MERN: Advanced MERN Development
+    </NavLink>
+  </Column>
+</NavigationContainer>
+
+ 
+<Text>Eduxcel provides a diverse range of courses tailored just for you. Don't miss out—register now to discover your perfect fit! <a style={{ color: '#FAF7F7', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer', textDecoration: 'none' }} href='https://eduxcel.vercel.app/signup' target='_blank'>SignUp EduXcel</a> to secure your spot!</Text>
+
+
+<Text>
+</Text>
+<Text>Discover the world of Sanjay Patidar: Innovator, Developer, and Founder. Ready to explore? <a style={{ color: '#FAF7F7', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer', textDecoration: 'none' }} href='https://sanjay-patidar.vercel.app/' target='_blank'>Sanjay Patidar</a> to dive in!</Text>
+<Text>
+  <span style={{ color: '#ffbb00', fontWeight: 'bold', fontSize: '1.2rem' }}>©</span> All rights reserved to&nbsp;
+  <span style={{ fontWeight: 'bold', fontStyle: 'italic', color: '#ffbb00' }}>EduXcel</span> founded by&nbsp;
+  <span style={{ fontWeight: 'bold', color: '#ffbb00' }}>Sanjay Patidar</span><br />
+  <span style={{ fontSize: '0.9rem', color: '#ccc' }}>{getCurrentDate()} | India</span>
+</Text>
+
+
     </FooterContainer>
   );
 };
