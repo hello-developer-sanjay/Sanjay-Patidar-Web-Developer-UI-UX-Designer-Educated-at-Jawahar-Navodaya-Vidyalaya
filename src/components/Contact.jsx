@@ -21,7 +21,7 @@ const Contact = () => {
     }
 
     try {
-      const response = await axios.post('https://portfolio-api-b53a.onrender.com/api/submit-contact', {
+      const response = await axios.post('https://portfolio-back-aruc.onrender.com/api/submit-contact', {
         fullName,
         wantToCollaborate,
         contactNumber,
