@@ -504,7 +504,7 @@ const footerRef = useRef(null);
         successMessage = "Query sent! Await our swift reply, tailored just for you.";
       }
 
-      const response = await fetch(`https://portfolio-api-b53a.onrender.com/api/${endpoint}`, {
+      const response = await fetch(`https://eduxcel-api3-j9a2.onrender.com/api/${endpoint}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
