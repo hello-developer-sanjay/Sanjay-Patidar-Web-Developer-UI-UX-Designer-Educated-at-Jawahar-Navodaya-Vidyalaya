@@ -102,7 +102,7 @@ title: "🙋 What sets Sanjay apart from other entrepreneurs?",
             <div className="flex-container">
       
 
-              <div className="lg:w-1/2 lg:pl-12 why-us-content">
+              <div className="lg:w-1/2 lg:pl-12 why-content">
                 {contentBlocks.map((block, index) => {
                   const [refContent, inViewContent] = useInView({ triggerOnce: true });
                   const controlsContent = useAnimation();
