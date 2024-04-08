@@ -842,20 +842,20 @@ let endpoint = "submit-feedback";
   <Introduction>
   <Next>
   📞 Contact Sanjay Patidar Web Developer <span className="light">📞</span> {' '}
-  <button onClick={() => window.location.href = 'tel:+917987235207'} style={{ marginLeft: '4px', color: '#fff', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer', boxShadow: '0px 0px 10px #ffd700' }}>Call Sanjay Patidar</button>
+  <button onClick={() => window.location.href = 'tel:+917987235207'} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer', boxShadow: '0px 0px 10px #ffd700' }}>Call Sanjay Patidar</button>
 </Next>
     <Next>
     📞 Sanjay Patidar <span className="light">Contact | Mobile Number : </span>{' '}
       <a href="tel:+919131743250" id="contactNumber" style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }}>+91 9131743250</a> 📞 | OR |
       
-      <button onClick={copyContactNumber} style={{ marginLeft: '4px', color: '#fff', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
+      <button onClick={copyContactNumber} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
     </Next>
 
     <Next>
   🔗 <span className="light">Sanjay Patidar Instagram ID : </span>{' '}
   <a href="https://www.instagram.com/sanjay_patidar_mcmxcviii"style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }} id="instaID" target="_blank">sanjay_patidar_mcmxcviii</a>
   {' '} | OR | {' '}
-  <button onClick={copyInstaID} style={{ marginLeft: '4px', color: '#fff', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
+  <button onClick={copyInstaID} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
 </Next>
 
 
