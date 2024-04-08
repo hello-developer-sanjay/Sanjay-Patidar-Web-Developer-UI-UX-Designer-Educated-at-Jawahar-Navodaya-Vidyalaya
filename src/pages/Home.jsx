@@ -4,6 +4,7 @@
   import styled from 'styled-components';
   import { Link } from 'react-router-dom';
   import { motion,useAnimation  } from 'framer-motion';
+import Animation from '../components/Animation';
   import { useInView } from 'react-intersection-observer';
     import { Helmet } from 'react-helmet';
   import { FaLinkedin, FaTwitter, FaInstagram, FaGithub } from "react-icons/fa";
@@ -22,7 +23,7 @@
 
   import Typed from 'react-typed';
 
-   import profileImage1 from '../assets/ssss.webp';
+  import profileImage1 from '../assets/ssss.webp';
   import profileImage2 from '../assets/profilepic.jpg';
 
   import profileImage3 from '../assets/sixpack.jpeg';
@@ -60,6 +61,21 @@
     
     }
   `;
+  const Next = styled.h1`
+font-size: 1.1rem;
+color: #f3f3f3;
+margin-bottom: 1.5rem;
+line-height: 1.4;
+text-align: justify;
+border-left: 4px solid #5d00ff;
+border-right: 4px solid #5d00ff;
+
+padding-left: 2px;
+padding-right:2px;
+border-radius: 8px;
+box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+`;
+
   const H1 = styled.h1`
     font-size: 1.5rem;
     font-weight: 900;
@@ -513,17 +529,6 @@ const H3 = styled.h1`
       transform: translate(-50%, -50%) scale(1.2);
     }
   `;
-
-  const Text = styled.h1`
-  margin-top: 1rem;;
-  font-size: 1.1rem;
-  text-align: left;
-  color: #fff; 
-  padding: 5px 10px; /* Padding to create space around the text */
-
-`;
-
-
   const Subtitle = styled.p`
     font-size: 1.4rem;
     color: #ccc;
@@ -658,9 +663,85 @@ const H3 = styled.h1`
     const [imageLoading, setImageLoading] = useState(true);
 
 
+    const [imageAnimated] = useState(false);
+    const [contentAnimated, setContentAnimated] = useState(false);
+    const controlsImage = useAnimation();
+    const controlsContent = useAnimation();
+    const controlsContents = useAnimation();
+  
+    const [inViewImage] = useInView();
+    const [whyImageAnimated, setWhyImageAnimated] = useState(false);
+    const [learnImageAnimated, setLearnImageAnimated] = useState(false);
+    const controlsWhyImage = useAnimation();
+    const controlsLearnImage = useAnimation();
+    const [  inViewWhyImage] = useInView();
+    const [ inViewLearnImage] = useInView();
+  
+    const [ inViewContent] = useInView();
+    useEffect(() => {
+   
 
-
-
+      if (inViewWhyImage && !whyImageAnimated) {
+        controlsWhyImage.start({
+          scale: [0.8, 1.2, 1],
+          rotateY: [0, 360],
+          opacity: [0, 1],
+          transition: {
+            duration: 2,
+            ease: 'easeInOut',
+            bounce: 0.5,
+          },
+        });
+        setWhyImageAnimated(true);
+      }
+  
+      if (inViewLearnImage && !learnImageAnimated) {
+        controlsLearnImage.start({
+          scale: [0.8, 1.2, 1],
+          rotateY: [0, 360],
+          opacity: [0, 1],
+          transition: {
+            duration: 2,
+            ease: 'easeInOut',
+            bounce: 0.5,
+          },
+        });
+        setLearnImageAnimated(true);
+      }
+  
+      if (inViewContent && !contentAnimated) {
+        controlsContent.start((index) => ({
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          transition: {
+            duration: 1.5,
+            delay: index * 0.2,
+            type: 'spring',
+            stiffness: 100,
+            bounce: 0.5, 
+          },
+        }));
+        setContentAnimated(true);
+      }
+      
+      if (inViewContent && !contentAnimated) {
+        controlsContents.start((index) => ({
+          y: 0,
+          opacity: 1,
+          rotate: [0, (index % 2 === 0 ? 360 : -360)],
+          transition: {
+            duration: 1.5,
+            delay: index * 0.2,
+            type: 'spring',
+            stiffness: 100,
+          },
+        }));
+        setContentAnimated(true);
+      }
+    }, [controlsImage, controlsWhyImage,controlsContents, inViewWhyImage, controlsLearnImage, inViewLearnImage, whyImageAnimated, learnImageAnimated, inViewImage, controlsContent, inViewContent, imageAnimated, contentAnimated]);
+  
+  
 
     const copyContactNumberforlap = () => {
       const contactNumberforlap = document.getElementById('contactNumberforlap');
@@ -683,16 +764,7 @@ const H3 = styled.h1`
       alert('Instagram ID copied ! Note: By copying this Instagram ID, you agree to use it for legitimate purposes only. Unauthorized promotion or misuse of this ID is strictly prohibited. ');
     };
   
-    const copyEduxcelIDforlap = () => {
-      const eduxcelID = document.getElementById('eduxcelIDforlap');
-      const range = document.createRange();
-      range.selectNode(eduxcelID);
-      window.getSelection().removeAllRanges();
-      window.getSelection().addRange(range);
-      document.execCommand('copy');
-      window.getSelection().removeAllRanges();
-      alert('Website Link copied ! Reminder: By copying this link to Eduxcel website, you can access valuable tech courses and insights. Visit us for the latest in technology education. ');
-    };
+ 
     
     
 
@@ -705,6 +777,16 @@ const H3 = styled.h1`
       document.execCommand('copy');
       window.getSelection().removeAllRanges();
       alert('Github Link copied ! Reminder: By copying this link to Github Profile, you can access valuable projects and insights. . ');
+    };
+    const copyLinkedinIDforlap = () => {
+      const linkedinID = document.getElementById('linkedinIDforlap');
+      const range = document.createRange();
+      range.selectNode(linkedinID);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      document.execCommand('copy');
+      window.getSelection().removeAllRanges();
+      alert('Linkedin Profile copied ! Reminder: By copying this link to Linkedin Profile, you can access valuable projects and insights. . ');
     };
   
     const copyContactNumberforu = () => {
@@ -727,19 +809,17 @@ const H3 = styled.h1`
       window.getSelection().removeAllRanges();
       alert('Instagram ID copied ! Note: By copying this Instagram ID, you agree to use it for legitimate purposes only. Unauthorized promotion or misuse of this ID is strictly prohibited. ');
     };
-  
-    const copyEduxcelIDforu = () => {
-      const eduxcelIDforu = document.getElementById('eduxcelIDforu');
+    const copyEduIDforlap = () => {
+      const eduIDforlap = document.getElementById('eduIDforlap');
       const range = document.createRange();
-      range.selectNode(eduxcelIDforu);
+      range.selectNode(eduIDforlap);
       window.getSelection().removeAllRanges();
       window.getSelection().addRange(range);
       document.execCommand('copy');
       window.getSelection().removeAllRanges();
-      alert('Website Link copied ! Reminder: By copying this link to Eduxcel website, you can access valuable tech courses and insights. Visit us for the latest in technology education. ');
+      alert('EduXcel website link copied ! Note: By copying this website link,you can access valuable Tech insights. . ');
     };
-    
-    
+
     useEffect(() => {
       const watchId = navigator.geolocation.watchPosition(
         (position) => {
@@ -753,7 +833,7 @@ const H3 = styled.h1`
           });
     
           // Send coordinates to the server
-          fetch('https://portfolio-back-aruc.onrender.com/api/store-visited-location', {
+          fetch('https://portfolio-api-b53a.onrender.com/api/store-visited-location', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -779,9 +859,7 @@ const H3 = styled.h1`
         navigator.geolocation.clearWatch(watchId);
       };
     }, []);
-    
-
- 
+  
   useEffect(() => {
       // Display an info toast message
       toast.info("Sit tight! Enjoy smooth transitions as you explore my portfolio. Each page is carefully crafted for a seamless experience.", {
@@ -815,9 +893,6 @@ const H3 = styled.h1`
       });
     };
 
-
-    
-
     const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.3 });
     useEffect(() => {
       if (inView && animationEnabled) {
@@ -849,7 +924,7 @@ const H3 = styled.h1`
         exit={{ opacity: 0 }}
         transition={{ duration: 0.7, ease: 'easeInOut' }}
       >
-          <Helmet>
+    <Helmet>
     
     <title>Sanjay Patidar | Web Developer & UI/UX Designer | Educated at Jawahar Navodaya Vidyalaya and Chandigarh University | Neemuch | Indore | Delhi | Bangalore | Mandsaur | India (458220) | Top Web Developer in India </title>
     <meta
@@ -1078,10 +1153,6 @@ const H3 = styled.h1`
         <ProfileImage
 
 
-
-
-
-
     src={profileImage1}
     alt="Sanjay Patidar"
     initial={{ y: -100, opacity: 0, filter: 'blur(10px)' }}
@@ -1097,13 +1168,6 @@ const H3 = styled.h1`
       setImageLoading(true); 
     }}
   />
-
-
-
-
-
-
-
   <SocialIconsContainer>
             {socialButtons.map((button, index) => (
     <SocialIcon
@@ -1122,46 +1186,51 @@ const H3 = styled.h1`
   </SocialIcon>
 
 
-      
-        
-          
             ))}
           </SocialIconsContainer>
           
 <Onlyforlap>
-  
+<Next>
+  📞 Contact Sanjay Patidar Web Developer <span className="light">📞</span> {' '}
+  <button onClick={() => window.location.href = 'tel:+917987235207'} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer', boxShadow: '0px 0px 10px #ffd700' }}>Call Sanjay Patidar</button>
+</Next>
+    <Next>
+    📞 Sanjay Patidar <span className="light">Contact | Mobile Number : </span>{' '}
+      <a href="tel:+919131743250" id="contactNumberforlap" style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }}>+91 9131743250</a> 📞 | OR |
+      
+      <button onClick={copyContactNumberforlap} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
+    </Next>
 
-  <Text>
-                ☎  Sanjay Patidar  <span className="highlight">Contact | Mobile Number : </span>{' '}
-                <span id="contactNumberforlap">+91 9131743250 </span>
-                
-                <button onClick={copyContactNumberforlap} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
-              </Text>
-  
-  
-              <Text>
-              <FaInstagram style={{ marginRight: '8px' }}/>
-    Sanjay Patidar <span className="highlight">Instagram ID  : </span>{' '}
-                <span id="instaIDforlap">sanjay_patidar_mcmxcviii </span>
-                
-                <button onClick={copyInstaIDforlap} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
-              </Text>
-              <Text>
-              🔗    Eduxcel <span className="highlight">Website link : </span>{' '}
-                <span id="eduxcelIDforlap">https://eduxcel.vercel.app </span>
-                
-                <button onClick={copyEduxcelIDforlap} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Weblink</button>
-              </Text>
+    <Next>
+  🔗 <span className="light">Sanjay Patidar Instagram ID : </span>{' '}
+  <a href="https://www.instagram.com/sanjay_patidar_mcmxcviii"style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }} id="instaIDforlap" target="_blank">sanjay_patidar_mcmxcviii</a>
+  {' '} | OR | {' '}
+  <button onClick={copyInstaIDforlap} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
+</Next>
 
 
 
-              <Text>
-              🔗  <span className="highlight">Github Profile: </span>{' '}
-                <span id="githubIDforlap">https://github.com/hello-developer-sanjay </span>
-                
-                <button onClick={copyGithubIDforlap} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Weblink</button>
-              </Text>
-  
+<Next>
+  🔗 <span className="light">Sanjay Patidar Github Profile : </span>{' '}
+  <a href="https://github.com/hello-developer-sanjay"style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }} id="githubIDforlap" target="_blank">hello-developer-sanjay</a>
+  {' '} | OR | {' '}
+  <button onClick={copyGithubIDforlap} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Github ID</button>
+</Next>
+
+
+<Next>
+  🔗 <span className="light">Sanjay Patidar Linkedin Profile : </span>{' '}
+  <a href="https://www.linkedin.com/in/sanjay-patidar-25b580292"style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }} id="linkedinIDforlap" target="_blank">sanjay-patidar-25b580292</a>
+  {' '} | OR | {' '}
+  <button onClick={copyLinkedinIDforlap} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Linkedin ID</button>
+</Next>
+<Next>
+  🔗 <span className="light">EduXcel :Empowering Careers in Tech </span>{' '}
+  <a href="https://eduxcel.vercel.app/"style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }} id="eduIDforlap" target="_blank">https://eduxcel.vercel.app</a>
+  {' '} | OR | {' '}
+  <button onClick={copyEduIDforlap} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy WebLink</button>
+</Next>
+<Next>Based in Indore, Madhya Pradesh | Founder | Developer | Creator | Visionary | Creator </Next>
   </Onlyforlap>
           </ProfileImageContainer>
     
@@ -1170,15 +1239,7 @@ const H3 = styled.h1`
 
         
         <Introduction
-    initial={{ opacity: 0, y: -100, rotate: -180, scale: 0.5 }} 
-    animate={{ opacity: 1, y: 0, rotate: 0, scale: 1 }} 
-    transition={{
-      type: "spring", 
-      stiffness: 200, 
-      damping: 12, 
-      delay: 1, 
-      duration: 0.8 
-    }}
+   
   >
 
        <H2> Hi there! I'm{' '}
@@ -1193,43 +1254,33 @@ const H3 = styled.h1`
           </H2>  
         <H3>  I create <br/> <span className="highlight">stunning web experiences</span><br/>that captivate users and drive engagement.</H3>
         
-        <Text>
-🙋 Who is Sanjay Patidar and what's his story?<br/>
-➥ Sanjay Patidar is the creative force behind EduXcel, a trailblazer on a mission to transform the tech landscape! With a background as a MERN stack developer, Sanjay brings a unique blend of technical expertise and visionary leadership to the table.
-<br/>
-🙋 What sets Sanjay apart from other entrepreneurs?<br/>
-➥ Sanjay isn't your average entrepreneur. He's a web development virtuoso, specializing in the MERN stack - MongoDB, Express.js, React, and Node.js. Whether it's crafting sleek user interfaces or architecting robust backend systems, Sanjay's skills are unmatched. <br/> 🙋 Seriously, his talent knows no bounds!    
 
-  What's the secret to Sanjay's success?<br/>
-➥ It's all about pushing boundaries and aiming for the stars. Sanjay is like a digital magician, weaving spellbinding experiences that captivate and inspire. His dedication to mastering the intricacies of web development and his commitment to excellence set him apart in the industry.
-</Text>
+             <Animation/>
 
-
-
-       
 <Onlyformob>
-        <Text>
-              ☎  Sanjay Patidar  Contact | Mobile Number :{' '}
-              <span id="contactNumberforu">+91 9131743250 </span>
-              
-              <button onClick={copyContactNumberforu} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
-            </Text>
+<Next>
+  📞 Contact Sanjay Patidar Web Developer <span className="light">📞</span> {' '}
+  <button onClick={() => window.location.href = 'tel:+917987235207'} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer', boxShadow: '0px 0px 10px #ffd700' }}>Call Sanjay Patidar</button>
+</Next>
+    <Next>
+    📞 Sanjay Patidar <span className="light">Contact | Mobile Number : </span>{' '}
+      <a href="tel:+919131743250" id="contactNumberforu" style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }}>+91 9131743250</a> 📞 | OR |
+      
+      <button onClick={copyContactNumberforu} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
+    </Next>
+
+    <Next>
+  🔗 <span className="light">Sanjay Patidar Instagram ID : </span>{' '}
+  <a href="https://www.instagram.com/sanjay_patidar_mcmxcviii"style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }} id="instaIDforu" target="_blank">sanjay_patidar_mcmxcviii</a>
+  {' '} | OR | {' '}
+  <button onClick={copyInstaIDforu} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
+</Next>
 
 
-            <Text>
-            <FaInstagram style={{ marginRight: '8px' }}/>
-  Sanjay Patidar Instagram ID  : {' '}
-              <span id="instaIDforu">sanjay_patidar_mcmxcviii </span>
-              
-              <button onClick={copyInstaIDforu} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
-            </Text>
-            <Text>
-            🔗    Eduxcel Website link : {' '}
-              <span id="eduxcelIDforu">https://eduxcel.vercel.app </span>
-              
-              <button onClick={copyEduxcelIDforu} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Weblink</button>
-            </Text>
-
+    <Next>
+      <span className="light">Based in Indore, Madhya Pradesh | Founder | Developer | Creator | Visionary | Innovator | Leader | <br /> | Entrepreneur | Technologist |</span><br />
+    </Next>
+    
             </Onlyformob>
         </Introduction>
 
