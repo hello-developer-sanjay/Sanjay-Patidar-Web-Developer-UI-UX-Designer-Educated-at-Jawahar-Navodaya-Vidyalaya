@@ -55,7 +55,7 @@ const AppRouter = () => {
       <Route path="/:vision/*" element={<BlogPost/>} />
         <Route path="/education" element={<PageTransition><Education /></PageTransition>} />
         <Route path="/protected" element={<PageTransition><ProtectedPage /></PageTransition>} />
-        <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+        <Route path="/contact" element={<Contact />}/>
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
         <Route path="/careers/*" element={<Career />} />
 
