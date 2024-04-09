@@ -2,6 +2,10 @@
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+
+
+   <!-- projects -->
+
    <url>
     <loc>https://sanjay-patidar.vercel.app/projects</loc>
     <lastmod>2023-01-02</lastmod>
@@ -20,10 +24,20 @@
     <loc>https://sanjay-patidar.vercel.app/projects/mobile</loc>
     <lastmod>2023-01-03</lastmod>
   </url>
-  <url>
-    <loc>https://sanjay-patidar.vercel.app/api/projects/details/6505a550d1e96d17df4fe123</loc>
-    <lastmod>2023-01-02</lastmod>
+<url>
+    <loc>https://sanjay-patidar.vercel.app/project/eduxcel-empowering-careers-in-tech-expert-insights-cutting-edge-education-and-skill-mastery</loc>
+    <lastmod>2023-01-03</lastmod>
   </url>
+
+    <url>
+    <loc>https://sanjay-patidar.vercel.app/project/rentride-your-car-rental-platform</loc>
+    <lastmod>2023-01-03</lastmod>
+  </url>
+  <url>
+    <loc>https://sanjay-patidar.vercel.app/project/property-rent-website-checkhere</loc>
+    <lastmod>2023-01-03</lastmod>
+  </url>
+   
   <url>
     <loc>https://sanjay-patidar.vercel.app/blogs</loc>
     <lastmod>2023-01-04</lastmod>
@@ -43,7 +57,12 @@
     <loc>https://sanjay-patidar.vercel.app/education</loc>
     <lastmod>2023-01-06</lastmod>
   </url>
+
+      <!-- certifications -->
+
   <url>
+
+     
     <loc>https://sanjay-patidar.vercel.app/certifications</loc>
     <lastmod>2023-01-07</lastmod>
   </url>
@@ -141,10 +160,7 @@
   </url>
 
    
-       <url>
-    <loc>https://sanjay-patidar.vercel.app/careers/Exploring%20the%20Career%20Path%20of%20a%20Web%20Developer%3A%20Insights%2C%20Responsibilities%2C%20Skills%2C%20and%20Opportunities</loc>
-    <lastmod>2023-02-18</lastmod>
-  </url>
+      
 
 
   
