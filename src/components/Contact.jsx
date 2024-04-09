@@ -1019,7 +1019,7 @@ let endpoint = "submit-feedback";
           <Onlyforlap>
 <Next>
   📞 Contact Sanjay Patidar Web Developer <span className="light">📞</span> {' '}
-  <button onClick={() => window.location.href = 'tel:+917987235207'} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer', boxShadow: '0px 0px 10px #ffd700' }}>Call Sanjay Patidar</button>
+  <button onClick={() => window.location.href = 'tel:+919131743250'} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer', boxShadow: '0px 0px 10px #ffd700' }}>Call Sanjay Patidar</button>
 </Next>
     <Next>
     📞 Sanjay Patidar <span className="light">Contact | Mobile Number : </span>{' '}
