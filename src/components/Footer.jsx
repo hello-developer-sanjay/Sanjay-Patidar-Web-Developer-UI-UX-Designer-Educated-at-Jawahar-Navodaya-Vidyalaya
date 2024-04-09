@@ -203,36 +203,8 @@ const FooterButton = styled(motion.button)`
   margin-top: 1rem;
 `;
 
-const ContactForm = styled(motion.form)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  margin-top: 0.5rem;
-  padding: 1.5rem;
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 15px;
-  width: 100%;
-  max-width: 500px;
 
-    border: 2px solid #ff6b6b; 
 
-`;
-
-const ContactInput = styled.input`
-  padding: 1rem;
-  border: 1px solid #555;
-  border-radius: 5px;
-  width: 100%;
-  font-size: 1rem;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.5);
-  transition: background-color 0.3s ease;
-
-  &:hover, &:focus {
-    background-color: rgba(0, 0, 0, 0.7);
-  }
-`;
 
 const NavigationContainer = styled.nav`
   display: flex;
@@ -715,60 +687,7 @@ useEffect(() => {
   ];
   const [imageLoading, setImageLoading] = useState(true);
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const name = formData.get("name");
-    const email = formData.get("email");
-    const feedback = formData.get("message");
-    const query = formData.get("query");
-
-    if (!name || !email) {
-      toast.error("Please provide your name and email.");
-      return;
-    }
-
-    if (!feedback && !query) {
-      toast.error("Please provide either feedback or a query.");
-      return;
-    }
-
-    try {
-let endpoint = "submit-feedback";
-      let successMessage = "Feedback submitted successfully! Thank you for your feedback.";
-
-      if (query) {
-        endpoint = "submit-query";
-        successMessage = "Query sent! Await our swift reply, tailored just for you.";
-      }
-
-      const response = await fetch(`https://eduxcel-api3.onrender.com/api/${endpoint}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          feedback: feedback || query,
-          query,
-        }),
-      });
-
-      const responseData = await response.json();
-
-      if (response.ok) {
-        toast.success(successMessage);
-      } else {
-        console.error("Error submitting feedback/query");
-        toast.error("Error submitting feedback/query. Please try again later.");
-      }
-    } catch (error) {
-      console.error("Error submitting feedback/query:", error);
-      toast.error("Error submitting feedback/query. Please try again later.");
-    }
-  };
-
+ 
   return (
     <FooterContainer id="footer">
  
@@ -842,7 +761,7 @@ let endpoint = "submit-feedback";
   <Introduction>
   <Next>
   📞 Contact Sanjay Patidar Web Developer <span className="light">📞</span> {' '}
-  <button onClick={() => window.location.href = 'tel:+919131743250'} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer', boxShadow: '0px 0px 10px #ffd700' }}>Call Sanjay Patidar</button>
+  <button onClick={() => window.location.href = 'tel:+917987235207'} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer', boxShadow: '0px 0px 10px #ffd700' }}>Call Sanjay Patidar</button>
 </Next>
     <Next>
     📞 Sanjay Patidar <span className="light">Contact | Mobile Number : </span>{' '}
@@ -871,28 +790,7 @@ let endpoint = "submit-feedback";
 
   
 
-      <ContactForm
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        onSubmit={handleFormSubmit}
-      >
-        <ContactInput type="text" name="name" placeholder="Your Name" />
-        <ContactInput type="email" name="email" placeholder="Your Email" />
-        <ContactTextArea
-          name="message"
-          rows="5"
-          placeholder="Write your feedback here..."
-        />
-        <QueryInput
-          name="query"
-          rows="5"
-          placeholder="Have a question? Write your query here..."
-        />
-       <QueryButton type="submit" aria-label="Submit feedback or query form">
-        Submit
-      </QueryButton>
-      </ContactForm>
+   
       <NavigationContainer>
   <Column>
     <NavHeading>Main</NavHeading>
@@ -951,11 +849,6 @@ let endpoint = "submit-feedback";
 
 
 
-      <ToastContainer
-  className="custom-toast-container"
-  position="top-right"
-  style={{ marginTop: '100px' }}
-/>
 
 
 
