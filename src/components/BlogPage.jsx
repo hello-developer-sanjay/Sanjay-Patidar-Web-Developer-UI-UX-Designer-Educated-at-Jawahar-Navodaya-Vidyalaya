@@ -67,7 +67,7 @@ const BlogPage = () => {
     useEffect(() => {
         async function fetchCareers() {
             try {
-                const response = await axios.get('https://portfolio-forblogs-zdl0.onrender.com/api/journals');
+                const response = await axios.get('https://portfolio-api-13april.onrender.com/api/journals');
                 setCareerData(response.data);
             } catch (error) {
                 console.error('Error fetching courses:', error);
