@@ -14,12 +14,12 @@ function BlogList() {
       try {
         let response;
         if (!vision || vision === 'all') {
-          response = await axios.get('https://portfolio-forblogs-zdl0.onrender.com/api/vision/all');
+          response = await axios.get('https://portfolio-api-13april.onrender.com/api/vision/all');
         } else {
-          response = await axios.get(`https://portfolio-forblogs-zdl0.onrender.com/api/vision/${vision}`);
+          response = await axios.get(`https://portfolio-api-13april.onrender.com/api/vision/${vision}`);
         }
         if (!response) {
-          response = await axios.get('https://portfolio-forblogs-zdl0.onrender.com/api/vision');
+          response = await axios.get('https://portfolio-api-13april.onrender.com/api/vision');
         }
         setJournals(response.data);
       } catch (error) {
