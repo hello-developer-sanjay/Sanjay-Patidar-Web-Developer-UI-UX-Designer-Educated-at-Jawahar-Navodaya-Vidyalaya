@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const StyledWrapper = styled.div`
   max-width: 800px;
+  background-color: #B786C5;
   margin: 0 auto;
   padding: 20px;
   min-height: 50vh;
