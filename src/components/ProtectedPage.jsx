@@ -10,8 +10,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const StyledWrapper = styled.div`
-  max-width: 800px;
-  background-color: #B786C5;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
   min-height: 50vh;
@@ -166,7 +165,78 @@ const StyledButton = styled.button`
     box-shadow: 0 10px 20px rgba(47, 47, 47, 0.3);
   }
 `;
+const DashboardHeading = styled.h1`
+  font-size: 2.5rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 2rem;
+`;
 
+const UserWantToCollaborate = styled.p`
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 1rem;
+`;
+
+const UserDetailsList = styled.ul`
+  list-style-type: none;
+  padding: 0;
+`;
+
+const UserProfileList = styled.ul`
+  list-style-type: none;
+  padding: 0;
+`;
+
+const FeedbacksHeading = styled.h1`
+  font-size: 2rem;
+  color: #ff6b6b;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+`;
+
+const FeedbacksList = styled.ul`
+  list-style-type: none;
+  padding: 0;
+`;
+
+const QueriesHeading = styled.h1`
+  font-size: 2rem;
+  color: #6b7fff;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+`;
+
+const QueriesList = styled.ul`
+  list-style-type: none;
+  padding: 0;
+`;
+
+const UserVisitedLocationsHeading = styled.h1`
+  font-size: 2rem;
+  color: #66cccc;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+`;
+
+const UserVisitedLocationsList = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  
+`;
+
+export {
+  DashboardHeading,
+  UserWantToCollaborate,
+  UserDetailsList,
+  UserProfileList,
+  FeedbacksHeading,
+  FeedbacksList,
+  QueriesHeading,
+  QueriesList,
+  UserVisitedLocationsHeading,
+  UserVisitedLocationsList,
+};
 
 const UnlockButton = styled.button`
   margin-left: 10px;
@@ -571,27 +641,23 @@ const ProtectedPage = () => {
           </>
         ) : (
           <>
-            {/* Display user details along with feedbacks and queries */}
-            <h1>Dashboard</h1>
-            <p>User wantToCollaborate:</p>
-          <ul>
-
+          <DashboardHeading>Dashboard</DashboardHeading>
+          <UserWantToCollaborate>User wantToCollaborate:</UserWantToCollaborate>
+          <UserDetailsList>
             {userDetails.map((user) => (
               <li key={user._id.$oid}>
                 <strong>Full Name: {user.fullName}</strong>
-                <p>Want to Collaborate: {user.wantToCollaborate ? 'Yes' : 'No'}</p>
-                <p>Contact Number: {user.contactNumber}</p>
+                <li>Want to Collaborate: {user.wantToCollaborate ? 'Yes' : 'No'}</li>
+                <li>Contact Number: {user.contactNumber}</li>
               </li>
             ))}
-          </ul>
-            <p>User Details:</p>
-
-          <ul>
+          </UserDetailsList>
+          <UserProfileList>
             {userProfiles.map((profile) => (
               <li key={profile._id.$oid}>
                 <strong>Email: {profile.email}</strong>
-                <p>Username: {profile.username}</p>
-                <p>Last Sign In: {profile.lastSignInAt}</p>
+                <li>Username: {profile.username}</li>
+                <li>Last Sign In: {profile.lastSignInAt}</li>
                 {/* Display map with location coordinates */}
                 <MapContainer
                   center={[profile.location.coordinates[1], profile.location.coordinates[0]]}
@@ -613,9 +679,9 @@ const ProtectedPage = () => {
                 </MapContainer>
               </li>
             ))}
-          </ul>
-            <h1>Feedbacks</h1>
-          <ul>
+          </UserProfileList>
+          <FeedbacksHeading>Feedbacks</FeedbacksHeading>
+          <FeedbacksList>
             {feedbacks.map((feedback) => (
               <li key={feedback._id}>
                 <strong>UserName: {feedback.name} || Email id :{' '}
@@ -624,10 +690,9 @@ const ProtectedPage = () => {
                 {feedback.feedback}
               </li>
             ))}
-          </ul>
-
-          <h1>Queries</h1>
-          <ul>
+          </FeedbacksList>
+          <QueriesHeading>Queries</QueriesHeading>
+          <QueriesList>
             {queries.map((query) => (
               <li key={query._id} className={query.resolved ? 'resolved' : ''}>
                 <strong>UserName: {query.name} || Email id :{' '}
@@ -641,23 +706,20 @@ const ProtectedPage = () => {
                 )}
               </li>
             ))}
-          </ul>
-          <h1>User Visited Locations</h1>
-          <ul>
+          </QueriesList>
+          <UserVisitedLocationsHeading>User Visited Locations</UserVisitedLocationsHeading>
+          <UserVisitedLocationsList>
             {userVisitedLocations.map((location) => (
               <li key={location._id}>
                 <strong>User ID: {location.userId}</strong>
-                           <p>IP Address: {location.ip}</p>
-      
-            <p>Fingerprint: {location.fingerprint}</p>
-            <p>Browser: {location.userAgentDetails.browser}</p>
-            <p>Version: {location.userAgentDetails.version}</p>
-            <p>OS: {location.userAgentDetails.os}</p>
-            <p>Platform: {location.userAgentDetails.platform}</p>
-            <p>Source: {location.userAgentDetails.source}</p>
-
-                 <p>visitedAt : {location.visitedAt}</p>
-
+                <li>IP Address: {location.ip}</li>
+                <li>Fingerprint: {location.fingerprint}</li>
+                <li>Browser: {location.userAgentDetails.browser}</li>
+                <li>Version: {location.userAgentDetails.version}</li>
+                <li>OS: {location.userAgentDetails.os}</li>
+                <li>Platform: {location.userAgentDetails.platform}</li>
+                <li>Source: {location.userAgentDetails.source}</li>
+                <li>visitedAt : {location.visitedAt}</li>
                 <MapContainer
                   center={[location.location.coordinates[1], location.location.coordinates[0]]}
                   zoom={13}
@@ -678,8 +740,7 @@ const ProtectedPage = () => {
                 </MapContainer>
               </li>
             ))}
-          </ul>
-
+          </UserVisitedLocationsList>
         </>
       )}
     </StyledWrapper>
