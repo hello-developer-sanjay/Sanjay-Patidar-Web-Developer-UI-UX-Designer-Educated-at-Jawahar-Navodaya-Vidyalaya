@@ -158,7 +158,7 @@ padding: 1rem;
 
 
 const Resume = () => {
-  const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Developer-Resume/Sanjay-Patidar-Web-Developer-RESUME.pdf';
+  const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Developer-Resume/Sanjay-Patidar_RESUME-Web-Developer.pdf';
   const [downloadCount, setDownloadCount] = useState(0);
   const [loading, setLoading] = useState(false);
 
