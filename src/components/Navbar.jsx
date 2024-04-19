@@ -402,7 +402,7 @@ const handleCareerInsightsClick = () => {
 
       setTimeout(() => {
         window.open("https://eduxcel.vercel.app/careers", "_blank");
-      }, 3000); 
+      }, 1000); 
     }
   };
 
