@@ -387,17 +387,17 @@ const HamburgerMenu = styled.div`
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);   
-  const [isToastVisible, setIsToastVisible] = useState(false);
+  const [isToastVisibles, setIsToastVisibles] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 const handleCareerInsightsClick = () => {
-    if (!isToastVisible) {
+    if (!isToastVisibles) {
       toast.info("You're being redirected to explore career insights at Eduxcel...", {
         autoClose: 2000,
-        onOpen: () => setIsToastVisible(true),
-        onClose: () => setIsToastVisible(false),
+        onOpen: () => setIsToastVisibles(true),
+        onClose: () => setIsToastVisibles(false),
       });
 
       setTimeout(() => {
