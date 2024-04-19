@@ -1246,8 +1246,8 @@ const H3 = styled.h1`
           <TypedText>
             <Typed
               strings={['Sanjay Patidar', 'a Web Developer', 'a UI/UX Designer']}
-              typeSpeed={60}
-              backSpeed={40}
+              typeSpeed={80}
+              backSpeed={60}
               loop
             />
           </TypedText>
