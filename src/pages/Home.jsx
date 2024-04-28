@@ -955,7 +955,7 @@ const H3 = styled.h1`
     <script type="application/ld+json">
        {JSON.stringify({
          '@context': 'http://schema.org',
-         '@type': 'ItemList',
+         '@type': 'Person',
          "name": "Sanjay Patidar",
          "birthDate": "1998-07-01",
          "birthPlace": {
