@@ -11,6 +11,8 @@ import Animation from '../components/Animation';
   import DuckImage from "../assets/duck4.gif";
   import unlock from "../assets/unlock.gif";
   import { toast } from 'react-toastify';
+  import Rating from '../components/Rating';
+
   import 'react-toastify/dist/ReactToastify.css';
   import {
     FaArrowRight,
@@ -214,9 +216,9 @@ const H3 = styled.h1`
 
 
   const ProfileImage = styled(motion.img)`
-    width: 400px;
-    height: 400px;
-    margin-top: 4rem;
+    width: 380px;
+    height: 380px;
+    margin-top: 1rem;
 
     border-radius: 50%;
     box-shadow: 0 0 10px rgba(255, 165, 0, 0.8), 0 0 20px rgba(255, 165, 0, 0.6);
@@ -278,8 +280,8 @@ const H3 = styled.h1`
 
 
     @media (max-width: 768px) {
-      width: 180px;
-      height: 180px;
+      width: 160px;
+      height: 160px;
     margin-top : 1rem;
   }
 
@@ -330,8 +332,8 @@ const H3 = styled.h1`
     line-height: 1.5;
     max-width: 800px;
     text-align: center;
-    margin-top : 1rem;
-    margin-bottom: 1rem;
+    margin-top : 0rem;
+    margin-bottom: 10rem;
     color: #ffffff; /* White on hover */
 
     
@@ -391,6 +393,7 @@ const H3 = styled.h1`
     @media (max-width: 768px) {
     margin-top:1rem;
     font-size: 1.5rem;
+    margin-bottom: 0rem;
 
     }
   `;
@@ -439,6 +442,12 @@ const H3 = styled.h1`
     }
 
     @media (max-width: 768px) {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+
+    }
+
+    @media (max-width: 900px) {
       font-size: 1.2rem;
       margin-bottom: 1rem;
 
@@ -1168,6 +1177,7 @@ const H3 = styled.h1`
       setImageLoading(true); 
     }}
   />
+ 
   <SocialIconsContainer>
             {socialButtons.map((button, index) => (
     <SocialIcon
@@ -1187,6 +1197,7 @@ const H3 = styled.h1`
 
 
             ))}
+
           </SocialIconsContainer>
           
 <Onlyforlap>
@@ -1232,10 +1243,13 @@ const H3 = styled.h1`
 </Next>
 <Next>Based in Indore, Madhya Pradesh | Founder | Developer | Creator | Visionary | Creator </Next>
   </Onlyforlap>
+  <Rating/>
+
           </ProfileImageContainer>
     
       
         <ProfileTextContainer>
+
 
         
         <Introduction
