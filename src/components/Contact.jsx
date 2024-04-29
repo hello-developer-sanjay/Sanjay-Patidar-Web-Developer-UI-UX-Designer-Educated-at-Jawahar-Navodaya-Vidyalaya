@@ -1,14 +1,15 @@
 import  { useEffect } from 'react';
 import profileImage1 from '../assets/ssss.webp';
 import { Helmet } from 'react-helmet';
+import Review from './Review';
+import Rating from '../components/Rating';
 
 import styled, { keyframes } from 'styled-components';
 import { motion, AnimatePresence,  } from "framer-motion";
-import { FaLinkedin,FaUserTie ,FaUserGraduate , FaTwitter, FaInstagram, FaGithub, FaUsers, FaHome, FaBlog, FaBriefcase, FaUserCog, FaChalkboardTeacher, FaFileDownload, FaEnvelope } from "react-icons/fa";
+import { FaLinkedin,FaTwitter, FaInstagram, FaGithub, FaUsers } from "react-icons/fa";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 
 const FooterContainer = styled(motion.footer)`
@@ -32,15 +33,7 @@ const FooterContainer = styled(motion.footer)`
   /* Optional: Add animation or transition properties for a dynamic effect */
   transition: background 0.3s ease-in-out;
 `;
-const Text = styled.h1`
-  margin-top: 0rem;;
-  font-size: 1.1rem;
-  text-align: left;
-  letter-spacing: 0.2px; 
-  color: #fff; 
-  padding: 2px 5px; /* Padding to create space around the text */
 
-`;
 
 const BorderLineTop = styled(motion.div)`
   position: absolute;
@@ -236,23 +229,7 @@ const ContactInput = styled.input`
   }
 `;
 
-const NavigationContainer = styled.nav`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-gap : 2rem;
-  @media (min-width: 768px) {
-    flex-direction: row;
-    justify-content: space-between;
-    width: 60%;
-    margin: 0 auto;
-  }
-`;
 
-const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 
 const FlexContainer = styled.div`
   display: flex;
@@ -279,7 +256,7 @@ const ProfileImage = styled(motion.img)`
   width: 350px;
   height: 350px;
   margin-top: 2rem;
-  margin-left: 10rem;
+  margin-left: 2rem;
 
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(255, 165, 0, 0.8), 0 0 20px rgba(255, 165, 0, 0.6);
@@ -455,7 +432,7 @@ const QueryButton = styled(SubmitButton)`
   color: white;
   border: none;
   border-radius: 30px;
-  padding: 10px 25px;
+  padding: 6px 10px;
   font-size: 1.3rem;
   cursor: pointer;
   font-family: 'Roboto', sans-serif;
@@ -533,11 +510,7 @@ margin-left: 0.2rem;
   }
 `;
 
-const NavHeading = styled.h2`
-  color: #333;
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-`;
+
 
 
 
@@ -547,9 +520,7 @@ const NavHeading = styled.h2`
 const Footer = () => {
   const catchyMessages = [
     "Stay Curious. Connect with Us!",
-    "Exploring the Future. Get Involved!",
   ];
-  const [isToastVisible, setIsToastVisible] = useState(false);
   const copyContactNumberforlap = () => {
     const contactNumberforlap = document.getElementById('contactNumberforlap');
     const range = document.createRange();
@@ -606,26 +577,7 @@ const Footer = () => {
     alert('EduXcel website link copied ! Note: By copying this website link,you can access valuable Tech insights. . ');
   };
 
-  const handleCareerInsightsClick = () => {
-    if (!isToastVisible) {
-      toast.info("Please wait! You're now being redirected to delve into Blog insights on Sanjay Patidar's Portfolio Website...", {
-        autoClose: 3000,
-        onOpen: () => setIsToastVisible(true),
-        onClose: () => setIsToastVisible(false),
-      });
-
-      setTimeout(() => {
-        window.open("https://sanjay-patidar.vercel.app/blogs", "_blank");
-      }, 3000); 
-    }
-  };
-  const getCurrentDate = () => {
-    const currentDate = new Date();
-    const month = currentDate.toLocaleString('default', { month: 'long' });
-    const day = currentDate.getDate();
-    const year = currentDate.getFullYear();
-    return `${month} ${day}, ${year}`;
-  };
+ 
 
 useEffect(() => {
   const options = {
@@ -956,11 +908,6 @@ let endpoint = "submit-feedback";
         animate={{ width: "80%" }}
         transition={{ duration: 0.8, delay: 0.5 }}
       />
-      <BorderLineBottom
-        initial={{ width: 0 }}
-        animate={{ width: "80%" }}
-        transition={{ duration: 0.8, delay: 0.5 }}
-      />
       <CatchyMessage>
         {getRandomCatchyMessage()}
       </CatchyMessage>
@@ -1059,6 +1006,9 @@ let endpoint = "submit-feedback";
 </Next>
 <Next>Based in Indore, Madhya Pradesh | Founder | Developer | Creator | Visionary | Creator </Next>
   </Onlyforlap>
+
+  <Rating/>
+
 </FlexContainer>
 
 
@@ -1086,60 +1036,6 @@ let endpoint = "submit-feedback";
         Submit
       </QueryButton>
       </ContactForm>
-      <NavigationContainer>
-  <Column>
-    <NavHeading>Main</NavHeading>
-    <NavLink exact to="/">
-      <FaHome /> Home
-    </NavLink>
-    <NavLink to="/blogs">
-      <FaBlog/> Blogs
-    </NavLink>
-    <NavLink to="#" aria-label="Blogs" onClick={handleCareerInsightsClick}>
-      <FaChalkboardTeacher /> Career Insights
-    </NavLink>  
-    <NavLink to="/projects">
-      <FaBriefcase /> Projects
-    </NavLink>
-    <NavLink to="/protected">
-      <FaUserCog /> Admin
-    </NavLink>
-    <NavLink to="/founder-eduxcel">
-      <FaUserTie /> Founder Profile
-    </NavLink>
-   
-  </Column>
-  <Column>
-    <NavHeading>NavLinks</NavHeading>
-    <NavLink to="/skills">
-      <FaBriefcase /> Explore My Skills
-    </NavLink>
-    <NavLink to="/education">
-      <FaUserGraduate/>My  Education
-    </NavLink>
-    <NavLink to="/experiences">
-      <FaBriefcase />View My Experiences
-    </NavLink>
-    <NavLink to="/resume">
-      <FaFileDownload /> Download Resume
-    </NavLink>
-    <NavLink to="/contact">
-      <FaEnvelope />Contact  Me
-    </NavLink>
-  </Column>
-  <Column>  
-    <NavHeading>Certifications</NavHeading>
-    <NavLink to="/certifications">
-      <FaHome /> Certifications Home
-    </NavLink>
-    <NavLink to="/certifications/Django%20Features%20and%20Libraries">
-      <FaGithub/> Django Features and Libraries
-    </NavLink>
-    <NavLink to="/certifications/MERN%3A%20Advanced%20MERN%20Development">
-      <FaChalkboardTeacher /> MERN: Advanced MERN Development
-    </NavLink>
-  </Column>
-</NavigationContainer>
 
 
 
@@ -1150,20 +1046,8 @@ let endpoint = "submit-feedback";
   style={{ marginTop: '100px' }}
 />
 
+<Review/> 
 
-
-
-
-
-<Text>
-</Text>
-<Text>Discover the world of Sanjay Patidar: Innovator, Developer, and Founder. Ready to explore? <a style={{ color: '#FAF7F7', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer', textDecoration: 'none' }} href='https://sanjay-patidar.vercel.app/' target='_blank'>Sanjay Patidar</a> to dive in!</Text>
-<Text>
-  <span style={{ color: '#ffbb00', fontWeight: 'bold', fontSize: '1.2rem' }}>©</span> All rights reserved to&nbsp;
-  <span style={{ fontWeight: 'bold', fontStyle: 'italic', color: '#ffbb00' }}>EduXcel</span> founded by&nbsp;
-  <span style={{ fontWeight: 'bold', color: '#ffbb00' }}>Sanjay Patidar</span><br />
-  <span style={{ fontSize: '0.9rem', color: '#ccc' }}>{getCurrentDate()} | India</span>
-</Text>
     </FooterContainer>
   );
 };
