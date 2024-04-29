@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Starstar = () => {
-  const [star, setstar] = useState(() => {
-    const storedstar = localStorage.getItem('star');
-    return storedstar ? parseFloat(storedstar) : 0;
+  const [star, setStar] = useState(() => {
+    const storedStar = localStorage.getItem('star');
+    return storedStar ? parseFloat(storedStar) : 0;
   });
-  const [hoverstar, setHoverstar] = useState(0);
+  const [hoverStar, setHoverStar] = useState(0);
   const [usersCount, setUsersCount] = useState(0);
-  const [averagestar, setAveragestar] = useState(0);
+  const [averageStar, setAverageStar] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,9 +16,8 @@ const Starstar = () => {
         const response = await axios.get('https://portfolio-api-14april.onrender.com/stars');
         const { data } = response;
         setUsersCount(data.length);
-        setAveragestar(
-          data.reduce((sum, star) => sum + star.star, 0) / data.length
-        );
+        const totalStars = data.reduce((sum, star) => sum + star.star, 0);
+        setAverageStar(data.length > 0 ? totalStars / data.length : 0);
       } catch (error) {
         console.error('Error fetching stars:', error);
       }
@@ -28,9 +27,9 @@ const Starstar = () => {
   }, []);
 
   const handleStarClick = async (starIndex) => {
-    const newstar = starIndex === star ? 0 : starIndex;
-    setstar(newstar);
-    localStorage.setItem('star', newstar);
+    const newStar = starIndex === star ? 0 : starIndex;
+    setStar(newStar);
+    localStorage.setItem('star', newStar);
   
     try {
       const currentUser = localStorage.getItem('currentUser');
@@ -41,22 +40,22 @@ const Starstar = () => {
   
       await axios.post('https://portfolio-api-14april.onrender.com/stars', {
         userId: localStorage.getItem('currentUser'),
-        star: newstar,
+        star: newStar,
       });
   
-      const response = await axios.get('https://portfolio-api-14april.onrender.com/stars ');
+      const response = await axios.get('https://portfolio-api-14april.onrender.com/stars');
       const { data } = response;
       setUsersCount(data.length);
-      setAveragestar(
-        data.reduce((sum, star) => sum + star.star, 0) / data.length
-      );
+      const totalStars = data.reduce((sum, star) => sum + star.star, 0);
+      setAverageStar(data.length > 0 ? totalStars / data.length : 0);
   
       // Update current star display
-      setstar(newstar); // Update the current star to the new star
+      setStar(newStar); // Update the current star to the new star
     } catch (error) {
       console.error('Error updating stars:', error);
     }
   };
+
   const renderStars = (starValue) => {
     const starCount = Math.round(starValue); // Round the star value to the nearest whole number
     const stars = [];
@@ -71,12 +70,13 @@ const Starstar = () => {
 
     return stars;
   };
+
   const handleStarHover = (starIndex) => {
-    setHoverstar(starIndex);
+    setHoverStar(starIndex);
   };
 
   const handleStarLeave = () => {
-    setHoverstar(0);
+    setHoverStar(0);
   };
 
   return (
@@ -88,33 +88,29 @@ const Starstar = () => {
         const starValue = index + 1;
         return (
           <span
-          key={index}
-          style={{
-            cursor: 'pointer',
-            fontSize: '24px', // Adjust size as needed
-            color: starValue <= (hoverstar || star) ? '#ffd700' : '#808080', // Use gold color for filled stars and gray color for empty stars
-          }}
-          onClick={() => handleStarClick(starValue)}
-          onMouseEnter={() => handleStarHover(starValue)}
-        >
-          {starValue <= (hoverstar || star) ? '★' : '☆'}
-        </span>
-        
+            key={index}
+            style={{
+              cursor: 'pointer',
+              fontSize: '24px', // Adjust size as needed
+              color: starValue <= (hoverStar || star) ? '#ffd700' : '#808080', // Use gold color for filled stars and gray color for empty stars
+            }}
+            onClick={() => handleStarClick(starValue)}
+            onMouseEnter={() => handleStarHover(starValue)}
+          >
+            {starValue <= (hoverStar || star) ? '★' : '☆'}
+          </span>
         );
       })}
       {/* Stars for average star */}
-     
-      {/* Your existing code for displaying user's star, total users, and overall star */}
-      <p>My star: {hoverstar || star}/5</p>
-      <div style={{ marginTop: '10px' }}>
-        {renderStars(averagestar)}
-        <span style={{ marginLeft: '10px' }}>{isNaN(averagestar) ? '0.0' : averagestar.toFixed(1)}/5</span>
+      <div style={{ marginTop: '10px' , color: "white"}}>
+        {renderStars(averageStar)}
+        <span style={{ marginLeft: '10px' }}>{isNaN(averageStar) ? '0.0' : averageStar.toFixed(1)}/5</span>
       </div>
-
-      <p>Overall star: {isNaN(averagestar) ? '0' : averagestar.toFixed(1)}/5</p>
+      {/* Your existing code for displaying user's star, total users, and overall star */}
+      <p>My Rating: {hoverStar || star}/5</p>
+      <p>Overall Rating: {isNaN(averageStar) ? '0.0' : averageStar.toFixed(1)}/5</p>
     </div>
   );
 };
 
 export default Starstar;
-  
