@@ -106,7 +106,6 @@ const Starstar = () => {
      
       {/* Your existing code for displaying user's star, total users, and overall star */}
       <p>My star: {hoverstar || star}/5</p>
-      <p>Total Users: {usersCount}</p>
       <div style={{ marginTop: '10px' }}>
         {renderStars(averagestar)}
         <span style={{ marginLeft: '10px' }}>{isNaN(averagestar) ? '0.0' : averagestar.toFixed(1)}/5</span>
