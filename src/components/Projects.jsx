@@ -240,9 +240,9 @@ const Projects = () => {
       try {
         let response;
         if (!category || category === 'all') { // Check if category is undefined or "all"
-          response = await axios.get('https://portfolio-api-14april.onrender.com/api/projects/category/all');
+          response = await axios.get('https://portfolio-api-30april.onrender.com/api/projects/category/all');
         } else {
-          response = await axios.get(`https://portfolio-api-14april.onrender.com/api/projects/category/${category}`);
+          response = await axios.get(`https://portfolio-api-30april.onrender.com/api/projects/category/${category}`);
         }
         setProjects(response.data);
         setLoading(false);
@@ -276,7 +276,7 @@ const Projects = () => {
   <script type="application/ld+json">
        {JSON.stringify({
          '@context': 'http://schema.org',
-         '@type': 'ItemList',
+         '@type': 'Person',
          "name": "Sanjay Patidar",
          "birthDate": "1998-07-01",
          "birthPlace": {
