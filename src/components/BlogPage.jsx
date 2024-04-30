@@ -67,7 +67,7 @@ const BlogPage = () => {
     useEffect(() => {
         async function fetchCareers() {
             try {
-                const response = await axios.get('https://portfolio-api-14april.onrender.com/api/journals');
+                const response = await axios.get('https://portfolio-api-30april.onrender.com/api/journals');
                 setCareerData(response.data);
             } catch (error) {
                 console.error('Error fetching courses:', error);
@@ -111,7 +111,7 @@ const BlogPage = () => {
      <meta name="author" content="Sanjay Patidar" />        <script type="application/ld+json">
            {JSON.stringify({
              '@context': 'http://schema.org',
-             '@type': 'ItemList',
+             '@type': 'Person',
              "name": "Sanjay Patidar",
              "birthDate": "1998-07-01",
              "birthPlace": {
