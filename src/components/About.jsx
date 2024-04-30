@@ -73,10 +73,6 @@ const About = () => {
       description: 'Beyond the confines of academia, Sanjay\'s passion for technology extends to the realms of practical application. Actively participating in coding competitions, hackathons, and collaborative projects, he honed his problem-solving prowess and cultivated invaluable teamwork skills.'
     },
     {
-      title: 'Exceptional Digital Solutions',
-      description: 'Explore the professional portfolio of Sanjay Patidar, where innovation meets expertise, and witness firsthand the culmination of passion, creativity, and a relentless pursuit of excellence in web development and UI/UX design.'
-    },
-    {
       title: 'Serving Clients Across India',
       description: 'Based in Indore, Madhya Pradesh, Sanjay serves clients across India, including Chandigarh, Punjab, Mumbai, Maharashtra, Bangalore, Karnataka, Delhi, Kolkata, West Bengal, Chennai, Tamil Nadu, Hyderabad, Telangana, Pune, Ahmedabad, Gujarat, Jaipur, Rajasthan, Lucknow, Uttar Pradesh, Bhopal, Nagpur, Visakhapatnam, Andhra Pradesh, Kochi, Kerala, Guwahati, Assam, Bhubaneswar, Odisha, Dehradun, Uttarakhand, Raipur, Chhattisgarh, and beyond.'
     }
