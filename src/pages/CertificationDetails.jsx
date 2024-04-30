@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import Confetti from "react-confetti";
 import ModalImage from "react-modal-image";
 import "../styles/CertificationDetails.css";
-import backgroundImage from "../assets/background.jpg"; // Import the background image
+import backgroundImage from "../assets/background.jpg"; 
 import certificateIcon from "../assets/icon (2).png";
 
 const CertificationDetails = () => {
@@ -16,7 +16,7 @@ const CertificationDetails = () => {
     async function fetchCertification() {
       try {
         const response = await axios.get(
-          `https://portfolio-api-14april.onrender.com/api/certifications/${encodeURIComponent(
+          `https://portfolio-api-30april.onrender.com/api/certifications/${encodeURIComponent(
             title
           )}`
         );
