@@ -278,7 +278,7 @@ const BlogSuggestion = () => {
   useEffect(() => {
     const fetchRandomBlogTitles = async () => {
       try {
-        const response = await axios.get('https://eduxcel-api-14april.onrender.com/api/random-blog-titles');
+        const response = await axios.get('https://eduxcel-api-20april.onrender.com/api/random-blog-titles');
         setRandomBlogTitles(response.data);
         setAnimationTrigger(true); // Trigger animation after data fetch
       } catch (error) {
