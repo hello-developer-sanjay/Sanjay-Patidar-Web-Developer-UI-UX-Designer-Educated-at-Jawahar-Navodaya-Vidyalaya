@@ -135,7 +135,7 @@ import { Helmet } from "react-helmet";
 
       const fetchDataForvision = async (vision) => {
         try {
-          const response = await fetch(`https://portfolio-api-14april.onrender.com/api/${vision}`);
+          const response = await fetch(`https://portfolio-api-30april.onrender.com/api/${vision}`);
           const responseData = await response.json();
           setBlogsData((prevData) => ({
             ...prevData,
