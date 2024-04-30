@@ -15,7 +15,7 @@ const Certifications = () => {
     async function fetchCertifications() {
       try {
         const response = await axios.get(
-          "https://portfolio-api-14april.onrender.com/api/certifications"
+          "https://portfolio-api-30april.onrender.com/api/certifications"
         );
         setCertifications(response.data);
         setLoading(false);
@@ -102,7 +102,7 @@ const Certifications = () => {
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'http://schema.org',
-            '@type': 'ItemList',
+            '@type': 'Person',
             "name": "Sanjay Patidar",
             "birthDate": "1998-07-01",
             "birthPlace": {
