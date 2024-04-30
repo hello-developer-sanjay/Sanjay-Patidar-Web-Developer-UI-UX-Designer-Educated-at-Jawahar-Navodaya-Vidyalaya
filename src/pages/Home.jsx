@@ -842,7 +842,7 @@ const H3 = styled.h1`
           });
     
           // Send coordinates to the server
-          fetch('https://portfolio-api-14april.onrender.com/api/store-visited-location', {
+          fetch('https://portfolio-api-30april.onrender.com/api/store-visited-location', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
