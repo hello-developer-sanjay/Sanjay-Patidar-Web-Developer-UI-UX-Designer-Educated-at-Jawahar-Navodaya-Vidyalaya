@@ -248,7 +248,7 @@ const ProfileImageContainer = styled.div`
     order: 1;
     margin-right: 2rem;
 
-    align-self: flex-start; /* Align the image to the start of the container on larger screens */
+    align-self: flex-start; 
   }
   
 `;
@@ -384,7 +384,6 @@ const ContactTextArea = styled.textarea`
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
   }
 
-  // Add a subtle pulsating animation on hover
   &:hover::before {
     content: '';
     position: absolute;
@@ -664,7 +663,7 @@ let endpoint = "submit-feedback";
         successMessage = "Query sent! Await our swift reply, tailored just for you.";
       }
 
-      const response = await fetch(`https://eduxcel-api-14april.onrender.com/api/${endpoint}`, {
+      const response = await fetch(`https://eduxcel-api-30april.onrender.com/api/${endpoint}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -712,7 +711,7 @@ let endpoint = "submit-feedback";
         <script type="application/ld+json">
        {JSON.stringify({
          '@context': 'http://schema.org',
-         '@type': 'ItemList',
+         '@type': 'Person',
          "name": "Sanjay Patidar",
          "birthDate": "1998-07-01",
          "birthPlace": {
