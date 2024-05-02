@@ -158,7 +158,7 @@ padding: 1rem;
 
 
 const Resume = () => {
-  const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Developer-Resume/Sanjay-Patidar_RESUME-Web-Developer.pdf';
+  const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Web-Developer-Resume/Sanjay-Patidar-Comprehensive-Resume.pdf';
   const [downloadCount, setDownloadCount] = useState(0);
   const [loading, setLoading] = useState(false);
 
@@ -212,7 +212,7 @@ const Resume = () => {
 
     <ResumeContainer>
             <Helmet>
-            <title>Sanjay Patidar | Comprehensive Resume</title>
+            <title>Sanjay Patidar | Web Developer Comprehensive Resume</title>
 
 <meta
           name="description"
@@ -234,6 +234,210 @@ const Resume = () => {
           content="Unlock Sanjay Patidar's resume to explore his professional experience and skills. Click the link to access the full resume."
         />
         <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
+               <!-- Structured Data / JSON-LD -->
+ <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Sanjay Patidar",
+      "birthDate": "1998-07-01",
+      "birthPlace": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Indore"
+        }
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Chandigarh University",
+        "location": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Chandigarh",
+            "addressRegion": "Punjab",
+            "addressCountry": "India"
+          }
+        }
+      },
+      "address": [
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Indore",
+          "addressRegion": "Madhya Pradesh",
+          "postalCode": "452001",
+          "addressCountry": "India"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Chandigarh",
+          "addressRegion": "Punjab",
+          "postalCode": "160001",
+          "addressCountry": "India"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Mumbai",
+          "addressRegion": "Maharashtra",
+          "postalCode": "400001",
+          "addressCountry": "India"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Bangalore",
+          "addressRegion": "Karnataka",
+          "postalCode": "560001",
+          "addressCountry": "India"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Delhi",
+          "addressRegion": "Delhi",
+          "postalCode": "110001",
+          "addressCountry": "India"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Kolkata",
+          "addressRegion": "West Bengal",
+          "postalCode": "700001",
+          "addressCountry": "India"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Chennai",
+          "addressRegion": "Tamil Nadu",
+          "postalCode": "600001",
+          "addressCountry": "India"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Hyderabad",
+          "addressRegion": "Telangana",
+          "postalCode": "500001",
+          "addressCountry": "India"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Pune",
+          "addressRegion": "Maharashtra",
+          "postalCode": "411001",
+          "addressCountry": "India"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Ahmedabad",
+          "addressRegion": "Gujarat",
+          "postalCode": "380001",
+          "addressCountry": "India"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Jaipur",
+          "addressRegion": "Rajasthan",
+          "postalCode": "302001",
+          "addressCountry": "India"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Lucknow",
+          "addressRegion": "Uttar Pradesh",
+          "postalCode": "226001",
+          "addressCountry": "India"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Bhopal",
+          "addressRegion": "Madhya Pradesh",
+          "postalCode": "462001",
+          "addressCountry": "India"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Nagpur",
+          "addressRegion": "Maharashtra",
+          "postalCode": "440001",
+          "addressCountry": "India"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Visakhapatnam",
+          "addressRegion": "Andhra Pradesh",
+          "postalCode": "530001",
+          "addressCountry": "India"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Kochi",
+          "addressRegion": "Kerala",
+          "postalCode": "682001",
+          "addressCountry": "India"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Guwahati",
+          "addressRegion": "Assam",
+          "postalCode": "781001",
+          "addressCountry": "India"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Bhubaneswar",
+          "addressRegion": "Odisha",
+          "postalCode": "751001",
+          "addressCountry": "India"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Dehradun",
+          "addressRegion": "Uttarakhand",
+          "postalCode": "248001",
+          "addressCountry": "India"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Raipur",
+          "addressRegion": "Chhattisgarh",
+          "postalCode": "492001",
+          "addressCountry": "India"
+        }
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Eduxcel" 
+      },
+      "url": "https://sanjay-patidar.vercel.app/",
+      "sameAs": [
+        "https://www.linkedin.com/in/sanjay-patidar-25b580292/",
+        "https://github.com/hello-developer-sanjay",
+        "https://www.instagram.com/sanjay_patidar_mcmxcviii/",
+        "https://eduxcel.vercel.app/",
+        "https://sanjay-patidar.vercel.app/projects",
+   
+        "https://sanjay-patidar.vercel.app/project/eduxcel-empowering-careers-in-tech-expert-insights-cutting-edge-education-and-skill-mastery",
+                    "https://sanjay-patidar.vercel.app/project/rentride-your-car-rental-platform",
+                       "https://sanjay-patidar.vercel.app/project/property-rent-website-checkhere",
+
+   "https://sanjay-patidar.vercel.app/founder-eduxcel",
+
+        "https://sanjay-patidar.vercel.app/careers",
+        "https://sanjay-patidar.vercel.app/skills",
+        "https://sanjay-patidar.vercel.app/experiences",
+        "https://sanjay-patidar.vercel.app/certifications",
+        "https://sanjay-patidar.vercel.app/resume",
+        "https://sanjay-patidar.vercel.app/blogs",
+        "https://sanjay-patidar.vercel.app/vs_code_articles",
+           "https://sanjay-patidar.vercel.app/vs_code_articles/introduction-to-visual-studio-code-vs-code-mastering-the-essentials-a-comprehensive-beginners-guide",
+        "https://sanjay-patidar.vercel.app/git_articles",
+           "https://sanjay-patidar.vercel.app/git_articles/introduction-to-git-mastering-version-control-essentials-a-comprehensive-beginners-guide",
+        "https://sanjay-patidar.vercel.app/education",
+        "https://sanjay-patidar.vercel.app/contact"
+      ]
+    }
+    
+  </script>
+
       </Helmet>
 
       <ResumeTitle>Unlock My Resume</ResumeTitle>
