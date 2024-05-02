@@ -234,7 +234,6 @@ const Resume = () => {
           content="Unlock Sanjay Patidar's resume to explore his professional experience and skills. Click the link to access the full resume."
         />
         <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
-               <!-- Structured Data / JSON-LD -->
  <script type="application/ld+json">
     {
       "@context": "http://schema.org",
