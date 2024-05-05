@@ -2,7 +2,12 @@
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-
+   <!-- Courses By Sanjay Patidar -->
+   
+ <url>
+    <loc>https://sanjay-patidar.vercel.app/courses-by-sanjay-patidar</loc>
+    <lastmod>2023-05-05</lastmod>
+  </url>
 
    <!-- projects -->
 
