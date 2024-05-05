@@ -174,10 +174,8 @@ const SubNavList = styled.ul`
   list-style: none;
   position: absolute;
   top: calc(100% + 14px);
-  left: 50%;
+  left: 10%;
   transform: translateX(-50%);
-  background: linear-gradient(45deg, #2c3e50, #3498db);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s, visibility 0.3s;
@@ -431,6 +429,12 @@ const handleCareerInsightsClick = () => {
                 </NavLinkStyled>
               </NavItem>
               <NavItem>
+                <NavLinkStyled to="/courses-by-sanjay-patidar" aria-label="Home" onClick={toggleMenu}>
+                  <FaHome style={{ marginRight: '5px' }}/>
+                  Courses
+                </NavLinkStyled>
+              </NavItem>
+              <NavItem>
               <NavLinkStyled to="/blogs" aria-label="Blogs" onClick={toggleMenu}>
           Blogs
           <FaBriefcase style={{ marginLeft: '5px' }} />
@@ -469,19 +473,27 @@ const handleCareerInsightsClick = () => {
 
               </NavItem>
               <NavItem>
-                <NavLinkStyled to="/protected" aria-label="Admin" onClick={toggleMenu}>
-                  Admin
-                  <FaUserShield style={{ marginLeft: '5px' }}/>
+              <NavLinkStyled to="/founder-eduxcel" aria-label="founder-admin" onClick={toggleMenu}>
+ Founder Profile                  <FaUserTie style={{ marginLeft: '5px' }}/>
                 </NavLinkStyled>
+              <SubNavList className="SubNavList">
+
+                <SubNavLinkStyled to="/protected" aria-label="Admin" onClick={toggleMenu}>
+                  Admin Only
+                  <FaUserShield style={{ marginLeft: '5px' }}/>
+                </SubNavLinkStyled>
+                <SubNavItem>
+                <SubNavLinkStyled to="/founder-eduxcel" aria-label="FounderEduxcel" onClick={toggleMenu}>
+                  Founder Profile
+                  <FaUserTie  style={{ marginLeft: '5px' }}/>
+                </SubNavLinkStyled>
+              </SubNavItem>
+              </SubNavList>
+
               </NavItem>
 
               
-              <NavItem>
-                <NavLinkStyled to="/founder-eduxcel" aria-label="FounderEduxcel" onClick={toggleMenu}>
-                  Founder Profile
-                  <FaUserTie  style={{ marginLeft: '5px' }}/>
-                </NavLinkStyled>
-              </NavItem>
+         
 
 
             </NavList>
