@@ -365,6 +365,9 @@ useEffect(() => {
     <NavLink exact to="/">
       <FaHome /> Home
     </NavLink>
+      <NavLink exact to="/courses-by-sanjay-patidar">
+      <FaBlog /> Courses
+    </NavLink>
     <NavLink to="/blogs">
       <FaBlog/> Blogs
     </NavLink>
