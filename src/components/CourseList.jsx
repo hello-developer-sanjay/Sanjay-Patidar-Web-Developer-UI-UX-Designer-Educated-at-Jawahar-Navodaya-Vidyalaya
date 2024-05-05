@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,6 +9,38 @@ import courseImage1 from '../assets/html.png';
 import courseImage2 from '../assets/css.png';
 import courseImage3 from '../assets/responsive1.png';
 import courseImage4 from '../assets/preprocessors.png';
+const Title = styled.h1`
+color: #583313;
+   font-size: 2rem;
+  margin: 1rem;
+  font-family: 'Playfair Display', serif;
+  margin-top: 0rem;
+ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  transform: skew(-5deg); /* Apply a slight skew for a dynamic effect */
+  
+  @media (max-width: 768px) {
+    margin-top: 0rem;
+    font-size: 1.5rem;
+
+  }
+
+`;
+const Description = styled.p`
+color: #13584F;
+   font-size: 1rem;
+  margin: 1rem;
+  font-family: 'Playfair Display', serif;
+  margin-top: 0rem;
+ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  transform: skew(-5deg); /* Apply a slight skew for a dynamic effect */
+  
+  @media (max-width: 768px) {
+    margin-top: 0rem;
+    font-size: 1rem;
+
+  }
+
+`;
 
 function CourseList() {
   const [courses, setCourses] = useState([]);
@@ -18,12 +51,12 @@ function CourseList() {
       try {
         let response;
         if (!category || category === 'all') {
-          response = await axios.get('https://eduxcel-api-30april.onrender.com/api/courses/category/all');
+          response = await axios.get('https://eduxcel-api-14april.onrender.com/api/courses/category/all');
         } else {
-          response = await axios.get(`https://eduxcel-api-30april.onrender.com/api/courses/category/${category}`);
+          response = await axios.get(`https://eduxcel-api-14april.onrender.com/api/courses/category/${category}`);
         }
         if (!response) {
-          response = await axios.get('https://eduxcel-api-30april.onrender.com/api/courses/category');
+          response = await axios.get('https://eduxcel-api-14april.onrender.com/api/courses/category');
         }
         setCourses(response.data);
       } catch (error) {
@@ -76,8 +109,8 @@ function CourseList() {
                   }}
                 ></div>
                 <div className="course-info">
-                  <h3>{category}</h3>
-                  <p>{course.description}</p>
+                  <Title>{category}</Title>
+                  <Description>{course.description}</Description>
                 </div>
               </div>
             );
