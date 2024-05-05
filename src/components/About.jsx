@@ -3,7 +3,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import styled from 'styled-components';
 import { FaChalkboardTeacher, FaUserGraduate, FaClock } from 'react-icons/fa';
-  import WhyUsImage from '../assets/About-pic.jpg';
+  import WhyUsImage from '../assets/sanjay-patidar-profile-photo.jpg';
 import '../styles/home.css'; 
 
 const ClientContainer = styled(motion.div)`
