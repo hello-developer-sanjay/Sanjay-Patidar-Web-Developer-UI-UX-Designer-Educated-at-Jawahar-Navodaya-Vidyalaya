@@ -181,7 +181,7 @@
   
   /* Larger images in the flex-container */
   .why-us-section .flex-container img {
-    width: 100%; /* Make the images take the full width of the container */
+    width: 90%; /* Make the images take the full width of the container */
     height: auto; /* Let the height adjust proportionally */
     border-radius: 50%;
 
