@@ -150,13 +150,16 @@
     }
   
     .why-us-section .flex-container img {
-      margin-right: 2rem; /* Adjust the margin as needed */
+      margin-right: 2rem;
+      margin-left: 1rem;
+
+      border-radius: 50%;
     }
   }
   
   .why-us-section h3 {
     font-size: 1.6rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     color: #5d00ff;
     text-transform: capitalize;
     font-weight: bold;
@@ -166,12 +169,12 @@
   .why-us-section p {
     font-size: 1.1rem;
     color: #f3f3f3;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     line-height: 1.4;
     text-align: justify;
     border-left: 4px solid #5d00ff;
     padding-left: 10px;
-    background-color: rgba(93, 0, 255, 0.1);
+    background-color: #5d00ff1a;
     border-radius: 8px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   }
@@ -180,4 +183,6 @@
   .why-us-section .flex-container img {
     width: 100%; /* Make the images take the full width of the container */
     height: auto; /* Let the height adjust proportionally */
+    border-radius: 50%;
+
   }
