@@ -2,19 +2,14 @@
 /* eslint-disable react/no-unescaped-entities */
 import {  useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { color, motion,useAnimation  } from 'framer-motion';
+import { motion,useAnimation  } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
   import { Helmet } from 'react-helmet';
-import { FaLinkedin, FaTwitter, FaInstagram, FaGithub } from "react-icons/fa";
 import DuckImage from "../assets/duck4.gif";
 import unlock from "../assets/unlock.gif";
 import Message from './Message';
 import 'react-toastify/dist/ReactToastify.css';
-
-import Typed from 'react-typed';
-
-import profileImage1 from '../assets/ssss.webp';
-import profileImage2 from '../assets/sixpack.jpeg';
+import About from './About';
 
  const HomeContainer = styled(motion.div)`
     display: flex;
@@ -29,16 +24,6 @@ import profileImage2 from '../assets/sixpack.jpeg';
     background-color: #050816; 
     `;
 
-const FlexContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
-`;
 const H1Container = styled.div`
   display: flex;
   justify-content: center;
@@ -52,19 +37,56 @@ const H1Container = styled.div`
   
   }
 `;
+const contentBlocks = [
+  {
+    overview: 'Discover Sanjay Patidar: Developer, Creator, and Tech Enthusiast',
 
-
-const Onlyforlap = styled.div`
-
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-
-  @media (max-width: 768px) {
-    display: none;
-    margin-top: 0rem;
-  
+  },
+  {
+    title: 'Who is Sanjay Patidar?',
+    description: "Sanjay Patidar, born on May 24, 1997, hails from the vibrant city of Indore, India. With a passion for digital innovation and a knack for crafting user-centric experiences, Sanjay thrives on pushing the boundaries of technology. His journey began in Indore, where he developed a deep appreciation for technology and design, shaping his path towards creating impactful digital solutions.",
+  },
+  {
+    title: 'Where did Sanjay Patidar grow up?',
+    description: "Sanjay Patidar spent his formative years in Indore, a bustling city known for its rich culture and vibrant spirit. It's here that he developed his passion for technology and design, laying the foundation for his future endeavors.",
   }
+ 
+];
+
+
+const Next = styled.h1`
+font-size: 1.1rem;
+color: #f3f3f3;
+margin-top: 1rem;
+
+line-height: 1.4;
+text-align: justify;
+border-left: 4px solid #5d00ff;
+border-right: 4px solid #5d00ff;
+
+padding-left: 10px;
+padding-right:10px;
+border-radius: 8px;
+box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 `;
+const HeadingText = styled.h1`
+font-size: 3rem;
+margin-bottom: 0rem;
+text-align: center;
+font-weight: 900;
+color: #7744B0;
+font-family: 'Playfair Display', serif;
+margin-top: 0rem;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+transform: skew(-5deg); /* Apply a slight skew for a dynamic effect */
+
+@media (max-width: 768px) {
+  margin-top: 0rem;
+  font-size: 2rem;
+}
+box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+`;
+
 const H1 = styled.h1`
   font-size: 1.5rem;
   font-weight: 900;
@@ -78,8 +100,9 @@ const H1 = styled.h1`
   transform: skew(-5deg); /* Apply a slight skew for a dynamic effect */
 `;
 const H2 = styled.h1`
-  font-size: 3rem;
+  font-size: 2rem;
   margin-bottom: 0rem;
+  text-align: center;
   font-weight: 900;
   color: #2ecc71;
   font-family: 'Playfair Display', serif;
@@ -120,48 +143,6 @@ const StyledSpan = styled.span`
   /* Add any additional styles here */
 `;
 
-const ProfileTextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 80%;
-  order: 2;
-  margin-top: 1rem;
-  margin-right: 1rem;
-  
-  @media (min-width: 768px) {
-    order: 2;
-    text-align: left;
-    margin-top: 0;
-
-  }
-
-  
-  @media (max-width: 768px) {
-    
-    max-width: 90%;
-
-  }
-`;
-
-const ProfileImageContainer = styled.div`
-  flex-shrink: 0;
-
-  @media (min-width: 768px) {
-    order: 1;
-    margin-right: 5rem;
-    align-self: flex-start; /* Align the image to the start of the container on larger screens */
-  }
-`;
-const Text = styled.h1`
-  margin-top: 1rem;;
-  font-size: 1.1rem;
-  text-align: left;
-  letter-spacing: 0.2px; 
-  color: #fff; 
-  padding: 5px 10px; /* Padding to create space around the text */
-
-`;
 
 const BackgroundOverlay = styled.div`
   position: absolute;
@@ -174,462 +155,16 @@ const BackgroundOverlay = styled.div`
 `;
 
 
-const ProfileImage = styled(motion.img)`
-  width: 380px;
-  height: 380px;
-  margin-top: 6rem;
-
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(255, 165, 0, 0.8), 0 0 20px rgba(255, 165, 0, 0.6);
-  transform-origin: center;
-  animation: heartbeat 1.5s infinite, rotateAndGlow 8s infinite, bounce 2s alternate infinite;
-
-  &.loading {
-    border: 2px solid transparent;
-    position: relative;
-
-    &:before {
-      content: '';
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      z-index: 1;
-      border-radius: 50%;
-      border: 2px solid #fff; // Change the color as needed
-      animation: loadingAnimation 1.5s linear infinite;
-    }
-
-    &:after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 0;
-      height: 100%;
-      border-left: 2px dashed #fff; // Change the color as needed
-      animation: loadingLineAnimation 1.5s linear infinite;
-    }
-  }
-
-  @keyframes loadingAnimation {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  @keyframes loadingLineAnimation {
-    0% {
-      height: 0;
-    }
-    50% {
-      height: 100%;
-    }
-    100% {
-      height: 0;
-    }
-  }
 
 
-
-
-  @media (max-width: 768px) {
-    width: 180px;
-    height: 180px;
-  margin-top : 2rem;
-}
-
-  @keyframes heartbeat {
-    0%, 100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
-  }
-
-  @keyframes rotateAndGlow {
-    0%, 100% {
-      transform: rotate(0deg) scale(1);
-      box-shadow: 0 0 10px rgba(255, 165, 0, 0.8), 0 0 20px rgba(255, 165, 0, 0.6);
-    }
-    25% {
-      transform: rotate(90deg) scale(1.2);
-      box-shadow: 0 0 15px rgba(255, 165, 0, 0.9), 0 0 30px rgba(255, 165, 0, 0.7);
-    }
-    50% {
-      transform: rotate(180deg) scale(1);
-      box-shadow: 0 0 10px rgba(255, 165, 0, 0.8), 0 0 20px rgba(255, 165, 0, 0.6);
-    }
-    75% {
-      transform: rotate(270deg) scale(1.2);
-      box-shadow: 0 0 15px rgba(255, 165, 0, 0.9), 0 0 30px rgba(255, 165, 0, 0.7);
-    }
-  }
-
-  @keyframes bounce {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-15px);
-    }
-  }
-`;
-
-
-const images = [profileImage1, profileImage2];
 let currentImageIndex = 0;
-
-const Introduction = styled(motion.p)`
-  font-size: 1.4rem;
-  line-height: 1.5;
-  max-width: 800px;
-  text-align: center;
-  margin-top : 1rem;
-  margin-bottom: 1rem;
-  color: #ffffff; /* White on hover */
-  font-family: 'Playfair Display', serif;
-
-  
-  .highlight {
-    position: relative;
-    display: inline-block;
-    font-size: 3rem;
-    font-weight: bold;
-    color: transparent;
-    font-family: 'Playfair Display', serif;
-
-
-    background: linear-gradient(45deg, #ff4081, #00bcd4); /* Gradient highlight */
-    background-clip: text;
-    -webkit-background-clip: text;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Shadow for depth */
-    /* Animation for the highlight class */
-    animation: highlightAnimation 3s ease-in-out infinite;
-    @media (max-width: 768px) {
-  font-size: 1.5rem;
-  line-height: 2rem;
-
-  }
-  }
-
-  .light {
-    position: relative;
-    display: inline-block;
-    font-size: 1.5rem;
-    color: transparent;
-    font-family: 'Playfair Display', serif;
-
-    font-weight: bold;
-
-    background: linear-gradient(45deg, #ff4081, #00bcd4); /* Gradient highlight */
-    background-clip: text;
-    -webkit-background-clip: text;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Shadow for depth */
-    /* Animation for the highlight class */
-    animation: highlightAnimation 3s ease-in-out infinite;
-    @media (max-width: 768px) {
-  font-size: 1.5rem;
-  line-height: 2rem;
-
-  }
-  }
-
-  @keyframes highlightAnimation {
-    0%, 100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-  }
-
-  
-  &:after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(45deg, #ff4081, #00bcd4); /* Gradient border */
-    margin-top: 8px;
-    position: relative;
-    animation: shimmerAnimation 3s ease-in-out infinite;
-  }
-
-  
-  @keyframes shimmerAnimation {
-    0% {
-      background-position: -200% 50%;
-    }
-    100% {
-      background-position: 200% 50%;
-    }
-  }
-   @media (max-width: 768px) {
-    .highlight{
-      font-size: 1.4rem;
-
-    }
-  margin-top:1rem;
-  font-size: 1.1rem;
-
-  }
-`;
-
-
-const TypedText = styled.span`
-  display: block;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  text-transform:uppercase;
-  font-style: italic;
-  font-weight: bold;
-  font-family: 'Playfair Display', serif;
-  font-size: 3rem;
-  background: linear-gradient(45deg, #00bcd4, #2196f3); /* Gradient from turquoise to blue */
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-
-  /* Animation for a subtle glow effect */
-  animation: glowAnimation 2s ease-in-out infinite, shakeAnimation 3s ease-in-out infinite;
-
-  /* Keyframes for the glow animation */
-  @keyframes glowAnimation {
-    0% {
-      box-shadow: 0 0 5px rgba(0, 188, 212, 0.5), 0 0 10px rgba(0, 188, 212, 0.5); /* Turquoise glow */
-    }
-    50% {
-      box-shadow: 0 0 10px rgba(0, 188, 212, 0.8), 0 0 20px rgba(0, 188, 212, 0.8); /* Stronger glow */
-    }
-    100% {
-      box-shadow: 0 0 5px rgba(0, 188, 212, 0.5), 0 0 10px rgba(0, 188, 212, 0.5); /* Turquoise glow */
-    }
-  }
-
-  /* Keyframes for a subtle shake animation */
-  @keyframes shakeAnimation {
-    0%, 100% {
-      transform: translateX(0);
-    }
-    10%, 30%, 50%, 70%, 90% {
-      transform: translateX(-5px);
-    }
-    20%, 40%, 60%, 80% {
-      transform: translateX(5px);
-    }
-  }
-
-  @media (max-width: 768px) {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-
-  }
-
-  /* Change the color of the typing text */
-  @media (prefers-color-scheme: dark) {
-    color: #51D5FF; /* Bright yellow in dark mode */
-  }
-
-  @media (prefers-color-scheme: light) {
-    color: #ffffff; /* Deep orange in light mode */
-  }
-`;
-
-const Onlyformob = styled.div`
-  display: none;
-
-  @media (max-width: 768px) {
-    display: flex;
-    flex-direction: column; /* Change to column */
-    justify-content: center;
-    align-items: center;
-    margin-top: 0rem;
-    margin-bottom: 1rem;
-  }
-`;
-
-
-
-
-
-
-
-const SocialIconsContainer = styled(motion.div)`
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 1rem;
-margin-top: 1rem;
-@media (max-width: 768px) {
-  display: none;
-  margin-top: 0rem;
-
-}
-
-`;
-const socialButtons = [
-  { icon: <FaLinkedin />, label: "LinkedIn", link: "https://www.linkedin.com/in/sanjay-patidar-25b580292" },
-  { icon: <FaGithub />, label: "GitHub", link: "https://github.com/hello-developer-sanjay" },
-  { icon: <FaTwitter />, label: "Twitter", link: "#" },
-  { icon: <FaInstagram />, label: "Instagram", link: "https://www.instagram.com/sanjay_patidar_mcmxcviii" },
-];
-
-const SocialIcon = styled(motion.a)`
-display: flex;
-align-items: center;
-margin-top:2rem;
-justify-content: center;
-width: 3rem;
-height: 3rem;
-border-radius: 50%;
-background: ${props => props.color || '#ff6347'};
-cursor: pointer;
-overflow: hidden;
-position: relative;
-transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-  background 0.3s ease;
-
-&:hover {
-  transform: scale(1.2) rotate(360deg);
-  background: ${props => props.color || '#e74c3c'};
-}
-
-@media (max-width: 768px) {
-  width: 3.5rem;
-  height: 3.5rem;
-}
-
-&:not(:last-child) {
-  margin-right: 1rem;
-}
-
-&:before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to bottom right,
-    rgba(255, 255, 255, 0.8),
-    rgba(255, 255, 255, 0)
-  );
-  transform: translateY(100%);
-  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border-radius: 50%;
-}
-
-&:hover:before {
-  transform: translateY(0);
-}
-
-/* Add a heartbeat animation for extra flair */
-animation: heartbeat 1.5s infinite;
-
-@keyframes heartbeat {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-}
-`;
-  
 
 
 const Founder = () => {
  
   const [animationEnabled, setAnimationEnabled] = useState(true);
-  const [imageLoading, setImageLoading] = useState(true);
 
-  const copyContactNumber = () => {
-    const contactNumber = document.getElementById('contactNumber');
-    const range = document.createRange();
-    range.selectNode(contactNumber);
-    window.getSelection().removeAllRanges();
-    window.getSelection().addRange(range);
-    document.execCommand('copy');
-    window.getSelection().removeAllRanges();
-    alert('Contact number copied!');
-  };
-  const copyInstaID = () => {
-    const instaID = document.getElementById('instaID');
-    const range = document.createRange();
-    range.selectNode(instaID);
-    window.getSelection().removeAllRanges();
-    window.getSelection().addRange(range);
-    document.execCommand('copy');
-    window.getSelection().removeAllRanges();
-    alert('Instagram ID copied!');
-  };
-
-  const copyEduxcelID = () => {
-    const eduxcelID = document.getElementById('eduxcelID');
-    const range = document.createRange();
-    range.selectNode(eduxcelID);
-    window.getSelection().removeAllRanges();
-    window.getSelection().addRange(range);
-    document.execCommand('copy');
-    window.getSelection().removeAllRanges();
-    alert('Eduxcel Website Link copied!');
-  };
   
-  
-
-  const copyContactNumberformob = () => {
-    const contactNumberformob = document.getElementById('contactformobNumber');
-    const range = document.createRange();
-    range.selectNode(contactNumberformob);
-    window.getSelection().removeAllRanges();
-    window.getSelection().addRange(range);
-    document.execCommand('copy');
-    window.getSelection().removeAllRanges();
-    alert('Contact number copied!');
-  };
-  const copyInstaIDformob = () => {
-    const instaformobID = document.getElementById('instaformobID');
-    const range = document.createRange();
-    range.selectNode(instaformobID);
-    window.getSelection().removeAllRanges();
-    window.getSelection().addRange(range);
-    document.execCommand('copy');
-    window.getSelection().removeAllRanges();
-    alert('Instagram ID copied!');
-  };
-
-  const copyEduxcelIDformob = () => {
-    const eduxcelformobID = document.getElementById('eduxcelformobID');
-    const range = document.createRange();
-    range.selectNode(eduxcelformobID);
-    window.getSelection().removeAllRanges();
-    window.getSelection().addRange(range);
-    document.execCommand('copy');
-    window.getSelection().removeAllRanges();
-    alert('Eduxcel Website Link copied!');
-  };
-  
-  
-
-  const copyGitIDforlap = () => {
-    const gitID = document.getElementById('gitIDforlap');
-    const range = document.createRange();
-    range.selectNode(gitID);
-    window.getSelection().removeAllRanges();
-    window.getSelection().addRange(range);
-    document.execCommand('copy');
-    window.getSelection().removeAllRanges();
-    alert('Github Link copied ! Reminder: By copying this link to Github Profile, you can access valuable projects and insights. . ');
-  };
-
-
-
 
 
   const controlsArray = Array.from({ length: 7 }, () => useAnimation());
@@ -903,171 +438,57 @@ content="Discover the remarkable journey of Sanjay Patidar, a dedicated and pass
 </script>
 </Helmet>
       <BackgroundOverlay />
-      <FlexContainer>
-
-      <ProfileImageContainer>
-      <ProfileImage
-
-  src={profileImage1}
-  alt="Sanjay Patidar"
-  initial={{ y: -100, opacity: 0, filter: 'blur(10px)' }}
-  animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
-  transition={{ type: "spring", damping: 10, stiffness: 100, delay: 0.5 }}
-  className={`profile-image ${imageLoading ? 'loading' : ''}`}
-  onLoad={() => {
-    console.log("Image loaded successfully!");
-    setImageLoading(false);
-  }}
-  onError={() => {
-    console.error("Error loading image!");
-    setImageLoading(true); 
-  }}
-/>
-
-
-<SocialIconsContainer>
-          {socialButtons.map((button, index) => (
-  <SocialIcon
-  key={index}
-  color={button.color}
-  initial={{ opacity: 0, y: -50, scale: 0, rotate: -180 }}
-  animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
-  exit={{ opacity: 0, y: -50 }}
-  transition={{ duration: 0.5, delay: index * 0.1 }}
-  href={button.link}
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label={button.label} 
->
-  {button.icon}
-</SocialIcon> 
-        
-          ))}
-        </SocialIconsContainer>
-
-
-<Onlyforlap>
+     
   
+      <div className="w-full max-w-7xl why-content">
 
-<Text>
-              ☎  Sanjay Patidar  <span className="highlight">Contact | Mobile Number : </span>{' '}
-              <span id="contactNumber">+91 9131743250 </span>
-              
-              <button onClick={copyContactNumber} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
-            </Text>
+{contentBlocks.map((block, index) => {
+                const [refContent, inViewContent] = useInView({ triggerOnce: true });
+                const controlsContent = useAnimation();
 
+                useEffect(() => {
+                  if (inViewContent) {
+                    controlsContent.start({
+                      y: 0,
+                      opacity: 1,
+                      scale: 1,
+                      transition: {
+                        duration: 2,
+                        delay: index * 0.2,
+                        type: 'spring',
+                        stiffness: 100,
+                      },
+                    });
+                  }
+                }, [inViewContent, controlsContent, index]);
 
-            <Text>
-            <FaInstagram style={{ marginRight: '8px' }}/>
-  Sanjay Patidar <span className="highlight">Instagram ID  : </span>{' '}
-              <span id="instaID">sanjay_patidar_mcmxcviii </span>
-              
-              <button onClick={copyInstaID} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
-            </Text>
-            <Text>
-            🔗    Eduxcel <span className="highlight">Website link : </span>{' '}
-              <span id="eduxcelID">https://eduxcel.vercel.app </span>
-              
-              <button onClick={copyEduxcelID} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Weblink</button>
-            </Text>
-
-
-
-            <Text>
-              🔗  <span className="highlight">Github Profile: </span>{' '}
-                <span id="gitIDforlap">https://github.com/hello-developer-sanjay </span>
-                
-                <button onClick={copyGitIDforlap} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Weblink</button>
-              </Text>
-              <Introduction>
-              <span className="light">EduXcel | Empowering Careers in Tech</span><br/></Introduction>
+                return (
+                  <motion.div
+                    key={index}
+                    ref={refContent}
+                    className="mb-8"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={controlsContent}
+                  >
+<H2>                      {block.title}
 
 
-</Onlyforlap>
+</H2>                    <HeadingText>     
+                   {block.overview}
 
-        </ProfileImageContainer>  
-  
-    
-      <ProfileTextContainer>
+                   </HeadingText> 
+                    <Next>     
+                   {block.description}
 
-       
-      <Introduction
-  initial={{ opacity: 0, y: -100, rotate: -180, scale: 0.5 }} 
-  animate={{ opacity: 1, y: 0, rotate: 0, scale: 1 }} 
-  transition={{
-    type: "spring", 
-    stiffness: 200, 
-    damping: 12, 
-    delay: 1, 
-    duration: 0.8 
-  }}
->
+                   </Next> 
 
-        Hi there! I'm{' '}
-        <TypedText>
-          <Typed
-            strings={['Sanjay Patidar', 'a Web Developer', 'a UI/UX Designer']}
-            typeSpeed={60}
-            backSpeed={40}
-            loop
-          />
-        </TypedText>
-        <H2> Sanjay Patidar</H2>  <br/> <span className="highlight">Founder & Developer : EduXcel</span><br/>
+                    
+                  </motion.div>
+                  
+                );
+              })}
 
-        <Text>Meet the Mind Behind EduXcel: Sanjay Patidar - Founder | Developer | Creator | Director</Text>
-
-
-<Text>
-🙋 Curious to know about the mastermind behind EduXcel?<br/>
-➥ Allow me to introduce Sanjay Patidar, the visionary at the helm, spearheading our mission to redefine the tech landscape with EduXcel!
-<br/>
-🙋 Wondering what's the secret to EduXcel's success?<br/>
-➥ It's all about pushing boundaries and striving for excellence. Sanjay is like a digital wizard, conjuring up immersive experiences that captivate and inspire. But here's the kicker: it's not just about the tech for Sanjay. He's deeply passionate about education and believes in empowering people through knowledge. That's why EduXcel isn't just a tech company; it's a platform for growth and learning, fueled by Sanjay's vision and dedication.
-<br/>
-🙋 How did Sanjay develop EduXcel into such a tech-loaded platform?<br/>
-➥ Sanjay's expertise as a MERN stack developer played a pivotal role in shaping EduXcel. By leveraging technologies like MongoDB, Express.js, React, and Node.js, he created a seamless and secure environment for online education.  EduXcel isn't just a website; it's a testament to Sanjay's technical prowess and dedication to revolutionizing online education.
-</Text>
-
-
-
-<Text>Curious to know more about EduXcel? <a style={{  color: '#FAF7F7', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer', textDecoration: "none" }} href="https://eduxcel.vercel.app/" target="_blank">Click here</a> to explore!</Text>
-
-
-
-
-
-
-<Onlyformob>
-        <Text>
-              ☎  Sanjay Patidar  Contact | Mobile Number :{' '}
-              <span id="contactformobNumber">+91 9131743250 </span>
-              
-              <button onClick={copyContactNumberformob} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
-            </Text>
-
-
-            <Text>
-            <FaInstagram style={{ marginRight: '8px' }}/>
-  Sanjay Patidar Instagram ID  : {' '}
-              <span id="instaformobID">sanjay_patidar_mcmxcviii </span>
-              
-              <button onClick={copyInstaIDformob} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
-            </Text>
-            <Text>
-            🔗    Eduxcel Website link : {' '}
-              <span id="eduxcelformobID">https://eduxcel.vercel.app </span>
-              
-              <button onClick={copyEduxcelIDformob} style={{  color: '#122901', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Weblink</button>
-            </Text>
-
-            </Onlyformob>
-      </Introduction>
-
-      
-      </ProfileTextContainer>
-
-      </FlexContainer>
-      
+           </div>
       <H1Container>
           <H1>Discover the Key to Enhanced 
 </H1>
@@ -1087,7 +508,7 @@ content="Discover the remarkable journey of Sanjay Patidar, a dedicated and pass
           <H1>
             Your Full Potential !</H1>
         </H1Container>
-       
+       <About/>
 <Message/>
 
     </HomeContainer>
