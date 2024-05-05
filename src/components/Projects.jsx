@@ -3,12 +3,25 @@ import { NavLink, useParams } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
+import { RingLoader } from 'react-spinners'; 
 
 const ProjectsContainer = styled.div`
 padding: 2rem;
 background-color: #050816;
 min-height: 100vh;
 overflow: hidden; /* Hide overflow for container */
+`;
+const LoadingOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+  z-index: 9999; /* Ensure it's above other elements */
 `;
 
 const ProjectsNavigation = styled.nav`
@@ -240,12 +253,15 @@ const Projects = () => {
       try {
         let response;
         if (!category || category === 'all') { // Check if category is undefined or "all"
-          response = await axios.get('https://portfolio-api-30april.onrender.com/api/projects/category/all');
+          response = await axios.get('https://portfolio-api-14april.onrender.com/api/projects/category/all');
         } else {
-          response = await axios.get(`https://portfolio-api-30april.onrender.com/api/projects/category/${category}`);
+          response = await axios.get(`https://portfolio-api-14april.onrender.com/api/projects/category/${category}`);
         }
         setProjects(response.data);
-        setLoading(false);
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000); 
       } catch (error) {
         console.error('Error fetching projects:', error);
       }
@@ -276,7 +292,7 @@ const Projects = () => {
   <script type="application/ld+json">
        {JSON.stringify({
          '@context': 'http://schema.org',
-         '@type': 'Person',
+         '@type': 'ItemList',
          "name": "Sanjay Patidar",
          "birthDate": "1998-07-01",
          "birthPlace": {
@@ -465,7 +481,14 @@ const Projects = () => {
 
 </Helmet>
 
+{loading && ( // Display loading animation if loading is true
+        <LoadingOverlay>
+          <RingLoader color="#13584F" loading={loading} size={150} />
+        </LoadingOverlay>
+      )}
+
      <ProjectsNavigation>
+
         <ProjectsNavList>
           <ProjectsNavItem>
             <ProjectsNavLinkContainer to="/projects/all">
