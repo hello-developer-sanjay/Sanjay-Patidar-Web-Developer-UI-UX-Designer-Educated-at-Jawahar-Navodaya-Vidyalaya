@@ -7,6 +7,8 @@ import BlogPage from "./components/BlogPage";
 import BlogPost from './components/BlogPost';
 import Projects from "./components/Projects";
 import Skills from "./pages/Skills";
+import Courses from "./pages/Courses";
+
 import Experiences from "./pages/Experiences";
 import Certifications from "./pages/Certifications";
 import CertificationDetails from "./pages/CertificationDetails";
@@ -43,6 +45,8 @@ const AppRouter = () => {
       <Route path="/founder-eduxcel" element={<Founder/>} />
 
         <Route path="/projects" element={<Projects />} />
+                <Route path="/courses-by-sanjay-patidar" element={<Courses />} />
+
         <Route path="/projects/:category" element={<Projects />} />
         <Route path="/project/:title" element={<ProjectDetails />} />
         <Route path="/skills" element={<Skills />} />
