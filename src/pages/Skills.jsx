@@ -1,6 +1,7 @@
-
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import styled from 'styled-components';
-import '../styles/Skills.css';
 import developerIcon from '../assets/developer.png';
 import appDevIcon from '../assets/app-development.png';
 import codingIcon from '../assets/coding.png';
@@ -9,60 +10,15 @@ import teamLeaderIcon from '../assets/team-leader.png';
 import { Helmet } from 'react-helmet';
 
 const SkillsContainer = styled.div`
-  padding: 2rem;
-  min-height: 100vh;
-  background-color: #d0eae7;
-`;
-const SkillsHeading = styled.h1`
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  text-align: center;
-  justify-content: center;
-  color: #24086C;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  position: relative;
-
-  &:after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(to right, #ff5e62, #ff9966);
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    border-radius: 10px;
-  }
-
-  &:before {
-    content: '🎯';
-    font-size: 2rem;
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: bounce 2s infinite;
-  }
-
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-20px);
-    }
-    60% {
-      transform: translateY(-10px);
-    }
-  }
-  @media (max-width: 768px) {
-    font-size: 1rem;
-
+  width: 100%;  
   
-  }
-`;
+  padding: 2rem;
 
+  width: calc(100% - 4rem);  
+
+    background-color: #050816; 
+
+`;
 
 const SkillsGrid = styled.div`
   display: grid;
@@ -70,18 +26,17 @@ const SkillsGrid = styled.div`
   gap: 1rem;
 `;
 
-const SkillCard = styled.div`
+const SkillCard = styled(motion.div)`
   position: relative;
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-      margin-top:20px;
-  background: linear-gradient(to right, #ff9966, #ff5e62);
-
+  margin-top: 20px;
+  border: 2px solid #ff6b6b;
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
 
@@ -95,7 +50,7 @@ const SkillIcon = styled.img`
   width: 80px;
   height: 80px;
   margin-bottom: 1rem;
-  
+
   transition: transform 0.3s ease-in-out;
 
   &:hover {
@@ -115,19 +70,18 @@ const SkillIcon = styled.img`
 const SkillName = styled.h3`
   font-size: 2.2rem;
   margin-bottom: 1rem;
-  font-family: 'Caveat', cursive; 
+  font-family: 'Caveat', cursive;
   color: #3d5a80;
   text-shadow: 2px 2px 4px rgba(61, 90, 128, 0.5);
   letter-spacing: 2px;
-  line-height: 1.2; 
-  font-weight: 600; 
+  line-height: 1.2;
+  font-weight: 600;
 `;
-
-
 
 const SkillDescription = styled.p`
   font-size: 1.2rem;
   opacity: 0;
+  color: #fff;
   transform: translateY(20px);
   transition: opacity 0.3s, transform 0.3s;
 
@@ -138,7 +92,7 @@ const SkillDescription = styled.p`
 `;
 
 const Skills = () => {
-  const skillsData = [
+    const skillsData = [
     {
       name: 'Tech Architect',
       icon: developerIcon,
@@ -171,7 +125,7 @@ const Skills = () => {
     },
     {
       name: 'Backend Sorcerer',
-      icon:codingIcon ,
+      icon: codingIcon,
       description: 'Integrating backend magic with Node JS, transforming ideas into functional realities, and ensuring a smooth user experience.',
     },
     {
@@ -180,12 +134,10 @@ const Skills = () => {
       description: 'Collaborating seamlessly in the API realm with Express JS, ensuring data flow like a well-choreographed symphony.',
     },
   ];
-  
-  
-  
+
   return (
     <SkillsContainer>
-            <Helmet>
+       <Helmet>
               <title>Sanjay Patidar | Web Developer | Skills and Expertise</title>
 
         <meta
@@ -204,15 +156,39 @@ const Skills = () => {
         <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
       </Helmet>
 
-      <SkillsHeading>Sanjay Patidar | Web Developer: Proficient in Tech Architecture, Innovative Development, UI/UX Design, and More - Showcasing Skills and Expertise</SkillsHeading>
       <SkillsGrid>
-        {skillsData.map((skill, index) => (
-          <SkillCard key={index}>
-            <SkillIcon src={skill.icon} alt={skill.name} />
-            <SkillName>{skill.name}</SkillName>
-            <SkillDescription>{skill.description}</SkillDescription>
-          </SkillCard>
-        ))}
+        {skillsData.map((skill, index) => {
+          const [ref, inView] = useInView({ triggerOnce: true });
+          const controls = useAnimation();
+
+          useEffect(() => {
+            if (inView) {
+              controls.start({
+                scale: 1,
+                opacity: 1,
+                rotate: 0,
+                transition: {
+                  type: 'spring',
+                  stiffness: 300,
+                  damping: 20,
+                },
+              });
+            }
+          }, [controls, inView]);
+
+          return (
+            <SkillCard
+              key={index}
+              ref={ref}
+              initial={{ scale: 0.8, opacity: 0, rotate: 90 }}
+              animate={controls}
+            >
+              <SkillIcon src={skill.icon} alt={skill.name} />
+              <SkillName>{skill.name}</SkillName>
+              <SkillDescription>{skill.description}</SkillDescription>
+            </SkillCard>
+          );
+        })}
       </SkillsGrid>
     </SkillsContainer>
   );
