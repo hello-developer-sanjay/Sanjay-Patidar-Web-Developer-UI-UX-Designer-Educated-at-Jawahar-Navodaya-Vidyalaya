@@ -71,7 +71,6 @@ const HomeWithBlogSuggestion = () => {
   return (
     <>
       <Home />
-            <About/>
 
    
     </>
