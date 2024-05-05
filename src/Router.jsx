@@ -22,7 +22,6 @@ import Career from './components/Career';
 import About from'./components/About';
 import  Founder from './components/Founder';
 
-import BlogSuggestion from "./components/BlogSuggestion";
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
@@ -70,7 +69,6 @@ const HomeWithBlogSuggestion = () => {
       <Home />
             <About/>
 
-      <BlogSuggestion />
    
     </>
   );
