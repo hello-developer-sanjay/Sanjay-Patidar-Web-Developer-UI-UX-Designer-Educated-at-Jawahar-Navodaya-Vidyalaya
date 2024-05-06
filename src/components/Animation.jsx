@@ -59,38 +59,19 @@ const Animation  = () => {
   const contentBlocks = [
 
     {
-      title: "🙋 Who is Sanjay Patidar and what's his story?",
-
-},
-
-{
-
-  description: '➥ Sanjay Patidar is the creative force behind EduXcel, a trailblazer on a mission to transform the tech landscape! With a background as a MERN stack developer, Sanjay brings a unique blend of technical expertise and visionary leadership to the table.',
-},
-
-
-
-
-
-
-{
-title: "🙋 What sets Sanjay apart from other entrepreneurs?",
- 
-},
-
-{
-    description: "➥ Sanjay isn't your average entrepreneur. He's a web development virtuoso, specializing in the MERN stack - MongoDB, Express.js, React, and Node.js. Whether it's crafting sleek user interfaces or architecting robust backend systems, Sanjay's skills are unmatched.",
-   
-  },
-{
-  title: "🙋 Seriously, his talent knows no bounds! What's the secret to Sanjay's success?",
-   
-  },
-  {
-      description: "➥ It's all about pushing boundaries and aiming for the stars. Sanjay is like a digital magician, weaving spellbinding experiences that captivate and inspire. His dedication to mastering the intricacies of web development and his commitment to excellence set him apart in the industry.",
-     
+      title: '🙋 Who is Sanjay Patidar, the Tech Innovator?',
+      description: "Sanjay Patidar, born on May 24, 1997, is a tech innovator from Indore, India. With a passion for digital innovation, he thrives on pushing technology boundaries. Renowned for directing 6 projects, Sanjay showcases diverse technical expertise and a relentless pursuit of excellence.",
+    },
+    {
+      title: '🙋 What Technologies Does Sanjay Patidar Master?',
+      description: "Explore the vast technology stack mastered by Sanjay Patidar, including React JS, Node JS, Express JS, MongoDB, Git, Docker, Kubernetes, AWS/Azure/GCP, GraphQL, and more. With expertise spanning both frontend and backend development, Sanjay crafts robust, scalable solutions tailored to meet diverse client needs.",
+    },
+    {
+      title: '🙋 How Did Sanjay Patidar Optimize SEO Strategies?',
+      description: "Sanjay Patidar achieved a flawless SEO score of 100, capturing over 28,000 impressions across 116+ countries. His mastery of on-page/off-page SEO techniques propelled websites to the top of search engine rankings, boosting visibility and engagement.",
     },
    
+    
   ];  
 
   return (
