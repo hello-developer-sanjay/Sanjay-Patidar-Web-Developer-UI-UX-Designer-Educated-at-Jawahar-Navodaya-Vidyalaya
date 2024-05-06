@@ -1317,12 +1317,32 @@ const SocialIconWrapper = ({ icon, label, link }) => {
 
 <Onlyformob>
 <Next>
-  📞 Contact Sanjay Patidar Web Developer <span className="light">📞</span> {' '}
-  <button onClick={() => window.location.href = 'tel:+919131743250'} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer', boxShadow: '0px 0px 10px #ffd700' }}>Call Sanjay Patidar</button>
+
+<button 
+
+  onClick={() => window.location.href = 'tel:+91 9165751109'} 
+  style={{
+    marginLeft: '4px',
+    color: '#000501',
+    padding: '2px 4px',
+    border: '2px solid #ff6b6b',
+    borderRadius: '30px',
+    cursor: 'pointer',
+    boxShadow: '0px 0px 10px #ffd700'
+  }}
+>
+  <span className="call-text">Call Sanjay Patidar</span>
+  <span role="img" aria-label="Phone" className="bounce">📞</span>
+  
+</button>
+{' '} Contact Dr. Sanjay Patidar | Web Developer & UI/UX Designer 
+{' '}
+
 </Next>
+
     <Next>
     📞 Sanjay Patidar <span className="light">Contact | Mobile Number : </span>{' '}
-      <a href="tel:+919131743250" id="contactNumberforu" style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }}>+91 9131743250</a> 📞 | OR |
+      <a href="tel:+91 9165751109" id="contactNumberforu" style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }}>+91 9165751109</a> 📞 | OR |
       
       <button onClick={copyContactNumberforu} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
     </Next>
