@@ -1249,7 +1249,27 @@ const SocialIconWrapper = ({ icon, label, link }) => {
     <span className="call-text">Call Sanjay Patidar</span>
   </button>
 </Next>
+<Next>
+  Write an Email to Sanjay Patidar | Web Developer | India
 
+<button
+  onClick={() => window.location.href = 'mailto:sanjay.patidar.eduxcel@gmail.com'}
+  style={{
+    marginLeft: '4px',
+    color: '#000501',
+    padding: '2px 4px',
+    border: '2px solid #ff6b6b',
+    borderRadius: '30px',
+    cursor: 'pointer',
+    boxShadow: '0px 0px 10px #ffd700'
+  }}
+>
+  <span role="img" aria-label="Mail" className="slide-in-bounce">✉️</span>
+  <span className="mail-text">Email Sanjay Patidar</span>
+</button>
+
+
+</Next>
 
       <Next>
       📞 Sanjay Patidar <span className="light">Contact | Mobile Number : </span>{' '}
