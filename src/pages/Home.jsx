@@ -612,6 +612,16 @@ margin-right: 2rem;
   display: none;
   }
 `;
+const RatingStyle =styled.div `
+margin-top : 5rem;
+margin-left: 1rem;
+@media (max-width: 768px) {
+margin : 0rem; 
+margin-left: 0rem;
+margin-top : 0rem;
+
+ }
+`;
 
 const socialButtons = [
   { icon: <FaLinkedin />, label: "LinkedIn", link: "https://www.linkedin.com/in/sanjay-patidar-25b580292" },
@@ -1224,8 +1234,7 @@ const SocialIconWrapper = ({ icon, label, link }) => {
         <SocialIconWrapper key={index} icon={button.icon} label={button.label} link={button.link} />
       ))}
     </SocialIconsContainer>
-      <div style={{ margin: "1rem" }}><Rating/></div>
-      
+      <RatingStyle> <Rating/></RatingStyle>    
 
       </ParentContainer>
 
