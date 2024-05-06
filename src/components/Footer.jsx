@@ -368,16 +368,7 @@ useEffect(() => {
       <CatchyMessage>
         {getRandomCatchyMessage()}
       </CatchyMessage>
-      <FooterButton
-        color="#4db6ac"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        aria-label="Navigate to user profiles"
-      >
-        <FaUsers />
-      </FooterButton>
+     
       <AnimatePresence>
       <SocialIconsContainer>
       {socialButtons.map((button, index) => (
