@@ -30,6 +30,46 @@ const FooterContainer = styled(motion.footer)`
   /* Optional: Add animation or transition properties for a dynamic effect */
   transition: background 0.3s ease-in-out;
 `;
+
+
+const Tooltip = styled.div`
+position: absolute;
+top: -40px;
+border: 2px solid #ff6b6b;
+
+left: 50%;
+transform: translateX(-50%);
+background-color: #333;
+color: #fff;
+padding: 8px 12px;
+border-radius: 8px;
+font-size: 14px;
+font-weight: bold;
+opacity: ${props => (props.visible ? 1 : 0)};
+transition: opacity 0.3s ease;
+z-index: 999;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+`;
+
+const SocialIconWrapper = ({ icon, label, link }) => {
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+
+  return (
+    <div style={{ position: 'relative' }} onMouseEnter={() => setIsTooltipVisible(true)} onMouseLeave={() => setIsTooltipVisible(false)}>
+      <SocialIcon
+        color={icon.props.color}
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={label}
+      >
+        {icon}
+      </SocialIcon>
+      <Tooltip visible={isTooltipVisible}>{label}</Tooltip>
+    </div>
+  );
+};
+
 const Text = styled.h1`
   margin-top: 0rem;;
   font-size: 1.1rem;
@@ -339,33 +379,20 @@ useEffect(() => {
         <FaUsers />
       </FooterButton>
       <AnimatePresence>
-       <SocialIconsContainer>
-          {socialButtons.map((button, index) => (
-            <SocialIcon
-              key={index}
-              color={button.color}
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -50 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              href={button.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={button.label} 
-            >
-              {button.icon}
-            </SocialIcon>
-          ))}
-        </SocialIconsContainer>
+      <SocialIconsContainer>
+      {socialButtons.map((button, index) => (
+        <SocialIconWrapper key={index} icon={button.icon} label={button.label} link={button.link} />
+      ))}
+    </SocialIconsContainer>
       </AnimatePresence>
 
       <NavigationContainer>
   <Column>
     <NavHeading>Main</NavHeading>
     <NavLink exact to="/">
-      <FaHome /> Home
+      <FaHome /> Home 
     </NavLink>
-      <NavLink exact to="/courses-by-sanjay-patidar">
+    <NavLink exact to="/courses-by-sanjay-patidar">
       <FaBlog /> Courses
     </NavLink>
     <NavLink to="/blogs">
