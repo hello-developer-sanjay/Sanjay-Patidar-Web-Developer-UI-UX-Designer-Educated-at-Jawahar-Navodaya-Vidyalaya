@@ -411,7 +411,7 @@ const handleCareerInsightsClick = () => {
         <Sidebar />
         <NavLinkStyled to="/">
           <Logo className="logo-small">Sanjay Patidar</Logo>
-          <Logo className="logo-large">Sanjay Patidar : A Web Developer</Logo>
+          <Logo className="logo-large">Sanjay Patidar </Logo>
         </NavLinkStyled>
 
         <HamburgerIcon className={isOpen ? 'open' : ''} onClick={toggleMenu}>
