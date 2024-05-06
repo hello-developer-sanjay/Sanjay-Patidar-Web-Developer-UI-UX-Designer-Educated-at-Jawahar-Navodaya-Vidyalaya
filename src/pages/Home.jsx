@@ -12,6 +12,7 @@ import Animation from '../components/Animation';
   import unlock from "../assets/unlock.gif";
   import { toast } from 'react-toastify';
   import Rating from '../components/Rating';
+  import '../styles/home.css';
 
   import 'react-toastify/dist/ReactToastify.css';
   import {
@@ -174,7 +175,7 @@ const H3 = styled.h1`
     flex-direction: column;
     align-items: center;
     max-width: 80%;
-    order: 2;
+    order: 3;
     margin-top: 1rem;
     margin-right: 1rem;
     
@@ -195,13 +196,18 @@ const H3 = styled.h1`
 
   const ProfileImageContainer = styled.div`
     flex-shrink: 0;
-
     @media (min-width: 768px) {
       order: 1;
-      margin-right: 5rem;
-      align-self: flex-start; /* Align the image to the start of the container on larger screens */
+      margin-right: 2rem;
+      align-self: flex-start; 
     }
   `;
+  
+const ParentContainer = styled.div`
+display: flex;
+align-items: flex-start; /* Align items to the start of the cross axis */
+justify-content: center; /* Center the items along the main axis */
+`;
 
 
   const BackgroundOverlay = styled.div`
@@ -216,10 +222,10 @@ const H3 = styled.h1`
 
 
   const ProfileImage = styled(motion.img)`
-    width: 380px;
-    height: 380px;
+    width: 350px;
+    height: 350px;
     margin-top: 1rem;
-
+margin-right: 2rem;
     border-radius: 50%;
     box-shadow: 0 0 10px rgba(255, 165, 0, 0.8), 0 0 20px rgba(255, 165, 0, 0.6);
     transform-origin: center;
@@ -333,7 +339,6 @@ const H3 = styled.h1`
     max-width: 800px;
     text-align: center;
     margin-top : 0rem;
-    margin-bottom: 10rem;
     color: #ffffff; /* White on hover */
 
     
@@ -402,11 +407,11 @@ const H3 = styled.h1`
   const TypedText = styled.span`
     display: block;
     margin-top: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     text-transform:uppercase;
     font-style: italic;
     font-weight: bold;
-    font-size: 4rem;
+    font-size: 3rem;
     background: linear-gradient(45deg, #00bcd4, #2196f3); /* Gradient from turquoise to blue */
     background-clip: text;
     -webkit-background-clip: text;
@@ -579,28 +584,43 @@ const H3 = styled.h1`
 
 
 
+  const Tooltip = styled.div`
+  position: absolute;
+  top: -20px;
+  border: 2px solid #ff6b6b;
 
-  const SocialIconsContainer = styled(motion.div)`
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  opacity: ${props => (props.visible ? 1 : 0)};
+  transition: opacity 0.3s ease;
+  z-index: 999;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+`;
+
+  const SocialIconsContainer = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
   margin-top: 1rem;
   @media (max-width: 768px) {
-    display: none;
-    margin-top: 0rem;
-
+  display: none;
   }
+`;
 
-  `;
-  const socialButtons = [
-    { icon: <FaLinkedin />, label: "LinkedIn", link: "https://www.linkedin.com/in/sanjay-patidar-25b580292" },
-    { icon: <FaGithub />, label: "GitHub", link: "https://github.com/hello-developer-sanjay" },
-    { icon: <FaTwitter />, label: "Twitter", link: "#" },
-    { icon: <FaInstagram />, label: "Instagram", link: "https://www.instagram.com/sanjay_patidar_mcmxcviii" },
-  ];
+const socialButtons = [
+  { icon: <FaLinkedin />, label: "LinkedIn", link: "https://www.linkedin.com/in/sanjay-patidar-25b580292" },
+  { icon: <FaGithub />, label: "GitHub", link: "https://github.com/hello-developer-sanjay" },
+  { icon: <FaTwitter />, label: "Twitter", link: "#" },
+  { icon: <FaInstagram />, label: "Instagram", link: "https://www.instagram.com/sanjay_patidar_mcmxcviii" },
+];
 
-  const SocialIcon = styled(motion.a)`
+const SocialIcon = styled(motion.a)`
   display: flex;
   align-items: center;
   margin-top:1rem;
@@ -626,7 +646,7 @@ const H3 = styled.h1`
   }
 
   &:not(:last-child) {
-    margin-right: 1rem;
+    margin-bottom: 1rem; /* Change margin-right to margin-bottom */
   }
 
   &:before {
@@ -659,8 +679,27 @@ const H3 = styled.h1`
       transform: scale(1.1);
     }
   }
-  `;
-    
+`;
+const SocialIconWrapper = ({ icon, label, link }) => {
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+
+  return (
+    <div style={{ position: 'relative' }} onMouseEnter={() => setIsTooltipVisible(true)} onMouseLeave={() => setIsTooltipVisible(false)}>
+      <SocialIcon
+        color={icon.props.color}
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={label}
+      >
+        {icon}
+      </SocialIcon>
+      <Tooltip visible={isTooltipVisible}>{label}</Tooltip>
+    </div>
+  );
+};
+
+
 
 
   const Home = () => {
@@ -842,7 +881,7 @@ const H3 = styled.h1`
           });
     
           // Send coordinates to the server
-          fetch('https://portfolio-api-30april.onrender.com/api/store-visited-location', {
+          fetch('https://portfolio-api-14april.onrender.com/api/store-visited-location', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -1159,95 +1198,100 @@ const H3 = styled.h1`
         <FlexContainer>
 
         <ProfileImageContainer>
-        <ProfileImage
 
+        <ParentContainer>
 
-    src={profileImage1}
-    alt="Sanjay Patidar"
-    initial={{ y: -100, opacity: 0, filter: 'blur(10px)' }}
-    animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
-    transition={{ type: "spring", damping: 10, stiffness: 100, delay: 0.5 }}
-    className={`profile-image ${imageLoading ? 'loading' : ''}`}
-    onLoad={() => {
-      console.log("Image loaded successfully!");
-      setImageLoading(false);
-    }}
-    onError={() => {
-      console.error("Error loading image!");
-      setImageLoading(true); 
-    }}
-  />
- 
-  <SocialIconsContainer>
-            {socialButtons.map((button, index) => (
-    <SocialIcon
-    key={index}
-    color={button.color}
-    initial={{ opacity: 0, y: -50, scale: 0, rotate: -180 }}
-    animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
-    exit={{ opacity: 0, y: -50 }}
-    transition={{ duration: 0.5, delay: index * 0.1 }}
-    href={button.link}
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label={button.label} 
-  >
-    {button.icon}
-  </SocialIcon>
+    <ProfileImage
+      src={profileImage1}
+      alt="Sanjay Patidar"
+      initial={{ y: -100, opacity: 0, filter: 'blur(10px)' }}
+      animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+      transition={{ type: "spring", damping: 10, stiffness: 100, delay: 0.5 }}
+      className={`profile-image ${imageLoading ? 'loading' : ''}`}
+      onLoad={() => {
+        console.log("Image loaded successfully!");
+        setImageLoading(false);
+      }}
+      onError={() => {
+        console.error("Error loading image!");
+        setImageLoading(true);
+      }}
+    />
 
-
-            ))}
-
-          </SocialIconsContainer>
-          
-<Onlyforlap>
-<Next>
-  📞 Contact Sanjay Patidar Web Developer <span className="light">📞</span> {' '}
-  <button onClick={() => window.location.href = 'tel:+917987235207'} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer', boxShadow: '0px 0px 10px #ffd700' }}>Call Sanjay Patidar</button>
-</Next>
-    <Next>
-    📞 Sanjay Patidar <span className="light">Contact | Mobile Number : </span>{' '}
-      <a href="tel:+919131743250" id="contactNumberforlap" style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }}>+91 9131743250</a> 📞 | OR |
+   
+<SocialIconsContainer>
+      {socialButtons.map((button, index) => (
+        <SocialIconWrapper key={index} icon={button.icon} label={button.label} link={button.link} />
+      ))}
+    </SocialIconsContainer>
+      <div style={{ margin: "1rem" }}><Rating/></div>
       
-      <button onClick={copyContactNumberforlap} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
-    </Next>
 
-    <Next>
-  🔗 <span className="light">Sanjay Patidar Instagram ID : </span>{' '}
-  <a href="https://www.instagram.com/sanjay_patidar_mcmxcviii"style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }} id="instaIDforlap" target="_blank">sanjay_patidar_mcmxcviii</a>
-  {' '} | OR | {' '}
-  <button onClick={copyInstaIDforlap} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
+      </ParentContainer>
+
+      <Onlyforlap>
+  
+      <Next>
+  Contact Dr. Sanjay Patidar | Web Developer & UI/UX Designer 
+  <button 
+    onClick={() => window.location.href = 'tel:+91 9165751109'} 
+    style={{
+      marginLeft: '4px',
+      color: '#000501',
+      padding: '2px 4px',
+      border: '2px solid #ff6b6b',
+      borderRadius: '30px',
+      cursor: 'pointer',
+      boxShadow: '0px 0px 10px #ffd700'
+    }}
+  >    <span role="img" aria-label="Phone" className="bounce">📞</span>
+
+    <span className="call-text">Call Sanjay Patidar</span>
+  </button>
 </Next>
 
 
-
-<Next>
-  🔗 <span className="light">Sanjay Patidar Github Profile : </span>{' '}
-  <a href="https://github.com/hello-developer-sanjay"style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }} id="githubIDforlap" target="_blank">hello-developer-sanjay</a>
-  {' '} | OR | {' '}
-  <button onClick={copyGithubIDforlap} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Github ID</button>
-</Next>
-
-
-<Next>
-  🔗 <span className="light">Sanjay Patidar Linkedin Profile : </span>{' '}
-  <a href="https://www.linkedin.com/in/sanjay-patidar-25b580292"style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }} id="linkedinIDforlap" target="_blank">sanjay-patidar-25b580292</a>
-  {' '} | OR | {' '}
-  <button onClick={copyLinkedinIDforlap} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Linkedin ID</button>
-</Next>
-<Next>
-  🔗 <span className="light">EduXcel :Empowering Careers in Tech </span>{' '}
-  <a href="https://eduxcel.vercel.app/"style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }} id="eduIDforlap" target="_blank">https://eduxcel.vercel.app</a>
-  {' '} | OR | {' '}
-  <button onClick={copyEduIDforlap} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy WebLink</button>
-</Next>
-<Next>Based in Indore, Madhya Pradesh | Founder | Developer | Creator | Visionary | Creator </Next>
-  </Onlyforlap>
-  <Rating/>
-
+      <Next>
+      📞 Sanjay Patidar <span className="light">Contact | Mobile Number : </span>{' '}
+        <a href="tel:+9165751109" id="contactNumberforlap" style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }}>+91 9165751109</a> 📞 | OR |
+        
+        <button onClick={copyContactNumberforlap} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Number</button>
+      </Next>
+  
+      <Next>
+    🔗 <span className="light">Sanjay Patidar Instagram ID : </span>{' '}
+    <a href="https://www.instagram.com/sanjay_patidar_mcmxcviii"style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }} id="instaIDforlap" target="_blank">sanjay_patidar_mcmxcviii</a>
+    {' '} | OR | {' '}
+    <button onClick={copyInstaIDforlap} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
+  </Next>
+  
+  
+  
+  <Next>
+    🔗 <span className="light">Sanjay Patidar Github Profile : </span>{' '}
+    <a href="https://github.com/hello-developer-sanjay"style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }} id="githubIDforlap" target="_blank">hello-developer-sanjay</a>
+    {' '} | OR | {' '}
+    <button onClick={copyGithubIDforlap} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Github ID</button>
+  </Next>
+  
+  
+  <Next>
+    🔗 <span className="light">Sanjay Patidar Linkedin Profile : </span>{' '}
+    <a href="https://www.linkedin.com/in/sanjay-patidar-25b580292"style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }} id="linkedinIDforlap" target="_blank">sanjay-patidar-25b580292</a>
+    {' '} | OR | {' '}
+    <button onClick={copyLinkedinIDforlap} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Linkedin ID</button>
+  </Next>
+  <Next>
+    🔗 <span className="light">EduXcel :Empowering Careers in Tech </span>{' '}
+    <a href="https://eduxcel.vercel.app/"style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }} id="eduIDforlap" target="_blank">https://eduxcel.vercel.app</a>
+    {' '} | OR | {' '}
+    <button onClick={copyEduIDforlap} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy WebLink</button>
+  </Next>
+  <Next>Based in Indore, Madhya Pradesh | Founder | Developer | Creator | Visionary | Creator </Next>
+    </Onlyforlap>
           </ProfileImageContainer>
-    
-      
+
+          
         <ProfileTextContainer>
 
 
@@ -1347,7 +1391,7 @@ const H3 = styled.h1`
       </ActionsContainer>
   
         <Subtitle>
-          Want to know more? Check out my <SubtitleLink href="/careers">Blogs</SubtitleLink> for tech insights and tutorials.
+          Want to know more? Check out my <SubtitleLink href="/blogs">Blogs</SubtitleLink> for tech insights and tutorials.
         </Subtitle>
         
 
