@@ -81,7 +81,43 @@ const fadeIn = keyframes`
     opacity: 1;
   }
 `;
+const Tooltip = styled.div`
+position: absolute;
+top: -40px;
+border: 2px solid #ff6b6b;
 
+left: 50%;
+transform: translateX(-50%);
+background-color: #333;
+color: #fff;
+padding: 8px 12px;
+border-radius: 8px;
+font-size: 14px;
+font-weight: bold;
+opacity: ${props => (props.visible ? 1 : 0)};
+transition: opacity 0.3s ease;
+z-index: 999;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+`;
+
+const SocialIconWrapper = ({ icon, label, link }) => {
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+
+  return (
+    <div style={{ position: 'relative' }} onMouseEnter={() => setIsTooltipVisible(true)} onMouseLeave={() => setIsTooltipVisible(false)}>
+      <SocialIcon
+        color={icon.props.color}
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={label}
+      >
+        {icon}
+      </SocialIcon>
+      <Tooltip visible={isTooltipVisible}>{label}</Tooltip>
+    </div>
+  );
+};
 const neonGlow = keyframes`
   0%, 100% {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -99,7 +135,6 @@ const CatchyMessage = styled(motion.p)`
   margin-top: 1rem;
   color: white;
   word-wrap: break-word;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease-in-out;
 
   @media (max-width: 600px) {
@@ -110,14 +145,9 @@ const CatchyMessage = styled(motion.p)`
   /* Add a little bounce animation */
   animation: ${bounceAnimation} 1s infinite;
 
-  /* Add fadeIn animation */
-  animation: ${fadeIn} 1s ease-in-out;
-
-  /* Add a neon glow effect */
-  animation: ${neonGlow} 1s infinite;
-
+ 
   /* Combine animations */
-  animation: ${bounceAnimation} 1s infinite, ${fadeIn} 1s ease-in-out, ${neonGlow} 1s infinite;
+  animation: ${bounceAnimation} 1s infinite, ${fadeIn} 1s ease-in-out;
 `;
 const SocialIconsContainer = styled(motion.div)`
   display: flex;
@@ -185,16 +215,6 @@ const SocialIcon = styled(motion.a)`
       transform: scale(1.1);
     }
   }
-`;
-const FooterButton = styled(motion.button)`
-  padding: 0.5rem 1rem;
-  background-color: #ff4d4d;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-  margin-top: 1rem;
 `;
 
 const ContactForm = styled(motion.form)`
@@ -511,14 +531,12 @@ margin-left: 0.2rem;
 
 
 
-
-
-
-
-
 const Footer = () => {
   const catchyMessages = [
-    "Stay Curious. Connect with Us!",
+    "Let's Bring Your Vision to Life! Get in Touch with Sanjay Patidar  "
+
+
+
   ];
   const copyContactNumberforlap = () => {
     const contactNumberforlap = document.getElementById('contactNumberforlap');
@@ -910,35 +928,13 @@ let endpoint = "submit-feedback";
       <CatchyMessage>
         {getRandomCatchyMessage()}
       </CatchyMessage>
-      <FooterButton
-        color="#4db6ac"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        aria-label="Navigate to user profiles"
-      >
-        <FaUsers />
-      </FooterButton>
+
       <AnimatePresence>
-       <SocialIconsContainer>
-          {socialButtons.map((button, index) => (
-            <SocialIcon
-              key={index}
-              color={button.color}
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -50 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              href={button.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={button.label} // Provide an accessible label for the link
-            >
-              {button.icon}
-            </SocialIcon>
-          ))}
-        </SocialIconsContainer>
+      <SocialIconsContainer>
+      {socialButtons.map((button, index) => (
+        <SocialIconWrapper key={index} icon={button.icon} label={button.label} link={button.link} />
+      ))}
+    </SocialIconsContainer>
       </AnimatePresence>
 
       <FlexContainer>
@@ -964,9 +960,31 @@ let endpoint = "submit-feedback";
           </ProfileImageContainer>
           <Onlyforlap>
 <Next>
-  📞 Contact Sanjay Patidar Web Developer <span className="light">📞</span> {' '}
+  📞 Contact  Dr. Sanjay Patidar | Web Developer | Ujjain | Indore<span className="light">📞</span> {' '}
   <button onClick={() => window.location.href = 'tel:+919131743250'} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer', boxShadow: '0px 0px 10px #ffd700' }}>Call Sanjay Patidar</button>
 </Next>
+<Next>
+  Write an Email ✉️ to Sanjay Patidar | Web Developer | India
+
+<button
+  onClick={() => window.location.href = 'mailto:sanjay.patidar.eduxcel@gmail.com'}
+  style={{
+    marginLeft: '4px',
+    color: '#000501',
+    padding: '2px 4px',
+    border: '2px solid #ff6b6b',
+    borderRadius: '30px',
+    cursor: 'pointer',
+    boxShadow: '0px 0px 10px #ffd700'
+  }}
+>
+  <span role="img" aria-label="Mail" className="slide-in-bounce">✉️</span>
+  <span className="mail-text">Email Sanjay Patidar</span>
+</button>
+
+
+</Next>
+
     <Next>
     📞 Sanjay Patidar <span className="light">Contact | Mobile Number : </span>{' '}
       <a href="tel:+919131743250" id="contactNumberforlap" style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }}>+91 9131743250</a> 📞 | OR |
