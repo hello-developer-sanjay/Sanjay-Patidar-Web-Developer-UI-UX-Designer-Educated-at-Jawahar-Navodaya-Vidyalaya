@@ -1,66 +1,72 @@
 <!-- sitemap.xml -->
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <!-- Home -->
+
+   <url>
+    <loc>https://sanjay-patidar.vercel.app</loc>
+    <lastmod>2024-05-07</lastmod>
+  </url>
 
    <!-- Courses By Sanjay Patidar -->
    
  <url>
     <loc>https://sanjay-patidar.vercel.app/courses-by-sanjay-patidar</loc>
-    <lastmod>2023-05-05</lastmod>
+    <lastmod>2024-05-05</lastmod>
   </url>
 
    <!-- projects -->
 
    <url>
     <loc>https://sanjay-patidar.vercel.app/projects</loc>
-    <lastmod>2023-01-02</lastmod>
+    <lastmod>2024-01-02</lastmod>
   </url>
 
 
   <url>
     <loc>https://sanjay-patidar.vercel.app/projects/all</loc>
-    <lastmod>2023-01-01</lastmod>
+    <lastmod>2024-01-01</lastmod>
   </url>
   <url>
     <loc>https://sanjay-patidar.vercel.app/projects/web</loc>
-    <lastmod>2023-01-02</lastmod>
+    <lastmod>2024-01-02</lastmod>
   </url>
   <url>
     <loc>https://sanjay-patidar.vercel.app/projects/mobile</loc>
-    <lastmod>2023-01-03</lastmod>
+    <lastmod>2024-01-03</lastmod>
   </url>
 <url>
     <loc>https://sanjay-patidar.vercel.app/project/eduxcel-empowering-careers-in-tech-expert-insights-cutting-edge-education-and-skill-mastery</loc>
-    <lastmod>2023-01-03</lastmod>
+    <lastmod>2024-01-03</lastmod>
   </url>
 
     <url>
     <loc>https://sanjay-patidar.vercel.app/project/rentride-your-car-rental-platform</loc>
-    <lastmod>2023-01-03</lastmod>
+    <lastmod>2024-01-03</lastmod>
   </url>
   <url>
     <loc>https://sanjay-patidar.vercel.app/project/property-rent-website-checkhere</loc>
-    <lastmod>2023-01-03</lastmod>
+    <lastmod>2024-01-03</lastmod>
   </url>
    
   <url>
     <loc>https://sanjay-patidar.vercel.app/blogs</loc>
-    <lastmod>2023-01-04</lastmod>
+    <lastmod>2024-01-04</lastmod>
   </url>
   
   <url>
     <loc>https://sanjay-patidar.vercel.app/protected</loc>
-    <lastmod>2023-01-04</lastmod>
+    <lastmod>2024-01-04</lastmod>
   </url>
   <url>
     <loc>https://sanjay-patidar.vercel.app/skills</loc>
-    <lastmod>2023-01-05</lastmod>
+    <lastmod>2024-01-05</lastmod>
   </url>
 
 
   <url>
     <loc>https://sanjay-patidar.vercel.app/education</loc>
-    <lastmod>2023-01-06</lastmod>
+    <lastmod>2024-01-06</lastmod>
   </url>
 
       <!-- certifications -->
@@ -69,39 +75,39 @@
 
      
     <loc>https://sanjay-patidar.vercel.app/certifications</loc>
-    <lastmod>2023-01-07</lastmod>
+    <lastmod>2024-01-07</lastmod>
   </url>
   <url>
     <loc>https://sanjay-patidar.vercel.app/certifications/Django%20Features%20and%20Libraries</loc>
-    <lastmod>2023-01-08</lastmod>
+    <lastmod>2024-01-08</lastmod>
   </url>
 
   <url>
     <loc>https://sanjay-patidar.vercel.app/certifications/Building%20Web%20Applications%20in%20Django</loc>
-    <lastmod>2023-01-02</lastmod>
+    <lastmod>2024-01-02</lastmod>
   </url>
 
     <url>
     <loc>https://sanjay-patidar.vercel.app/certifications/Web%20Application%20Technologies%20and%20Django</loc>
-    <lastmod>2023-01-02</lastmod>
+    <lastmod>2024-01-02</lastmod>
   </url>
 
     <url>
     <loc>https://sanjay-patidar.vercel.app/certifications/Python%20Basics</loc>
-    <lastmod>2023-01-02</lastmod>
+    <lastmod>2024-01-02</lastmod>
   </url>
 
 
      <url>
     <loc>https://sanjay-patidar.vercel.app/certifications/%0APython%20Functions%2C%20Files%2C%20and%20Dictionaries</loc>
-    <lastmod>2023-01-02</lastmod>
+    <lastmod>2024-01-02</lastmod>
   </url>
 
 
 
      <url>
     <loc>https://sanjay-patidar.vercel.app/certifications/Introduction%20to%20Computer%20Vision</loc>
-    <lastmod>2023-01-02</lastmod>
+    <lastmod>2024-01-02</lastmod>
   </url>
 
 
@@ -110,64 +116,64 @@
 
      <url>
     <loc>https://sanjay-patidar.vercel.app/certifications/Machine%20Learning%20for%20Computer%20Vision</loc>
-    <lastmod>2023-01-02</lastmod>
+    <lastmod>2024-01-02</lastmod>
   </url>
 
      <url>
     <loc>https://sanjay-patidar.vercel.app/certifications/Object%20Tracking%20and%20Motion%20Detection%20with%20Computer%20Vision</loc>
-    <lastmod>2023-01-02</lastmod>
+    <lastmod>2024-01-02</lastmod>
   </url>
 
      <url>
     <loc>https://sanjay-patidar.vercel.app/certifications/Introduction%20to%20H2O%20using%20Python</loc>
-    <lastmod>2023-01-02</lastmod>
+    <lastmod>2024-01-02</lastmod>
   </url>
 
      <url>
     <loc>https://sanjay-patidar.vercel.app/certifications/MERN%3A%20Advanced%20MERN%20Development</loc>
-    <lastmod>2023-01-02</lastmod>
+    <lastmod>2024-01-02</lastmod>
   </url>
 
      <url>
     <loc>https://sanjay-patidar.vercel.app/certifications/Developing%20Real%20Time%20Applications%20with%20WebRTC</loc>
-    <lastmod>2023-01-02</lastmod>
+    <lastmod>2024-01-02</lastmod>
   </url>
 
 
   
      <url>
     <loc>https://sanjay-patidar.vercel.app/certifications/Internet%20History%2C%20Technology%2C%20and%20Security</loc>
-    <lastmod>2023-01-02</lastmod>
+    <lastmod>2024-01-02</lastmod>
   </url>
 
 
   
      <url>
     <loc>https://sanjay-patidar.vercel.app/experiences</loc>
-    <lastmod>2023-01-02</lastmod>
+    <lastmod>2024-01-02</lastmod>
   </url>
 
   <url>
     <loc>https://sanjay-patidar.vercel.app/resume</loc>
-    <lastmod>2023-04-30</lastmod>
+    <lastmod>2024-04-30</lastmod>
   </url>
 
     <url>
     <loc>https://sanjay-patidar.vercel.app/contact</loc>
-    <lastmod>2023-04-30</lastmod>
+    <lastmod>2024-04-30</lastmod>
   </url>
 
 
 
        <url>
     <loc>https://sanjay-patidar.vercel.app/careers</loc>
-    <lastmod>2023-02-18</lastmod>
+    <lastmod>2024-02-18</lastmod>
   </url>
 
    
        <url>
     <loc>https://sanjay-patidar.vercel.app/founder-eduxcel</loc>
-    <lastmod>2023-05-05</lastmod>
+    <lastmod>2024-05-05</lastmod>
   </url>
       
 
