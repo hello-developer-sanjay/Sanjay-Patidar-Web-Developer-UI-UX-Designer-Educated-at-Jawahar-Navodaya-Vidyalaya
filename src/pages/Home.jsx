@@ -29,7 +29,6 @@ import Animation from '../components/Animation';
   import profileImage1 from '../assets/ssss.webp';
   import profileImage2 from '../assets/profilepic.jpg';
 
-  import profileImage3 from '../assets/sixpack.jpeg';
 
   const HomeContainer = styled(motion.div)`
     display: flex;
@@ -330,7 +329,7 @@ margin-right: 2rem;
   `;
 
 
-  const images = [profileImage1, profileImage2,profileImage3];
+  const images = [profileImage1, profileImage2];
   let currentImageIndex = 0;
 
   const Introduction = styled(motion.p)`
