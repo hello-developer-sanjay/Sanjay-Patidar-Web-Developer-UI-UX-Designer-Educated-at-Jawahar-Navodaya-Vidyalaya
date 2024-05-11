@@ -11,7 +11,7 @@ import { Helmet } from 'react-helmet';
 
 const SkillsContainer = styled.div`
   width: 100%;  
-  
+    overflow: hidden;
   padding: 2rem;
 
   width: calc(100% - 4rem);  
