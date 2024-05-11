@@ -446,7 +446,7 @@ const Resume = () => {
           })}
         </script>
       </Helmet>
-    <ResumeHeading>Sanjay Patidar | Seasoned Web Developer & Creative UI/UX Designer | Crafting Immersive Digital Experiences - Comprehensive Resume</ResumeHeading>
+    <ResumeHeading>Seasoned Web Developer & Creative UI/UX Designer | Comprehensive Resume</ResumeHeading>
     <SkillTable/>
 
     <ResumeContainer>
@@ -475,7 +475,7 @@ const Resume = () => {
           src="https://sanjaybasket.s3.ap-south-1.amazonaws.com/welcome.gif"
           alt="Admin Only GIF"
           style={{
-            width: '100%',
+            width: '70%',
             marginTop: '0px',
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
             border: '2px solid #fff',
