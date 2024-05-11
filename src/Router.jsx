@@ -53,7 +53,7 @@ const AppRouter = () => {
         <Route path="/experiences" element={<PageTransition><Experiences /></PageTransition>} />
         <Route path="/certifications" element={<PageTransition><Certifications /></PageTransition>} />
         <Route path="/certifications/:title" element={<PageTransition><CertificationDetails /></PageTransition>} />
-        <Route path="/resume" element={<PageTransition><Resume /></PageTransition>} />
+        <Route path="/resume" element={<Resume />} />
         <Route path="/blogs/*" element={<BlogPage />} />
       <Route path="/:vision/*" element={<BlogPost/>} />
         <Route path="/education" element={<PageTransition><Education /></PageTransition>} />
