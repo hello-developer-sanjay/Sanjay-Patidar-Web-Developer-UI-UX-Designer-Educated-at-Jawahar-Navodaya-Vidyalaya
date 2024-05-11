@@ -1,5 +1,16 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { useEffect, useState } from 'react';
+
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 const TableContainer = styled.div`
   overflow-x: auto;
@@ -11,6 +22,7 @@ const Table = styled.table`
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  animation: ${fadeIn} 0.5s ease;
 `;
 
 const TableHeader = styled.th`
