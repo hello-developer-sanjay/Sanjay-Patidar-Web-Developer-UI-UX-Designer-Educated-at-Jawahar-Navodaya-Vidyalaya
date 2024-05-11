@@ -1,6 +1,8 @@
 import styled, { keyframes } from 'styled-components';
 import  { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
+import SkillTable from './SkillTable';
+import { RingLoader } from 'react-spinners'; 
 
 const ResumeContainer = styled.div`
   padding: 4rem 0;
@@ -29,9 +31,24 @@ const ResumeContainer = styled.div`
 
 
 
+
+
+
+const LoadingOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+  z-index: 9999; /* Ensure it's above other elements */
+`;
 const ResumeTitle = styled.h2`
   font-size: 2.8rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
   color: #333;
   position: relative;
   display: inline-block;
@@ -208,10 +225,7 @@ const Resume = () => {
     fetchDownloadCount();
   }, []);
   return (<>
-    <ResumeHeading>Sanjay Patidar | Seasoned Web Developer & Creative UI/UX Designer | Crafting Immersive Digital Experiences - Comprehensive Resume</ResumeHeading>
-
-    <ResumeContainer>
-            <Helmet>
+  <Helmet>
             <title>Sanjay Patidar | Web Developer Comprehensive Resume</title>
 
 <meta
@@ -432,6 +446,17 @@ const Resume = () => {
           })}
         </script>
       </Helmet>
+    <ResumeHeading>Sanjay Patidar | Seasoned Web Developer & Creative UI/UX Designer | Crafting Immersive Digital Experiences - Comprehensive Resume</ResumeHeading>
+    <SkillTable/>
+
+    <ResumeContainer>
+            
+{loading && ( // Display loading animation if loading is true
+        <LoadingOverlay>
+          <RingLoader color="#13584F" loading={loading} size={150} />
+        </LoadingOverlay>
+      )}
+
 
       <ResumeTitle>Unlock My Resume</ResumeTitle>
       <ResumeSubtitle>Click the link below to access my full resume.</ResumeSubtitle>
@@ -451,13 +476,14 @@ const Resume = () => {
           alt="Admin Only GIF"
           style={{
             width: '100%',
-            marginTop: '20px',
+            marginTop: '0px',
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
             border: '2px solid #fff',
           }}
         />
       </div>
     </ResumeContainer>
+
     </>
   );
 };
