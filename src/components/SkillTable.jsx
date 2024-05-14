@@ -116,7 +116,7 @@ const SkillTable = () => {
               ))}
             </TableCell>
             <TableCell>
-              {skills.slice(13, 18).map((skill, index) => (
+              {skills.slice(13, 19).map((skill, index) => (
                 <React.Fragment key={skill.name}>
                   <a href={skill.link} target="_blank" rel="noopener noreferrer">
                     {skill.name}
@@ -126,7 +126,7 @@ const SkillTable = () => {
               ))}
             </TableCell>
             <TableCell>
-              {skills.slice(18).map((skill, index) => (
+              {skills.slice(19).map((skill, index) => (
                 <React.Fragment key={skill.name}>
                   <a href={skill.link} target="_blank" rel="noopener noreferrer">
                     {skill.name}
