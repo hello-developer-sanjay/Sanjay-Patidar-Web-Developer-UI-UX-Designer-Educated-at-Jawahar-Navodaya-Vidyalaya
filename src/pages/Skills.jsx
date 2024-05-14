@@ -8,7 +8,7 @@ import codingIcon from '../assets/coding.png';
 import goalIcon from '../assets/goal.png';
 import teamLeaderIcon from '../assets/team-leader.png';
 import { Helmet } from 'react-helmet';
-
+import SkillTable from '../components/SkillTable';
 const SkillsContainer = styled.div`
   width: 100%;  
     overflow: hidden;
@@ -155,7 +155,8 @@ const Skills = () => {
         <meta name="twitter:description" content="Discover the diverse skills of Sanjay Patidar including Tech Architecture, Innovative Development, Design Alchemy, Strategic Navigation, Collaborative Leadership, Intuitive UX Design, Backend Sorcery, and API Mastery." />
         <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
       </Helmet>
-
+     <SkillTable/>
+      
       <SkillsGrid>
         {skillsData.map((skill, index) => {
           const [ref, inView] = useInView({ triggerOnce: true });
@@ -190,7 +191,7 @@ const Skills = () => {
           );
         })}
       </SkillsGrid>
-    </SkillsContainer>
+     </SkillsContainer>
   );
 };
 
