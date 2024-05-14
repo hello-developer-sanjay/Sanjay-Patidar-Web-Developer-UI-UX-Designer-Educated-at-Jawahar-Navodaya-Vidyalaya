@@ -49,16 +49,20 @@ const SkillTable = () => {
   useEffect(() => {
     // Define your skills data
     const skillsData = [
+      { name: "HTML5", link: "https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5" },
+      { name: "Tailwind CSS", link: "https://tailwindcss.com/docs/installation" },
+
+      { name: "JavaScript", link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+
       { name: "React JS", link: "https://reactjs.org/docs/getting-started.html" },
+            { name: "Git | Github", link: "https://git-scm.com/doc" },
+
       { name: "Node JS", link: "https://nodejs.org/en/docs/" },
       { name: "Express JS", link: "https://expressjs.com/" },
       { name: "RESTful APIs", link: "https://restfulapi.net/" },
-      { name: "HTML5/CSS3", link: "https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5" },
-      { name: "JavaScript", link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
       { name: "MongoDB", link: "https://docs.mongodb.com/" },
-      { name: "Git | Github", link: "https://git-scm.com/doc" },
       { name: "Docker", link: "https://docs.docker.com/" },
-      { name: "Kubernetes", link: "https://kubernetes.io/docs/" },
+      { name: "Kubernetes", link: "https://kubernetes.io/docs/" }, // Added comma here
       { name: "AWS/Azure/GCP", link: "https://aws.amazon.com/documentation/" },
       { name: "GraphQL", link: "https://graphql.org/learn/" },
       { name: "Agile Methodologies", link: "https://www.agilealliance.org/agile101/" },
@@ -81,6 +85,7 @@ const SkillTable = () => {
     <TableContainer>
       <Table>
         <thead>
+          
           <TableRow>
             <TableHeader>Frontend</TableHeader>
             <TableHeader>Backend | CI/CD</TableHeader>
@@ -91,7 +96,7 @@ const SkillTable = () => {
         <tbody>
           <TableRow>
             <TableCell>
-              {skills.slice(0, 5).map((skill, index) => (
+              {skills.slice(0,5).map((skill, index) => (
                 <React.Fragment key={skill.name}>
                   <a href={skill.link} target="_blank" rel="noopener noreferrer">
                     {skill.name}
@@ -101,17 +106,17 @@ const SkillTable = () => {
               ))}
             </TableCell>
             <TableCell>
-              {skills.slice(5, 12).map((skill, index) => (
+              {skills.slice(5, 13).map((skill, index) => (
                 <React.Fragment key={skill.name}>
                   <a href={skill.link} target="_blank" rel="noopener noreferrer">
                     {skill.name}
                   </a>
-                  {index !== 6 && ", "}
+                  {index !== 7 && ", "}
                 </React.Fragment>
               ))}
             </TableCell>
             <TableCell>
-              {skills.slice(12, 18).map((skill, index) => (
+              {skills.slice(13, 18).map((skill, index) => (
                 <React.Fragment key={skill.name}>
                   <a href={skill.link} target="_blank" rel="noopener noreferrer">
                     {skill.name}
