@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { useEffect, useState } from 'react';
-
+import React from 'react';
 const fadeIn = keyframes`
   0% {
     opacity: 0;
@@ -49,11 +49,30 @@ const SkillTable = () => {
   useEffect(() => {
     // Define your skills data
     const skillsData = [
-      "React JS", "Node JS", "Express JS", "RESTful APIs", "HTML5/CSS3", "JavaScript",
-      "MongoDB", "Git | Github", "Docker", "Kubernetes", "AWS/Azure/GCP", "GraphQL",
-      "Agile Methodologies", "On-Page/Off-Page SEO", "Content Optimization",
-      "Link Building", "Backlink Acquisition", "Web Scraping", "Communication",
-      "Teamwork", "Conflict resolution", "Collaboration", "Empathy", "Mind-mapping"
+      { name: "React JS", link: "https://reactjs.org/docs/getting-started.html" },
+      { name: "Node JS", link: "https://nodejs.org/en/docs/" },
+      { name: "Express JS", link: "https://expressjs.com/" },
+      { name: "RESTful APIs", link: "https://restfulapi.net/" },
+      { name: "HTML5/CSS3", link: "https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5" },
+      { name: "JavaScript", link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+      { name: "MongoDB", link: "https://docs.mongodb.com/" },
+      { name: "Git | Github", link: "https://git-scm.com/doc" },
+      { name: "Docker", link: "https://docs.docker.com/" },
+      { name: "Kubernetes", link: "https://kubernetes.io/docs/" },
+      { name: "AWS/Azure/GCP", link: "https://aws.amazon.com/documentation/" },
+      { name: "GraphQL", link: "https://graphql.org/learn/" },
+      { name: "Agile Methodologies", link: "https://www.agilealliance.org/agile101/" },
+      { name: "On-Page/Off-Page SEO", link: "https://moz.com/learn/seo" },
+      { name: "Content Optimization", link: "https://moz.com/learn/seo/content-optimization" },
+      { name: "Link Building", link: "https://moz.com/learn/seo/link-building" },
+      { name: "Backlink Acquisition", link: "https://moz.com/learn/seo/backlinks" },
+      { name: "Web Scraping", link: "https://www.crummy.com/software/BeautifulSoup/bs4/doc/" },
+      { name: "Communication", link: "https://www.skillsyouneed.com/ips/what-is-communication.html" },
+      { name: "Teamwork", link: "https://www.skillsyouneed.com/ips/teamwork.html" },
+      { name: "Conflict resolution", link: "https://www.skillsyouneed.com/ips/conflict-resolution.html" },
+      { name: "Collaboration", link: "https://www.skillsyouneed.com/ips/collaboration.html" },
+      { name: "Empathy", link: "https://www.skillsyouneed.com/ips/empathy.html" },
+      { name: "Mind-mapping", link: "https://www.mindtools.com/pages/article/newISS_01.htm" }
     ];
     setSkills(skillsData);
   }, []);
@@ -64,17 +83,53 @@ const SkillTable = () => {
         <thead>
           <TableRow>
             <TableHeader>Frontend</TableHeader>
-            <TableHeader>Backend</TableHeader>
-            <TableHeader>DevOps</TableHeader>
+            <TableHeader>Backend | CI/CD</TableHeader>
+            <TableHeader>SEO</TableHeader>
             <TableHeader>Soft Skills</TableHeader>
           </TableRow>
         </thead>
         <tbody>
           <TableRow>
-            <TableCell>{skills.slice(0, 5).join(', ')}</TableCell>
-            <TableCell>{skills.slice(5, 11).join(', ')}</TableCell>
-            <TableCell>{skills.slice(11, 15).join(', ')}</TableCell>
-            <TableCell>{skills.slice(15).join(', ')}</TableCell>
+            <TableCell>
+              {skills.slice(0, 5).map((skill, index) => (
+                <React.Fragment key={skill.name}>
+                  <a href={skill.link} target="_blank" rel="noopener noreferrer">
+                    {skill.name}
+                  </a>
+                  {index !== 4 && ", "}
+                </React.Fragment>
+              ))}
+            </TableCell>
+            <TableCell>
+              {skills.slice(5, 12).map((skill, index) => (
+                <React.Fragment key={skill.name}>
+                  <a href={skill.link} target="_blank" rel="noopener noreferrer">
+                    {skill.name}
+                  </a>
+                  {index !== 6 && ", "}
+                </React.Fragment>
+              ))}
+            </TableCell>
+            <TableCell>
+              {skills.slice(12, 18).map((skill, index) => (
+                <React.Fragment key={skill.name}>
+                  <a href={skill.link} target="_blank" rel="noopener noreferrer">
+                    {skill.name}
+                  </a>
+                  {index !== 5 && ", "}
+                </React.Fragment>
+              ))}
+            </TableCell>
+            <TableCell>
+              {skills.slice(18).map((skill, index) => (
+                <React.Fragment key={skill.name}>
+                  <a href={skill.link} target="_blank" rel="noopener noreferrer">
+                    {skill.name}
+                  </a>
+                  {index !== 5 && ", "}
+                </React.Fragment>
+              ))}
+            </TableCell>
           </TableRow>
         </tbody>
       </Table>
