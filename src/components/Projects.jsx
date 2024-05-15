@@ -95,24 +95,8 @@ const ProjectTitle = styled.span`
     transform: translateY(-2px); /* Add a subtle upward hover effect */
   }
 
-  .arrow {
-    display: block; /* Display the arrow as a block element */
-    text-align: left;
-    font-size: 1.5rem; /* Adjust the font size of the arrow */
-    animation: bounce 1s infinite; /* Add the bounce animation */
-  }
 
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-10px);
-    }
-    60% {
-      transform: translateY(-5px);
-    }
-  }
+ 
 `;
 
 
@@ -526,7 +510,6 @@ const Projects = () => {
                                <NavLink to={`/project/${generateSlug(project.title)}`} style={{ textDecoration: 'none' }}>
 
                   <ProjectTitle>
-                    <span className="arrow">Project Insights 👇</span>
                     {project.title}
                   </ProjectTitle>
                 </NavLink>
