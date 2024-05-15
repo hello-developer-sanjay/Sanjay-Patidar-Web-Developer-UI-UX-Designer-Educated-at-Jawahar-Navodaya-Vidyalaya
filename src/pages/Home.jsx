@@ -13,6 +13,7 @@ import Animation from '../components/Animation';
   import { toast } from 'react-toastify';
   import Rating from '../components/Rating';
   import '../styles/home.css';
+import FAQs from '../components/FAQs';
 
   import 'react-toastify/dist/ReactToastify.css';
   import {
@@ -1443,7 +1444,7 @@ const SocialIconWrapper = ({ icon, label, link }) => {
         </Subtitle>
         
 
-
+<FAQs/>
       </HomeContainer>
     );
   };
