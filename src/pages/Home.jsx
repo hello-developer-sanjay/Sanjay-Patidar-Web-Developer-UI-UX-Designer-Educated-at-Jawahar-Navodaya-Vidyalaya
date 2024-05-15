@@ -1,4 +1,4 @@
-  /* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable react-hooks/rules-of-hooks */
   /* eslint-disable react/no-unescaped-entities */
   import {  useEffect, useState } from 'react';
   import styled from 'styled-components';
@@ -14,7 +14,6 @@ import Animation from '../components/Animation';
   import Rating from '../components/Rating';
   import '../styles/home.css';
 import FAQs from '../components/FAQs';
-
   import 'react-toastify/dist/ReactToastify.css';
   import {
     FaArrowRight,
@@ -58,6 +57,7 @@ import FAQs from '../components/FAQs';
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top : 0rem;  
     @media (max-width: 768px) {
       display: none;
       margin-top: 0rem;
@@ -67,7 +67,7 @@ import FAQs from '../components/FAQs';
   const Next = styled.h1`
 font-size: 1.1rem;
 color: #f3f3f3;
-margin-bottom: 1.5rem;
+margin-bottom: 1rem;
 line-height: 1.4;
 text-align: justify;
 border-left: 4px solid #5d00ff;
@@ -153,10 +153,11 @@ const H3 = styled.h1`
   `;
 
   const StyledUnlockImage = styled.img`
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     margin-right: 0.5rem; 
+    margin-left : 0.5rem; 
     box-shadow: 0px 0px 10px rgba(46, 204, 113, 0.5);
   `;
 
@@ -222,8 +223,8 @@ justify-content: center; /* Center the items along the main axis */
 
 
   const ProfileImage = styled(motion.img)`
-    width: 350px;
-    height: 350px;
+    width: 300px;
+    height:300px;
     margin-top: 1rem;
 margin-right: 2rem;
     border-radius: 50%;
@@ -475,7 +476,7 @@ margin-right: 2rem;
     flex-wrap: wrap;
     
     gap: 1rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
     @media (max-width: 768px) {
     
     box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
@@ -547,7 +548,7 @@ margin-right: 2rem;
     font-size: 1.4rem;
     color: #ccc;
     margin-top: 2rem;
-    margin-bottom:2rem;
+    margin-bottom:1rem;
     padding: 0.5rem 1rem;
     border: 2px solid #ccc;
     border-radius: 20px;
@@ -586,14 +587,14 @@ margin-right: 2rem;
 
   const Tooltip = styled.div`
   position: absolute;
-  top: -20px;
+    top: -12px;
   border: 2px solid #ff6b6b;
 
   left: 50%;
   transform: translateX(-50%);
   background-color: #333;
   color: #fff;
-  padding: 8px 12px;
+  padding: 2px 8px;
   border-radius: 8px;
   font-size: 14px;
   font-weight: bold;
@@ -607,7 +608,7 @@ margin-right: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   @media (max-width: 768px) {
   display: none;
   }
@@ -1310,13 +1311,6 @@ const SocialIconWrapper = ({ icon, label, link }) => {
     {' '} | OR | {' '}
     <button onClick={copyLinkedinIDforlap} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Linkedin ID</button>
   </Next>
-  <Next>
-    🔗 <span className="light">EduXcel :Empowering Careers in Tech </span>{' '}
-    <a href="https://eduxcel.vercel.app/"style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }} id="eduIDforlap" target="_blank">https://eduxcel.vercel.app</a>
-    {' '} | OR | {' '}
-    <button onClick={copyEduIDforlap} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy WebLink</button>
-  </Next>
-  <Next>Based in Indore, Madhya Pradesh | Founder | Developer | Creator | Visionary | Creator </Next>
     </Onlyforlap>
           </ProfileImageContainer>
 
