@@ -186,7 +186,7 @@ const Resume = () => {
       setLoading(true);
 
       // Make a POST request to the backend to increment the click count
-      await fetch('https://portfolio-api-30april.onrender.com/api/increment-resume-clicks', {
+      await fetch('https://portfolio-api-14april.onrender.com/api/increment-resume-clicks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -194,7 +194,7 @@ const Resume = () => {
       });
 
       // Fetch the current download count after the click
-      const response = await fetch('https://portfolio-api-30april.onrender.com/api/get-resume-click-count');
+      const response = await fetch('https://portfolio-api-14april.onrender.com/api/get-resume-click-count');
       const data = await response.json();
 
       // Update the local state with the new download count
@@ -214,7 +214,7 @@ const Resume = () => {
   useEffect(() => {
     const fetchDownloadCount = async () => {
       try {
-        const response = await fetch('https://portfolio-api-30april.onrender.com/api/get-resume-click-count');
+        const response = await fetch('https://portfolio-api-14april.onrender.com/api/get-resume-click-count');
         const data = await response.json();
         setDownloadCount(data.count);
       } catch (error) {
