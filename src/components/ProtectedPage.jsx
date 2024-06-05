@@ -275,7 +275,7 @@ const ProtectedPage = () => {
       // Fetch user details after successful authentication
       const fetchUserDetails = async () => {
         try {
-          const userDetailsResponse = await axios.get('https://eduxcel-api-30april.onrender.com/api/userdetails');
+          const userDetailsResponse = await axios.get('https://eduxcel-api-5jun.onrender.com/api/userdetails');
           setUserDetails(userDetailsResponse.data);
         } catch (error) {
           console.error('Error fetching user details:', error);
@@ -292,7 +292,7 @@ const ProtectedPage = () => {
     // Fetch user visited locations after successful authentication
     const fetchUserVisitedLocations = async () => {
       try {
-        const userVisitedLocationsResponse = await axios.get('https://eduxcel-api-30april.onrender.com/api/uservisiteds');
+        const userVisitedLocationsResponse = await axios.get('https://eduxcel-api-5jun.onrender.com/api/uservisiteds');
         setUserVisitedLocations(userVisitedLocationsResponse.data);
       } catch (error) {
         console.error('Error fetching user visited locations:', error);
@@ -335,7 +335,7 @@ const ProtectedPage = () => {
           setQueries(queriesResponse.data.map(query => ({ ...query, resolved: false })));
   
           // Fetch user profiles after successful authentication
-          const userProfilesResponse = await axios.get('https://eduxcel-api-30april.onrender.com/api/userprofiles');
+          const userProfilesResponse = await axios.get('https://eduxcel-api-5jun.onrender.com/api/userprofiles');
           if (Array.isArray(userProfilesResponse.data)) {
             setUserProfiles(userProfilesResponse.data);
           } else {
@@ -353,12 +353,12 @@ const ProtectedPage = () => {
   
     const handlePasswordSubmit = async () => {
       try {
-        const response = await axios.post('https://portfolio-api-30april.onrender.com/api/authenticate', { password });
+        const response = await axios.post('https://portfolio-api-5jun.onrender.com/api/authenticate', { password });
         if (response.data.authenticated) {
           setAuthenticated(true);
   
           // Fetch feedbacks after successful authentication
-          const feedbacksResponse = await axios.get('https://eduxcel-api-30april.onrender.com/api/feedbacks');
+          const feedbacksResponse = await axios.get('https://eduxcel-api-5jun.onrender.com/api/feedbacks');
           setFeedbacks(feedbacksResponse.data);
         } else {
           console.log('Authentication failed');
