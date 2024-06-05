@@ -13,7 +13,7 @@ const Starstar = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://portfolio-api-30april.onrender.com/stars');
+        const response = await axios.get('https://portfolio-api-5jun.onrender.com/stars');
         const { data } = response;
         setUsersCount(data.length);
         const totalStars = data.reduce((sum, star) => sum + star.star, 0);
@@ -38,12 +38,12 @@ const Starstar = () => {
         localStorage.setItem('currentUser', randomUserId);
       }
   
-      await axios.post('https://portfolio-api-30april.onrender.com/stars', {
+      await axios.post('https://portfolio-api-5jun.onrender.com/stars', {
         userId: localStorage.getItem('currentUser'),
         star: newStar,
       });
   
-      const response = await axios.get('https://portfolio-api-30april.onrender.com/stars');
+      const response = await axios.get('https://portfolio-api-5jun.onrender.com/stars');
       const { data } = response;
       setUsersCount(data.length);
       const totalStars = data.reduce((sum, star) => sum + star.star, 0);
@@ -92,7 +92,7 @@ const Starstar = () => {
             style={{
               cursor: 'pointer',
               fontSize: '24px', // Adjust size as needed
-              color: starValue <= (hoverStar || star) ? '#ffd700' : '#808080', // Use gold color for filled stars and gray color for empty stars
+              color: starValue <= (hoverStar || star) ? '#ffd700' : '#808080', 
             }}
             onClick={() => handleStarClick(starValue)}
             onMouseEnter={() => handleStarHover(starValue)}
@@ -101,12 +101,10 @@ const Starstar = () => {
           </span>
         );
       })}
-      {/* Stars for average star */}
       <div style={{ marginTop: '10px' , color: "white"}}>
         {renderStars(averageStar)}
         <span style={{ marginLeft: '10px' }}>{isNaN(averageStar) ? '0.0' : averageStar.toFixed(1)}/5</span>
       </div>
-      {/* Your existing code for displaying user's star, total users, and overall star */}
       <p>My Rating: {hoverStar || star}/5</p>
       <p>Overall Rating: {isNaN(averageStar) ? '0.0' : averageStar.toFixed(1)}/5</p>
     </div>
