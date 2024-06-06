@@ -1242,7 +1242,7 @@ const SocialIconWrapper = ({ icon, label, link }) => {
       <Onlyforlap>
   
       <Next>
-  Contact Dr. Sanjay Patidar | Web Developer & UI/UX Designer 
+  Contact Sanjay Patidar | Web Developer | Software Engineer
   <button 
     onClick={() => window.location.href = 'tel:+91 9165751109'} 
     style={{
