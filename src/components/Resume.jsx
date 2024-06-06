@@ -226,14 +226,14 @@ const Resume = () => {
   }, []);
   return (<>
   <Helmet>
-            <title>Sanjay Patidar | Web Developer Comprehensive Resume | ATS Score 95</title>
+<title>Sanjay Patidar | Web Developer Resume | ATS Score 95</title>
 
 <meta
           name="description"
           content="Unlock Sanjay Patidar's resume to explore his professional experience and skills. Click the link to access the full resume."
         />
         <meta name="keywords" content="Sanjay Patidar, resume, experience,chandigarh university, jawahar Navodaya Vidyalaya, jnv, work, skills, web developer, UI/UX designer" />
-        <meta property="og:title" content="Sanjay Patidar | Seasoned Web Developer & Creative UI/UX Designer | Crafting Immersive Digital Experiences - Comprehensive Resume" />
+        <meta property="og:title" content="Sanjay Patidar | Web Developer Resume | ATS Score 95" />
         <meta
           property="og:description"
           content="Unlock Sanjay Patidar's resume to explore his professional experience and skills. Click the link to access the full resume."
@@ -242,7 +242,7 @@ const Resume = () => {
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Sanjay Patidar | Seasoned Web Developer & Creative UI/UX Designer | Crafting Immersive Digital Experiences - Comprehensive Resume" />
+        <meta name="twitter:title" content="Sanjay Patidar | Web Developer Resume | ATS Score 95" />
         <meta
           name="twitter:description"
           content="Unlock Sanjay Patidar's resume to explore his professional experience and skills. Click the link to access the full resume."
