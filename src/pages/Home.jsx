@@ -1358,7 +1358,7 @@ const SocialIconWrapper = ({ icon, label, link }) => {
   <span role="img" aria-label="Phone" className="bounce">📞</span>
   
 </button>
-{' '} Contact Dr. Sanjay Patidar | Web Developer & UI/UX Designer 
+{' '} Contact Sanjay Patidar | Web Developer | Software Engineer 
 {' '}
 
 </Next>
