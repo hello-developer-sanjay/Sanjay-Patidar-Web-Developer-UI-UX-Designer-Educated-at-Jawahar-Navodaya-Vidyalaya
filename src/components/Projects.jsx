@@ -232,27 +232,27 @@ const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true); // Add loading state
 
-  useEffect(() => {
-    async function fetchProjects() {
-      try {
-        let response;
-        if (!category || category === 'all') { // Check if category is undefined or "all"
-          response = await axios.get('https://portfolio-api-5jun.onrender.com/api/projects/category/all');
-        } else {
-          response = await axios.get(`https://portfolio-api-5jun.onrender.com/api/projects/category/${category}`);
+    useEffect(() => {
+      async function fetchProjects() {
+        try {
+          let response;
+          if (!category || category === 'all') { // Check if category is undefined or "all"
+            response = await axios.get('https://portfolio-api-5jun.onrender.com/api/projects/category/all');
+          } else {
+            response = await axios.get(`https://portfolio-api-5jun.onrender.com/api/projects/category/${category}`);
+          }
+          setProjects(response.data);
+          setLoading(true);
+          setTimeout(() => {
+            setLoading(false);
+          }, 300); 
+        } catch (error) {
+          console.error('Error fetching projects:', error);
         }
-        setProjects(response.data);
-        setLoading(true);
-        setTimeout(() => {
-          setLoading(false);
-        }, 1000); 
-      } catch (error) {
-        console.error('Error fetching projects:', error);
       }
-    }
-
-    fetchProjects();
-  }, [category]);
+  
+      fetchProjects();
+    }, [category]);
   return (
     <ProjectsContainer>
       <Helmet>
