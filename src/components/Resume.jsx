@@ -446,7 +446,7 @@ const Resume = () => {
           })}
         </script>
       </Helmet>
-    <ResumeHeading>Seasoned Web Developer & Creative UI/UX Designer | Comprehensive Resume</ResumeHeading>
+    <ResumeHeading>Seasoned Web Developer & Creative UI/UX Designer |  Resume | ATS Score 95 </ResumeHeading>
     <SkillTable/>
 
     <ResumeContainer>
