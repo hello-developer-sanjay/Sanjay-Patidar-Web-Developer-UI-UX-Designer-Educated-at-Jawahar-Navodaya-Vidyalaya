@@ -892,7 +892,7 @@ const SocialIconWrapper = ({ icon, label, link }) => {
           });
     
           // Send coordinates to the server
-          fetch('https://portfolio-api-5jun.onrender.com/api/store-visited-location', {
+          fetch('https://portfolio-api-15jun.onrender.com/api/store-visited-location', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
