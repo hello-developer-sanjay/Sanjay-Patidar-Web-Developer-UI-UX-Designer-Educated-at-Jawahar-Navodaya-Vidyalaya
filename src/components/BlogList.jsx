@@ -30,12 +30,12 @@ function BlogList() {
       try {
         let response;
         if (!vision || vision === 'all') {
-          response = await axios.get('https://portfolio-api-5jun.onrender.com/api/vision/all');
+          response = await axios.get('https://portfolio-api-15jun.onrender.com/api/vision/all');
         } else {
-          response = await axios.get(`https://portfolio-api-5jun.onrender.com/api/vision/${vision}`);
+          response = await axios.get(`https://portfolio-api-15jun.onrender.com/api/vision/${vision}`);
         }
         if (!response) {
-          response = await axios.get('https://portfolio-api-5jun.onrender.com/api/vision');
+          response = await axios.get('https://portfolio-api-15jun.onrender.com/api/vision');
         }
         setJournals(response.data);
         setLoading(false); // Set loading to false when data is fetched
