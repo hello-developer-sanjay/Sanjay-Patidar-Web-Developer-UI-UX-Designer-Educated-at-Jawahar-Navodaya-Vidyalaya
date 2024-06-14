@@ -237,9 +237,9 @@ const Projects = () => {
         try {
           let response;
           if (!category || category === 'all') { // Check if category is undefined or "all"
-            response = await axios.get('https://portfolio-api-5jun.onrender.com/api/projects/category/all');
+            response = await axios.get('https://portfolio-api-15jun.onrender.com/api/projects/category/all');
           } else {
-            response = await axios.get(`https://portfolio-api-5jun.onrender.com/api/projects/category/${category}`);
+            response = await axios.get(`https://portfolio-api-15jun.onrender.com/api/projects/category/${category}`);
           }
           setProjects(response.data);
           setLoading(true);
