@@ -331,11 +331,11 @@ const ProtectedPage = () => {
       const fetchData = async () => {
         try {
           // Fetch queries after successful authentication
-          const queriesResponse = await axios.get('https://eduxcel-api-15jun.onrender.com/api/queries');
+          const queriesResponse = await axios.get('https://eduxcel-api-15jun-dtvt.onrender.com/api/queries');
           setQueries(queriesResponse.data.map(query => ({ ...query, resolved: false })));
   
           // Fetch user profiles after successful authentication
-          const userProfilesResponse = await axios.get('https://eduxcel-api-15jun.onrender.com/api/userprofiles');
+          const userProfilesResponse = await axios.get('https://eduxcel-api-15jun-dtvt.onrender.com/api/userprofiles');
           if (Array.isArray(userProfilesResponse.data)) {
             setUserProfiles(userProfilesResponse.data);
           } else {
@@ -353,12 +353,12 @@ const ProtectedPage = () => {
   
     const handlePasswordSubmit = async () => {
       try {
-        const response = await axios.post('https://portfolio-api-15jun.onrender.com/api/authenticate', { password });
+        const response = await axios.post('https://portfolio-api-15jun-nbz1.onrender.com/api/authenticate', { password });
         if (response.data.authenticated) {
           setAuthenticated(true);
   
           // Fetch feedbacks after successful authentication
-          const feedbacksResponse = await axios.get('https://eduxcel-api-15jun.onrender.com/api/feedbacks');
+          const feedbacksResponse = await axios.get('https://eduxcel-api-15jun-dtvt.onrender.com/api/feedbacks');
           setFeedbacks(feedbacksResponse.data);
         } else {
           console.log('Authentication failed');
