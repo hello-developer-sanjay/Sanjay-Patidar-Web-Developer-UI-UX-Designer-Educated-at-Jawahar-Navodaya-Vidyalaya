@@ -472,7 +472,7 @@ const Resume = () => {
         alignItems: 'center',
       }}>
         <img
-          src="https://sanjaybasket.s3.ap-south-1.amazonaws.com/welcome.gif"
+          src="https://sanjaybasket.s3.ap-south-1.amazonaws.com/giphy.gif"
           alt="Admin Only GIF"
           style={{
             width: '70%',
