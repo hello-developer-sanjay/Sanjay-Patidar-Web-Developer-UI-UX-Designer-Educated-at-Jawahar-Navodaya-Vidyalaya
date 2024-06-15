@@ -91,7 +91,7 @@ const Review = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axios.get('https://portfolio-api-15jun.onrender.com/comments');
+        const response = await axios.get('https://portfolio-api-15jun-nbz1.onrender.com/comments');
         setReviews(response.data);
       } catch (error) {
         console.error('Error fetching reviews:', error);
@@ -106,7 +106,7 @@ const Review = () => {
     if (!username || !comment || submitting) return; // Prevent submission while already submitting
     try {
       setSubmitting(true); // Set submitting to true when starting the submission
-      const response = await axios.post('https://portfolio-api-15jun.onrender.com/comments', {
+      const response = await axios.post('https://portfolio-api-15jun-nbz1.onrender.com/comments', {
         username,
         comment,
       });
