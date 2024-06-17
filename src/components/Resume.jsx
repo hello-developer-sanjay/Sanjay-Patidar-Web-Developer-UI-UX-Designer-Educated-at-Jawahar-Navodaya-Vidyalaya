@@ -1,30 +1,30 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import SkillTable from './SkillTable';
 import { RingLoader } from 'react-spinners';
 
-const magicAppear = `
-  @keyframes magicAppear {
-    0% {
-      transform: translateY(100px) scale(0.5);
-      opacity: 0;
-    }
-    60% {
-      transform: translateY(-20px) scale(1.1);
-      opacity: 0.8;
-    }
-    80% {
-      transform: translateY(10px) scale(0.9);
-      opacity: 0.9;
-    }
-    100% {
-      transform: translateY(0) scale(1);
-      opacity: 1;
-    }
+// Keyframes for magical appearance
+const magicAppear = keyframes`
+  0% {
+    transform: translateY(100px) scale(0.5);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(-20px) scale(1.1);
+    opacity: 0.8;
+  }
+  80% {
+    transform: translateY(10px) scale(0.9);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
   }
 `;
 
+// Styled components with magical touch
 const ResumeContainer = styled.div`
   padding: 4rem 2rem;
   text-align: center;
@@ -35,9 +35,8 @@ const ResumeContainer = styled.div`
   position: relative;
   overflow: hidden;
   background: linear-gradient(45deg, #282a36, #3d3f51);
-  animation: ${magicAppear} 1.5s ease-in-out forwards;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-
+  
   &::before {
     content: '';
     position: absolute;
@@ -46,7 +45,7 @@ const ResumeContainer = styled.div`
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: url('/path/to/your/harry-potter-background.jpg') center center/cover no-repeat;
+    background: url('https://sanjaybasket.s3.ap-south-1.amazonaws.com/HogwartsEdX/homebg.webp') no-repeat center center fixed;
     opacity: 0.2;
   }
 `;
@@ -72,7 +71,6 @@ const ResumeTitle = styled.h2`
   display: inline-block;
   font-family: 'Pacifico', cursive;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-  animation: ${magicAppear} 1.5s ease-in-out forwards;
 `;
 
 const ResumeSubtitle = styled.h3`
@@ -81,7 +79,6 @@ const ResumeSubtitle = styled.h3`
   color: #e5e5e5;
   font-family: 'Roboto', sans-serif;
   font-style: italic;
-  animation: ${magicAppear} 1.5s ease-in-out 0.3s forwards;
 `;
 
 const ResumeLink = styled.a`
@@ -99,7 +96,6 @@ const ResumeLink = styled.a`
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s, color 0.3s;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-  animation: ${magicAppear} 1.5s ease-in-out 0.6s forwards;
 
   &:hover {
     transform: translateY(-3px);
@@ -119,7 +115,6 @@ const ResumeHeading = styled.h1`
   letter-spacing: 3px;
   position: relative;
   font-family: 'Harry P', serif;
-  animation: ${magicAppear} 1.5s ease-in-out 0.9s forwards;
 
   &:after {
     content: '';
@@ -140,7 +135,14 @@ const ResumeHeading = styled.h1`
 
 const Section = styled.div`
   margin: 2rem 0;
-  animation: ${magicAppear} 1.5s ease-in-out 1.2s forwards;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 1.5s ease-in-out;
+
+  &.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
 `;
 
 const Frame = styled.div`
@@ -149,7 +151,6 @@ const Frame = styled.div`
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.1);
   margin-bottom: 2rem;
-  animation: ${magicAppear} 1.5s ease-in-out 1.5s forwards;
 `;
 
 const ResumeText = styled.p`
@@ -238,70 +239,69 @@ const Resume = () => {
         <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
         <script type="application/ld+json">
           {JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Sanjay Patidar",
-  "url": "https://sanjay-patidar.vercel.app/",
-  "image": "https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png",
-  "sameAs": [
-    "https://www.linkedin.com/in/sanjaypatidar10/",
-    "https://www.behance.net/sanjaypatidar10"
-  ],
-  "jobTitle": "Web Developer",
-  "worksFor": {
-    "@type": "Organization",
-    "name": "Chandigarh University",
-    "sameAs": "https://www.cuchd.in/"
-  },
-  "homeLocation": {
-    "@type": "Place",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Indore"
-    }
-  },
-  "description": "Web Developer with skills in JavaScript, React, and Node.js",
-  "gender": "Male",
-  "knowsAbout": "Web Development",
-  "nationality": "Indian"
-})}
-</script>
-</Helmet>
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Sanjay Patidar",
+            "url": "https://sanjay-patidar.vercel.app/",
+            "image": "https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png",
+            "sameAs": [
+              "https://www.linkedin.com/in/sanjaypatidar10/",
+              "https://www.behance.net/sanjaypatidar10"
+            ],
+            "jobTitle": "Web Developer",
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Chandigarh University",
+              "sameAs": "https://www.cuchd.in/"
+            },
+            "homeLocation": {
+              "@type": "Place",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Indore"
+              }
+            },
+            "description": "Web Developer with skills in JavaScript, React, and Node.js",
+            "gender": "Male",
+            "knowsAbout": "Web Development",
+            "nationality": "Indian"
+          })}
+        </script>
+      </Helmet>
 
-<ResumeContainer>
-  <ResumeTitle>
-    Resume
-  </ResumeTitle>
-  <ResumeSubtitle>
-    My Professional Experience and Skills
-  </ResumeSubtitle>
-  <Frame className="section">
-    <ResumeText>
-      I have a strong background in UI/UX design, allowing me to create intuitive and engaging user interfaces. My projects often involve collaborating with cross-functional teams to deliver high-quality solutions that meet client requirements and exceed expectations.
-    </ResumeText>
-  </Frame>
-  <Frame className="section">
-    <ResumeText>
-      I am constantly learning and adapting to new technologies and trends in web development. My goal is to continue growing as a developer and to use my skills to create innovative and impactful web applications.
-    </ResumeText>
-  </Frame>
-  <ResumeHeading>
-    Get My Resume
-  </ResumeHeading>
-  <ResumeLink href={pdfResumeUrl} onClick={handleResumeClick}>
-    Get Resume
-  </ResumeLink>
-  <p>Resume downloads: {downloadCount}</p>
-</ResumeContainer>
-<SkillTable />
-{loading && (
-  <LoadingOverlay>
-    <RingLoader color="#000" size={60} />
-  </LoadingOverlay>
-)}
-</>
-);
+      <ResumeContainer>
+        <ResumeTitle>
+          Resume
+        </ResumeTitle>
+        <ResumeSubtitle>
+          My Professional Experience and Skills
+        </ResumeSubtitle>
+        <Frame className="section">
+          <ResumeText>
+            I have a strong background in UI/UX design, allowing me to create intuitive and engaging user interfaces. My projects often involve collaborating with cross-functional teams to deliver high-quality solutions that meet client requirements and exceed expectations.
+          </ResumeText>
+        </Frame>
+        <Frame className="section">
+          <ResumeText>
+            I am constantly learning and adapting to new technologies and trends in web development. My goal is to continue growing as a developer and to use my skills to create innovative and impactful web applications.
+          </ResumeText>
+        </Frame>
+        <ResumeHeading>
+          Get My Resume
+        </ResumeHeading>
+        <ResumeLink href={pdfResumeUrl} onClick={handleResumeClick}>
+          Get Resume
+        </ResumeLink>
+        <p>Resume downloads: {downloadCount}</p>
+      </ResumeContainer>
+      <SkillTable />
+      {loading && (
+        <LoadingOverlay>
+          <RingLoader color="#000" size={60} />
+        </LoadingOverlay>
+      )}
+    </>
+  );
 };
 
 export default Resume;
-
