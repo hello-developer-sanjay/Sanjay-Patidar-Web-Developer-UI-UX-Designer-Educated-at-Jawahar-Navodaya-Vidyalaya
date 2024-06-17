@@ -59,7 +59,7 @@ const ResumeContainer = styled.div`
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: url('/path/to/your/harry-potter-background.jpg') center center/cover no-repeat;
+    background: url('https://sanjaybasket.s3.ap-south-1.amazonaws.com/HogwartsEdX/homebg.webp') no-repeat center center fixed;
     opacity: 0.2;
   }
 `;
