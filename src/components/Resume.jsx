@@ -1,8 +1,8 @@
 import styled, { keyframes } from 'styled-components';
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import SkillTable from './SkillTable';
-import { RingLoader } from 'react-spinners'; 
+import { RingLoader } from 'react-spinners';
 
 const ResumeContainer = styled.div`
   padding: 4rem 0;
@@ -13,7 +13,7 @@ const ResumeContainer = styled.div`
   margin: 0 auto;
   margin-bottom: 0;
   padding: 20px;
-  height: "100%";
+  height: 100%;
   position: relative;
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
@@ -29,11 +29,6 @@ const ResumeContainer = styled.div`
   }
 `;
 
-
-
-
-
-
 const LoadingOverlay = styled.div`
   position: fixed;
   top: 0;
@@ -43,9 +38,10 @@ const LoadingOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
-  z-index: 9999; /* Ensure it's above other elements */
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 9999;
 `;
+
 const ResumeTitle = styled.h2`
   font-size: 2.8rem;
   margin-bottom: 0rem;
@@ -53,7 +49,6 @@ const ResumeTitle = styled.h2`
   position: relative;
   display: inline-block;
   font-family: 'Pacifico', cursive;
-
 
   &:hover::after {
     transform: scaleX(1);
@@ -73,7 +68,6 @@ const ResumeSubtitle = styled.h3`
   }
 `;
 
-
 const colorChange = keyframes`
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -90,12 +84,12 @@ const ResumeLink = styled.a`
   display: inline-block;
   padding: 1rem 2rem;
   background: linear-gradient(45deg, #ff6b6b, #ffb347);
-  color: #1a1a1a; /* High-contrast text color */
+  color: #1a1a1a;
   border-radius: 30px;
   text-decoration: none;
   font-weight: bold;
   font-size: 1.4rem;
-  cursor:pointer;
+  cursor: pointer;
   letter-spacing: 1px;
   position: relative;
   overflow: hidden;
@@ -116,7 +110,7 @@ const ResumeLink = styled.a`
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
-    color: #fff; /* Change text color on hover for contrast */
+    color: #fff;
     animation: ${shadowPop} 1s ease-in-out infinite;
   }
 `;
@@ -125,7 +119,7 @@ const ResumeHeading = styled.h1`
   font-size: 2rem;
   margin-bottom: 1rem;
   margin-top: 3rem;
-padding: 1rem;
+  padding: 1rem;
   text-align: center;
   justify-content: center;
   color: #24086C;
@@ -168,49 +162,35 @@ padding: 1rem;
   }
   @media (max-width: 768px) {
     font-size: 1rem;
-
-  
   }
 `;
-
 
 const Resume = () => {
   const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Resume-ATS92/Sanjay-Patidar_Resume-Web-Developer.pdf';
   const [downloadCount, setDownloadCount] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  // Function to handle resume link clicks
-  const handleResumeClick = async () => {
+  const handleResumeClick = async (e) => {
+    e.preventDefault(); // Prevent default anchor click behavior
     try {
-      // Set loading state to true while waiting for the response
       setLoading(true);
-
-      // Make a POST request to the backend to increment the click count
       await fetch('https://portfolio-api-15jun-nbz1.onrender.com/api/increment-resume-clicks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
       });
-
-      // Fetch the current download count after the click
       const response = await fetch('https://portfolio-api-15jun-nbz1.onrender.com/api/get-resume-click-count');
       const data = await response.json();
-
-      // Update the local state with the new download count
       setDownloadCount(data.count);
-
-      // After the request is successful, open the resume link in a new tab
       window.open(pdfResumeUrl, '_blank');
     } catch (error) {
       console.error('Error incrementing resume click count:', error);
     } finally {
-      // Set loading state back to false after the request is complete
       setLoading(false);
     }
   };
 
-  // Fetch the initial download count when the component mounts
   useEffect(() => {
     const fetchDownloadCount = async () => {
       try {
@@ -221,18 +201,18 @@ const Resume = () => {
         console.error('Error fetching resume click count:', error);
       }
     };
-
     fetchDownloadCount();
   }, []);
-  return (<>
-  <Helmet>
-<title>Sanjay Patidar | Web Developer Resume | ATS Score 95</title>
 
-<meta
+  return (
+    <>
+      <Helmet>
+        <title>Sanjay Patidar | Web Developer Resume | ATS Score 95</title>
+        <meta
           name="description"
           content="Unlock Sanjay Patidar's resume to explore his professional experience and skills. Click the link to access the full resume."
         />
-        <meta name="keywords" content="Sanjay Patidar, resume, experience,chandigarh university, jawahar Navodaya Vidyalaya, jnv, work, skills, web developer, UI/UX designer" />
+        <meta name="keywords" content="Sanjay Patidar, resume, experience, chandigarh university, jawahar Navodaya Vidyalaya, jnv, work, skills, web developer, UI/UX designer" />
         <meta property="og:title" content="Sanjay Patidar | Web Developer Resume | ATS Score 95" />
         <meta
           property="og:description"
@@ -248,7 +228,7 @@ const Resume = () => {
           content="Unlock Sanjay Patidar's resume to explore his professional experience and skills. Click the link to access the full resume."
         />
         <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
- <script type="application/ld+json">
+        <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'http://schema.org',
             '@type': 'Person',
@@ -264,226 +244,43 @@ const Resume = () => {
             "alumniOf": {
               "@type": "CollegeOrUniversity",
               "name": "Chandigarh University",
-              "location": {
-                "@type": "Place",
-                "address": {
-                  "@type": "PostalAddress",
-                  "addressLocality": "Chandigarh",
-                  "addressRegion": "Punjab",
-                  "addressCountry": "India"
-                }
+              "sameAs": "https://www.cuchd.in/"
+            },
+            "homeLocation": {
+              "@type": "Place",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Indore"
               }
             },
-            "address": [
-              {
-                "@type": "PostalAddress",
-                "addressLocality": "Indore",
-                "addressRegion": "Madhya Pradesh",
-                "postalCode": "452001",
-                "addressCountry": "India"
-              },
-              {
-                "@type": "PostalAddress",
-                "addressLocality": "Chandigarh",
-                "addressRegion": "Punjab",
-                "postalCode": "160001",
-                "addressCountry": "India"
-              },
-              {
-                "@type": "PostalAddress",
-                "addressLocality": "Mumbai",
-                "addressRegion": "Maharashtra",
-                "postalCode": "400001",
-                "addressCountry": "India"
-              },
-              {
-                "@type": "PostalAddress",
-                "addressLocality": "Bangalore",
-                "addressRegion": "Karnataka",
-                "postalCode": "560001",
-                "addressCountry": "India"
-              },
-              {
-                "@type": "PostalAddress",
-                "addressLocality": "Delhi",
-                "addressRegion": "Delhi",
-                "postalCode": "110001",
-                "addressCountry": "India"
-              },
-              {
-                "@type": "PostalAddress",
-                "addressLocality": "Kolkata",
-                "addressRegion": "West Bengal",
-                "postalCode": "700001",
-                "addressCountry": "India"
-              },
-              {
-                "@type": "PostalAddress",
-                "addressLocality": "Chennai",
-                "addressRegion": "Tamil Nadu",
-                "postalCode": "600001",
-                "addressCountry": "India"
-              },
-              {
-                "@type": "PostalAddress",
-                "addressLocality": "Hyderabad",
-                "addressRegion": "Telangana",
-                "postalCode": "500001",
-                "addressCountry": "India"
-              },
-              {
-                "@type": "PostalAddress",
-                "addressLocality": "Pune",
-                "addressRegion": "Maharashtra",
-                "postalCode": "411001",
-                "addressCountry": "India"
-              },
-              {
-                "@type": "PostalAddress",
-                "addressLocality": "Ahmedabad",
-                "addressRegion": "Gujarat",
-                "postalCode": "380001",
-                "addressCountry": "India"
-              },
-              {
-                "@type": "PostalAddress",
-                "addressLocality": "Jaipur",
-                "addressRegion": "Rajasthan",
-                "postalCode": "302001",
-                "addressCountry": "India"
-              },
-              {
-                "@type": "PostalAddress",
-                "addressLocality": "Lucknow",
-                "addressRegion": "Uttar Pradesh",
-                "postalCode": "226001",
-                "addressCountry": "India"
-              },
-              {
-                "@type": "PostalAddress",
-                "addressLocality": "Bhopal",
-                "addressRegion": "Madhya Pradesh",
-                "postalCode": "462001",
-                "addressCountry": "India"
-              },
-              {
-                "@type": "PostalAddress",
-                "addressLocality": "Nagpur",
-                "addressRegion": "Maharashtra",
-                "postalCode": "440001",
-                "addressCountry": "India"
-              },
-              {
-                "@type": "PostalAddress",
-                "addressLocality": "Visakhapatnam",
-                "addressRegion": "Andhra Pradesh",
-                "postalCode": "530001",
-                "addressCountry": "India"
-              },
-              {
-                "@type": "PostalAddress",
-                "addressLocality": "Kochi",
-                "addressRegion": "Kerala",
-                "postalCode": "682001",
-                "addressCountry": "India"
-              },
-              {
-                "@type": "PostalAddress",
-                "addressLocality": "Guwahati",
-                "addressRegion": "Assam",
-                "postalCode": "781001",
-                "addressCountry": "India"
-              },
-              {
-                "@type": "PostalAddress",
-                "addressLocality": "Bhubaneswar",
-                "addressRegion": "Odisha",
-                "postalCode": "751001",
-                "addressCountry": "India"
-              },
-              {
-                "@type": "PostalAddress",
-                "addressLocality": "Dehradun",
-                "addressRegion": "Uttarakhand",
-                "postalCode": "248001",
-                "addressCountry": "India"
-              },
-              {
-                "@type": "PostalAddress",
-                "addressLocality": "Raipur",
-                "addressRegion": "Chhattisgarh",
-                "postalCode": "492001",
-                "addressCountry": "India"
-              }
-            ],
-            "worksFor": {
-              "@type": "Organization",
-              "name": "Eduxcel" 
-            },
-            "url": "https://sanjay-patidar.vercel.app/",
             "sameAs": [
-              "https://www.linkedin.com/in/sanjay-patidar-25b580292/",
-              "https://github.com/hello-developer-sanjay",
-              "https://www.instagram.com/sanjay_patidar_mcmxcviii/",
-              "https://eduxcel.vercel.app/",
-                           "https://eduxcel.vercel.app/signup",
-                           
-  "https://sanjay-patidar.vercel.app/projects",
-  "https://sanjay-patidar.vercel.app/careers",
-
-  "https://sanjay-patidar.vercel.app/skills",
-  "https://sanjay-patidar.vercel.app/experiences",
-  "https://sanjay-patidar.vercel.app/certifications",
-  "https://sanjay-patidar.vercel.app/resume",
-  "https://sanjay-patidar.vercel.app/blogs",
-  "https://sanjay-patidar.vercel.app/education",
-  "https://sanjay-patidar.vercel.app/contact"
-
-
-            ]
-      
-
+              "https://www.linkedin.com/in/sanjaypatidar10/",
+              "https://www.behance.net/sanjaypatidar10"
+            ],
+            "url": "https://sanjay-patidar.vercel.app/",
+            "jobTitle": "Web Developer",
+            "image": "https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png",
+            "description": "Web Developer with skills in JavaScript, React, and Node.js",
+            "gender": "Male",
+            "knowsAbout": "Web Development",
+            "nationality": "Indian"
           })}
         </script>
       </Helmet>
-    <ResumeHeading>Seasoned Web Developer & Creative UI/UX Designer |  Resume | ATS Score 95 </ResumeHeading>
-    <SkillTable/>
 
-    <ResumeContainer>
-            
-{loading && ( // Display loading animation if loading is true
+      <ResumeContainer>
+        <ResumeTitle>Resume</ResumeTitle>
+        <ResumeSubtitle>My Professional Experience and Skills</ResumeSubtitle>
+        <ResumeHeading>Get My Resume</ResumeHeading>
+        <ResumeLink href={pdfResumeUrl} onClick={handleResumeClick}>Get Resume</ResumeLink>
+        <p>Resume downloads: {downloadCount}</p>
+      </ResumeContainer>
+      <SkillTable />
+      {loading && (
         <LoadingOverlay>
-          <RingLoader color="#13584F" loading={loading} size={150} />
+          <RingLoader color="#000" size={60} />
         </LoadingOverlay>
       )}
-
-
-      <ResumeTitle>Unlock My Resume</ResumeTitle>
-      <ResumeSubtitle>Click the link below to access my full resume.</ResumeSubtitle>
-      {/* Disable the link when loading to prevent re-clicks */}
-      <ResumeLink onClick={handleResumeClick} disabled={loading}>
-        {loading ? 'Opening Resume...' : 'Get Resume'}
-      </ResumeLink>
-      <p>Resume Download Count: {downloadCount}</p>
-
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-        <img
-          src="https://sanjaybasket.s3.ap-south-1.amazonaws.com/giphy.gif"
-          alt="Admin Only GIF"
-          style={{
-            width: '70%',
-            marginTop: '0px',
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-            border: '2px solid #fff',
-          }}
-        />
-      </div>
-    </ResumeContainer>
-
     </>
   );
 };
