@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import SkillTable from './SkillTable';
 import { RingLoader } from 'react-spinners';
@@ -42,7 +42,7 @@ const ResumeContainer = styled.div`
   padding: 4rem 2rem;
   text-align: center;
   border-radius: 20px;
-  max-width: 90%;
+  max-width: 100%;
   margin: 0 auto;
   height: 100%;
   position: relative;
@@ -59,7 +59,7 @@ const ResumeContainer = styled.div`
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: url('https://sanjaybasket.s3.ap-south-1.amazonaws.com/HogwartsEdX/homebg.webp') no-repeat center center fixed;
+    background: url('/path/to/your/harry-potter-background.jpg') center center/cover no-repeat;
     opacity: 0.2;
   }
 `;
@@ -82,7 +82,7 @@ const ResumeTitle = styled.h2`
   margin-bottom: 1rem;
   color: #f5c518;
   position: relative;
-  display: inline-block;
+  display: block;
   font-family: 'Pacifico', cursive;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
   animation: ${glow} 2s infinite alternate;
@@ -90,7 +90,7 @@ const ResumeTitle = styled.h2`
 
 const ResumeSubtitle = styled.h3`
   font-size: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   color: #e5e5e5;
   font-family: 'Roboto', sans-serif;
   font-style: italic;
