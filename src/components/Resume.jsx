@@ -24,9 +24,18 @@ const magicAppear = keyframes`
   }
 `;
 
+const glow = keyframes`
+  0% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+`;
 
-
-// Styled components with magical touch
 const ResumeContainer = styled.div`
   padding: 4rem 2rem;
   text-align: center;
@@ -88,7 +97,7 @@ const ResumeSubtitle = styled.h3`
 
 const ResumeLink = styled.a`
   display: inline-block;
-  padding: 1rem 2rem;
+  padding: 0.8rem 1.6rem;
   background: linear-gradient(45deg, #6a0dad, #ffb347);
   color: #1a1a1a;
   border-radius: 30px;
@@ -263,9 +272,6 @@ const Resume = () => {
       </Helmet>
 
       <ResumeContainer>
-        <ResumeTitle>
-          Resume
-        </ResumeTitle>
         <ResumeSubtitle>
           My Professional Experience and Skills
         </ResumeSubtitle>
