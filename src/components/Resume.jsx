@@ -33,21 +33,17 @@ const spellEffect = keyframes`
 `;
 
 const ResumeContainer = styled(motion.div)`
-  padding: 4rem 0;
+  padding: 4rem 2rem;
   text-align: center;
   border-radius: 20px;
   overflow: hidden;
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
-  margin-bottom: 0;
-  padding: 20px;
   height: 100%;
   position: relative;
-  overflow: hidden;
-  transition: transform 0.3s ease-in-out;
-  background: linear-gradient(45deg, #282a36, #3d3f51);
+  background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
   animation: ${magicGradient} 15s ease infinite;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 
   &::before {
     content: '';
@@ -58,7 +54,7 @@ const ResumeContainer = styled(motion.div)`
     height: 100%;
     z-index: -1;
     background: url('/path/to/your/harry-potter-background.jpg') center center/cover no-repeat;
-    opacity: 0.2;
+    opacity: 0.3;
   }
 `;
 
@@ -71,35 +67,32 @@ const LoadingOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.8);
   z-index: 9999;
 `;
 
-const ResumeTitle = styled(motion.h2)`
-  font-size: 2.8rem;
-  margin-bottom: 0rem;
+const ResumeTitle = styled(motion.h1)`
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
   color: #f5c518;
-  position: relative;
-  display: inline-block;
-  font-family: 'Pacifico', cursive;
+  font-family: 'MagicFont', cursive;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
   animation: ${spellEffect} 1.5s infinite alternate;
 
-  &:hover::after {
-    transform: scaleX(1);
-  }
   @media (max-width: 768px) {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 `;
 
-const ResumeSubtitle = styled(motion.h3)`
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
+const ResumeSubtitle = styled(motion.h2)`
+  font-size: 2rem;
+  margin-bottom: 2rem;
   color: #e5e5e5;
   font-family: 'Roboto', sans-serif;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+
   @media (max-width: 768px) {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
 `;
 
@@ -107,7 +100,7 @@ const ResumeLink = styled(motion.a)`
   display: inline-block;
   padding: 1rem 2rem;
   background: linear-gradient(45deg, #6a0dad, #ffb347);
-  color: #1a1a1a;
+  color: #fff;
   border-radius: 30px;
   text-decoration: none;
   font-weight: bold;
@@ -134,23 +127,21 @@ const ResumeLink = styled(motion.a)`
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
-    color: #fff;
     animation: ${spellEffect} 1s ease-in-out infinite;
   }
 `;
 
-const ResumeHeading = styled(motion.h1)`
+const ResumeHeading = styled(motion.h3)`
   font-size: 2rem;
-  margin-bottom: 1rem;
   margin-top: 3rem;
-  padding: 1rem;
-  text-align: center;
-  justify-content: center;
   color: #f5c518;
   text-transform: uppercase;
   letter-spacing: 3px;
+  font-family: 'Harry P', serif;
   position: relative;
-  font-family: 'Harry P', serif; /* Custom Harry Potter font */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:after {
     content: '';
@@ -159,7 +150,7 @@ const ResumeHeading = styled(motion.h1)`
     height: 3px;
     background: linear-gradient(to right, #ff5e62, #ff9966);
     position: absolute;
-    bottom: -8px;
+    bottom: -10px;
     left: 0;
     border-radius: 10px;
   }
@@ -168,15 +159,30 @@ const ResumeHeading = styled(motion.h1)`
     content: '📑';
     font-size: 2rem;
     position: absolute;
-    top: -30px;
+    top: -40px;
     left: 50%;
     transform: translateX(-50%);
     animation: ${bounce} 2s infinite;
   }
 
   @media (max-width: 768px) {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
+`;
+
+const MagicDivider = styled(motion.div)`
+  width: 60%;
+  height: 4px;
+  margin: 2rem auto;
+  background: linear-gradient(to right, #ff5e62, #ff9966);
+  border-radius: 10px;
+`;
+
+const DownloadCount = styled(motion.p)`
+  font-size: 1.2rem;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  margin-top: 1rem;
 `;
 
 const Resume = () => {
@@ -185,7 +191,7 @@ const Resume = () => {
   const [loading, setLoading] = useState(false);
 
   const handleResumeClick = async (e) => {
-    e.preventDefault(); // Prevent default anchor click behavior
+    e.preventDefault();
     try {
       setLoading(true);
       await fetch('https://portfolio-api-15jun-nbz1.onrender.com/api/increment-resume-clicks', {
@@ -278,13 +284,16 @@ const Resume = () => {
         <ResumeSubtitle initial="hidden" animate="visible" variants={slideIn}>
           My Professional Experience and Skills
         </ResumeSubtitle>
+        <MagicDivider initial="hidden" animate="visible" variants={slideIn} />
         <ResumeHeading initial="hidden" animate="visible" variants={slideIn}>
           Get My Resume
         </ResumeHeading>
         <ResumeLink href={pdfResumeUrl} onClick={handleResumeClick} initial="hidden" animate="visible" variants={fadeIn}>
           Get Resume
         </ResumeLink>
-        <p>Resume downloads: {downloadCount}</p>
+        <DownloadCount initial="hidden" animate="visible" variants={fadeIn}>
+          Resume downloads: {downloadCount}
+        </DownloadCount>
       </ResumeContainer>
       <SkillTable />
       {loading && (
