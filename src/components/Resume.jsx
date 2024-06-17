@@ -3,28 +3,14 @@ import { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import SkillTable from './SkillTable';
 import { RingLoader } from 'react-spinners';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
+import { InView } from 'react-intersection-observer';
 
+// Keyframes for magical animations
 const magicGradient = keyframes`
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
-`;
-
-const fadeIn = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 2 } },
-};
-
-const slideIn = {
-  hidden: { x: '-100vw' },
-  visible: { x: 0, transition: { type: 'spring', stiffness: 60 } },
-};
-
-const bounce = keyframes`
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-20px); }
-  60% { transform: translateY(-10px); }
 `;
 
 const spellEffect = keyframes`
@@ -32,12 +18,22 @@ const spellEffect = keyframes`
   100% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.7); }
 `;
 
+const spellRotate = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
+
+const glow = keyframes`
+  0% { box-shadow: 0 0 5px #fff; }
+  50% { box-shadow: 0 0 20px #f5c518; }
+  100% { box-shadow: 0 0 5px #fff; }
+`;
+
 const ResumeContainer = styled(motion.div)`
   padding: 4rem 2rem;
   text-align: center;
   border-radius: 20px;
-  overflow: hidden;
-  max-width: 100%;
+  max-width: 90%;
   margin: 0 auto;
   height: 100%;
   position: relative;
@@ -55,7 +51,7 @@ const ResumeContainer = styled(motion.div)`
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: url('/path/to/your/harry-potter-background.jpg') center center/cover no-repeat;
+    background: url('https://sanjaybasket.s3.ap-south-1.amazonaws.com/HogwartsEdX/homebg.webp') no-repeat center center fixed;
     opacity: 0.2;
   }
 `;
@@ -74,7 +70,7 @@ const LoadingOverlay = styled.div`
 `;
 
 const ResumeTitle = styled(motion.h2)`
-  font-size: 2.8rem;
+  font-size: 3rem;
   margin-bottom: 1rem;
   color: #f5c518;
   position: relative;
@@ -82,20 +78,14 @@ const ResumeTitle = styled(motion.h2)`
   font-family: 'Pacifico', cursive;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
   animation: ${spellEffect} 1.5s infinite alternate;
-
-  @media (max-width: 768px) {
-    font-size: 2rem;
-  }
 `;
 
 const ResumeSubtitle = styled(motion.h3)`
-  font-size: 1.8rem;
+  font-size: 2rem;
   margin-bottom: 1rem;
   color: #e5e5e5;
   font-family: 'Roboto', sans-serif;
-  @media (max-width: 768px) {
-    font-size: 1.4rem;
-  }
+  font-style: italic;
 `;
 
 const ResumeLink = styled(motion.a)`
@@ -135,7 +125,7 @@ const ResumeLink = styled(motion.a)`
 `;
 
 const ResumeHeading = styled(motion.h1)`
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 1rem;
   margin-top: 3rem;
   padding: 1rem;
@@ -145,6 +135,7 @@ const ResumeHeading = styled(motion.h1)`
   letter-spacing: 3px;
   position: relative;
   font-family: 'Harry P', serif;
+  animation: ${spellRotate} 20s linear infinite;
 
   &:after {
     content: '';
@@ -158,18 +149,8 @@ const ResumeHeading = styled(motion.h1)`
     border-radius: 10px;
   }
 
-  &:before {
-    content: '📑';
-    font-size: 2rem;
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: ${bounce} 2s infinite;
-  }
-
   @media (max-width: 768px) {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 `;
 
@@ -180,11 +161,30 @@ const Section = styled.div`
   transition: opacity 1s ease-out, transform 1s ease-out;
 `;
 
+const Frame = styled.div`
+  border: 3px solid #f5c518;
+  padding: 2rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(245, 197, 24, 0.5);
+  margin-bottom: 2rem;
+  animation: ${glow} 3s ease-in-out infinite alternate;
+`;
+
+const ResumeText = styled.p`
+  font-size: 1.2rem;
+  color: #e5e5e5;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 1rem;
+  text-align: justify;
+`;
+
 const Resume = () => {
   const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Resume-ATS92/Sanjay-Patidar_Resume-Web-Developer.pdf';
   const [downloadCount, setDownloadCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const sectionsRef = useRef([]);
+  const controls = useAnimation();
 
   const handleResumeClick = async (e) => {
     e.preventDefault();
@@ -224,8 +224,7 @@ const Resume = () => {
     const handleIntersection = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.style.opacity = 1;
-          entry.target.style.transform = 'translateY(0)';
+          controls.start({ opacity: 1, transform: 'translateY(0)' });
         }
       });
     };
@@ -237,22 +236,16 @@ const Resume = () => {
     sectionsRef.current.forEach((section) => observer.observe(section));
 
     return () => observer.disconnect();
-  }, []);
+  }, [controls]);
 
   return (
     <>
       <Helmet>
         <title>Sanjay Patidar | Web Developer Resume | ATS Score 95</title>
-        <meta
-          name="description"
-          content="Unlock Sanjay Patidar's resume to explore his professional experience and skills. Click the link to access the full resume."
-        />
-        <meta name="keywords" content="Sanjay Patidar, resume, experience, chandigarh university, jawahar Navodaya Vidyalaya, jnv, work, skills, web developer, UI/UX designer" />
+        <meta name="description" content="Unlock Sanjay Patidar's resume to explore his professional experience and skills. Click the link to access the full resume." />
+        <meta name="keywords" content="resume, experience, chandigarh university, jawahar Navodaya Vidyalaya, jnv, work, skills, web developer, UI/UX designer" />
         <meta property="og:title" content="Sanjay Patidar | Web Developer Resume | ATS Score 95" />
-        <meta
-          property="og:description"
-          content="Unlock Sanjay Patidar's resume to explore his professional experience and skills. Click the link to access the full resume."
-        />
+        <meta property="og:description" content="Unlock Sanjay Patidar's resume to explore his professional experience and skills. Click the link to access the full resume." />
         <meta property="og:url" content="https://sanjay-patidar.vercel.app/" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
@@ -292,24 +285,62 @@ const Resume = () => {
         </script>
       </Helmet>
 
-      <ResumeContainer initial="hidden" animate="visible" variants={fadeIn}>
-        <ResumeTitle initial="hidden" animate="visible" variants={fadeIn}>
-          Resume
+      <ResumeContainer initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }}>
+        <ResumeTitle initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
+          Sanjay Patidar
         </ResumeTitle>
-        <ResumeSubtitle initial="hidden" animate="visible" variants={slideIn}>
-          My Professional Experience and Skills
+        <ResumeSubtitle initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }}>
+          Web Developer with a Passion for Creating Magical Experiences
         </ResumeSubtitle>
-        <ResumeHeading initial="hidden" animate="visible" variants={slideIn}>
+        <ResumeHeading initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 3 }}>
           Get My Resume
         </ResumeHeading>
-        <ResumeLink href={pdfResumeUrl} onClick={handleResumeClick} initial="hidden" animate="visible" variants={fadeIn}>
-          Get Resume
+        <ResumeLink href={pdfResumeUrl} onClick={handleResumeClick} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 4 }}>
+          Download Resume
         </ResumeLink>
         <p>Resume downloads: {downloadCount}</p>
       </ResumeContainer>
-      <div ref={(el) => sectionsRef.current.push(el)}>
-        <SkillTable />
-      </div>
+
+      <InView as="div" onChange={(inView, entry) => inView && controls.start({ opacity: 1, transform: 'translateY(0)' })}>
+        <Section ref={(el) => sectionsRef.current.push(el)} style={{ opacity: 0, transform: 'translateY(20px)' }}>
+          <Frame>
+            <ResumeText>
+              I am a seasoned Web Developer with extensive experience in the MERN stack. My journey began at Jawahar Navodaya Vidyalaya and continued through Chandigarh University, where I honed my skills and developed a passion for creating user-friendly and visually appealing web applications.
+            </ResumeText>
+          </Frame>
+        </Section>
+
+        <Section ref={(el) => sectionsRef.current.push(el)} style={{ opacity: 0, transform: 'translateY(20px)' }}>
+          <Frame>
+            <ResumeText>
+              My expertise includes working with technologies like JavaScript, React, Node.js, Express, and MongoDB. I excel in both front-end and back-end development, ensuring seamless integration and functionality across the stack.
+            </ResumeText>
+          </Frame>
+        </Section>
+
+        <Section ref={(el) => sectionsRef.current.push(el)} style={{ opacity: 0, transform: 'translateY(20px)' }}>
+          <Frame>
+            <ResumeText>
+              I have a strong background in UI/UX design, allowing me to create intuitive and engaging user interfaces. My projects often involve collaborating with cross-functional teams to deliver high-quality solutions that meet client requirements and exceed expectations.
+            </ResumeText>
+          </Frame>
+        </Section>
+
+        <Section ref={(el) => sectionsRef.current.push(el)} style={{ opacity: 0, transform: 'translateY(20px)' }}>
+          <Frame>
+            <ResumeText>
+              I am constantly learning and adapting to new technologies and trends in web development. My goal is to continue growing as a developer and to use my skills to create innovative and impactful web applications.
+            </ResumeText>
+          </Frame>
+        </Section>
+
+        <Section ref={(el) => sectionsRef.current.push(el)} style={{ opacity: 0, transform: 'translateY(20px)' }}>
+          <Frame>
+            <SkillTable />
+          </Frame>
+        </Section>
+      </InView>
+
       {loading && (
         <LoadingOverlay>
           <RingLoader color="#000" size={60} />
