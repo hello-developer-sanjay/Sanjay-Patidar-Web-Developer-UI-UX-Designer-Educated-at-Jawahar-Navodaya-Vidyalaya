@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import SkillTable from './SkillTable';
 import { RingLoader } from 'react-spinners';
@@ -37,13 +37,15 @@ const ResumeContainer = styled(motion.div)`
   text-align: center;
   border-radius: 20px;
   overflow: hidden;
-  max-width: 800px;
+  max-width: 100%;
   margin: 0 auto;
   height: 100%;
   position: relative;
-  background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  background: linear-gradient(45deg, #282a36, #3d3f51);
   animation: ${magicGradient} 15s ease infinite;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
   &::before {
     content: '';
@@ -54,7 +56,7 @@ const ResumeContainer = styled(motion.div)`
     height: 100%;
     z-index: -1;
     background: url('/path/to/your/harry-potter-background.jpg') center center/cover no-repeat;
-    opacity: 0.3;
+    opacity: 0.2;
   }
 `;
 
@@ -67,32 +69,32 @@ const LoadingOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.7);
   z-index: 9999;
 `;
 
-const ResumeTitle = styled(motion.h1)`
-  font-size: 3.5rem;
+const ResumeTitle = styled(motion.h2)`
+  font-size: 2.8rem;
   margin-bottom: 1rem;
   color: #f5c518;
-  font-family: 'MagicFont', cursive;
+  position: relative;
+  display: inline-block;
+  font-family: 'Pacifico', cursive;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
   animation: ${spellEffect} 1.5s infinite alternate;
 
   @media (max-width: 768px) {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 `;
 
-const ResumeSubtitle = styled(motion.h2)`
-  font-size: 2rem;
-  margin-bottom: 2rem;
+const ResumeSubtitle = styled(motion.h3)`
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
   color: #e5e5e5;
   font-family: 'Roboto', sans-serif;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-
   @media (max-width: 768px) {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 `;
 
@@ -100,7 +102,7 @@ const ResumeLink = styled(motion.a)`
   display: inline-block;
   padding: 1rem 2rem;
   background: linear-gradient(45deg, #6a0dad, #ffb347);
-  color: #fff;
+  color: #1a1a1a;
   border-radius: 30px;
   text-decoration: none;
   font-weight: bold;
@@ -127,21 +129,22 @@ const ResumeLink = styled(motion.a)`
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    color: #fff;
     animation: ${spellEffect} 1s ease-in-out infinite;
   }
 `;
 
-const ResumeHeading = styled(motion.h3)`
+const ResumeHeading = styled(motion.h1)`
   font-size: 2rem;
+  margin-bottom: 1rem;
   margin-top: 3rem;
+  padding: 1rem;
+  text-align: center;
   color: #f5c518;
   text-transform: uppercase;
   letter-spacing: 3px;
-  font-family: 'Harry P', serif;
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-family: 'Harry P', serif;
 
   &:after {
     content: '';
@@ -150,7 +153,7 @@ const ResumeHeading = styled(motion.h3)`
     height: 3px;
     background: linear-gradient(to right, #ff5e62, #ff9966);
     position: absolute;
-    bottom: -10px;
+    bottom: -8px;
     left: 0;
     border-radius: 10px;
   }
@@ -159,36 +162,29 @@ const ResumeHeading = styled(motion.h3)`
     content: '📑';
     font-size: 2rem;
     position: absolute;
-    top: -40px;
+    top: -30px;
     left: 50%;
     transform: translateX(-50%);
     animation: ${bounce} 2s infinite;
   }
 
   @media (max-width: 768px) {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 `;
 
-const MagicDivider = styled(motion.div)`
-  width: 60%;
-  height: 4px;
-  margin: 2rem auto;
-  background: linear-gradient(to right, #ff5e62, #ff9966);
-  border-radius: 10px;
-`;
-
-const DownloadCount = styled(motion.p)`
-  font-size: 1.2rem;
-  color: #fff;
-  font-family: 'Roboto', sans-serif;
-  margin-top: 1rem;
+const Section = styled.div`
+  margin: 2rem 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
 `;
 
 const Resume = () => {
   const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Resume-ATS92/Sanjay-Patidar_Resume-Web-Developer.pdf';
   const [downloadCount, setDownloadCount] = useState(0);
   const [loading, setLoading] = useState(false);
+  const sectionsRef = useRef([]);
 
   const handleResumeClick = async (e) => {
     e.preventDefault();
@@ -222,6 +218,25 @@ const Resume = () => {
       }
     };
     fetchDownloadCount();
+  }, []);
+
+  useEffect(() => {
+    const handleIntersection = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.1,
+    });
+
+    sectionsRef.current.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -284,18 +299,17 @@ const Resume = () => {
         <ResumeSubtitle initial="hidden" animate="visible" variants={slideIn}>
           My Professional Experience and Skills
         </ResumeSubtitle>
-        <MagicDivider initial="hidden" animate="visible" variants={slideIn} />
         <ResumeHeading initial="hidden" animate="visible" variants={slideIn}>
           Get My Resume
         </ResumeHeading>
         <ResumeLink href={pdfResumeUrl} onClick={handleResumeClick} initial="hidden" animate="visible" variants={fadeIn}>
           Get Resume
         </ResumeLink>
-        <DownloadCount initial="hidden" animate="visible" variants={fadeIn}>
-          Resume downloads: {downloadCount}
-        </DownloadCount>
+        <p>Resume downloads: {downloadCount}</p>
       </ResumeContainer>
-      <SkillTable />
+      <div ref={(el) => sectionsRef.current.push(el)}>
+        <SkillTable />
+      </div>
       {loading && (
         <LoadingOverlay>
           <RingLoader color="#000" size={60} />
