@@ -1,29 +1,16 @@
 import styled, { keyframes } from 'styled-components';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import SkillTable from './SkillTable';
 import { RingLoader } from 'react-spinners';
-import { motion, useAnimation } from 'framer-motion';
-import { InView } from 'react-intersection-observer';
-
+import '../styles/Skills.css';
 const magicGradient = keyframes`
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 `;
 
-const spellEffect = keyframes`
-  0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.7); }
-  100% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.7); }
-`;
-
-const glow = keyframes`
-  0% { box-shadow: 0 0 5px #fff; }
-  50% { box-shadow: 0 0 20px #f5c518; }
-  100% { box-shadow: 0 0 5px #fff; }
-`;
-
-const ResumeContainer = styled(motion.div)`
+const ResumeContainer = styled.div`
   padding: 4rem 2rem;
   text-align: center;
   border-radius: 20px;
@@ -32,22 +19,9 @@ const ResumeContainer = styled(motion.div)`
   height: 100%;
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s ease-in-out;
   background: linear-gradient(45deg, #282a36, #3d3f51);
   animation: ${magicGradient} 15s ease infinite;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: url('https://sanjaybasket.s3.ap-south-1.amazonaws.com/HogwartsEdX/homebg.webp') no-repeat center center fixed;
-    opacity: 0.2;
-  }
 `;
 
 const LoadingOverlay = styled.div`
@@ -63,7 +37,7 @@ const LoadingOverlay = styled.div`
   z-index: 9999;
 `;
 
-const ResumeTitle = styled(motion.h2)`
+const ResumeTitle = styled.h2`
   font-size: 3rem;
   margin-bottom: 1rem;
   color: #f5c518;
@@ -71,10 +45,9 @@ const ResumeTitle = styled(motion.h2)`
   display: inline-block;
   font-family: 'Pacifico', cursive;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-  animation: ${spellEffect} 1.5s infinite alternate;
 `;
 
-const ResumeSubtitle = styled(motion.h3)`
+const ResumeSubtitle = styled.h3`
   font-size: 2rem;
   margin-bottom: 1rem;
   color: #e5e5e5;
@@ -82,7 +55,7 @@ const ResumeSubtitle = styled(motion.h3)`
   font-style: italic;
 `;
 
-const ResumeLink = styled(motion.a)`
+const ResumeLink = styled.a`
   display: inline-block;
   padding: 1rem 2rem;
   background: linear-gradient(45deg, #6a0dad, #ffb347);
@@ -98,27 +71,14 @@ const ResumeLink = styled(motion.a)`
   transition: transform 0.3s, box-shadow 0.3s, color 0.3s;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
 
-  &::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, #ffcc29, transparent);
-    top: 0;
-    left: 0;
-    z-index: -1;
-    animation: ${magicGradient} 4s linear infinite;
-  }
-
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
     color: #fff;
-    animation: ${spellEffect} 1s ease-in-out infinite;
   }
 `;
 
-const ResumeHeading = styled(motion.h1)`
+const ResumeHeading = styled.h1`
   font-size: 2.5rem;
   margin-bottom: 1rem;
   margin-top: 3rem;
@@ -147,7 +107,7 @@ const ResumeHeading = styled(motion.h1)`
   }
 `;
 
-const Section = styled(motion.div)`
+const Section = styled.div`
   margin: 2rem 0;
 `;
 
@@ -158,7 +118,6 @@ const Frame = styled.div`
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 20px rgba(245, 197, 24, 0.5);
   margin-bottom: 2rem;
-  animation: ${glow} 3s ease-in-out infinite alternate;
 `;
 
 const ResumeText = styled.p`
@@ -169,11 +128,35 @@ const ResumeText = styled.p`
   text-align: justify;
 `;
 
+const useAnimateOnScroll = () => {
+  const [elements, setElements] = useState([]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      elements.forEach(({ element, animation }) => {
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= window.innerHeight) {
+          element.classList.add(animation);
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [elements]);
+
+  const registerElement = (element, animation) => {
+    setElements((prev) => [...prev, { element, animation }]);
+  };
+
+  return registerElement;
+};
+
 const Resume = () => {
   const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Resume-ATS92/Sanjay-Patidar_Resume-Web-Developer.pdf';
   const [downloadCount, setDownloadCount] = useState(0);
   const [loading, setLoading] = useState(false);
-  const controls = useAnimation();
+  const registerElement = useAnimateOnScroll();
 
   const handleResumeClick = async (e) => {
     e.preventDefault();
@@ -208,11 +191,6 @@ const Resume = () => {
     };
     fetchDownloadCount();
   }, []);
-
-  const magicVariants = {
-    hidden: { opacity: 0, x: -100, scale: 0.8 },
-    visible: { opacity: 1, x: 0, scale: 1, transition: { duration: 1.5, ease: 'easeOut' } },
-  };
 
   return (
     <>
@@ -261,61 +239,53 @@ const Resume = () => {
         </script>
       </Helmet>
 
-      <ResumeContainer initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }}>
-        <ResumeTitle initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
-          Sanjay Patidar
-        </ResumeTitle>
-        <ResumeSubtitle initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }}>
-          Web Developer with a Passion for Creating Magical Experiences
-        </ResumeSubtitle>
-        <ResumeHeading initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 3 }}>
-          Get My Resume
-        </ResumeHeading>
-        <ResumeLink href={pdfResumeUrl} onClick={handleResumeClick} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 4 }}>
+      <ResumeContainer>
+        <ResumeTitle>Sanjay Patidar</ResumeTitle>
+        <ResumeSubtitle>Web Developer with a Passion for Creating Magical Experiences</ResumeSubtitle>
+        <ResumeHeading>Get My Resume</ResumeHeading>
+        <ResumeLink href={pdfResumeUrl} onClick={handleResumeClick}>
           Download Resume
         </ResumeLink>
         <p>Resume downloads: {downloadCount}</p>
       </ResumeContainer>
 
-      <InView as="div" onChange={(inView, entry) => inView && controls.start('visible')}>
-        <Section initial="hidden" animate={controls} variants={magicVariants}>
-          <Frame>
-            <ResumeText>
-              I am a seasoned Web Developer with extensive experience in the MERN stack. My journey began at Jawahar Navodaya Vidyalaya and continued through Chandigarh University, where I honed my skills and developed a passion for creating user-friendly and visually appealing web applications.
-            </ResumeText>
-          </Frame>
-        </Section>
+      <Section ref={(el) => el && registerElement(el, 'appear')}>
+        <Frame>
+          <ResumeText>
+            I am a seasoned Web Developer with extensive experience in the MERN stack. My journey began at Jawahar Navodaya Vidyalaya and continued through Chandigarh University, where I honed my skills and developed a passion for creating user-friendly and visually appealing web applications.
+          </ResumeText>
+        </Frame>
+      </Section>
 
-        <Section initial="hidden" animate={controls} variants={magicVariants}>
-          <Frame>
-            <ResumeText>
-              My expertise includes working with technologies like JavaScript, React, Node.js, Express, and MongoDB. I excel in both front-end and back-end development, ensuring seamless integration and functionality across the stack.
-            </ResumeText>
-          </Frame>
-        </Section>
+      <Section ref={(el) => el && registerElement(el, 'appear')}>
+        <Frame>
+          <ResumeText>
+            My expertise includes working with technologies like JavaScript, React, Node.js, Express, and MongoDB. I excel in both front-end and back-end development, ensuring seamless integration and functionality across the stack.
+          </ResumeText>
+        </Frame>
+      </Section>
 
-        <Section initial="hidden" animate={controls} variants={magicVariants}>
-          <Frame>
-            <ResumeText>
-              I have a strong background in UI/UX design, allowing me to create intuitive and engaging user interfaces. My projects often involve collaborating with cross-functional teams to deliver high-quality solutions that meet client requirements and exceed expectations.
-            </ResumeText>
-          </Frame>
-        </Section>
+      <Section ref={(el) => el && registerElement(el, 'appear')}>
+        <Frame>
+          <ResumeText>
+            I have a strong background in UI/UX design, allowing me to create intuitive and engaging user interfaces. My projects often involve collaborating with cross-functional teams to deliver high-quality solutions that meet client requirements and exceed expectations.
+          </ResumeText>
+        </Frame>
+      </Section>
 
-        <Section initial="hidden" animate={controls} variants={magicVariants}>
-          <Frame>
-            <ResumeText>
-              I am constantly learning and adapting to new technologies and trends in web development. My goal is to continue growing as a developer and to use my skills to create innovative and impactful web applications.
-            </ResumeText>
-          </Frame>
-        </Section>
+      <Section ref={(el) => el && registerElement(el, 'appear')}>
+        <Frame>
+          <ResumeText>
+            I am constantly learning and adapting to new technologies and trends in web development. My goal is to continue growing as a developer and to use my skills to create innovative and impactful web applications.
+          </ResumeText>
+        </Frame>
+      </Section>
 
-        <Section initial="hidden" animate={controls} variants={magicVariants}>
-          <Frame>
-            <SkillTable />
-          </Frame>
-        </Section>
-      </InView>
+      <Section ref={(el) => el && registerElement(el, 'appear')}>
+        <Frame>
+          <SkillTable />
+        </Frame>
+      </Section>
 
       {loading && (
         <LoadingOverlay>
