@@ -1,13 +1,28 @@
-import styled, { keyframes } from 'styled-components';
-import { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import SkillTable from './SkillTable';
 import { RingLoader } from 'react-spinners';
-import '../styles/Skills.css';
-const magicGradient = keyframes`
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+
+const magicAppear = `
+  @keyframes magicAppear {
+    0% {
+      transform: translateY(100px) scale(0.5);
+      opacity: 0;
+    }
+    60% {
+      transform: translateY(-20px) scale(1.1);
+      opacity: 0.8;
+    }
+    80% {
+      transform: translateY(10px) scale(0.9);
+      opacity: 0.9;
+    }
+    100% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
 `;
 
 const ResumeContainer = styled.div`
@@ -20,8 +35,20 @@ const ResumeContainer = styled.div`
   position: relative;
   overflow: hidden;
   background: linear-gradient(45deg, #282a36, #3d3f51);
-  animation: ${magicGradient} 15s ease infinite;
+  animation: ${magicAppear} 1.5s ease-in-out forwards;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: url('/path/to/your/harry-potter-background.jpg') center center/cover no-repeat;
+    opacity: 0.2;
+  }
 `;
 
 const LoadingOverlay = styled.div`
@@ -45,6 +72,7 @@ const ResumeTitle = styled.h2`
   display: inline-block;
   font-family: 'Pacifico', cursive;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  animation: ${magicAppear} 1.5s ease-in-out forwards;
 `;
 
 const ResumeSubtitle = styled.h3`
@@ -53,6 +81,7 @@ const ResumeSubtitle = styled.h3`
   color: #e5e5e5;
   font-family: 'Roboto', sans-serif;
   font-style: italic;
+  animation: ${magicAppear} 1.5s ease-in-out 0.3s forwards;
 `;
 
 const ResumeLink = styled.a`
@@ -70,6 +99,7 @@ const ResumeLink = styled.a`
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s, color 0.3s;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  animation: ${magicAppear} 1.5s ease-in-out 0.6s forwards;
 
   &:hover {
     transform: translateY(-3px);
@@ -89,6 +119,7 @@ const ResumeHeading = styled.h1`
   letter-spacing: 3px;
   position: relative;
   font-family: 'Harry P', serif;
+  animation: ${magicAppear} 1.5s ease-in-out 0.9s forwards;
 
   &:after {
     content: '';
@@ -109,6 +140,7 @@ const ResumeHeading = styled.h1`
 
 const Section = styled.div`
   margin: 2rem 0;
+  animation: ${magicAppear} 1.5s ease-in-out 1.2s forwards;
 `;
 
 const Frame = styled.div`
@@ -116,8 +148,8 @@ const Frame = styled.div`
   padding: 2rem;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 20px rgba(245, 197, 24, 0.5);
   margin-bottom: 2rem;
+  animation: ${magicAppear} 1.5s ease-in-out 1.5s forwards;
 `;
 
 const ResumeText = styled.p`
@@ -128,35 +160,10 @@ const ResumeText = styled.p`
   text-align: justify;
 `;
 
-const useAnimateOnScroll = () => {
-  const [elements, setElements] = useState([]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      elements.forEach(({ element, animation }) => {
-        const rect = element.getBoundingClientRect();
-        if (rect.top <= window.innerHeight) {
-          element.classList.add(animation);
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [elements]);
-
-  const registerElement = (element, animation) => {
-    setElements((prev) => [...prev, { element, animation }]);
-  };
-
-  return registerElement;
-};
-
 const Resume = () => {
   const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Resume-ATS92/Sanjay-Patidar_Resume-Web-Developer.pdf';
   const [downloadCount, setDownloadCount] = useState(0);
   const [loading, setLoading] = useState(false);
-  const registerElement = useAnimateOnScroll();
 
   const handleResumeClick = async (e) => {
     e.preventDefault();
@@ -192,6 +199,32 @@ const Resume = () => {
     fetchDownloadCount();
   }, []);
 
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+    };
+
+    const observerCallback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    const sections = document.querySelectorAll('.section');
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      if (sections) {
+        sections.forEach((section) => observer.unobserve(section));
+      }
+    };
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -205,95 +238,70 @@ const Resume = () => {
         <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
         <script type="application/ld+json">
           {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "Sanjay Patidar",
-            "url": "https://sanjay-patidar.vercel.app/",
-            "image": "https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png",
-            "sameAs": "https://www.cuchd.in/",
-            "jobTitle": "Web Developer",
-            "worksFor": {
-              "@type": "Organization",
-              "name": "Chandigarh University",
-              "sameAs": "https://www.cuchd.in/"
-            },
-            "homeLocation": {
-              "@type": "Place",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Indore"
-              }
-            },
-            "sameAs": [
-              "https://www.linkedin.com/in/sanjaypatidar10/",
-              "https://www.behance.net/sanjaypatidar10"
-            ],
-            "url": "https://sanjay-patidar.vercel.app/",
-            "jobTitle": "Web Developer",
-            "image": "https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png",
-            "description": "Web Developer with skills in JavaScript, React, and Node.js",
-            "gender": "Male",
-            "knowsAbout": "Web Development",
-            "nationality": "Indian"
-          })}
-        </script>
-      </Helmet>
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sanjay Patidar",
+  "url": "https://sanjay-patidar.vercel.app/",
+  "image": "https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png",
+  "sameAs": [
+    "https://www.linkedin.com/in/sanjaypatidar10/",
+    "https://www.behance.net/sanjaypatidar10"
+  ],
+  "jobTitle": "Web Developer",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Chandigarh University",
+    "sameAs": "https://www.cuchd.in/"
+  },
+  "homeLocation": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Indore"
+    }
+  },
+  "description": "Web Developer with skills in JavaScript, React, and Node.js",
+  "gender": "Male",
+  "knowsAbout": "Web Development",
+  "nationality": "Indian"
+})}
+</script>
+</Helmet>
 
-      <ResumeContainer>
-        <ResumeTitle>Sanjay Patidar</ResumeTitle>
-        <ResumeSubtitle>Web Developer with a Passion for Creating Magical Experiences</ResumeSubtitle>
-        <ResumeHeading>Get My Resume</ResumeHeading>
-        <ResumeLink href={pdfResumeUrl} onClick={handleResumeClick}>
-          Download Resume
-        </ResumeLink>
-        <p>Resume downloads: {downloadCount}</p>
-      </ResumeContainer>
-
-      <Section ref={(el) => el && registerElement(el, 'appear')}>
-        <Frame>
-          <ResumeText>
-            I am a seasoned Web Developer with extensive experience in the MERN stack. My journey began at Jawahar Navodaya Vidyalaya and continued through Chandigarh University, where I honed my skills and developed a passion for creating user-friendly and visually appealing web applications.
-          </ResumeText>
-        </Frame>
-      </Section>
-
-      <Section ref={(el) => el && registerElement(el, 'appear')}>
-        <Frame>
-          <ResumeText>
-            My expertise includes working with technologies like JavaScript, React, Node.js, Express, and MongoDB. I excel in both front-end and back-end development, ensuring seamless integration and functionality across the stack.
-          </ResumeText>
-        </Frame>
-      </Section>
-
-      <Section ref={(el) => el && registerElement(el, 'appear')}>
-        <Frame>
-          <ResumeText>
-            I have a strong background in UI/UX design, allowing me to create intuitive and engaging user interfaces. My projects often involve collaborating with cross-functional teams to deliver high-quality solutions that meet client requirements and exceed expectations.
-          </ResumeText>
-        </Frame>
-      </Section>
-
-      <Section ref={(el) => el && registerElement(el, 'appear')}>
-        <Frame>
-          <ResumeText>
-            I am constantly learning and adapting to new technologies and trends in web development. My goal is to continue growing as a developer and to use my skills to create innovative and impactful web applications.
-          </ResumeText>
-        </Frame>
-      </Section>
-
-      <Section ref={(el) => el && registerElement(el, 'appear')}>
-        <Frame>
-          <SkillTable />
-        </Frame>
-      </Section>
-
-      {loading && (
-        <LoadingOverlay>
-          <RingLoader color="#000" size={60} />
-        </LoadingOverlay>
-      )}
-    </>
-  );
+<ResumeContainer>
+  <ResumeTitle>
+    Resume
+  </ResumeTitle>
+  <ResumeSubtitle>
+    My Professional Experience and Skills
+  </ResumeSubtitle>
+  <Frame className="section">
+    <ResumeText>
+      I have a strong background in UI/UX design, allowing me to create intuitive and engaging user interfaces. My projects often involve collaborating with cross-functional teams to deliver high-quality solutions that meet client requirements and exceed expectations.
+    </ResumeText>
+  </Frame>
+  <Frame className="section">
+    <ResumeText>
+      I am constantly learning and adapting to new technologies and trends in web development. My goal is to continue growing as a developer and to use my skills to create innovative and impactful web applications.
+    </ResumeText>
+  </Frame>
+  <ResumeHeading>
+    Get My Resume
+  </ResumeHeading>
+  <ResumeLink href={pdfResumeUrl} onClick={handleResumeClick}>
+    Get Resume
+  </ResumeLink>
+  <p>Resume downloads: {downloadCount}</p>
+</ResumeContainer>
+<SkillTable />
+{loading && (
+  <LoadingOverlay>
+    <RingLoader color="#000" size={60} />
+  </LoadingOverlay>
+)}
+</>
+);
 };
 
 export default Resume;
+
