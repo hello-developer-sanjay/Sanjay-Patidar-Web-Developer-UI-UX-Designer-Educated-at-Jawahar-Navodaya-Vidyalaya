@@ -3,8 +3,36 @@ import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import SkillTable from './SkillTable';
 import { RingLoader } from 'react-spinners';
+import { motion } from 'framer-motion';
 
-const ResumeContainer = styled.div`
+const magicGradient = keyframes`
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+`;
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 2 } },
+};
+
+const slideIn = {
+  hidden: { x: '-100vw' },
+  visible: { x: 0, transition: { type: 'spring', stiffness: 60 } },
+};
+
+const bounce = keyframes`
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-20px); }
+  60% { transform: translateY(-10px); }
+`;
+
+const spellEffect = keyframes`
+  0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.7); }
+  100% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.7); }
+`;
+
+const ResumeContainer = styled(motion.div)`
   padding: 4rem 0;
   text-align: center;
   border-radius: 20px;
@@ -17,6 +45,9 @@ const ResumeContainer = styled.div`
   position: relative;
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
+  background: linear-gradient(45deg, #282a36, #3d3f51);
+  animation: ${magicGradient} 15s ease infinite;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
   &::before {
     content: '';
@@ -26,6 +57,8 @@ const ResumeContainer = styled.div`
     width: 100%;
     height: 100%;
     z-index: -1;
+    background: url('/path/to/your/harry-potter-background.jpg') center center/cover no-repeat;
+    opacity: 0.2;
   }
 `;
 
@@ -42,13 +75,15 @@ const LoadingOverlay = styled.div`
   z-index: 9999;
 `;
 
-const ResumeTitle = styled.h2`
+const ResumeTitle = styled(motion.h2)`
   font-size: 2.8rem;
   margin-bottom: 0rem;
-  color: #333;
+  color: #f5c518;
   position: relative;
   display: inline-block;
   font-family: 'Pacifico', cursive;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  animation: ${spellEffect} 1.5s infinite alternate;
 
   &:hover::after {
     transform: scaleX(1);
@@ -58,32 +93,20 @@ const ResumeTitle = styled.h2`
   }
 `;
 
-const ResumeSubtitle = styled.h3`
+const ResumeSubtitle = styled(motion.h3)`
   font-size: 1.8rem;
   margin-bottom: 1rem;
-  color: #555;
+  color: #e5e5e5;
   font-family: 'Roboto', sans-serif;
   @media (max-width: 768px) {
     font-size: 1.4rem;
   }
 `;
 
-const colorChange = keyframes`
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-`;
-
-const shadowPop = keyframes`
-  0% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); }
-  50% { text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4); }
-  100% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); }
-`;
-
-const ResumeLink = styled.a`
+const ResumeLink = styled(motion.a)`
   display: inline-block;
   padding: 1rem 2rem;
-  background: linear-gradient(45deg, #ff6b6b, #ffb347);
+  background: linear-gradient(45deg, #6a0dad, #ffb347);
   color: #1a1a1a;
   border-radius: 30px;
   text-decoration: none;
@@ -94,6 +117,7 @@ const ResumeLink = styled.a`
   position: relative;
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s, color 0.3s;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
 
   &::before {
     content: '';
@@ -104,28 +128,29 @@ const ResumeLink = styled.a`
     top: 0;
     left: 0;
     z-index: -1;
-    animation: ${colorChange} 4s linear infinite;
+    animation: ${magicGradient} 4s linear infinite;
   }
 
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
     color: #fff;
-    animation: ${shadowPop} 1s ease-in-out infinite;
+    animation: ${spellEffect} 1s ease-in-out infinite;
   }
 `;
 
-const ResumeHeading = styled.h1`
+const ResumeHeading = styled(motion.h1)`
   font-size: 2rem;
   margin-bottom: 1rem;
   margin-top: 3rem;
   padding: 1rem;
   text-align: center;
   justify-content: center;
-  color: #24086C;
+  color: #f5c518;
   text-transform: uppercase;
   letter-spacing: 3px;
   position: relative;
+  font-family: 'Harry P', serif; /* Custom Harry Potter font */
 
   &:after {
     content: '';
@@ -146,20 +171,9 @@ const ResumeHeading = styled.h1`
     top: -30px;
     left: 50%;
     transform: translateX(-50%);
-    animation: bounce 2s infinite;
+    animation: ${bounce} 2s infinite;
   }
 
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-20px);
-    }
-    60% {
-      transform: translateY(-10px);
-    }
-  }
   @media (max-width: 768px) {
     font-size: 1rem;
   }
@@ -218,31 +232,20 @@ const Resume = () => {
           property="og:description"
           content="Unlock Sanjay Patidar's resume to explore his professional experience and skills. Click the link to access the full resume."
         />
-        <meta property="og:url" content="https://sanjay-patidar.vercel.app/resume" />
+        <meta property="og:url" content="https://sanjay-patidar.vercel.app/" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Sanjay Patidar | Web Developer Resume | ATS Score 95" />
-        <meta
-          name="twitter:description"
-          content="Unlock Sanjay Patidar's resume to explore his professional experience and skills. Click the link to access the full resume."
-        />
-        <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png" />
         <script type="application/ld+json">
           {JSON.stringify({
-            '@context': 'http://schema.org',
-            '@type': 'Person',
+            "@context": "https://schema.org",
+            "@type": "Person",
             "name": "Sanjay Patidar",
-            "birthDate": "1998-07-01",
-            "birthPlace": {
-              "@type": "Place",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Indore"
-              }
-            },
-            "alumniOf": {
-              "@type": "CollegeOrUniversity",
+            "url": "https://sanjay-patidar.vercel.app/",
+            "image": "https://sanjaybasket.s3.ap-south-1.amazonaws.com/skillsImage.png",
+            "sameAs": "https://www.cuchd.in/",
+            "jobTitle": "Web Developer",
+            "worksFor": {
+              "@type": "Organization",
               "name": "Chandigarh University",
               "sameAs": "https://www.cuchd.in/"
             },
@@ -268,11 +271,19 @@ const Resume = () => {
         </script>
       </Helmet>
 
-      <ResumeContainer>
-        <ResumeTitle>Resume</ResumeTitle>
-        <ResumeSubtitle>My Professional Experience and Skills</ResumeSubtitle>
-        <ResumeHeading>Get My Resume</ResumeHeading>
-        <ResumeLink href={pdfResumeUrl} onClick={handleResumeClick}>Get Resume</ResumeLink>
+      <ResumeContainer initial="hidden" animate="visible" variants={fadeIn}>
+        <ResumeTitle initial="hidden" animate="visible" variants={fadeIn}>
+          Resume
+        </ResumeTitle>
+        <ResumeSubtitle initial="hidden" animate="visible" variants={slideIn}>
+          My Professional Experience and Skills
+        </ResumeSubtitle>
+        <ResumeHeading initial="hidden" animate="visible" variants={slideIn}>
+          Get My Resume
+        </ResumeHeading>
+        <ResumeLink href={pdfResumeUrl} onClick={handleResumeClick} initial="hidden" animate="visible" variants={fadeIn}>
+          Get Resume
+        </ResumeLink>
         <p>Resume downloads: {downloadCount}</p>
       </ResumeContainer>
       <SkillTable />
