@@ -24,6 +24,19 @@ const magicAppear = keyframes`
   }
 `;
 
+// Keyframes for a magical glow effect
+const glow = keyframes`
+  0% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+`;
+
 // Styled components with magical touch
 const ResumeContainer = styled.div`
   padding: 4rem 2rem;
@@ -36,7 +49,8 @@ const ResumeContainer = styled.div`
   overflow: hidden;
   background: linear-gradient(45deg, #282a36, #3d3f51);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  
+  animation: ${magicAppear} 1.5s ease-in-out forwards;
+
   &::before {
     content: '';
     position: absolute;
@@ -71,6 +85,7 @@ const ResumeTitle = styled.h2`
   display: inline-block;
   font-family: 'Pacifico', cursive;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  animation: ${glow} 2s infinite alternate;
 `;
 
 const ResumeSubtitle = styled.h3`
@@ -79,6 +94,7 @@ const ResumeSubtitle = styled.h3`
   color: #e5e5e5;
   font-family: 'Roboto', sans-serif;
   font-style: italic;
+  animation: ${glow} 2s infinite alternate;
 `;
 
 const ResumeLink = styled.a`
@@ -96,11 +112,13 @@ const ResumeLink = styled.a`
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s, color 0.3s;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  animation: ${magicAppear} 1.5s ease-in-out 0.6s forwards;
 
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
     color: #fff;
+    animation: ${glow} 2s infinite alternate;
   }
 `;
 
@@ -115,6 +133,7 @@ const ResumeHeading = styled.h1`
   letter-spacing: 3px;
   position: relative;
   font-family: 'Harry P', serif;
+  animation: ${magicAppear} 1.5s ease-in-out 0.9s forwards;
 
   &:after {
     content: '';
@@ -142,23 +161,8 @@ const Section = styled.div`
   &.in-view {
     opacity: 1;
     transform: translateY(0);
+    animation: ${magicAppear} 1.5s ease-in-out forwards;
   }
-`;
-
-const Frame = styled.div`
-  border: 3px solid #f5c518;
-  padding: 2rem;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  margin-bottom: 2rem;
-`;
-
-const ResumeText = styled.p`
-  font-size: 1.2rem;
-  color: #e5e5e5;
-  font-family: 'Roboto', sans-serif;
-  margin-bottom: 1rem;
-  text-align: justify;
 `;
 
 const Resume = () => {
@@ -276,22 +280,14 @@ const Resume = () => {
         <ResumeSubtitle>
           My Professional Experience and Skills
         </ResumeSubtitle>
-        <Frame className="section">
-          <ResumeText>
-            I have a strong background in UI/UX design, allowing me to create intuitive and engaging user interfaces. My projects often involve collaborating with cross-functional teams to deliver high-quality solutions that meet client requirements and exceed expectations.
-          </ResumeText>
-        </Frame>
-        <Frame className="section">
-          <ResumeText>
-            I am constantly learning and adapting to new technologies and trends in web development. My goal is to continue growing as a developer and to use my skills to create innovative and impactful web applications.
-          </ResumeText>
-        </Frame>
         <ResumeHeading>
           Get My Resume
         </ResumeHeading>
-        <ResumeLink href={pdfResumeUrl} onClick={handleResumeClick}>
-          Get Resume
-        </ResumeLink>
+        <Section className="section">
+          <ResumeLink href={pdfResumeUrl} onClick={handleResumeClick}>
+            Get Resume
+          </ResumeLink>
+        </Section>
         <p>Resume downloads: {downloadCount}</p>
       </ResumeContainer>
       <SkillTable />
