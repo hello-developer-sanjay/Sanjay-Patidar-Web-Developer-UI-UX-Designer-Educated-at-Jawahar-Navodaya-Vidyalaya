@@ -6,7 +6,6 @@ import { RingLoader } from 'react-spinners';
 import { motion, useAnimation } from 'framer-motion';
 import { InView } from 'react-intersection-observer';
 
-// Keyframes for magical animations
 const magicGradient = keyframes`
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -16,11 +15,6 @@ const magicGradient = keyframes`
 const spellEffect = keyframes`
   0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.7); }
   100% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.7); }
-`;
-
-const spellRotate = keyframes`
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
 `;
 
 const glow = keyframes`
@@ -135,7 +129,6 @@ const ResumeHeading = styled(motion.h1)`
   letter-spacing: 3px;
   position: relative;
   font-family: 'Harry P', serif;
-  animation: ${spellRotate} 20s linear infinite;
 
   &:after {
     content: '';
@@ -154,11 +147,8 @@ const ResumeHeading = styled(motion.h1)`
   }
 `;
 
-const Section = styled.div`
+const Section = styled(motion.div)`
   margin: 2rem 0;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 1s ease-out, transform 1s ease-out;
 `;
 
 const Frame = styled.div`
@@ -183,7 +173,6 @@ const Resume = () => {
   const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Resume-ATS92/Sanjay-Patidar_Resume-Web-Developer.pdf';
   const [downloadCount, setDownloadCount] = useState(0);
   const [loading, setLoading] = useState(false);
-  const sectionsRef = useRef([]);
   const controls = useAnimation();
 
   const handleResumeClick = async (e) => {
@@ -220,23 +209,10 @@ const Resume = () => {
     fetchDownloadCount();
   }, []);
 
-  useEffect(() => {
-    const handleIntersection = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          controls.start({ opacity: 1, transform: 'translateY(0)' });
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(handleIntersection, {
-      threshold: 0.1,
-    });
-
-    sectionsRef.current.forEach((section) => observer.observe(section));
-
-    return () => observer.disconnect();
-  }, [controls]);
+  const magicVariants = {
+    hidden: { opacity: 0, x: -100, scale: 0.8 },
+    visible: { opacity: 1, x: 0, scale: 1, transition: { duration: 1.5, ease: 'easeOut' } },
+  };
 
   return (
     <>
@@ -301,8 +277,8 @@ const Resume = () => {
         <p>Resume downloads: {downloadCount}</p>
       </ResumeContainer>
 
-      <InView as="div" onChange={(inView, entry) => inView && controls.start({ opacity: 1, transform: 'translateY(0)' })}>
-        <Section ref={(el) => sectionsRef.current.push(el)} style={{ opacity: 0, transform: 'translateY(20px)' }}>
+      <InView as="div" onChange={(inView, entry) => inView && controls.start('visible')}>
+        <Section initial="hidden" animate={controls} variants={magicVariants}>
           <Frame>
             <ResumeText>
               I am a seasoned Web Developer with extensive experience in the MERN stack. My journey began at Jawahar Navodaya Vidyalaya and continued through Chandigarh University, where I honed my skills and developed a passion for creating user-friendly and visually appealing web applications.
@@ -310,7 +286,7 @@ const Resume = () => {
           </Frame>
         </Section>
 
-        <Section ref={(el) => sectionsRef.current.push(el)} style={{ opacity: 0, transform: 'translateY(20px)' }}>
+        <Section initial="hidden" animate={controls} variants={magicVariants}>
           <Frame>
             <ResumeText>
               My expertise includes working with technologies like JavaScript, React, Node.js, Express, and MongoDB. I excel in both front-end and back-end development, ensuring seamless integration and functionality across the stack.
@@ -318,7 +294,7 @@ const Resume = () => {
           </Frame>
         </Section>
 
-        <Section ref={(el) => sectionsRef.current.push(el)} style={{ opacity: 0, transform: 'translateY(20px)' }}>
+        <Section initial="hidden" animate={controls} variants={magicVariants}>
           <Frame>
             <ResumeText>
               I have a strong background in UI/UX design, allowing me to create intuitive and engaging user interfaces. My projects often involve collaborating with cross-functional teams to deliver high-quality solutions that meet client requirements and exceed expectations.
@@ -326,7 +302,7 @@ const Resume = () => {
           </Frame>
         </Section>
 
-        <Section ref={(el) => sectionsRef.current.push(el)} style={{ opacity: 0, transform: 'translateY(20px)' }}>
+        <Section initial="hidden" animate={controls} variants={magicVariants}>
           <Frame>
             <ResumeText>
               I am constantly learning and adapting to new technologies and trends in web development. My goal is to continue growing as a developer and to use my skills to create innovative and impactful web applications.
@@ -334,7 +310,7 @@ const Resume = () => {
           </Frame>
         </Section>
 
-        <Section ref={(el) => sectionsRef.current.push(el)} style={{ opacity: 0, transform: 'translateY(20px)' }}>
+        <Section initial="hidden" animate={controls} variants={magicVariants}>
           <Frame>
             <SkillTable />
           </Frame>
