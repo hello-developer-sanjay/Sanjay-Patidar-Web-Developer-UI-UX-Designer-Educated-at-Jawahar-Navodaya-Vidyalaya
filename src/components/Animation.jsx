@@ -60,7 +60,7 @@ const Animation  = () => {
 
     {
       title: '🙋 Who is Sanjay Patidar, the Tech Innovator?',
-      description: "Sanjay Patidar, born on May 24, 1997, is a tech innovator from Indore, India. With a passion for digital innovation, he thrives on pushing technology boundaries. Renowned for directing 6 projects, Sanjay showcases diverse technical expertise and a relentless pursuit of excellence.",
+      description: "Sanjay Patidar, born on May 24, 1998, is a tech innovator from Neemuch, India. With a passion for digital innovation, he thrives on pushing technology boundaries. Renowned for directing 6 projects, Sanjay showcases diverse technical expertise and a relentless pursuit of excellence.",
     },
     
     {
