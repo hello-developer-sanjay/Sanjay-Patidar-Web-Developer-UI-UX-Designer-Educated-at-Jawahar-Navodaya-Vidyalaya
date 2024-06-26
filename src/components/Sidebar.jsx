@@ -162,7 +162,7 @@ const Sidebar = () => {
     async function fetchCertifications() {
       try {
         const response = await axios.get(
-          "https://portfolio-api-15jun-nbz1.onrender.com/api/certifications"
+          "https://portfolio-api-26jun.onrender.com/api/certifications"
         );
         setCertifications(response.data);
       } catch (error) {
