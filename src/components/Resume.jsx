@@ -172,13 +172,13 @@ const Resume = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      await fetch('https://portfolio-api-15jun-nbz1.onrender.com/api/increment-resume-clicks', {
+      await fetch('https://portfolio-api-26jun.onrender.com/api/increment-resume-clicks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
       });
-      const response = await fetch('https://portfolio-api-15jun-nbz1.onrender.com/api/get-resume-click-count');
+      const response = await fetch('https://portfolio-api-26jun.onrender.com/api/get-resume-click-count');
       const data = await response.json();
       setDownloadCount(data.count);
       window.open(pdfResumeUrl, '_blank');
@@ -192,7 +192,7 @@ const Resume = () => {
   useEffect(() => {
     const fetchDownloadCount = async () => {
       try {
-        const response = await fetch('https://portfolio-api-15jun-nbz1.onrender.com/api/get-resume-click-count');
+        const response = await fetch('https://portfolio-api-26jun.onrender.com/api/get-resume-click-count');
         const data = await response.json();
         setDownloadCount(data.count);
       } catch (error) {
