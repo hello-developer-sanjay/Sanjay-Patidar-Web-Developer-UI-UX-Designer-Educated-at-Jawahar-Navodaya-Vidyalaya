@@ -27,6 +27,7 @@
     "@emotion/react": "^11.11.3",
     "@chakra-ui/react": "^2.8.2",
     "react-collapse": "^5.1.1",
+    "@react-spring/web": "^9.7.3",
 
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",
