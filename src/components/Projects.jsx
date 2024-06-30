@@ -1,16 +1,20 @@
-import  React,{ useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
-import { RingLoader } from 'react-spinners'; 
+import { RingLoader } from 'react-spinners';
+import { useSprings, animated } from '@react-spring/web';
 
 const ProjectsContainer = styled.div`
-padding: 2rem;
-background-color: #050816;
-min-height: 100vh;
-overflow: hidden; /* Hide overflow for container */
+  padding: 1rem;
+  background: linear-gradient(135deg, #1a1a1d, #4a4e69);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
+
 const LoadingOverlay = styled.div`
   position: fixed;
   top: 0;
@@ -20,37 +24,167 @@ const LoadingOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
-  z-index: 9999; /* Ensure it's above other elements */
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
 `;
 
 const ProjectsNavigation = styled.nav`
-position: sticky;
+  position: sticky;
   top: 0;
-  z-index: 1; /* Ensure it's above other content */
-  margin-bottom: 2rem;
-  background-color: #050816;
-  padding: 0.2rem 0.2rem;
-  overflow-y: auto; /* Enable vertical scrolling for navigation */
-  max-height: calc(100vh - 4rem); /* Limit height to viewport height minus padding */
-  &::-webkit-scrollbar {
-    width: 8px; /* Width of the scrollbar */
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: #888; /* Color of the scrollbar thumb */
-    border-radius: 4px; /* Roundness of the scrollbar thumb */
-  }`;
-
-const ProjectsNavList = styled.ul`
-list-style: none;
-display: flex;
-color: #fff;
-flex-wrap: wrap;
-gap: 1rem;
+  z-index: 1;
+  margin-bottom: 0rem;
+  padding: 0rem;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
 `;
 
+const ProjectsNavList = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+`;
 
+const ProjectsNavItem = styled.li`
+  padding: 0.2rem 0.8rem;
+  text-align: center;
+  border-radius: 30px;
+  transition: transform 0.3s, background-color 0.3s;
+  color: #fff;
+    border: 2px solid #ff6b6b;
 
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+    background: rgba(0, 0, 0, 0.5);
+  }
+`;
+
+const ProjectsNavLinkContainer = styled(NavLink)`
+  text-decoration: none;
+  color: inherit;
+
+  &.active {
+    color: yellow;
+  }
+`;
+
+const ProjectsContent = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem;
+  border-radius: 20px;
+  overflow-y: auto;
+  height: calc(100vh - 150px);
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #4a4e69, #22223b);
+    border-radius: 5px;
+  }
+`;
+
+const ProjectList = styled.ul`
+  list-style: none;
+  
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+`;
+
+const ProjectItem = styled(animated.li)`
+  padding: 1rem;
+  border-radius: 15px;
+    border: 2px solid #fff;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-clip: padding-box;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s;
+  transform-style: preserve-3d;
+
+  &:hover {
+    transform: rotateY(20deg);
+  }
+`;
+
+const ProjectLogoContainer = styled.div`
+  width: 150px;
+  height: 150px;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  transition: transform 0.3s;
+
+`;
+
+const ProjectLogo = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 25px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+`;
+
+const ProjectTitle = styled(animated.span)`
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  transition: color 0.3s, transform 0.3s;
+
+  &:hover {
+    color: #ff6b6b;
+    transform: translateY(-5px);
+  }
+`;
+
+const TechStackContainer = styled(animated.div)`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+  
+`;
+
+const TechStackItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  transition: background 0.3s, transform 0.3s;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+  }
+`;
+
+const TechStackLogo = styled.img`
+  width: 30px;
+  height: 30px;
+`;
+
+const TechStackName = styled.span`
+  color: #fff;
+  font-size: 1rem;
+`;
 
 const ProjectWebsiteLink = styled.a`
   text-decoration: none;
@@ -59,203 +193,112 @@ const ProjectWebsiteLink = styled.a`
   align-items: center;
   font-size: 1rem;
   margin-top: 1rem;
-  padding: 1rem 1rem;
-  border-radius: 50px;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
   background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 100%);
-  background-size: 100% 100%;
   transition: transform 0.3s, background 0.5s, box-shadow 0.3s;
-
-  svg {
-    margin-right: 1rem;
-    fill: #ffffff;
-    transition: fill 0.3s;
-  }
 
   &:hover {
     background-position: 100% 0;
-   
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    filter: hue-rotate(45deg); /* Add a vibrant color shift on hover */
-  }
-
-  &:hover svg {
-    fill: #ffffff;
-    transform: rotate(45deg); /* Rotate the icon on hover */
+    filter: hue-rotate(45deg);
   }
 `;
-
-const ProjectTitle = styled.span`
-  font-weight: bold;
-  font-size: 1.2rem;
-  color: #0070f3;
-  transition: color 0.3s, transform 0.3s;
-
-  &:hover {
-    color: #ff6b6b; /* Change color on hover */
-    transform: translateY(-2px); /* Add a subtle upward hover effect */
-  }
-
-
- 
-`;
-
-
-const ProjectsNavItem = styled.li`
-flex: 1;
-padding: 0.5rem;
-text-align: center;
-border-radius: 5px;
-transition: transform 0.2s, background-color 0.2s;
-color: #ffffff;
-  
-`;
-
-const ProjectsNavLinkContainer = styled(NavLink)`
-text-decoration: none;
-display: block;
-position: relative;
-color: #fff;
-
-&:hover {
-  color: yellow;
-}
-
-&.active {
-  color: red;
-  /* Text color for the active link */
-}
-`;
-
-
-
-
-
-const ProjectsContent = styled.div`
-background-color: #050816;
-padding: 1.5rem;
-border-radius: 10px;
-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
-overflow-y: auto; 
-max-height: calc(100vh - 4rem);
-margin-top: 0rem; 
-
-/* Custom scrollbar styles */
-&::-webkit-scrollbar {
-  width: 10px !important; 
-}
-&::-webkit-scrollbar-track {
-  background: linear-gradient(to right, #050816, #111); 
-}
-&::-webkit-scrollbar-thumb {
-  background: linear-gradient(to right, #0070f3, #00ff95); 
-  border-radius: 5px !important; 
-  border: 3px solid #050816; 
-}
-&::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to right, #ff6b6b, #ffdd59); 
-  border-color: #111; 
-}
-`;
-
-const ProjectList = styled.ul`
-  list-style: none;
-  padding: 0;
-`;
-
-const ProjectItem = styled.li`
-  margin-bottom: 1rem;
-`;
-
-const ProjectDescription = styled.p`
- font-size: 1rem; /* Small font size */
-  line-height: 1.6;
-  margin-top: 1rem;
-  position: relative;
-  color: #fff; /* Default text color */
-
-  span.highlight {
-    color: #0070f3; /* Highlighted text color */
-    font-weight: bold; /* Highlighted text bold */
-  }
-
-
-  &:before {
-    content: ' Project Description'; /* Use decorative stars as labels */
-    display: block;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    color: #0070f3; /* Change the label color */
-    font-size: 1.2rem; /* Adjust label font size */
-    letter-spacing: 2px; /* Add letter spacing for emphasis */
-    text-align: left;
-    text-transform: uppercase; /* Uppercase text for emphasis */
-  }
-
-  &:after {
-    content: '';
-    display: block;
-    margin-top: 0.5rem;
-    height: 2px;
-    background: linear-gradient(
-      to right,
-      #0070f3,
-      #ff6b6b,
-      #33d9b2,
-      #ffad5a
-    ); /* Use a gradient background */
-    background-size: 300% 100%; /* Control the gradient width */
-    animation: gradient-shift 5s linear infinite; /* Animation for gradient shift */
-  }
-
-  @keyframes gradient-shift {
-    0% {
-      background-position: 0% 0%;
-    }
-    100% {
-      background-position: 100% 0%;
-    }
-  }
-`;
-
 
 const generateSlug = (title) => {
-  return title.toString().toLowerCase()
-    .replace(/\s+/g, '-')        // Replace spaces with -
-    .replace(/[^\w-]+/g, '')     // Remove all non-word characters
-    .replace(/--+/g, '-')        // Replace multiple - with single -
-    .replace(/^-+/, '')          // Trim - from start of text
-    .replace(/-+$/, '');         // Trim - from end of text
+  return title
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
+};
+
+const techStackLogos = {
+  'React.js': 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/logo/react-logo.png',
+  'Tailwind CSS': 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/logo/tailwindcss-logo.png',
+  'Node.js': 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/logo/node-logo.png',
+  'Express.js': 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/logo/express-logo.png',
+  'MongoDB': 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/logo/mongoDB-logo.png',
+  'AWS S3': 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/logo/aws-logo.png'
 };
 
 const Projects = () => {
   const { category } = useParams();
   const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
+  const projectRefs = useRef([]);
 
-    useEffect(() => {
-      async function fetchProjects() {
-        try {
-          let response;
-          if (!category || category === 'all') { // Check if category is undefined or "all"
-            response = await axios.get('https://portfolio-api-26jun.onrender.com/api/projects/category/all');
-          } else {
-            response = await axios.get(`https://portfolio-api-26jun.onrender.com/api/projects/category/${category}`);
-          }
-          setProjects(response.data);
-          setLoading(true);
-          setTimeout(() => {
-            setLoading(false);
-          }, 300); 
-        } catch (error) {
-          console.error('Error fetching projects:', error);
+  useEffect(() => {
+    async function fetchProjects() {
+      try {
+        let response;
+        if (!category || category === 'all') {
+          response = await axios.get('https://portfolio-api-26jun.onrender.com/api/projects/category/all');
+        } else {
+          response = await axios.get(`https://portfolio-api-26jun.onrender.com/api/projects/category/${category}`);
         }
+        setProjects(response.data || []);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+        setProjects([]);
+        setLoading(false);
       }
-  
-      fetchProjects();
-    }, [category]);
+    }
+
+    fetchProjects();
+  }, [category]);
+
+  const [springs, api] = useSprings(projects.length * 4, (i) => ({
+    opacity: 0,
+    transform: 'translate3d(0,40px,0)',
+  }));
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const { target } = entry;
+          const index = projectRefs.current.findIndex((ref) => ref === target);
+          if (index !== -1) {
+            api.start((i) => {
+              if (i === index * 4 + 0) {
+                return { opacity: 1, transform: 'translate3d(0,0px,0)' };
+              }
+              if (i === index * 4 + 1) {
+                return { opacity: 1, transform: 'translate3d(0,0px,0)' };
+              }
+              if (i === index * 4 + 2) {
+                return { opacity: 1, transform: 'translate3d(0,0px,0)' };
+              }
+              if (i === index * 4 + 3) {
+                return { opacity: 1, transform: 'translate3d(0,0px,0)' };
+              }
+              return {};
+            });
+            observer.unobserve(target);
+          }
+        }
+      });
+    }, { threshold: 0.3 });
+
+    projectRefs.current.forEach((ref) => {
+      if (ref) {
+        observer.observe(ref);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [api, projects]);
+
   return (
     <ProjectsContainer>
-      <Helmet>
+    <Helmet>
       <title>Sanjay Patidar Projects Portfolio: Web Development, Mobile App Development, UI/UX Design</title>
   <meta name="description" content="Explore the diverse range of projects developed by Sanjay Patidar, showcasing expertise in web development, mobile app development, and various other categories. Discover innovative solutions, unique designs, and successful implementations." />
   <meta name="keywords" content="Sanjay Patidar, projects, web development, mobile app development, innovative projects, technology, programming, coding, software development" />
@@ -465,14 +508,14 @@ const Projects = () => {
 
 </Helmet>
 
-{loading && ( // Display loading animation if loading is true
+
+      {loading && (
         <LoadingOverlay>
           <RingLoader color="#13584F" loading={loading} size={150} />
         </LoadingOverlay>
       )}
 
-     <ProjectsNavigation>
-
+      <ProjectsNavigation>
         <ProjectsNavList>
           <ProjectsNavItem>
             <ProjectsNavLinkContainer to="/projects/all">
@@ -497,74 +540,40 @@ const Projects = () => {
         </ProjectsNavList>
       </ProjectsNavigation>
 
-
-
       <ProjectsContent>
-
-      {loading ? ( // Show loading indicator when loading
+        {loading ? (
           <p>Loading...</p>
         ) : projects.length > 0 ? (
-               <ProjectList>
-            {projects.map((project) => (
-              <ProjectItem key={project._id}>
-                               <NavLink to={`/project/${generateSlug(project.title)}`} style={{ textDecoration: 'none' }}>
-
-                  <ProjectTitle>
-                    {project.title}
-                  </ProjectTitle>
+          <ProjectList>
+            {projects.map((project, i) => (
+              <ProjectItem
+                key={project._id}
+                ref={(ref) => (projectRefs.current[i] = ref)}
+                style={{ ...springs[i * 4 + 0] }}
+              >
+                <ProjectLogoContainer>
+                  <ProjectLogo src={project.logo} alt={project.title} />
+                </ProjectLogoContainer>
+                <NavLink to={`/project/${generateSlug(project.title)}`} style={{ textDecoration: 'none' }}>
+                  <ProjectTitle style={{ ...springs[i * 4 + 2] }}>{project.title}</ProjectTitle>
                 </NavLink>
+                <TechStackContainer style={{ ...springs[i * 4 + 3] }}>
+                  {Array.isArray(project.techStack) &&
+                    project.techStack.map((tech) => (
+                      <TechStackItem key={tech}>
+                        <TechStackLogo src={techStackLogos[tech]} alt={tech} />
+                        <TechStackName>{tech}</TechStackName>
+                      </TechStackItem>
+                    ))}
+                </TechStackContainer>
                 {project.websiteLink && (
-                  <ProjectWebsiteLink href={project.websiteLink} target="_blank" rel="noopener noreferrer">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      width="18"
-                      height="18"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M19 19a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h5l2 2h2a2 2 0 012 2v8z"
-                      />
-                    </svg>
+                  <ProjectWebsiteLink
+                    href={project.websiteLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Visit Website
                   </ProjectWebsiteLink>
-                )}
-               {project.description && (
-                  <ProjectDescription>
-                    {project.description.map((desc, index) => {
-                      // Use regular expressions to find text between ^ markers and apply styling
-                      const highlightedText = desc.split(/\^([^]+?)\^/).map((part, i) => {
-                        if (i % 2 === 1) {
-                          // Apply styles to text between markers
-                          return <span key={i} className="highlight">{part}</span>;
-                        }
-                        return part;
-                      });
-
-                      return (
-                        <React.Fragment key={index}>
-                          {highlightedText}
-                          <br />
-                        </React.Fragment>
-                      );
-                    })}
-                  </ProjectDescription>
                 )}
               </ProjectItem>
             ))}
@@ -572,9 +581,7 @@ const Projects = () => {
         ) : (
           <p>No projects found.</p>
         )}
-
       </ProjectsContent>
-
     </ProjectsContainer>
   );
 };
