@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet';
 import SkillTable from './SkillTable';
 import { RingLoader } from 'react-spinners';
 
-// Keyframes for magical appearance
 const magicAppear = keyframes`
   0% {
     transform: translateY(100px) scale(0.5);
@@ -164,7 +163,7 @@ const Section = styled.div`
 `;
 
 const Resume = () => {
-  const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Resume-ATS92/Sanjay-Patidar-Resume-Web-Developer.pdf';
+  const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Developer-Resume/Sanjay-Patidar-Resume-Web-Developer.pdf';
   const [downloadCount, setDownloadCount] = useState(0);
   const [loading, setLoading] = useState(false);
 
