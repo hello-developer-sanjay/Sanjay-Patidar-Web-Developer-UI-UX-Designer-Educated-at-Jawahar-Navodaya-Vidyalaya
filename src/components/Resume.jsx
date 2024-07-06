@@ -163,7 +163,7 @@ const Section = styled.div`
 `;
 
 const Resume = () => {
-  const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Resume-Web-Developer/Sanjay-Patidar-Resume_Web-Developer.pdf';
+  const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Resume-Web-Developer/Sanjay-Patidar-Resume-Web-Developer.pdf';
   const [downloadCount, setDownloadCount] = useState(0);
   const [loading, setLoading] = useState(false);
 
