@@ -1,8 +1,10 @@
+import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
-import SkillTable from './SkillTable';
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 import { RingLoader } from 'react-spinners';
+import SkillTable from './SkillTable';
+import { Helmet } from 'react-helmet';
 
 const magicAppear = keyframes`
   0% {
@@ -74,16 +76,7 @@ const LoadingOverlay = styled.div`
   z-index: 9999;
 `;
 
-const ResumeTitle = styled.h2`
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  color: #f5c518;
-  position: relative;
-  display: block;
-  font-family: 'Pacifico', cursive;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-  animation: ${glow} 2s infinite alternate;
-`;
+
 
 const ResumeSubtitle = styled.h3`
   font-size: 2rem;
@@ -110,13 +103,6 @@ const ResumeLink = styled.a`
   transition: transform 0.3s, box-shadow 0.3s, color 0.3s;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
   animation: ${magicAppear} 1.5s ease-in-out 0.6s forwards;
-
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
-    color: #fff;
-    animation: ${glow} 2s infinite alternate;
-  }
 `;
 
 const ResumeHeading = styled.h1`
@@ -161,6 +147,53 @@ const Section = styled.div`
     animation: ${magicAppear} 1.5s ease-in-out forwards;
   }
 `;
+
+const SliderContainer = styled.div`
+  display: flex;
+  overflow-x: auto;
+  padding: 2rem 0;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const Slide = styled.div`
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  width: 60%;
+  margin: 0 1rem;
+  position: relative;
+  transform: scale(0.8);
+  transition: transform 0.5s ease, filter 0.5s ease;
+
+  &:hover {
+    transform: scale(1);
+  }
+
+  &.in-view {
+    transform: scale(1);
+  }
+`;
+
+const SlideImage = styled.img`
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+`;
+
+const images = [
+  "https://sanjaybasket.s3.ap-south-1.amazonaws.com/Web-Developer-Resume/2.png",
+  "https://sanjaybasket.s3.ap-south-1.amazonaws.com/Web-Developer-Resume/3.png",
+  "https://sanjaybasket.s3.ap-south-1.amazonaws.com/Web-Developer-Resume/4.png",
+  "https://sanjaybasket.s3.ap-south-1.amazonaws.com/Web-Developer-Resume/5.png",
+  "https://sanjaybasket.s3.ap-south-1.amazonaws.com/Web-Developer-Resume/6.png"
+];
+
 const Resume = () => {
   const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Web-Developer-Resume/Sanjay-Patidar-Resume-Web-Developer.pdf';
   const [downloadCount, setDownloadCount] = useState(0);
@@ -202,7 +235,7 @@ const Resume = () => {
 
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.1,
+      threshold: 0.5,
     };
 
     const observerCallback = (entries, observer) => {
@@ -228,7 +261,7 @@ const Resume = () => {
 
   return (
     <>
-      <Helmet>
+       <Helmet>
         <title>Sanjay Patidar | Web Developer Resume | ATS Score 95</title>
         <meta name="description" content="Unlock Sanjay Patidar's resume to explore his professional experience and skills. Click the link to access the full resume." />
         <meta name="keywords" content="resume, experience, chandigarh university, jawahar Navodaya Vidyalaya, jnv, work, skills, web developer, UI/UX designer" />
@@ -268,14 +301,11 @@ const Resume = () => {
           })}
         </script>
       </Helmet>
-
       <ResumeContainer>
         <ResumeSubtitle>
           My Professional Experience and Skills
         </ResumeSubtitle>
-        <ResumeHeading>
-          Get My Resume
-        </ResumeHeading>
+        
         <Section className="section">
           <ResumeLink href={pdfResumeUrl} onClick={handleResumeClick}>
             Get Resume
@@ -284,6 +314,15 @@ const Resume = () => {
         <p>Resume downloads: {downloadCount}</p>
       </ResumeContainer>
       <SkillTable />
+      <SliderContainer>
+        {images.map((image, index) => (
+          <Slide key={index} className="slide">
+            <Zoom>
+              <SlideImage src={image} alt={`Resume image ${index + 1}`} />
+            </Zoom>
+          </Slide>
+        ))}
+      </SliderContainer>
       {loading && (
         <LoadingOverlay>
           <RingLoader color="#000" size={60} />
