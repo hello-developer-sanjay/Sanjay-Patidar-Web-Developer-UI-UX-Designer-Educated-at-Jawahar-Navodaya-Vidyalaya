@@ -17,6 +17,7 @@
         "react-helmet": "^6.1.0",
     "react-intersection-observer": "^9.5.3",
         "@chakra-ui/system": "^2.6.2",
+    "react-medium-image-zoom": "^5.2.5",
 
     "framer-motion": "^10.16.1",
     "http-proxy-middleware": "^2.0.6",
