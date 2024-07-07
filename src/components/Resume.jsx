@@ -161,7 +161,6 @@ const Section = styled.div`
     animation: ${magicAppear} 1.5s ease-in-out forwards;
   }
 `;
-
 const Resume = () => {
   const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Web-Developer-Resume/Sanjay-Patidar-Resume-Web-Developer.pdf';
   const [downloadCount, setDownloadCount] = useState(0);
