@@ -38,28 +38,33 @@ const glow = keyframes`
 `;
 
 const ResumeContainer = styled.div`
-  padding: 4rem 2rem;
-  text-align: center;
-  border-radius: 20px;
-  max-width: 100%;
-  margin: 0 auto;
-  height: 100%;
   position: relative;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
   overflow: hidden;
-  background: linear-gradient(45deg, #282a36, #3d3f51);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  animation: ${magicAppear} 1.5s ease-in-out forwards;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    right: 0;
+    bottom: 0;
+    background: url('https://sanjaybasket.s3.ap-south-1.amazonaws.com/Web-Developer-Resume/Home-bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    filter: blur(5px);
     z-index: -1;
-    background: url('https://sanjaybasket.s3.ap-south-1.amazonaws.com/HogwartsEdX/homebg.webp') no-repeat center center fixed;
-    opacity: 0.2;
+    transition: filter 0.3s ease-in-out;
+  }
+
+  &:hover::before {
+    filter: blur(3px);
   }
 `;
 
@@ -90,8 +95,9 @@ const ResumeSubtitle = styled.h3`
 const ResumeLink = styled.a`
   display: inline-block;
   padding: 0.8rem 1.6rem;
-  background: linear-gradient(45deg, #6a0dad, #ffb347);
-  color: #1a1a1a;
+  color: white;
+    border: 2px solid #fff;
+background-color: black;
   border-radius: 30px;
   text-decoration: none;
   font-weight: bold;
@@ -105,35 +111,6 @@ const ResumeLink = styled.a`
   animation: ${magicAppear} 1.5s ease-in-out 0.6s forwards;
 `;
 
-const ResumeHeading = styled.h1`
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  margin-top: 3rem;
-  padding: 1rem;
-  text-align: center;
-  color: #f5c518;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  position: relative;
-  font-family: 'Harry P', serif;
-  animation: ${magicAppear} 1.5s ease-in-out 0.9s forwards;
-
-  &:after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(to right, #ff5e62, #ff9966);
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    border-radius: 10px;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
-  }
-`;
 
 const Section = styled.div`
   margin: 2rem 0;
@@ -152,8 +129,6 @@ const SliderContainer = styled.div`
   display: flex;
   overflow-x: auto;
   padding: 2rem 0;
-    background-color: black;  
-
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
@@ -314,9 +289,7 @@ const Resume = () => {
           </ResumeLink>
         </Section>
         <p>Resume downloads: {downloadCount}</p>
-      </ResumeContainer>
-      <SkillTable />
-      <SliderContainer>
+        <SliderContainer>
         {images.map((image, index) => (
           <Slide key={index} className="slide">
             <Zoom>
@@ -325,6 +298,10 @@ const Resume = () => {
           </Slide>
         ))}
       </SliderContainer>
+      </ResumeContainer>
+      
+      <SkillTable />
+      
       {loading && (
         <LoadingOverlay>
           <RingLoader color="#000" size={60} />
