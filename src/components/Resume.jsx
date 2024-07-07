@@ -152,6 +152,8 @@ const SliderContainer = styled.div`
   display: flex;
   overflow-x: auto;
   padding: 2rem 0;
+    background-color: black;  
+
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
