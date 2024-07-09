@@ -9,6 +9,7 @@ const rateLimit = require('express-rate-limit'); // Add rate limiting
 const morgan = require('morgan'); // Add request logging
 const xss = require('xss'); // Add XSS protection
 const session = require('express-session'); // Add session management (if needed)
+const { exec } = require('child_process');
 
 require('dotenv').config();
 
@@ -91,7 +92,25 @@ mongoose
   });
   
   app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-  
+  // Directly specify the ChromeDriver path
+const chromeDriverPath = '/usr/local/bin/chromedriver';
+
+app.get('/run-script', (req, res) => {
+    const command = `CHROME_DRIVER_PATH=${chromeDriverPath} python3 main.py`;
+
+    exec(command, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Error: ${error.message}`);
+            return res.status(500).send('Error executing script');
+        }
+        if (stderr) {
+            console.error(`Stderr: ${stderr}`);
+            return res.status(500).send('Error in script');
+        }
+        console.log(`Stdout: ${stdout}`);
+        res.send('Script executed successfully');
+    });
+});
   app.get('/api/certifications', async (req, res) => {
     try {
       const certifications = await Certification.find();
