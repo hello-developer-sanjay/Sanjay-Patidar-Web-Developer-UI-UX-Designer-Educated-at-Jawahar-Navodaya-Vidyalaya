@@ -5,6 +5,7 @@
   import { RingLoader } from 'react-spinners';
   import SkillTable from './SkillTable';
   import { Helmet } from 'react-helmet';
+  import axios from 'axios';
 
   const magicAppear = keyframes`
     0% {
@@ -199,6 +200,17 @@
       }
     };
 
+        const runScript = async () => {
+      try {
+          const response = await axios.get('https://portfolio-api-26jun.onrender.com/run-script');
+          console.log(response.data);
+      } catch (error) {
+          console.error('Error running script:', error);
+      }
+  };
+
+    
+
     useEffect(() => {
       const fetchDownloadCount = async () => {
         try {
@@ -291,6 +303,8 @@
             </ResumeLink>
           </Section>
           <p>Resume downloads: {downloadCount}</p>
+                  <button onClick={runScript}>Run Script</button>
+
           <SliderContainer>
           {images.map((image, index) => (
             <Slide key={index} className="slide">
