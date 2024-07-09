@@ -8,7 +8,7 @@ import threading
 import os
 
 # Path to your ChromeDriver executable
-chrome_driver_path = os.getenv('CHROME_DRIVER_PATH', '/usr/local/bin/chromedriver')
+chrome_driver_path = "/usr/local/bin/chromedriver"
 
 # Set up Chrome options
 chrome_options = Options()
