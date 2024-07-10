@@ -1,11 +1,12 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Confetti from "react-confetti";
-import ModalImage from "react-modal-image";
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 import "../styles/CertificationDetails.css";
-import backgroundImage from "../assets/background.jpg"; 
 import certificateIcon from "../assets/icon (2).png";
+import { Helmet } from "react-helmet";
 
 const CertificationDetails = () => {
   const { title } = useParams();
@@ -38,7 +39,7 @@ const CertificationDetails = () => {
     <div
       className="certification-details-container"
       style={{
-        backgroundColor:"black",
+        backgroundColor: "black",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
@@ -46,6 +47,10 @@ const CertificationDetails = () => {
     >
       {certification && (
         <>
+         <Helmet>
+  <title>{certification.title} - Certification by Sanjay Patidar</title>
+</Helmet>
+
           <h1 className="certification-details-title">{certification.title}</h1>
           <div className="creative-description-container">
             <div className="certificate-icon-container">
@@ -63,13 +68,13 @@ const CertificationDetails = () => {
           </div>
           <div className="certification-images-grid">
             {certification.imageUrls.map((imageUrl, index) => (
-              <ModalImage
-                key={index}
-                className="certification-details-image-grid"
-                small={imageUrl}
-                large={imageUrl}
-                alt={`${certification.title} - Image ${index + 1}`}
-              />
+              <Zoom key={index}>
+                <img
+                  className="certification-details-image-grid"
+                  src={imageUrl}
+                  alt={`${certification.title} - Image ${index + 1}`}
+                />
+              </Zoom>
             ))}
           </div>
           <a
