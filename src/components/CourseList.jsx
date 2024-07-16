@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { RingLoader } from 'react-spinners'; // Import the RingLoader component
+import { RingLoader } from 'react-spinners';
 import courseImage1 from '../assets/html.png';
 import courseImage2 from '../assets/css.png';
 import courseImage3 from '../assets/responsive1.png';
@@ -61,12 +61,12 @@ function CourseList() {
       try {
         let response;
         if (!category || category === 'all') {
-          response = await axios.get('https://eduxcel-api-26jun.onrender.com/api/courses/category/all');
+          response = await axios.get('https://eduxcel-api-16july.onrender.com/api/courses/category/all');
         } else {
-          response = await axios.get(`https://eduxcel-api-26jun.onrender.com/api/courses/category/${category}`);
+          response = await axios.get(`https://eduxcel-api-16july.onrender.com/api/courses/category/${category}`);
         }
         if (!response) {
-          response = await axios.get('https://eduxcel-api-26jun.onrender.com/api/courses/category');
+          response = await axios.get('https://eduxcel-api-16july.onrender.com/api/courses/category');
         }
         setCourses(response.data);
         setLoading(false); 
