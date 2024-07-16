@@ -13,7 +13,7 @@ const Starstar = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://portfolio-api-26jun.onrender.com/stars');
+        const response = await axios.get('https://portfolio-api-16july.onrender.com/stars');
         const { data } = response;
         setUsersCount(data.length);
         const totalStars = data.reduce((sum, star) => sum + star.star, 0);
@@ -38,12 +38,12 @@ const Starstar = () => {
         localStorage.setItem('currentUser', randomUserId);
       }
   
-      await axios.post('https://portfolio-api-26jun.onrender.com/stars', {
+      await axios.post('https://portfolio-api-16july.onrender.com/stars', {
         userId: localStorage.getItem('currentUser'),
         star: newStar,
       });
   
-      const response = await axios.get('https://portfolio-api-26jun.onrender.com/stars');
+      const response = await axios.get('https://portfolio-api-16july.onrender.com/stars');
       const { data } = response;
       setUsersCount(data.length);
       const totalStars = data.reduce((sum, star) => sum + star.star, 0);
