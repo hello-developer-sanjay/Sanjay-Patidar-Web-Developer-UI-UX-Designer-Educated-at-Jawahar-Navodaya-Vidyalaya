@@ -15,7 +15,7 @@ const Certifications = () => {
     async function fetchCertifications() {
       try {
         const response = await axios.get(
-          "https://portfolio-api-16july.onrender.com/api/certifications"
+          "https://portfolio-api-5aug.onrender.com/api/certifications"
         );
         setCertifications(response.data);
         setLoading(false);
