@@ -164,7 +164,6 @@
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   `;
-
   const images = [
     "https://sanjaybasket.s3.ap-south-1.amazonaws.com/Web-Developer-Resume/2.png",
     "https://sanjaybasket.s3.ap-south-1.amazonaws.com/Web-Developer-Resume/3.png",
