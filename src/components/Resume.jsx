@@ -311,7 +311,6 @@
         </ResumeContainer>
         
         <SkillTable />
-        
         {loading && (
           <LoadingOverlay>
             <RingLoader color="#000" size={60} />
