@@ -6,6 +6,7 @@
   import SkillTable from './SkillTable';
   import { Helmet } from 'react-helmet';
   import axios from 'axios';
+
   const magicAppear = keyframes`
     0% {
       transform: translateY(100px) scale(0.5);
