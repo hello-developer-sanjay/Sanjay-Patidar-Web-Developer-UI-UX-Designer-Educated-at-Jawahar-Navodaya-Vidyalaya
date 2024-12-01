@@ -348,7 +348,7 @@ useEffect(() => {
     { icon: <FaLinkedin />, label: "LinkedIn", link: "https://www.linkedin.com/in/sanjay-patidar-25b580292" },
     { icon: <FaGithub />, label: "GitHub", link: "https://github.com/hello-developer-sanjay" },
     { icon: <FaTwitter />, label: "Twitter", link: "#" },
-    { icon: <FaInstagram />, label: "Instagram", link: "https://www.instagram.com/sanjay_patidar_mcmxcviii" },
+    { icon: <FaInstagram />, label: "Instagram", link: "https://www.instagram.com/sanju.init" },
   ];
 
  
