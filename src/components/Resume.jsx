@@ -175,7 +175,7 @@
   ];
 
   const Resume = () => {
-    const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Resume-ATS92/Sanjay_Patidar_Resume_Web_Developer.pdf';
+    const pdfResumeUrl = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/Resume/Sanjay_Patidar_Resume_Web_Developer.pdf';
     const [downloadCount, setDownloadCount] = useState(0);
     const [loading, setLoading] = useState(false);
     const handleResumeClick = async (e) => {
