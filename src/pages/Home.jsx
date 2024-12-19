@@ -1288,7 +1288,7 @@ const SocialIconWrapper = ({ icon, label, link }) => {
   
       <Next>
     🔗 <span className="light">Sanjay Patidar Instagram ID : </span>{' '}
-    <a href="https://www.instagram.com/sanjay_patidar_mcmxcviii"style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }} id="instaIDforlap" target="_blank">sanjay_patidar_mcmxcviii</a>
+    <a href="https://www.instagram.com/patidarsanju.io"style={{ textDecoration: 'none', color: '#007bff', fontWeight: 'bold' }} id="instaIDforlap" target="_blank">patidarsanju.io</a>
     {' '} | OR | {' '}
     <button onClick={copyInstaIDforlap} style={{ marginLeft: '4px', color: '#000501', padding: '2px 4px', border: '2px solid #ff6b6b', borderRadius: '30px', cursor: 'pointer' }}>Copy Insta ID</button>
   </Next>
