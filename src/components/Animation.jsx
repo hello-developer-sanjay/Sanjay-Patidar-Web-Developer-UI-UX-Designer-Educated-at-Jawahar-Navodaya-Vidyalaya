@@ -59,13 +59,13 @@ const Animation  = () => {
   const contentBlocks = [
 
     {
-      title: '🙋 Who is Sanjay Patidar, the Tech Innovator?',
-      description: "Sanjay Patidar, born on May 24, 1998, is a tech innovator from Neemuch, India. With a passion for digital innovation, he thrives on pushing technology boundaries. Renowned for directing 6 projects, Sanjay showcases diverse technical expertise and a relentless pursuit of excellence.",
+      title: '🙋 Who is Sanjay Patidar, the Visionary Engineer?',
+      description: "Sanjay Patidar, born on May 24, 1998, in Neemuch, India, is a forward-thinking engineer specializing in web development and scalable digital solutions. With a passion for innovation, he has led diverse projects, blending creativity with technical precision to deliver impactful results.",
     },
     
     {
-      title: '🙋 How Did Sanjay Patidar Optimize SEO Strategies?',
-      description: "Sanjay Patidar achieved a flawless SEO score of 100, capturing over 28,000 impressions across 116+ countries. His mastery of on-page/off-page SEO techniques propelled websites to the top of search engine rankings, boosting visibility and engagement.",
+      title: '🙋 What Defines Sanjay Patidar’s Approach to Digital Excellence?',
+      description: "Sanjay’s meticulous attention to detail and strategic mindset have earned his projects widespread recognition, including achieving top search rankings globally. Through his expertise in system design, real-time applications, and collaborative teamwork, Sanjay consistently redefines digital possibilities.",
     },
    
     
