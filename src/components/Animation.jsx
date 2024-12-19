@@ -65,7 +65,7 @@ const Animation  = () => {
     
     {
       title: '🙋 What Defines Sanjay Patidar’s Approach to Digital Excellence?',
-      description: "Sanjay’s meticulous attention to detail and strategic mindset have earned his projects widespread recognition, including achieving top search rankings globally. Through his expertise in system design, real-time applications, and collaborative teamwork, Sanjay consistently redefines digital possibilities.",
+      description: "Sanjay’s attention to detail and strategic mindset earned his projects recognition, including top search rankings globally. Through expertise in system design, real-time applications, and teamwork, Sanjay consistently redefines digital possibilities.",
     },
    
     
