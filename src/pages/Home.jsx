@@ -26,7 +26,7 @@ import FAQs from '../components/FAQs';
 
   import Typed from 'react-typed';
 
-  import profileImage1 from '../assets/ssss.webp';
+  import profileImage1 from '../assets/Sanjay-Patidar-Profile.webp';
   import profileImage2 from '../assets/profilepic.jpg';
 
 
